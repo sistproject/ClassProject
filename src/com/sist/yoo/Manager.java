@@ -18,25 +18,32 @@ public class Manager {
 			
 			for(int i=0;i<id.size();i++) {
 				System.out.println("number: "+k);
-				System.out.println("title: "+id.get(i).attr("data-target-id"));
+//				System.out.println("title: "+id.get(i).attr("data-target-id"));
+				
 				// 각 작품의 상세페이지
 				Document target = Jsoup.connect("https://www.idus.com/w/product/"+id.get(i).attr("data-target-id")).get();
 				
 				Elements title = target.select("div.sticky_aside_product h2.sticky_aside__produc-title");
 				Elements artist = target.select("div.sticky_aside_product span.artist_card__label");
 				Elements image = target.select("ul.img-view li.ui-slide");
-				Elements price = target.select("strong.sold-price");
-				Elements detail = target.select("div.sticky_aside_product span.artist_card__label");
+				Elements price = target.select("div.sticky_aside_product");
+				Elements content = target.select("p.para");
 				Elements category = target.select("a.txt-strong");
 				
 				String imgstr = image.get(0).attr("style");
+				
+				String pricestr = String.valueOf(price.get(0));
+				String dataprice = "data-sold-price";
+				int idx = pricestr.indexOf(dataprice)+17;
+				String pslide = pricestr.substring(idx,idx+10);
+				String pslide2 = pslide.substring(0,pslide.lastIndexOf("\""));
 				
 				for(int j=0;j<title.size();j++) {
 					System.out.println("product: "+title.get(j).text());
 					System.out.println("artist: "+artist.get(j).text());
 					System.out.println("image: "+imgstr.substring(imgstr.indexOf("(")+1,imgstr.indexOf(")")));
-//					System.out.println("price: "+price.get(j).text());
-					System.out.println(price.size());
+					System.out.println("artist: "+content.get(j).text());
+					System.out.println("price: "+ pslide2 + "원");
 					System.out.println("category: "+category.get(j).text());
 				}
 				
