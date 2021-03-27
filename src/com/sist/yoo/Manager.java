@@ -8,16 +8,18 @@ public class Manager {
 	public void productData() {
 		try {
 			int k=1;
-			Document doc = Jsoup.connect("https://www.idus.com/w/main/today-recommend-product").get();
-//			System.out.println(doc);
 			
+			// 오늘의 발견 tab
+			Document doc = Jsoup.connect("https://www.idus.com/w/main/today-recommend-product").get();
+			// System.out.println(doc);
+			
+			// 각 작품의 id
 			Elements id = doc.select("li.ui_grid__item button.ui_card__overlay");
 			
-			Elements link = doc.select("picture.img img");
 			for(int i=0;i<id.size();i++) {
 				System.out.println("number: "+k);
 				System.out.println("title: "+id.get(i).attr("data-target-id"));
-				
+				// 각 작품의 상세페이지
 				Document target = Jsoup.connect("https://www.idus.com/w/product/"+id.get(i).attr("data-target-id")).get();
 				
 				Elements title = target.select("div.sticky_aside_product h2.sticky_aside__produc-title");
@@ -26,7 +28,6 @@ public class Manager {
 				Elements price = target.select("strong.sold-price");
 				Elements detail = target.select("div.sticky_aside_product span.artist_card__label");
 				Elements category = target.select("a.txt-strong");
-				
 				
 				String imgstr = image.get(0).attr("style");
 				
