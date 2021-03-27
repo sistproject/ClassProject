@@ -1,4 +1,6 @@
 package com.sist.sss;
+/*
+package mybiskit;
 import java.io.*;
 import java.util.*;
 
@@ -19,10 +21,10 @@ public class MybiskitManager {
 			for(int i=1;i<=10000;i++)
 			{
 				 Document doc=Jsoup.connect("https://www.mybiskit.com/lecture").get();
-				 Elements poster=doc.select("img[src*=/static/]"); // CSS 선택자
-		    	 Elements category=doc.select("div.csummary div.summary_tit span");
-		    	 Elements title=doc.select("div.csummary div.summary_tit h2.class_tit");
-		    	 Elements price=doc.select("div.compo_price span");
+				 Elements poster=doc.select("div.fixed div.data-src"); // CSS 선택자
+		    	 Elements category=doc.select("div.csummary strong.ctag");
+		    	 Elements title=doc.select("div.csummary h2.class_tit");
+		    	 Elements price=doc.select("div.compo_price span.num");
 		    	 //Elements link=doc.select("div a.href");
 	    		 
 	    		 for(int j=0;j<title.size();j++)
@@ -31,7 +33,7 @@ public class MybiskitManager {
 	    			{
 	    				MybiskitVO vo=new MybiskitVO();
 	    				 vo.setPoster(poster.get(i).attr("src"));
-	        			 vo.setCategory(category.get(i).text());
+	        			 vo.setCategory(category.get(i).attr("span"));
 	        			 vo.setTitle(title.get(i).text());
 	        			 vo.setPrice(price.get(i).text());
 
@@ -57,3 +59,4 @@ public class MybiskitManager {
 		mm.mybiskitData();
 	}
 }
+*/

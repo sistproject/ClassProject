@@ -1,4 +1,5 @@
 package com.sist.sss;
+/*package idus;*/
 /*
  *  NO          NUMBER         
 	POSTER      VARCHAR2(4000) 
@@ -7,7 +8,7 @@ package com.sist.sss;
 	PRICE       VARCHAR2(500)  
 	LINK        VARCHAR2(1000) 
  */
-
+/*
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -22,11 +23,11 @@ public class IdusonlineManager {
 			int k=1;
 			Document doc=Jsoup.connect("https://www.idus.com/oc").get();
     		//System.out.println(doc);
-    		Elements poster=doc.select("div.img_box"); // CSS 선택자
-    		Elements category=doc.select("div.edu-online-list div");
-    		Elements title=doc.select("div.edu-online-list strong");
-    		Elements price=doc.select("div.edu-online-list span");
-    		Elements link=doc.select("div a.href");
+    		Elements poster=doc.select("div.thumb-img"); // CSS 선택자
+    		Elements category=doc.select("div.label");
+    		Elements title=doc.select("div.price");
+    		Elements price=doc.select("div.edu-online-list-span");
+    		Elements link=doc.select("div.href");
     		for(int i=0;i<title.size();i++)
     		{
     			System.out.println("번호:"+k);
@@ -53,3 +54,4 @@ public class IdusonlineManager {
 	}
 }
 
+*/
