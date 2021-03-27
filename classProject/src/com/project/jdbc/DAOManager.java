@@ -1,4 +1,4 @@
-package project_jdbc;
+package com.project.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

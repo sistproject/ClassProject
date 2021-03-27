@@ -1,4 +1,4 @@
-package member;
+package com.project.member;
 
 public class memberVO {
 

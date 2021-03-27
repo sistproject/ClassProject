@@ -1,4 +1,4 @@
-package product;
+package com.project.product;
 
 public class ProductManager {
 

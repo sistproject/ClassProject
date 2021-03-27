@@ -1,4 +1,4 @@
-package class_;
+package com.project.class_;
 
 public class ClassManager {
 
