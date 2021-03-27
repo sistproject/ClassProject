@@ -9,8 +9,11 @@ public class Manager {
 		try {
 			int k=1;
 			
-			// 오늘의 발견 tab
-			Document doc = Jsoup.connect("https://www.idus.com/w/main/today-recommend-product").get();
+			// 오늘의 발견,실시간 구매,인기작품 tab
+//			Document doc = Jsoup.connect("https://www.idus.com/w/main/today-recommend-product").get();
+//			Document doc = Jsoup.connect("https://www.idus.com/w/main/liver-order-product").get();
+			Document doc = Jsoup.connect("https://www.idus.com/w/main/popular-category").get();
+			
 			// System.out.println(doc);
 			
 			// 각 작품의 id
@@ -39,12 +42,16 @@ public class Manager {
 				String pslide2 = pslide.substring(0,pslide.lastIndexOf("\""));
 				
 				for(int j=0;j<title.size();j++) {
-					System.out.println("product: "+title.get(j).text());
-					System.out.println("artist: "+artist.get(j).text());
-					System.out.println("image: "+imgstr.substring(imgstr.indexOf("(")+1,imgstr.indexOf(")")));
-					System.out.println("artist: "+content.get(j).text());
-					System.out.println("price: "+ pslide2 + "원");
-					System.out.println("category: "+category.get(j).text());
+					try {
+						System.out.println("product: "+title.get(j).text());
+						System.out.println("artist: "+artist.get(j).text());
+						System.out.println("image: "+imgstr.substring(imgstr.indexOf("(")+1,imgstr.indexOf(")")));
+						System.out.println("artist: "+content.get(j).text());
+						System.out.println("price: "+ pslide2 + "원");
+						System.out.println("category: "+category.get(j).text());
+					}catch(Exception e) {
+						System.out.println("null");
+					}
 				}
 				
 				k++;
