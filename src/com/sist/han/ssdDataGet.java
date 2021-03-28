@@ -9,9 +9,9 @@ public class ssdDataGet {
 	public void getData() {
 		try {
 			boolean bCheck = false;
-			for (int i = 1; i < 20000; i++) {
+			for (int i = 10315; i < 10317; i++) {
 				String num = i + "";
-				Document doc = Jsoup.connect("https://www.sssd.co.kr/main/class/detail/" + num).get();
+				Document doc = Jsoup.connect("https://www.sssd.co.kr/main/class/detail/"+num).get();
 				Elements metaTags = doc.select("meta[property]");
 				Elements img = doc.select("div.detail-left");
 				Elements address = doc.select("script");
@@ -22,7 +22,7 @@ public class ssdDataGet {
 					// title
 					if (meta.attr("property").equals("og:title")) {
 						String title = meta.attr("content");
-						if (title.indexOf("-") < 5) {
+						if (title.length()<11) {
 							bCheck = true;
 							break;
 
@@ -40,7 +40,6 @@ public class ssdDataGet {
 					}
 				}
 				if (bCheck == true) {
-					System.out.println("3");
 					continue;
 				}
 				// 주소
@@ -58,6 +57,7 @@ public class ssdDataGet {
 
 				// 작가 닉네임
 				String name = doc.select("div.teacher_txt01").text();
+				System.out.println(name);
 
 				// 강의시간
 				String timeAllCode = address.get(11).toString();
@@ -71,8 +71,8 @@ public class ssdDataGet {
 						String realTime = (time / 60) + "시간";
 						if (time % 60 != 0) {
 							realTime = realTime + " " + (time % 60) + "분"; // insert 할 값
-							System.out.println(realTime);
 						}
+						System.out.println(realTime);
 						break;
 					}
 				}
