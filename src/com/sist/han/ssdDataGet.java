@@ -9,7 +9,7 @@ public class ssdDataGet {
 	public void getData() {
 		try {
 			boolean bCheck = false;
-			for (int i = 10315; i < 10317; i++) {
+			for (int i = 1; i < 20000; i++) {
 				String num = i + "";
 				Document doc = Jsoup.connect("https://www.sssd.co.kr/main/class/detail/"+num).get();
 				Elements metaTags = doc.select("meta[property]");
