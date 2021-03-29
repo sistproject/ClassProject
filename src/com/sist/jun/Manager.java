@@ -13,7 +13,7 @@ public class Manager {
 					// 아이디어스 온라인 클래스
 					Document doc = Jsoup.connect("https://www.idus.com/oc/class/" + p).get();
 
-					// System.out.println(doc);
+					// System.out.println(doc); 
 
 					
 					System.out.println("number: " + k);
