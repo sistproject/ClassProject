@@ -52,7 +52,7 @@ public class Manager {
 					
 				}catch(Exception ex) {
 //					ex.printStackTrace();
-					System.out.println("나와랏");
+					System.out.println("no page");
 				}
 				
 			}
