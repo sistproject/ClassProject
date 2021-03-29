@@ -52,6 +52,7 @@ public class IdusOfflineManager {
 				Elements title=target.select("aside.sticky_aside h2.sticky_aside__title");
 				Elements price=target.select("div.price_tag strong.sold-price");
 				Elements artist=target.select("aside.sticky_aside span.artist_card__label");
+				Elements address=target.select("div.map__labelbox strong");
 				Elements content=target.select("div.article_block__header h3.article_block__title"); 
 				
 				String imgstr=image.get(0).attr("style");
@@ -65,6 +66,7 @@ public class IdusOfflineManager {
 			    			System.out.println("제목:"+title.get(j).text());
 			    			System.out.println("가격:"+price.get(j).text()+"원");
 			    			System.out.println("아티스트:"+artist.get(j).text());
+			    			System.out.println("위치:"+address.get(j).text());
 			    			System.out.println("내용:"+content.get(j).text());
 		    			}catch(Exception e) {}
 		    		}
