@@ -58,6 +58,7 @@ public class ProductManager {
 					if(s.contains("deliveryMax")) deliveryMax = s.substring(s.indexOf(":")+1).replace("'", "");
 					if(s.contains("starCount")) likes = s.substring(s.indexOf(":")+1).replace("\"", "");
 				}
+				if(point.contains(".")) point = point.substring(0,point.indexOf("."));
 				for(int j=0;j<title.size();j++) {
 					try {
 						System.out.println("product: "+title.get(j).text());
