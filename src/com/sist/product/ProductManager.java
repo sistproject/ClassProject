@@ -45,21 +45,19 @@ public class ProductManager {
 				
 				List<String> list = new ArrayList<String>();
 				String[] temp = info.replace(" ", "").replace("\n", "").split(",");
-				for(String s:temp) {
-					s=s.substring(s.indexOf(":")+1);
-					list.add(s);
-				}
 				
-				String price = list.get(1);
-				String purchase = list.get(2);
-				String point = list.get(13);
-				if(point.contains(".")) point = point.substring(0,point.indexOf("."));
-				String score = list.get(20);
-				score = score.replace("}", "").replace("'", "");
-				String delivery = "평균 "+list.get(21).replace("'", "")+" 최대"+list.get(22).replace("'", "");
-
-				String likes = list.get(list.size()-1).replace("\"", "");
-				String tag="";
+				String price,purchase,point,score,deliveryAvg,deliveryMax,likes,tag;
+				price=purchase=point=score=deliveryAvg=deliveryMax =likes=tag="";
+				
+				for(String s:temp) {
+					if(s.contains("productPiPrice")) price = s.substring(s.indexOf(":")+1);
+					if(s.contains("statusPurchase")) purchase = s.substring(s.indexOf(":")+1);
+					if(s.contains("pointPrice")) point = s.substring(s.indexOf(":")+1);
+					if(s.contains("rate\"")) score = s.substring(s.indexOf(":")+1).replace("}", "").replace("'", "");
+					if(s.contains("deliveryAverage")) deliveryAvg = s.substring(s.indexOf(":")+1).replace("'", "");
+					if(s.contains("deliveryMax")) deliveryMax = s.substring(s.indexOf(":")+1).replace("'", "");
+					if(s.contains("starCount")) likes = s.substring(s.indexOf(":")+1).replace("\"", "");
+				}
 				for(int j=0;j<title.size();j++) {
 					try {
 						System.out.println("product: "+title.get(j).text());
@@ -84,20 +82,20 @@ public class ProductManager {
 				System.out.println("가격: "+price);
 				System.out.println("누적구매: "+purchase);
 				System.out.println("포인트: "+point);
-				System.out.println("배송: "+delivery);
+				System.out.println("배송: 최소 "+deliveryAvg+" 최대 "+deliveryMax);
 				System.out.println("찜: "+likes);
 				System.out.println("별점: "+score);
 				System.out.println("태그: "+tag);
 				
-				vo.setWprice(price);
-				vo.setWdelivery(delivery);
-				vo.setWtag(tag);
-				vo.setWpurchase(Integer.parseInt(purchase));
-				vo.setWpoint(Integer.parseInt(point));
-				vo.setWlike(Integer.parseInt(likes));
-				vo.setWscore(Double.parseDouble(score));
-				
-				dao.productInsert(vo);
+//				vo.setWprice(price);
+//				vo.setWdelivery(delivery);
+//				vo.setWtag(tag);
+//				vo.setWpurchase(Integer.parseInt(purchase));
+//				vo.setWpoint(Integer.parseInt(point));
+//				vo.setWlike(Integer.parseInt(likes));
+//				vo.setWscore(Double.parseDouble(score));
+//				
+//				dao.productInsert(vo);
 				
 				k++;
 			}
