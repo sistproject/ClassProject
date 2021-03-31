@@ -87,15 +87,15 @@ public class ProductManager {
 				System.out.println("별점: "+score);
 				System.out.println("태그: "+tag);
 				
-//				vo.setWprice(price);
-//				vo.setWdelivery(delivery);
-//				vo.setWtag(tag);
-//				vo.setWpurchase(Integer.parseInt(purchase));
-//				vo.setWpoint(Integer.parseInt(point));
-//				vo.setWlike(Integer.parseInt(likes));
-//				vo.setWscore(Double.parseDouble(score));
-//				
-//				dao.productInsert(vo);
+				vo.setWprice(price);
+				vo.setWdelivery("최소 "+deliveryAvg+" 최대 "+deliveryMax);
+				vo.setWtag(tag);
+				vo.setWpurchase(Integer.parseInt(purchase));
+				vo.setWpoint(Integer.parseInt(point));
+				vo.setWlike(Integer.parseInt(likes));
+				vo.setWscore(Double.parseDouble(score));
+				
+				dao.productInsert(vo);
 				
 				k++;
 			}
