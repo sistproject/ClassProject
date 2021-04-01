@@ -417,7 +417,7 @@ section
 {
 
 }
-.main_nav,
+.main_nav:not(div),
 .search_button,
 .shopping_cart
 {
@@ -459,6 +459,7 @@ section
 	background: #14bdee;
 	content: '';
 }
+
 .search_button
 {
 	margin-left: 46px;

@@ -13,6 +13,81 @@
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/responsive.css">
+
+<!-- 카테고리 -->
+<script type="text/javascript">
+function view(opt){
+	if(opt){
+		category_display.style.display="block";
+		category_size.style.color= "#14bdee";
+	}else{
+		category_display.style.display="none";
+		category_size.style.color= "#384158";
+	}
+}
+function view2(opt2){
+	if(opt2){
+		category_display.style.display="block";
+		category_size.style.color= "#14bdee";
+	}else{
+		category_display.style.display="none";
+		category_size.style.color= "#384158";
+	}
+}
+</script>
+<style type="text/css">
+
+.category_wrapper{
+	font-size: 0px;
+	position: absolute;
+	z-index: 9;
+	top: 40px;
+	left: 738.5px;
+	
+}
+.category{
+	display:inline-block;
+	background-color: #ffffff;
+}
+
+.category_content{
+	width: 210px;
+	height: 350px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 17px;
+	padding-bottom: 17px;
+	border: 1px solid rgb(217,217,217);
+}
+
+.category_content li{
+	width:175px;
+	height:25px;
+	margin-top:6px;
+	margin-bottom:6px;
+	background-color: #ffffff;
+	padding-left: 13px;
+	padding-right: 10px;
+	padding-top:2px;
+	font-family: "고딕";
+	font-size: 13px;
+}
+
+.category_content li:hover{
+	background-color: yellow;
+}
+
+.mouse_check{
+	width:100px;
+	height:90px;
+	opacity:0;
+}
+
+.mouse_check2{
+	display: none;
+}
+</style>
+
 </head>
 <body>
 
@@ -28,21 +103,16 @@
 				<div class="container">
 					<div class="row">
 						<div class="col">
-							<div class="top_bar_content d-flex flex-row align-items-center justify-content-start">
+							<div class="top_bar_content d-flex flex-row align-items-center justify-content-end">
 								<ul class="top_bar_contact_list">
-									<li><div class="question">Have any questions?</div></li>
 									<li>
-										<i class="fa fa-phone" aria-hidden="true"></i>
-										<div>001-1234-88888</div>
+										<div>로그인</div>
 									</li>
 									<li>
-										<i class="fa fa-envelope-o" aria-hidden="true"></i>
-										<div>info.deercreative@gmail.com</div>
+										<div>회원가입</div>
 									</li>
 								</ul>
-								<div class="top_bar_login ml-auto">
-									<div class="login_button"><a href="#">Register or Login</a></div>
-								</div>
+								
 							</div>
 						</div>
 					</div>
@@ -50,7 +120,41 @@
 			</div>				
 		</div>
 
-		<!-- Header Content -->
+		<div class="category_wrapper">
+		<div class="mouse_check" onmouseover="view(true)" onmouseout="view(false)"></div>
+		<div class="mouse_check2" id="category_display" onmouseover="view2(true)" onmouseout="view2(false)">
+		<div class="category">
+			<ul class="category_content">
+				<li>가다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+			</ul>
+		</div>
+		
+		<div class="category">
+			<ul class="category_content">			
+				<li>가다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+			</ul>
+		</div>
+		</div>
+		</div>
+			<!-- Header Content -->
 		<div class="header_container">
 			<div class="container">
 				<div class="row">
@@ -63,6 +167,10 @@
 							</div>
 							<nav class="main_nav_contaner ml-auto">
 								<ul class="main_nav">
+									<li>
+										<a href="#" onmouseover="view(true)" onmouseout="view(false)">
+										<div id="category_size">카테고리</div></a>
+									</li>
 									<li class="active"><a href="#">Home</a></li>
 									<li><a href="about.html">About</a></li>
 									<li><a href="courses.html">Courses</a></li>
@@ -85,6 +193,7 @@
 				</div>
 			</div>
 		</div>
+		
 
 		<!-- Header Search Panel -->
 		<div class="header_search_container">
