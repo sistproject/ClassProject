@@ -41,6 +41,6 @@
     <p class="notice">
       Welcome!
     </p>
-    <script src="script.js"></script>
+    <script src="script.js" charset="UTF-8"></script>
   </body>
 </html>
