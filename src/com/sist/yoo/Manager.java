@@ -1,8 +1,6 @@
 package com.sist.yoo;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.*;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -24,7 +22,7 @@ public class Manager {
 			
 			for(int i=0;i<id.size();i++) {
 				System.out.println("number: "+k);
-				System.out.println("title: "+id.get(i).attr("data-target-id"));
+//				System.out.println("title: "+id.get(i).attr("data-target-id"));
 				
 				// 각 작품의 상세페이지
 				Document target = Jsoup.connect("https://www.idus.com/w/product/"+id.get(i).attr("data-target-id")).get();
