@@ -6,7 +6,8 @@ const form = document.getElementById("form"),
 	  repassword = document.getElementById("repassword"),
 	  btn = document.querySelector(".btn_submit");
 
-const nameValidation =  /^[가-힣]{2,4}$/;
+//const nameValidation =  /^[가-힣]{2,4}$/;
+const nameValidation =  /^[a-z0-9_-]{2,20}$/;
 const emailValidation = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 const idValidation = /^[a-z0-9_-]{2,20}$/;   // 2-20글자 숫자&영문
 //const pwValidation = /^.*(?=^.{8,16}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[~,!,@,#,$,*,(,),=,+,_,.,|]).*$/;
@@ -86,7 +87,7 @@ function checkPasswordsMatch() {
 function allFilled(){
 	const success = document.querySelectorAll(".success");
 	console.log(success)
-	if(success.length === 4){
+	if(success.length === 5){
 		btn.disabled = false;	
 		btn.style.color = '#fff';	
 	}else{
@@ -101,6 +102,7 @@ function init(){
 	email.addEventListener('input',isValidEmail);
 	password.addEventListener('input',isValidPw);
 	repassword.addEventListener('input',checkPasswordsMatch);
+	form.addEventListener("change",allFilled);
 	form.addEventListener("submit",allRequired);
 }
 init();

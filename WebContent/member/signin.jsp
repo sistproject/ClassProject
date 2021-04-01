@@ -15,7 +15,11 @@
           <input type="text" id="username" placeholder="NAME" />
           <small>Error message</small>
         </div>
-       
+       <div class="form_control">
+          <label for="id">ID</label>
+          <input type="text" id="id" placeholder="ID" />
+          <small>Error message</small>
+        </div>
         <div class="form_control">
           <label for="email">Email</label>
           <input type="text" id="email" placeholder="EMAIL" />
