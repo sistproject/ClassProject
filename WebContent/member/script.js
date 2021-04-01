@@ -39,19 +39,19 @@ function isValidName() {
   const name = username.value;
   if (nameValidation.test(name.trim())) {
     showSuccess(username);
-	allFilled();
   } else {
     showError(username, "Name is not valid");
   }
+  allFilled();
 }
 function isValidID() {
   const idv = id.value;
   if (idValidation.test(idv.trim())) {
     showSuccess(id);
-	allFilled();
   } else {
     showError(id, "ID is more than 2 characters");
   }
+  allFilled();
 }
 
 function isValidPw() {
@@ -59,18 +59,18 @@ function isValidPw() {
   if (pwd.trim()) {
 	 showSuccess(password);
 	 checkPasswordsMatch();
-	 allFilled();
 	}
+	allFilled();
 }
 
 function isValidEmail() {
   const mail = email.value;	
   if (emailValidation.test(mail.trim())) {
     showSuccess(email);
-	allFilled();
   } else {
     showError(email, "Email is not Valid");
   }
+  allFilled();
 }
 
 function checkPasswordsMatch() {
@@ -80,8 +80,8 @@ function checkPasswordsMatch() {
     showError(repassword, "Passwords do not match");
   } else{
 	showSuccess(repassword);
-	allFilled();
   }
+  allFilled();
 }
 
 function allFilled(){
@@ -102,7 +102,6 @@ function init(){
 	email.addEventListener('input',isValidEmail);
 	password.addEventListener('input',isValidPw);
 	repassword.addEventListener('input',checkPasswordsMatch);
-	form.addEventListener("change",allFilled);
 	form.addEventListener("submit",allRequired);
 }
 init();
