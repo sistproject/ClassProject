@@ -34,6 +34,7 @@ body {
   width: 375px;
   background-color: #fff;
   border-radius: 30px;
+  
 }
 
 h2 {
@@ -104,9 +105,48 @@ h2 {
   text-align: center;
   text-transform: uppercase;
 }
+.btn_signin {
+  width: 100%;
+  height: 40px;
+  margin: 10px 0 0;
+  line-height: 40px;
+  background-color: #dde5fa;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-size:14px;
+  cursor: pointer;
+}
+.btn_signin:hover {
+  background-color: var(--main-color);
+}
+.btn_login {
+  width: 100%;
+  height: 40px;
+  margin: 10px 0 0;
+  line-height: 40px;
+  background-color: var(--main-color);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+span{
+  width: 100%;
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #777;
+}
 
 .notice {
   padding: 15px 20px;
+  cursor: pointer;
   position: fixed;
   bottom: -70px;
   transition: transform 0.3s ease-in-out;

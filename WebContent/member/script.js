@@ -93,6 +93,7 @@ function allFilled(){
 	}else{
 		btn.disabled = true;
 		btn.style.color = 'gray';
+		btn.style.cursor = "pointer";
 	}
 }
 
