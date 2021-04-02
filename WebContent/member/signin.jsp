@@ -54,22 +54,22 @@ function allFilled(){
       <h2>SIGN IN</h2>
       <div class="form_control">
         <label for="username">Username</label>
-        <input type="text" id="username" placeholder="NAME" />
+        <input type="text" id="username" name="username" placeholder="NAME" />
         <small>Error message</small>
       </div>
      <div class="form_control">
         <label for="id">ID</label>
-        <input type="text" id="id" placeholder="ID" />
+        <input type="text" id="id" name="id" placeholder="ID" />
         <small style="float:left">Error message</small>
       </div>
         <div class="form_control">
           <label for="email">Email</label>
-          <input type="text" id="email" placeholder="EMAIL" />
+          <input type="text" id="email" name="email" placeholder="EMAIL" />
           <small>Error message</small>
         </div>
         <div class="form_control">
           <label for="password">Password</label>
-          <input type="password" id="password" placeholder="PASSWORD" />
+          <input type="password" id="password" name="pwd" placeholder="PASSWORD" />
           <small>Error message</small>
         </div>
         <div class="form_control">
