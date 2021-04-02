@@ -28,15 +28,16 @@ public class MemberDAO {
 		   dao=new MemberDAO();
 	   return dao;
    }
-   public void insertMember(String name,String id,String email,String pwd) {
+   public void insertMember(String name,String id,String pwd,String email) {
 	   try {
+		   System.out.println(name+" "+id+" "+ email+" "+pwd);
 		   getConnection();
 		   String sql="INSERT INTO member(name,id,pwd,email) VALUES(?,?,?,?)";
 		   ps=conn.prepareStatement(sql);
 		   ps.setString(1, name);
 		   ps.setString(2, id);
-		   ps.setString(3, email);
-		   ps.setString(4, pwd);
+		   ps.setString(3, pwd);
+		   ps.setString(4, email);
 		   
 		   ps.executeUpdate();
 	   }catch(Exception ex) {
@@ -68,8 +69,7 @@ public class MemberDAO {
 	   String result="";
 	   try {
 		   getConnection();
-		   String sql="SELECT COUNT(*) FROM member "
-				     +"WHERE id=?";
+		   String sql="SELECT COUNT(*) FROM member WHERE id=?";
 		   ps=conn.prepareStatement(sql);
 		   ps.setString(1, id);
 		   ResultSet rs=ps.executeQuery();
@@ -102,6 +102,7 @@ public class MemberDAO {
 	   finally {
 		   disConnection();
 	   }
+	   System.out.println(result);
 	   return result;
    }
 }

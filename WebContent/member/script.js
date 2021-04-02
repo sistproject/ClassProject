@@ -4,7 +4,8 @@ const form = document.getElementById("form"),
 	  email = document.getElementById("email"),
 	  password = document.getElementById("password"),
 	  repassword = document.getElementById("repassword"),
-	  btn = document.querySelector(".btn_submit");
+	  btn = document.querySelector(".btn_submit"),
+	  input = document.querySelector("input");
 
 const nameValidation =  /^[가-힣]{2,4}$/;
 //const nameValidation =  /^[a-z0-9_-]{2,20}$/;
@@ -41,44 +42,57 @@ function allRequired() {
 
 function isValidName() {
   const name = username.value;
-  if (nameValidation.test(name.trim())) {
-    showSuccess(username);
-  } else {
-    showError(username, "Name is not valid");
-  }
+  if(name===""){
+	showError(username, "can't leave this empty");
+  }else{
+	    if (nameValidation.test(name.trim())) {
+	    showSuccess(username);
+	  } else {
+	    showError(username, "Name is not valid");
+	  }
   allFilled();
+  }
+  
 }
 function isValidID() {
   const idv = id.value;
-  if (idValidation.test(idv.trim())) {
-	// 중복체크
-	// 성공
-    showCheck(id);
-	// 존재하는 id
-	//showError(id, "ID already exist");
-  } else {
-    showError(id, "only english and number");
+  if(idv===""){
+	showError(id, "can't leave this empty");
+  }else{
+	  if (idValidation.test(idv.trim())) {
+	    showCheck(id);
+	  } else {
+	    showError(id, "only english and number");
+	  }
+	  allFilled();
   }
-  allFilled();
 }
 
 function isValidPw() {
   const pwd = password.value;
-  if (pwd.trim()) {
-	 showSuccess(password);
-	 checkPasswordsMatch();
-	}
-	allFilled();
+  if(pwd===""){
+	showError(password, "can't leave this empty");
+  }else{
+	  if (pwd.trim()) {
+		 showSuccess(password);
+		 checkPasswordsMatch();
+		}
+		allFilled();
+  }
 }
 
 function isValidEmail() {
   const mail = email.value;	
-  if (emailValidation.test(mail.trim())) {
-    showSuccess(email);
-  } else {
-    showError(email, "Email is not Valid");
+  if(mail===""){
+	showError(email, "can't leave this empty");
+  }else{
+	  if (emailValidation.test(mail.trim())) {
+	    showSuccess(email);
+	  } else {
+	    showError(email, "Email is not Valid");
+	  }
+	  allFilled();
   }
-  allFilled();
 }
 
 function checkPasswordsMatch() {
@@ -103,7 +117,11 @@ function allFilled(){
 		btn.style.cursor = "pointer";
 	}
 }
-
+function nullCheck(event){
+	const tg = event.target;
+	const v = tg.value;
+	if(v==="") showError(tg, "null");
+}
 function init(){
 	username.addEventListener('input',isValidName);
 	id.addEventListener('input',isValidID);

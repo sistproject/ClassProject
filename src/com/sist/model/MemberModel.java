@@ -10,12 +10,45 @@ import com.sist.dao.MemberDAO;
 
 @Controller
 public class MemberModel {
-  @RequestMapping("member/idcheck.do")
-  public String idcheck(HttpServletRequest request,HttpServletResponse response) {
-	  String id=request.getParameter("id");
-	  MemberDAO dao = MemberDAO.newInstance();
-	  int count = dao.idCheck(id);
-	  request.setAttribute("count",count);
-	  return "../member/idcheck.jsp";
-  }
+	
+	@RequestMapping("member/idcheck.do")
+	public String idcheck(HttpServletRequest request,HttpServletResponse response) {
+		String id=request.getParameter("id");
+		MemberDAO dao = MemberDAO.newInstance();
+		int count = dao.idCheck(id);
+		request.setAttribute("count",count);
+		return "../member/idcheck.jsp";
+	}
+	@RequestMapping("member/signin_ok.do")
+	public String joinOk(HttpServletRequest request,HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		}catch (Exception e) {}
+		
+		String name=request.getParameter("username");
+		String id=request.getParameter("id");
+		String email=request.getParameter("email");
+		String pwd=request.getParameter("pwd");
+		System.out.println(id);
+		System.out.println(email);
+		MemberDAO dao = MemberDAO.newInstance();
+		dao.insertMember(name, id, pwd, email);
+		
+		return "redirect:../member/login.jsp";
+	}
+	@RequestMapping("member/login_ok.do")
+	public String loginOk(HttpServletRequest request,HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		}catch (Exception e) {}
+		
+		String id=request.getParameter("id");
+		String pwd=request.getParameter("pwd");
+		
+		MemberDAO dao = MemberDAO.newInstance();
+		String result = dao.isLogin(id, pwd);
+		
+		request.setAttribute("result",result);
+		return "../member/login_ok.jsp";
+	}
 }

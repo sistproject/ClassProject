@@ -9,35 +9,48 @@
 <script type="text/javascript">
 $(()=>{
 	$('#id').on("change keyup paste",()=>{
-		let form = $("#id").parents("div")
+		let form = $("#id").closest("div");
+		let idsmall = $("#id + small");
 		if(($('small').text()).indexOf('check')>0){
 			let id=$('#id').val();
-			console.log(id)
 			$.ajax({
 				type:'post',
 				url:'../member/idcheck.do',
 				data:{'id':id},
 				success:function(result) {
 					let count=result.trim();
-					console.log(count);
 					if(count==0){
 						form.removeClass('error');	
 						form.addClass('success');	
-						$('small').text("success");
+						idsmall.text("success");
 					}else{
+						form.removeClass('success');	
 						form.addClass('error');		
-						$('small').text("ID already exist");
+						idsmall.text("ID already exist");
 					}
+					allFilled();
 				}
 			})
 		}
 	})
 });
+function allFilled(){
+	const success = document.querySelectorAll(".success"),
+		  btn = document.querySelector(".btn_submit");
+	if(success.length === 5){
+		btn.disabled = false;	
+		btn.style.color = '#fff';	
+	}else{
+		btn.disabled = true;
+		btn.style.color = 'gray';
+		btn.style.cursor = "pointer";
+	}
+}
 </script>
 </head>
 <body>
   <div class="container">
-    <form id="form" class="form" method=post action="signin_ok.jsp">
+    <form id="form" class="form" method=post action="signin_ok.do">
       <h2>SIGN IN</h2>
       <div class="form_control">
         <label for="username">Username</label>
@@ -48,10 +61,7 @@ $(()=>{
         <label for="id">ID</label>
         <input type="text" id="id" placeholder="ID" />
         <small style="float:left">Error message</small>
-        <!--  <button class="check btn_ck" >check</button>-->
       </div>
-      <!-- 중복체크!!!! 클릭하면 돌아가는 모션 -> 가능하면 success-->
-    <!-- 존재하는 아이디는 err: 존재하는 아이디-->
         <div class="form_control">
           <label for="email">Email</label>
           <input type="text" id="email" placeholder="EMAIL" />
