@@ -19,8 +19,10 @@
     <!-- For demo purpose -->
     <div class="container text-white py-5 text-center">
       <h1 class="display-4">장바구니</h1>
-      <p class="lead">내역<a href="https://bootstrapious.com/snippets" class="text-white font-italic">
-      </p>
+    <!--   <p class="lead mb-0">Build a fully structred shopping cart page using Bootstrap 4. </p>
+      <p class="lead">Snippet by <a href="https://bootstrapious.com/snippets" class="text-white font-italic">
+              <u>Bootstrapious</u></a>
+      </p> -->
     </div>
     <!-- End -->
   
