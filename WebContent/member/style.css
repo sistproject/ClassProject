@@ -92,6 +92,9 @@ h2 {
   visibility: visible;
   color: var(--main-color);
 }
+.form_control.check small {
+  visibility: visible;
+}
 
 .btn_submit {
   width: 100%;

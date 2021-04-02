@@ -27,7 +27,11 @@ function showSuccess(input) {
   const small = formControl.querySelector("small");
   small.innerText = "success";
 }
-
+function showCheck(input) {
+  const formControl = input.parentElement;
+  const small = formControl.querySelector("small");
+  small.innerText = " check needed ";
+}
 function allRequired() {
   notice.classList.add("show");
   setTimeout(() => {
@@ -47,9 +51,13 @@ function isValidName() {
 function isValidID() {
   const idv = id.value;
   if (idValidation.test(idv.trim())) {
-    showSuccess(id);
+	// 중복체크
+	// 성공
+    showCheck(id);
+	// 존재하는 id
+	//showError(id, "ID already exist");
   } else {
-    showError(id, "ID is more than 2 characters");
+    showError(id, "only english and number");
   }
   allFilled();
 }
@@ -86,7 +94,6 @@ function checkPasswordsMatch() {
 
 function allFilled(){
 	const success = document.querySelectorAll(".success");
-	console.log(success)
 	if(success.length === 5){
 		btn.disabled = false;	
 		btn.style.color = '#fff';	

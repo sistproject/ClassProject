@@ -22,6 +22,7 @@
 
         session.setAttribute("id", id);
         session.setAttribute("name", result);
+        // 홍길동님 안녕하세요
         // 이동 => main.jsp
         response.sendRedirect("../main/main.jsp");
     } %>

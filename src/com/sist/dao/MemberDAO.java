@@ -5,6 +5,7 @@ import javax.naming.*;
 public class MemberDAO {
    private Connection conn;
    private PreparedStatement ps;
+   private static MemberDAO dao;
    // 미리 만들어진 객체주소를 얻어온다 (Connection)
    public void getConnection() {
 	   try {
@@ -16,39 +17,58 @@ public class MemberDAO {
 
 	   }
    }
-   // 반환 (풀(POOL)로 반환) => 재사용
    public void disConnection() {
 	   try {
 		   if(ps!=null) ps.close();
 		   if(conn!=null) conn.close();
 	   }catch(Exception ex) {}
    }
-   // 기능 
+   public static MemberDAO newInstance() {
+	   if(dao==null)
+		   dao=new MemberDAO();
+	   return dao;
+   }
    public void insertMember(String name,String id,String email,String pwd) {
 	   try {
-		   // 연결
 		   getConnection();
-		   String sql="INSERT INTO member() VALUES(?,?,?,?)";
+		   String sql="INSERT INTO member(name,id,pwd,email) VALUES(?,?,?,?)";
 		   ps=conn.prepareStatement(sql);
 		   ps.setString(1, name);
 		   ps.setString(2, id);
 		   ps.setString(3, email);
 		   ps.setString(4, pwd);
-		   ResultSet rs=ps.executeQuery();
+		   
+		   ps.executeUpdate();
 	   }catch(Exception ex) {
 		   ex.printStackTrace();
 	   }
 	   finally {
 		   disConnection();
 	   }
-	   
+   }
+   public int idCheck(String id) {
+	   int cnt = 0;
+	   try {
+		  getConnection();
+		  String sql = "SELECT COUNT(*) FROM member WHERE id=?";
+		  ps=conn.prepareStatement(sql);
+		  ps.setString(1, id);
+		  ResultSet rs=ps.executeQuery();
+		  rs.next();
+		  cnt = rs.getInt(1);
+		  rs.close();
+	   }catch(Exception ex) {
+		   ex.printStackTrace();
+	   }finally {
+		   disConnection();
+	   }
+	   return cnt;
    }
    public String isLogin(String id,String pwd) {
 	   String result="";
 	   try {
-		   // 연결
 		   getConnection();
-		   String sql="SELECT COUNT(*) FROM webMember "
+		   String sql="SELECT COUNT(*) FROM member "
 				     +"WHERE id=?";
 		   ps=conn.prepareStatement(sql);
 		   ps.setString(1, id);
@@ -56,11 +76,10 @@ public class MemberDAO {
 		   rs.next();
 		   int count=rs.getInt(1);
 		   rs.close();
-		   /////////////////// ID가 존재여부 
 		   if(count==0) {// ID가 없는 상태
 			   result="NOID";
 		   } else {// ID가 존재하는 상태
-			   sql="SELECT pwd,name FROM webMember "
+			   sql="SELECT pwd,name FROM member "
 				  +"WHERE id=?";
 			   ps=conn.prepareStatement(sql);
 			   ps.setString(1, id);
