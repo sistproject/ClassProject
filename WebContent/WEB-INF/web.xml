@@ -10,7 +10,7 @@
     </init-param>
     <init-param>
       <param-name>file_path</param-name>
-      <param-value>C:\Users\USER\git\ClassProject\src</param-value>
+      <param-value>C:\Users\USER\git\ClassProject\src\</param-value>
     </init-param>
   </servlet>
   <servlet-mapping>
