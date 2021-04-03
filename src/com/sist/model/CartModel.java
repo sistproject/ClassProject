@@ -16,10 +16,9 @@ public class CartModel {
 @RequestMapping("cart/cart.do")
 
 	public String login(HttpServletRequest request,HttpServletResponse response) {
+	HttpSession session = request.getSession();
 	
-//	String id = (String)session.getAttribute("id");
-//	System.out.println(id);
-	String id="admin";
+	String id = (String)session.getAttribute("id");
 	CartDAO dao = CartDAO.newInstance();
 	List<CartVO> wlist = dao.workList(id);
 	List<CartVO> clist = dao.classList(id);
