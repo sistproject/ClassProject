@@ -11,6 +11,18 @@ import com.sist.dao.MemberDAO;
 @Controller
 public class MemberModel {
 	
+	@RequestMapping("member/login.do")
+	public String login(HttpServletRequest request,HttpServletResponse response) {
+		return "../member/login.jsp";
+	}
+	@RequestMapping("member/logout.do")
+	public String logout(HttpServletRequest request,HttpServletResponse response) {
+		return "../member/logout_ok.jsp";
+	}
+	@RequestMapping("member/signin.do")
+	public String signin(HttpServletRequest request,HttpServletResponse response) {
+		return "../member/signin.jsp";
+	}
 	@RequestMapping("member/idcheck.do")
 	public String idcheck(HttpServletRequest request,HttpServletResponse response) {
 		String id=request.getParameter("id");

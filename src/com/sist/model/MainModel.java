@@ -1,5 +1,16 @@
 package com.sist.model;
 
-public class MainModel {
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import com.sist.controller.Controller;
+import com.sist.controller.RequestMapping;
+@Controller
+public class MainModel {
+	@RequestMapping("main/main.do")
+	public String login(HttpServletRequest request,HttpServletResponse response) {
+		String name = "";
+		request.setAttribute("name", name);
+		return "../main/main.jsp";
+	}
 }

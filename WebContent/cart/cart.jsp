@@ -19,8 +19,10 @@
     <!-- For demo purpose -->
     <div class="container text-white py-5 text-center">
       <h1 class="display-4">장바구니</h1>
-      <p class="lead">내역<a href="https://bootstrapious.com/snippets" class="text-white font-italic">
-      </p>
+    <!--   <p class="lead mb-0">Build a fully structred shopping cart page using Bootstrap 4. </p>
+      <p class="lead">Snippet by <a href="https://bootstrapious.com/snippets" class="text-white font-italic">
+              <u>Bootstrapious</u></a>
+      </p> -->
     </div>
     <!-- End -->
   
@@ -120,8 +122,8 @@
               <p class="font-italic mb-4">Shipping and additional costs are calculated based on values you have entered.</p>
               <ul class="list-unstyled mb-4">
                 <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Order Subtotal </strong><strong>$390.00</strong></li>
-                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Shipping and handling</strong><strong>$10.00</strong></li>
-                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tax</strong><strong>$0.00</strong></li>
+                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">deliveryFee</strong><strong>$10.00</strong></li>
+                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">discount</strong><strong>$0.00</strong></li>
                 <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
                   <h5 class="font-weight-bold">$400.00</h5>
                 </li>

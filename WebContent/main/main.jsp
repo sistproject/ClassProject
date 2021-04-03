@@ -1,835 +1,697 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="zxx">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Foodeiblog Template">
-    <meta name="keywords" content="Foodeiblog, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Foodeiblog | Template</title>
+<title>Unicat</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Unicat project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+<link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="styles/responsive.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<script src="./js/main.js" charset="UTF-8"></script>
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Unna:400,700&display=swap" rel="stylesheet">
-
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="../foodeiblog-master/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="../foodeiblog-master/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="../foodeiblog-master/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="../foodeiblog-master/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="../foodeiblog-master/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="../foodeiblog-master/css/style.css" type="text/css">
+<!-- 카테고리 -->
+<script type="text/javascript">
+function view(opt){
+	if(opt){
+		category_display.style.display="block";
+		category_size.style.color= "#14bdee";
+	}else{
+		category_display.style.display="none";
+		category_size.style.color= "#384158";
+	}
+}
+function view2(opt2){
+	if(opt2){
+		category_display.style.display="block";
+		category_size.style.color= "#14bdee";
+	}else{
+		category_display.style.display="none";
+		category_size.style.color= "#384158";
+	}
+}
+</script>
 </head>
-
 <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
 
-    <!-- Humberger Begin -->
-    <div class="humberger__menu__overlay"></div>
-    <div class="humberger__menu__wrapper">
-        <div class="humberger__menu__logo">
-            <a href="./index.html"><img src="../foodeiblog-master/img/humberger/humberger-logo.png" alt=""></a>
-        </div>
-        <nav class="humberger__menu__nav mobile-menu">
-            <ul>
-                <li><a href="./index.html">온라인</a></li>
-                <li><a href="#">오프라인</a></li>
-                <li><a href="#">지역별</a></li>
-                <li><a href="#">주제별</a></li>
-                <li class="dropdown"><a href="#">인기 클래스</a>
-                    <ul class="dropdown__menu">
-                        <li><a href="./categories-grid.html">Categories Grid</a></li>
-                        <li><a href="./categories-list.html">Categories List</a></li>
-                        <li><a href="./single-post.html">Single Post</a></li>
-                        <li><a href="./signin.html">Sign In</a></li>
-                        <li><a href="./404.html">404</a></li>
-                        <li><a href="./typography.html">Typography</a></li>
-                    </ul>
-                </li>
-                <li><a href="./about.html">추천 클래스</a></li>
-                <li><a href="./contact.html">신규 클래스</a></li>
-            </ul>
-        </nav>
-        <div id="mobile-menu-wrap"></div>
-        <div class="humberger__menu__about">
-            <div class="humberger__menu__title sidebar__item__title">
-                <h6>About me</h6>
-            </div>
-            <img src="../foodeiblog-master/img/humberger/humberger-about.jpg" alt="">
-            <h6>Hi every one! I,m Lena Mollein.</h6>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.</p>
-            <div class="humberger__menu__about__social sidebar__item__follow__links">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                <a href="#"><i class="fa fa-instagram"></i></a>
-                <a href="#"><i class="fa fa-envelope-o"></i></a>
-            </div>
-        </div>
-        <div class="humberger__menu__subscribe">
-            <div class="humberger__menu__title sidebar__item__title">
-                <h6>Subscribe</h6>
-            </div>
-            <p>Subscribe to our newsletter and get our newest updates right on your inbox.</p>
-            <form action="#">
-                <input type="text" class="email-input" placeholder="Your email">
-                <label for="agree-check">
-                    I agree to the terms & conditions
-                    <input type="checkbox" id="agree-check">
-                    <span class="checkmark"></span>
-                </label>
-                <button type="submit" class="site-btn">Subscribe</button>
-            </form>
-        </div>
-    </div>
-    <!-- Humberger End -->
+<div class="super_container">
 
-    <!-- Header Section Begin -->
-    <header class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-2 col-md-1 col-6 order-md-1 order-1">
-                        <div class="header__humberger">
-                            <i class="fa fa-bars humberger__open"></i>
-                        </div>
-                    </div>
-                    <div class="col-lg-8 col-md-10 order-md-2 order-3">
-                        <nav class="header__menu">
-                            <ul>
-                                <li class="active"><a href="./index.html">온라인</a></li>
-                                <li><a href="#">오프라인</a>
-                                    <div class="header__megamenu__wrapper">
-                                        <div class="header__megamenu">
-                                            <div class="header__megamenu__item">
-                                                <div class="header__megamenu__item--pic set-bg"
-                                                    data-setbg="../foodeiblog-master/img/megamenu/p-1.jpg">
-                                                    <div class="label">Vegan</div>
-                                                </div>
-                                                <div class="header__megamenu__item--text">
-                                                    <h5><a href="#">How to Make a Milkshake With Any Ice Cream ...</a>
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                            <div class="header__megamenu__item">
-                                                <div class="header__megamenu__item--pic set-bg"
-                                                    data-setbg="../foodeiblog-master/img/megamenu/p-2.jpg">
-                                                    <div class="label">Vegan</div>
-                                                </div>
-                                                <div class="header__megamenu__item--text">
-                                                    <h5><a href="#">How to Make a Milkshake With Any Ice Cream ...</a>
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                            <div class="header__megamenu__item">
-                                                <div class="header__megamenu__item--pic set-bg"
-                                                    data-setbg="../foodeiblog-master/img/megamenu/p-3.jpg">
-                                                    <div class="label">Vegan</div>
-                                                </div>
-                                                <div class="header__megamenu__item--text">
-                                                    <h5><a href="#">How to Make a Milkshake With Any Ice Cream ...</a>
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                            <div class="header__megamenu__item">
-                                                <div class="header__megamenu__item--pic set-bg"
-                                                    data-setbg="../foodeiblog-master/img/megamenu/p-4.jpg">
-                                                    <div class="label">Vegan</div>
-                                                </div>
-                                                <div class="header__megamenu__item--text">
-                                                    <h5><a href="#">How to Make a Milkshake With Any Ice Cream ...</a>
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                            <div class="header__megamenu__item">
-                                                <div class="header__megamenu__item--pic set-bg"
-                                                    data-setbg="../foodeiblog-master/img/megamenu/p-5.jpg">
-                                                    <div class="label">Vegan</div>
-                                                </div>
-                                                <div class="header__megamenu__item--text">
-                                                    <h5><a href="#">How to Make a Milkshake With Any Ice Cream ...</a>
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li><a href="#">지역별</a></li>
-                                <li><a href="#">주제별</a></li>
-                                <li class="dropdown"><a href="#">인기 클래스</a>
-                                    <ul class="dropdown__menu">
-                                        <li><a href="./categories-grid.html">Categories Grid</a></li>
-                                        <li><a href="./categories-list.html">Categories List</a></li>
-                                        <li><a href="./single-post.html">Single Post</a></li>
-                                        <li><a href="./signin.html">Sign In</a></li>
-                                        <li><a href="./404.html">404</a></li>
-                                        <li><a href="./typography.html">Typography</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="./about.html">추천 클래스</a></li>
-                                <li><a href="./contact.html">신규 클래스</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="col-lg-2 col-md-1 col-6 order-md-3 order-2">
-                        <div class="header__search">
-                            <i class="fa fa-search search-switch"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-3">
-                    <div class="header__btn">
-                        <a href="./signin.html" class="primary-btn">Subscribe</a>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="header__logo">
-                        <a href="./index.html"><img src="../foodeiblog-master/img/logo.png" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3">
-                    <div class="header__social">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-youtube-play"></i></a>
-                        <a href="#"><i class="fa fa-instagram"></i></a>
-                        <a href="#"><i class="fa fa-envelope-o"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- Header Section End -->
+	<!-- Header -->
 
-    <!-- Hero Section Begin -->
-    <section class="hero">
-        <div class="hero__slider owl-carousel">
-            <div class="hero__item">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-6 p-0">
-                            <div class="hero__inside__item hero__inside__item--wide set-bg"
-                                data-setbg="../foodeiblog-master/img/hero/hero-1.jpg">
-                                <div class="hero__inside__item__text">
-                                    <div class="hero__inside__item--meta">
-                                        <span>08</span>
-                                        <p>Aug</p>
-                                    </div>
-                                    <div class="hero__inside__item--text">
-                                        <ul class="label">
-                                            <li>Vegan</li>
-                                            <li>Desserts</li>
-                                        </ul>
-                                        <h4>Vegan White Peach Mug Cobbler With CardamomVegan<br /> White Peach Mug
-                                            Cobbler With Cardamom</h4>
-                                        <ul class="widget">
-                                            <li>by <span>Admin</span></li>
-                                            <li>3 min read</li>
-                                            <li>20 Comment</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6  p-0">
-                            <div class="hero__inside__item hero__inside__item--small set-bg"
-                                data-setbg="../foodeiblog-master/img/hero/hero-2.jpg">
-                                <div class="hero__inside__item__text">
-                                    <div class="hero__inside__item--meta">
-                                        <span>08</span>
-                                        <p>Aug</p>
-                                    </div>
-                                    <div class="hero__inside__item--text">
-                                        <ul class="label">
-                                            <li>Vegan</li>
-                                            <li>Desserts</li>
-                                        </ul>
-                                        <h5>How to Make a Milkshake With Any <br />Ice Cream, Any Toppings...</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="hero__inside__item hero__inside__item--small set-bg"
-                                data-setbg="../foodeiblog-master/img/hero/hero-3.jpg">
-                                <div class="hero__inside__item__text">
-                                    <div class="hero__inside__item--meta">
-                                        <span>08</span>
-                                        <p>Aug</p>
-                                    </div>
-                                    <div class="hero__inside__item--text">
-                                        <ul class="label">
-                                            <li>Vegan</li>
-                                            <li>Desserts</li>
-                                        </ul>
-                                        <h5>Vintage Copper Preserve Pan with <br />Brass Handles, Mid 19th Century</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6  p-0">
-                            <div class="hero__inside__item set-bg" data-setbg="../foodeiblog-master/img/hero/hero-4.jpg">
-                                <div class="hero__inside__item__text">
-                                    <div class="hero__inside__item--meta">
-                                        <span>08</span>
-                                        <p>Aug</p>
-                                    </div>
-                                    <div class="hero__inside__item--text">
-                                        <ul class="label">
-                                            <li>Vegan</li>
-                                            <li>Desserts</li>
-                                        </ul>
-                                        <h5>Marinated Lentil Salad with Zucch <br />ini and Tomatoes</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero__item">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-6 p-0">
-                            <div class="hero__inside__item hero__inside__item--wide set-bg"
-                                data-setbg="../foodeiblog-master/img/hero/hero-1.jpg">
-                                <div class="hero__inside__item__text">
-                                    <div class="hero__inside__item--meta">
-                                        <span>08</span>
-                                        <p>Aug</p>
-                                    </div>
-                                    <div class="hero__inside__item--text">
-                                        <ul class="label">
-                                            <li>Vegan</li>
-                                            <li>Desserts</li>
-                                        </ul>
-                                        <h4>Vegan White Peach Mug Cobbler With CardamomVegan<br /> White Peach Mug
-                                            Cobbler With Cardamom</h4>
-                                        <ul class="widget">
-                                            <li>by <span>Admin</span></li>
-                                            <li>3 min read</li>
-                                            <li>20 Comment</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 p-0">
-                            <div class="hero__inside__item hero__inside__item--small set-bg"
-                                data-setbg="../foodeiblog-master/img/hero/hero-3.jpg">
-                                <div class="hero__inside__item__text">
-                                    <div class="hero__inside__item--meta">
-                                        <span>08</span>
-                                        <p>Aug</p>
-                                    </div>
-                                    <div class="hero__inside__item--text">
-                                        <ul class="label">
-                                            <li>Vegan</li>
-                                            <li>Desserts</li>
-                                        </ul>
-                                        <h5>How to Make a Milkshake With Any <br />Ice Cream, Any Toppings...</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="hero__inside__item hero__inside__item--small set-bg"
-                                data-setbg="../foodeiblog-master/img/hero/hero-2.jpg">
-                                <div class="hero__inside__item__text">
-                                    <div class="hero__inside__item--meta">
-                                        <span>08</span>
-                                        <p>Aug</p>
-                                    </div>
-                                    <div class="hero__inside__item--text">
-                                        <ul class="label">
-                                            <li>Vegan</li>
-                                            <li>Desserts</li>
-                                        </ul>
-                                        <h5>Vintage Copper Preserve Pan with <br />Brass Handles, Mid 19th Century</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 p-0">
-                            <div class="hero__inside__item set-bg" data-setbg="img/hero/hero-4.jpg">
-                                <div class="hero__inside__item__text">
-                                    <div class="hero__inside__item--meta">
-                                        <span>08</span>
-                                        <p>Aug</p>
-                                    </div>
-                                    <div class="hero__inside__item--text">
-                                        <ul class="label">
-                                            <li>Vegan</li>
-                                            <li>Desserts</li>
-                                        </ul>
-                                        <h5>Marinated Lentil Salad with Zucch <br />ini and Tomatoes</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Hero Section End -->
+	<header class="header">
+			
+		<!-- Top Bar -->
+		<div class="top_bar">
+			<div class="top_bar_container">
+				<div class="container">
+					<div class="row">
+						<div class="col">
+							<div class="top_bar_content d-flex flex-row align-items-center justify-content-end">
+								<ul class="top_bar_contact_list">
+								     <li class="log">
+								     <a href="../member/login.do"><div>로그인</div></a>
+									</li>
+									<li>
+										<a href="../member/join.do"><div>회원가입</div></a>
+									</li>
+								</ul>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>				
+		</div>
 
-    <!-- Categories Section Begin -->
-    <section class="categories spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="categories__item set-bg" data-setbg="../foodeiblog-master/img/categories/cat-1.jpg">
-                        <div class="categories__hover__text">
-                            <h5>Dinner</h5>
-                            <p>28 articles</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="categories__item set-bg" data-setbg="../foodeiblog-master/img/categories/cat-2.jpg">
-                        <div class="categories__hover__text">
-                            <h5>Dinner</h5>
-                            <p>28 articles</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="categories__item set-bg" data-setbg="../foodeiblog-master/img/categories/cat-3.jpg">
-                        <div class="categories__hover__text">
-                            <h5>Dinner</h5>
-                            <p>28 articles</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="categories__item set-bg" data-setbg="../foodeiblog-master/img/categories/cat-4.jpg">
-                        <div class="categories__hover__text">
-                            <h5>Dinner</h5>
-                            <p>28 articles</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="categories__post">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-md-8">
-                        <div class="categories__post__item categories__post__item--large">
-                            <div class="categories__post__item__pic set-bg"
-                                data-setbg="../foodeiblog-master/img/categories/categories-post/cp-1.jpg">
-                                <div class="post__meta">
-                                    <h4>08</h4>
-                                    <span>Aug</span>
-                                </div>
-                            </div>
-                            <div class="categories__post__item__text">
-                                <ul class="post__label--large">
-                                    <li>Vegan</li>
-                                    <li>Desserts</li>
-                                </ul>
-                                <h3><a href="#">The Absolute Best Way to Cook Steak Perfectly, According to Wayyy Too
-                                        Many Tests</a></h3>
-                                <ul class="post__widget">
-                                    <li>by <span>Admin</span></li>
-                                    <li>3 min read</li>
-                                    <li>20 Comment</li>
-                                </ul>
-                                <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                                    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
-                                    excepteur sint ...</p>
-                                <a href="#" class="primary-btn">Read more</a>
-                                <div class="post__social">
-                                    <span>Share</span>
-                                    <a href="#"><i class="fa fa-facebook"></i> <span>82</span></a>
-                                    <a href="#"><i class="fa fa-twitter"></i> <span>24</span></a>
-                                    <a href="#"><i class="fa fa-envelope-o"></i> <span>08</span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="categories__post__item">
-                                    <div class="categories__post__item__pic small__item set-bg"
-                                        data-setbg="../foodeiblog-master/img/categories/categories-post/cp-2.jpg">
-                                        <div class="post__meta">
-                                            <h4>08</h4>
-                                            <span>Aug</span>
-                                        </div>
-                                    </div>
-                                    <div class="categories__post__item__text">
-                                        <span class="post__label">Recipe</span>
-                                        <h3><a href="#">The Best Weeknight Baked Potatoes, 3 Creative Ways</a></h3>
-                                        <ul class="post__widget">
-                                            <li>by <span>Admin</span></li>
-                                            <li>3 min read</li>
-                                            <li>20 Comment</li>
-                                        </ul>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt dolore magna aliqua. Quis ipsum suspendisse ultrices
-                                            gravida...</p>
-                                    </div>
-                                </div>
-                                <div class="categories__post__item">
-                                    <div class="categories__post__item__pic set-bg"
-                                        data-setbg="../foodeiblog-master/img/categories/categories-post/cp-4.jpg">
-                                        <div class="post__meta">
-                                            <h4>08</h4>
-                                            <span>Aug</span>
-                                        </div>
-                                    </div>
-                                    <div class="categories__post__item__text">
-                                        <ul class="post__label--large">
-                                            <li>Vegan</li>
-                                            <li>Desserts</li>
-                                        </ul>
-                                        <h3><a href="#">The Best Grass Stain Remover Is Already In Your Pantry</a></h3>
-                                        <ul class="post__widget">
-                                            <li>by <span>Admin</span></li>
-                                            <li>3 min read</li>
-                                            <li>20 Comment</li>
-                                        </ul>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt dolore magna aliqua. Quis ipsum suspendisse ultrices
-                                            gravida...</p>
-                                    </div>
-                                </div>
-                                <div class="categories__post__item__plain set-bg"
-                                    data-setbg="../foodeiblog-master/img/categories/categories-post/cp-6.jpg">
-                                    <div class="categories__post__item__text">
-                                        <div class="post__meta">
-                                            <h4>08</h4>
-                                            <span>Aug</span>
-                                        </div>
-                                        <ul class="post__label--large">
-                                            <li>Vegan</li>
-                                            <li>Desserts</li>
-                                        </ul>
-                                        <h3><a href="#">This Summer Snacking Cake Is theSweetest Excuse to...</a></h3>
-                                        <div class="post__social">
-                                            <span>Share</span>
-                                            <a href="#"><i class="fa fa-facebook"></i> <span>82</span></a>
-                                            <a href="#"><i class="fa fa-twitter"></i> <span>24</span></a>
-                                            <a href="#"><i class="fa fa-envelope-o"></i> <span>08</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="categories__post__item">
-                                    <div class="categories__post__item__pic smaller__large set-bg"
-                                        data-setbg="../foodeiblog-master/img/categories/categories-post/cp-8.jpg">
-                                        <div class="post__meta">
-                                            <h4>08</h4>
-                                            <span>Aug</span>
-                                        </div>
-                                    </div>
-                                    <div class="categories__post__item__text">
-                                        <span class="post__label">Smoothie</span>
-                                        <h3><a href="#">This 2-Ingredient Spread Makes Any Egg Sandwich So Much
-                                                Better</a></h3>
-                                        <ul class="post__widget">
-                                            <li>by <span>Admin</span></li>
-                                            <li>3 min read</li>
-                                            <li>20 Comment</li>
-                                        </ul>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt dolore magna aliqua. Quis ipsum suspendisse ultrices
-                                            gravida...</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="categories__post__item">
-                                    <div class="categories__post__item__pic smaller__large set-bg"
-                                        data-setbg="../foodeiblog-master/img/categories/categories-post/cp-3.jpg">
-                                        <div class="post__meta">
-                                            <h4>08</h4>
-                                            <span>Aug</span>
-                                        </div>
-                                    </div>
-                                    <div class="categories__post__item__text">
-                                        <span class="post__label">Dinner</span>
-                                        <h3><a href="#">17 Perfect Gifts for Your Vegan Friend Because Sometimes...</a>
-                                        </h3>
-                                        <ul class="post__widget">
-                                            <li>by <span>Admin</span></li>
-                                            <li>3 min read</li>
-                                            <li>20 Comment</li>
-                                        </ul>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt dolore magna aliqua. Quis ipsum suspendisse ultrices
-                                            gravida...</p>
-                                    </div>
-                                </div>
-                                <div class="categories__post__item__small">
-                                    <img src="../foodeiblog-master/img/categories/categories-post/quote.png" alt="">
-                                    <p>Lorem ipsum dolor amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt labore et dolore magna aliqua gravida.</p>
-                                    <div class="posted__by">Elena T.Jaivy</div>
-                                </div>
-                                <div class="categories__post__item">
-                                    <div class="categories__post__item__pic smaller__large set-bg"
-                                        data-setbg="../foodeiblog-master/img/categories/categories-post/cp-5.jpg">
-                                        <div class="post__meta">
-                                            <h4>08</h4>
-                                            <span>Aug</span>
-                                        </div>
-                                    </div>
-                                    <div class="categories__post__item__text">
-                                        <span class="post__label">Drinks</span>
-                                        <h3><a href="#">A 5-Minute Peach Mug Cobbler That Just So Happens to...</a></h3>
-                                        <ul class="post__widget">
-                                            <li>by <span>Admin</span></li>
-                                            <li>3 min read</li>
-                                            <li>20 Comment</li>
-                                        </ul>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt dolore magna aliqua. Quis ipsum suspendisse ultrices
-                                            gravida...</p>
-                                    </div>
-                                </div>
-                                <div class="categories__post__item">
-                                    <div class="categories__post__item__pic set-bg"
-                                        data-setbg="../foodeiblog-master/img/categories/categories-post/cp-7.jpg">
-                                        <div class="post__meta">
-                                            <h4>08</h4>
-                                            <span>Aug</span>
-                                        </div>
-                                    </div>
-                                    <div class="categories__post__item__text">
-                                        <ul class="post__label--large">
-                                            <li>Vegan</li>
-                                            <li>Desserts</li>
-                                        </ul>
-                                        <h3><a href="#">Fresh Herb Polenta with Parsnip Chips and Maple Butter</a></h3>
-                                        <ul class="post__widget">
-                                            <li>by <span>Admin</span></li>
-                                            <li>3 min read</li>
-                                            <li>20 Comment</li>
-                                        </ul>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt dolore magna aliqua. Quis ipsum suspendisse ultrices
-                                            gravida...</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 text-center">
-                                <div class="load__more__btn">
-                                    <a href="#">Load more</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4">
-                        <div class="sidebar__item">
-                            <div class="sidebar__about__item">
-                                <div class="sidebar__item__title">
-                                    <h6>About me</h6>
-                                </div>
-                                <img src="../foodeiblog-master/img/sidebar/sidebar-about.jpg" alt="">
-                                <h6>Hi every one! I,m <span>Lena Mollein.</span></h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.</p>
-                                <a href="#" class="primary-btn">Read more</a>
-                            </div>
-                            <div class="sidebar__follow__item">
-                                <div class="sidebar__item__title">
-                                    <h6>Follow me</h6>
-                                </div>
-                                <div class="sidebar__item__follow__links">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-youtube-play"></i></a>
-                                    <a href="#"><i class="fa fa-instagram"></i></a>
-                                    <a href="#"><i class="fa fa-envelope-o"></i></a>
-                                </div>
-                            </div>
-                            <div class="sidebar__feature__item">
-                                <div class="sidebar__item__title">
-                                    <h6>Feature Posts</h6>
-                                </div>
-                                <div class="sidebar__feature__item__large set-bg"
-                                    data-setbg="../foodeiblog-master/img/sidebar/feature-post.jpg">
-                                    <div class="sidebar__feature__item__large--text">
-                                        <span>Dinner</span>
-                                        <h5><a href="#">This Japanese Way of Making Iced Coffee Is a Game...</a></h5>
-                                    </div>
-                                </div>
-                                <div class="sidebar__feature__item__list">
-                                    <div class="sidebar__feature__item__list__single">
-                                        <div class="post__meta">
-                                            <h4>08</h4>
-                                            <span>Aug</span>
-                                        </div>
-                                        <div class="post__text">
-                                            <span>Dinner</span>
-                                            <h5><a href="#">Grilled Potato and Green Bean Salad</a></h5>
-                                        </div>
-                                    </div>
-                                    <div class="sidebar__feature__item__list__single">
-                                        <div class="post__meta">
-                                            <h4>05</h4>
-                                            <span>Aug</span>
-                                        </div>
-                                        <div class="post__text">
-                                            <span>Smoothie</span>
-                                            <h5><a href="#">The $8 French Rosé I Buy in Bulk Every Summer</a></h5>
-                                        </div>
-                                    </div>
-                                    <div class="sidebar__feature__item__list__single">
-                                        <div class="post__meta">
-                                            <h4>26</h4>
-                                            <span>jul</span>
-                                        </div>
-                                        <div class="post__text">
-                                            <span>Desert</span>
-                                            <h5><a href="#">Ina Garten's Skillet-Roasted Lemon Chicken</a></h5>
-                                        </div>
-                                    </div>
-                                    <div class="sidebar__feature__item__list__single">
-                                        <div class="post__meta">
-                                            <h4>16</h4>
-                                            <span>jul</span>
-                                        </div>
-                                        <div class="post__text">
-                                            <span>Vegan</span>
-                                            <h5><a href="#">The Best Weeknight Baked Potatoes, 3 Creative Ways</a></h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="sidebar__item__banner">
-                                <img src="../foodeiblog-master/img/sidebar/banner.jpg" alt="">
-                            </div>
-                            <div class="sidebar__item__categories">
-                                <div class="sidebar__item__title">
-                                    <h6>Categories</h6>
-                                </div>
-                                <ul>
-                                    <li><a href="#">Recipes <span>128</span></a></li>
-                                    <li><a href="#">Dinner <span>32</span></a></li>
-                                    <li><a href="#">Dessert <span>86</span></a></li>
-                                    <li class="p-left"><a href="#">Smothie <span>25</span></a></li>
-                                    <li class="p-left"><a href="#">Drinks <span>36</span></a></li>
-                                    <li class="p-left"><a href="#">Cakes <span>15</span></a></li>
-                                    <li><a href="#">Vegan <span>63</span></a></li>
-                                    <li><a href="#">Weightloss <span>27</span></a></li>
-                                </ul>
-                            </div>
-                            <div class="sidebar__subscribe__item">
-                                <div class="sidebar__item__title">
-                                    <h6>Subscribe</h6>
-                                </div>
-                                <p>Subscribe to our newsletter and get our newest updates right on your inbox.</p>
-                                <form action="#">
-                                    <input type="text" class="email-input" placeholder="Your email">
-                                    <label for="s-agree-check">
-                                        I agree to the terms & conditions
-                                        <input type="checkbox" id="s-agree-check">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <button type="submit" class="site-btn">Subscribe</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Categories Section End -->
+		<div class="category_wrapper">
+		<div class="mouse_check" onmouseover="view(true)" onmouseout="view(false)"></div>
+		<div class="mouse_check2" id="category_display" onmouseover="view2(true)" onmouseout="view2(false)">
+		<div class="category">
+			<ul class="category_content">
+				<li>가다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+			</ul>
+		</div>
+		
+		<div class="category">
+			<ul class="category_content">			
+				<li>가다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+				<li>가나다라마바사아</li>
+			</ul>
+		</div>
+		</div>
+		</div>
+			<!-- Header Content -->
+		<div class="header_container">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="header_content d-flex flex-row align-items-center justify-content-start">
+							<div class="logo_container">
+								<a href="#">
+									<div class="logo_text">Unic<span>at</span></div>
+								</a>
+							</div>
+							<nav class="main_nav_contaner ml-auto">
+								<ul class="main_nav">
+									<li>
+										<a href="#" onmouseover="view(true)" onmouseout="view(false)">
+										<div id="category_size">카테고리</div></a>
+									</li>
+									<li class="active"><a href="#">Home</a></li>
+									<li><a href="about.html">About</a></li>
+									<li><a href="courses.html">Courses</a></li>
+									<li><a href="blog.html">Blog</a></li>
+									<li><a href="#">Page</a></li>
+									<li><a href="contact.html">Contact</a></li>
+								</ul>
+								<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
 
-    <!-- Footer Section Begin -->
-    <footer class="footer">
-        <div class="container-fluid">
-            <div class="footer__instagram">
-                <div class="footer__instagram__avatar">
-                    <div class="footer__instagram__avatar--pic">
-                        <img src="../foodeiblog-master/img/footer/instagram-avatar.jpg" alt="">
-                    </div>
-                    <div class="footer__instagram__avatar--text">
-                        <h5>@ foodieblog</h5>
-                        <span>23,7k follower</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-2 col-md-2 col-sm-4 col-6">
-                        <div class="footer__instagram__item set-bg" data-setbg="../foodeiblog-master/img/footer/ip-1.jpg"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-sm-4 col-6">
-                        <div class="footer__instagram__item set-bg" data-setbg="../foodeiblog-master/img/footer/ip-2.jpg"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-sm-4 col-6">
-                        <div class="footer__instagram__item set-bg" data-setbg="../foodeiblog-master/img/footer/ip-3.jpg"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-sm-4 col-6">
-                        <div class="footer__instagram__item set-bg" data-setbg="../foodeiblog-master/img/footer/ip-4.jpg"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-sm-4 col-6">
-                        <div class="footer__instagram__item set-bg" data-setbg="../foodeiblog-master/img/footer/ip-5.jpg"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-sm-4 col-6">
-                        <div class="footer__instagram__item set-bg" data-setbg="../foodeiblog-master/img/footer/ip-6.jpg"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="footer__text">
-                        <div class="footer__logo">
-                            <a href="#"><img src="../foodeiblog-master/img/logo.png" alt=""></a>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut<br /> labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus
-                            commodo viverra<br /> maecenas accumsan lacus vel facilisis. </p>
-                        <div class="footer__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            <a href="#"><i class="fa fa-envelope-o"></i></a>
-                        </div>
-                    </div>
-                    <div class="footer__copyright">
-                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- Footer Section End -->
+								<!-- Hamburger -->
 
-    <!-- Search Begin -->
-    <div class="search-model">
-        <div class="h-100 d-flex align-items-center justify-content-center">
-            <div class="search-close-switch">+</div>
-            <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Search here.....">
-            </form>
-        </div>
-    </div>
-    <!-- Search End -->
+								<div class="shopping_cart"><a href="../cart/cart.jsp"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></div>
+								<div class="hamburger menu_mm">
+									<i class="fa fa-bars menu_mm" aria-hidden="true"></i>
+								</div>
+							</nav>
 
-    <!-- Js Plugins -->
-    <script src="../foodeiblog-master/js/jquery-3.3.1.min.js"></script>
-    <script src="../foodeiblog-master/js/bootstrap.min.js"></script>
-    <script src="../foodeiblog-master/js/jquery.slicknav.js"></script>
-    <script src="../foodeiblog-master/js/owl.carousel.min.js"></script>
-    <script src="../foodeiblog-master/js/main.js"></script>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+		<!-- Header Search Panel -->
+		<div class="header_search_container">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="header_search_content d-flex flex-row align-items-center justify-content-end">
+							<form action="#" class="header_search_form">
+								<input type="search" class="search_input" placeholder="Search" required="required">
+								<button class="header_search_button d-flex flex-column align-items-center justify-content-center">
+									<i class="fa fa-search" aria-hidden="true"></i>
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>			
+		</div>			
+	</header>
+
+	<!-- Menu -->
+
+	<div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
+		<div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
+		<div class="search">
+			<form action="#" class="header_search_form menu_mm">
+				<input type="search" class="search_input menu_mm" placeholder="Search" required="required">
+				<button class="header_search_button d-flex flex-column align-items-center justify-content-center menu_mm">
+					<i class="fa fa-search menu_mm" aria-hidden="true"></i>
+				</button>
+			</form>
+		</div>
+		<nav class="menu_nav">
+			<ul class="menu_mm">
+				<li class="menu_mm"><a href="index.html">Home</a></li>
+				<li class="menu_mm"><a href="#">About</a></li>
+				<li class="menu_mm"><a href="#">Courses</a></li>
+				<li class="menu_mm"><a href="#">Blog</a></li>
+				<li class="menu_mm"><a href="#">Page</a></li>
+				<li class="menu_mm"><a href="contact.html">Contact</a></li>
+			</ul>
+		</nav>
+	</div>
+	
+	<!-- Home -->
+
+	<div class="home">
+		<div class="home_slider_container">
+			
+			<!-- Home Slider -->
+			<div class="owl-carousel owl-theme home_slider">
+				
+				<!-- Home Slider Item -->
+				<div class="owl-item">
+					<div class="home_slider_background" style="background-image:url(images/home_slider_1.jpg)"></div>
+					<div class="home_slider_content">
+						<div class="container">
+							<div class="row">
+								<div class="col text-center">
+									<div class="home_slider_title">The Premium System Education</div>
+									<div class="home_slider_subtitle">Future Of Education Technology</div>
+									<div class="home_slider_form_container">
+										<form action="#" id="home_search_form_1" class="home_search_form d-flex flex-lg-row flex-column align-items-center justify-content-between">
+											<div class="d-flex flex-row align-items-center justify-content-start">
+												<input type="search" class="home_search_input" placeholder="Keyword Search" required="required">
+												<select class="dropdown_item_select home_search_input">
+													<option>Category Courses</option>
+													<option>Category</option>
+													<option>Category</option>
+												</select>
+												<select class="dropdown_item_select home_search_input">
+													<option>Select Price Type</option>
+													<option>Price Type</option>
+													<option>Price Type</option>
+												</select>
+											</div>
+											<button type="submit" class="home_search_button">search</button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Home Slider Item -->
+				<div class="owl-item">
+					<div class="home_slider_background" style="background-image:url(images/home_slider_1.jpg)"></div>
+					<div class="home_slider_content">
+						<div class="container">
+							<div class="row">
+								<div class="col text-center">
+									<div class="home_slider_title">The Premium System Education</div>
+									<div class="home_slider_subtitle">Future Of Education Technology</div>
+									<div class="home_slider_form_container">
+										<form action="#" id="home_search_form_2" class="home_search_form d-flex flex-lg-row flex-column align-items-center justify-content-between">
+											<div class="d-flex flex-row align-items-center justify-content-start">
+												<input type="search" class="home_search_input" placeholder="Keyword Search" required="required">
+												<select class="dropdown_item_select home_search_input">
+													<option>Category Courses</option>
+													<option>Category</option>
+													<option>Category</option>
+												</select>
+												<select class="dropdown_item_select home_search_input">
+													<option>Select Price Type</option>
+													<option>Price Type</option>
+													<option>Price Type</option>
+												</select>
+											</div>
+											<button type="submit" class="home_search_button">search</button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Home Slider Item -->
+				<div class="owl-item">
+					<div class="home_slider_background" style="background-image:url(images/home_slider_1.jpg)"></div>
+					<div class="home_slider_content">
+						<div class="container">
+							<div class="row">
+								<div class="col text-center">
+									<div class="home_slider_title">The Premium System Education</div>
+									<div class="home_slider_subtitle">Future Of Education Technology</div>
+									<div class="home_slider_form_container">
+										<form action="#" id="home_search_form_3" class="home_search_form d-flex flex-lg-row flex-column align-items-center justify-content-between">
+											<div class="d-flex flex-row align-items-center justify-content-start">
+												<input type="search" class="home_search_input" placeholder="Keyword Search" required="required">
+												<select class="dropdown_item_select home_search_input">
+													<option>Category Courses</option>
+													<option>Category</option>
+													<option>Category</option>
+												</select>
+												<select class="dropdown_item_select home_search_input">
+													<option>Select Price Type</option>
+													<option>Price Type</option>
+													<option>Price Type</option>
+												</select>
+											</div>
+											<button type="submit" class="home_search_button">search</button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- Home Slider Nav -->
+
+		<div class="home_slider_nav home_slider_prev"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+		<div class="home_slider_nav home_slider_next"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+	</div>
+
+	<!-- Features -->
+
+	<div class="features">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="section_title_container text-center">
+						<h2 class="section_title">Welcome To Unicat E-Learning</h2>
+						<div class="section_subtitle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem</p></div>
+					</div>
+				</div>
+			</div>
+			<div class="row features_row">
+				
+				<!-- Features Item -->
+				<div class="col-lg-3 feature_col">
+					<div class="feature text-center trans_400">
+						<div class="feature_icon"><img src="images/icon_1.png" alt=""></div>
+						<h3 class="feature_title">The Experts</h3>
+						<div class="feature_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>
+					</div>
+				</div>
+
+				<!-- Features Item -->
+				<div class="col-lg-3 feature_col">
+					<div class="feature text-center trans_400">
+						<div class="feature_icon"><img src="images/icon_2.png" alt=""></div>
+						<h3 class="feature_title">Book & Library</h3>
+						<div class="feature_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>
+					</div>
+				</div>
+
+				<!-- Features Item -->
+				<div class="col-lg-3 feature_col">
+					<div class="feature text-center trans_400">
+						<div class="feature_icon"><img src="images/icon_3.png" alt=""></div>
+						<h3 class="feature_title">Best Courses</h3>
+						<div class="feature_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>
+					</div>
+				</div>
+
+				<!-- Features Item -->
+				<div class="col-lg-3 feature_col">
+					<div class="feature text-center trans_400">
+						<div class="feature_icon"><img src="images/icon_4.png" alt=""></div>
+						<h3 class="feature_title">Award & Reward</h3>
+						<div class="feature_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	
+
+				
+			<div class="row">
+				<div class="col">
+					<div class="courses_button trans_200"><a href="#">view all courses</a></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+				
+	<!-- ------------------------------------------------------------------------------------------------------------------------------------- -->
+	<!-- 오늘의 발견 -->
+
+	<div class="team">
+		<div class="team_background parallax-window" data-parallax="scroll" data-image-src="images/team_background.jpg" data-speed="0.8"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="section_title_container text-center">
+						<h2 class="section_title">오늘의 발견</h2>
+						<div class="section_subtitle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem</p></div>
+					</div>
+				</div>
+			</div>
+			<div class="row team_row">
+				
+				<!-- 오늘의 발견 -->
+				<div class="col-lg-3 col-md-6 team_col">
+					<div class="team_item">
+						<div class="team_image"><img src="images/team_1.jpg" alt=""></div>
+						<div class="team_body">
+							<div class="team_title"><a href="#">Jacke Masito</a></div>
+							<div class="team_subtitle">Marketing & Management</div>
+							<div class="social_list">
+								<ul>
+									<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- 오늘의 발견 -->
+				<div class="col-lg-3 col-md-6 team_col">
+					<div class="team_item">
+						<div class="team_image"><img src="images/team_2.jpg" alt=""></div>
+						<div class="team_body">
+							<div class="team_title"><a href="#">William James</a></div>
+							<div class="team_subtitle">Designer & Website</div>
+							<div class="social_list">
+								<ul>
+									<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- 오늘의 발견 -->
+				<div class="col-lg-3 col-md-6 team_col">
+					<div class="team_item">
+						<div class="team_image"><img src="images/team_3.jpg" alt=""></div>
+						<div class="team_body">
+							<div class="team_title"><a href="#">John Tyler</a></div>
+							<div class="team_subtitle">Quantum mechanics</div>
+							<div class="social_list">
+								<ul>
+									<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- 오늘의 발견 -->
+				<div class="col-lg-3 col-md-6 team_col">
+					<div class="team_item">
+						<div class="team_image"><img src="images/team_4.jpg" alt=""></div>
+						<div class="team_body">
+							<div class="team_title"><a href="#">Veronica Vahn</a></div>
+							<div class="team_subtitle">Math & Physics</div>
+							<div class="social_list">
+								<ul>
+									<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 오늘의 발견 -->
+				<div class="col-lg-3 col-md-6 team_col">
+					<div class="team_item">
+						<div class="team_image"><img src="images/team_1.jpg" alt=""></div>
+						<div class="team_body">
+							<div class="team_title"><a href="#">Jacke Masito</a></div>
+							<div class="team_subtitle">Marketing & Management</div>
+							<div class="social_list">
+								<ul>
+									<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 오늘의 발견 -->
+				<div class="col-lg-3 col-md-6 team_col">
+					<div class="team_item">
+						<div class="team_image"><img src="images/team_1.jpg" alt=""></div>
+						<div class="team_body">
+							<div class="team_title"><a href="#">Jacke Masito</a></div>
+							<div class="team_subtitle">Marketing & Management</div>
+							<div class="social_list">
+								<ul>
+									<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 오늘의 발견 -->
+				<div class="col-lg-3 col-md-6 team_col">
+					<div class="team_item">
+						<div class="team_image"><img src="images/team_1.jpg" alt=""></div>
+						<div class="team_body">
+							<div class="team_title"><a href="#">Jacke Masito</a></div>
+							<div class="team_subtitle">Marketing & Management</div>
+							<div class="social_list">
+								<ul>
+									<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 오늘의 발견 -->
+				<div class="col-lg-3 col-md-6 team_col">
+					<div class="team_item">
+						<div class="team_image"><img src="images/team_1.jpg" alt=""></div>
+						<div class="team_body">
+							<div class="team_title"><a href="#">Jacke Masito</a></div>
+							<div class="team_subtitle">Marketing & Management</div>
+							<div class="social_list">
+								<ul>
+									<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+	<!-- ------------------------------------------------------------------------------------------------------------------------------------- -->
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- 실시간 구매 -->
+	<div class="team">
+		<div class="team_background parallax-window" data-parallax="scroll" data-image-src="images/team_background.jpg" data-speed="0.8"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="section_title_container text-center">
+						<h2 class="section_title">실시간 구매</h2>
+						<div class="section_subtitle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem</p></div>
+					</div>
+				</div>
+			</div>
+			<div class="row team_row">
+				
+				<!-- 실시간 구매 -->
+				<div class="col-lg-3 col-md-6 team_col">
+					<div class="team_item">
+						<div class="team_image"><img src="images/team_1.jpg" alt=""></div>
+						<div class="team_body">
+							<div class="team_title"><a href="#">Jacke Masito</a></div>
+							<div class="team_subtitle">Marketing & Management</div>
+							<div class="social_list">
+								<ul>
+									<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+	
+	
+	
+
+	
+
+
+	<!-- Footer -->
+
+	<footer class="footer">
+		<div class="footer_background" style="background-image:url(images/footer_background.png)"></div>
+		<div class="container">
+			<div class="row footer_row">
+				<div class="col">
+					<div class="footer_content">
+						<div class="row">
+
+							<div class="col-lg-3 footer_col">
+					
+								<!-- Footer About -->
+								<div class="footer_section footer_about">
+									<div class="footer_logo_container">
+										<a href="#">
+											<div class="footer_logo_text">Unic<span>at</span></div>
+										</a>
+									</div>
+									<div class="footer_about_text">
+										<p>Lorem ipsum dolor sit ametium, consectetur adipiscing elit.</p>
+									</div>
+									<div class="footer_social">
+										<ul>
+											<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+										</ul>
+									</div>
+								</div>
+								
+							</div>
+
+							<div class="col-lg-3 footer_col">
+					
+								<!-- Footer Contact -->
+								<div class="footer_section footer_contact">
+									<div class="footer_title">Contact Us</div>
+									<div class="footer_contact_info">
+										<ul>
+											<li>Email: Info.deercreative@gmail.com</li>
+											<li>Phone:  +(88) 111 555 666</li>
+											<li>40 Baria Sreet 133/2 New York City, United States</li>
+										</ul>
+									</div>
+								</div>
+								
+							</div>
+
+							<div class="col-lg-3 footer_col">
+					
+								<!-- Footer links -->
+								<div class="footer_section footer_links">
+									<div class="footer_title">Contact Us</div>
+									<div class="footer_links_container">
+										<ul>
+											<li><a href="index.html">Home</a></li>
+											<li><a href="about.html">About</a></li>
+											<li><a href="contact.html">Contact</a></li>
+											<li><a href="#">Features</a></li>
+											<li><a href="courses.html">Courses</a></li>
+											<li><a href="#">Events</a></li>
+											<li><a href="#">Gallery</a></li>
+											<li><a href="#">FAQs</a></li>
+										</ul>
+									</div>
+								</div>
+								
+							</div>
+
+							<div class="col-lg-3 footer_col clearfix">
+					
+								<!-- Footer links -->
+								<div class="footer_section footer_mobile">
+									<div class="footer_title">Mobile</div>
+									<div class="footer_mobile_content">
+										<div class="footer_image"><a href="#"><img src="images/mobile_1.png" alt=""></a></div>
+										<div class="footer_image"><a href="#"><img src="images/mobile_2.png" alt=""></a></div>
+									</div>
+								</div>
+								
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row copyright_row">
+				<div class="col">
+					<div class="copyright d-flex flex-lg-row flex-column align-items-center justify-content-start">
+						<div class="cr_text"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
+						<div class="ml-lg-auto cr_links">
+							<ul class="cr_list">
+								<li><a href="#">Copyright notification</a></li>
+								<li><a href="#">Terms of Use</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+</div>
+
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="styles/bootstrap4/popper.js"></script>
+<script src="styles/bootstrap4/bootstrap.min.js"></script>
+<script src="plugins/greensock/TweenMax.min.js"></script>
+<script src="plugins/greensock/TimelineMax.min.js"></script>
+<script src="plugins/scrollmagic/ScrollMagic.min.js"></script>
+<script src="plugins/greensock/animation.gsap.min.js"></script>
+<script src="plugins/greensock/ScrollToPlugin.min.js"></script>
+<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="plugins/easing/easing.js"></script>
+<script src="plugins/parallax-js-master/parallax.min.js"></script>
+<script src="js/custom.js"></script>
 </body>
-
 </html>
