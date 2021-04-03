@@ -16,8 +16,10 @@
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/responsive.css">
 <link rel="stylesheet" type="text/css" href="css/main.css">
-<script src="./js/main.js" charset="UTF-8"></script>
-
+<% //세션에 저장되어 있는 데이터 읽기
+    String id=(String)session.getAttribute("id"); // 없는 경우:null 
+    System.out.println(id);
+%>
 <!-- 카테고리 -->
 <script type="text/javascript">
 function view(opt){
@@ -41,13 +43,9 @@ function view2(opt2){
 </script>
 </head>
 <body>
-
 <div class="super_container">
-
 	<!-- Header -->
-
 	<header class="header">
-			
 		<!-- Top Bar -->
 		<div class="top_bar">
 			<div class="top_bar_container">
@@ -56,14 +54,19 @@ function view2(opt2){
 						<div class="col">
 							<div class="top_bar_content d-flex flex-row align-items-center justify-content-end">
 								<ul class="top_bar_contact_list">
-								     <li class="log">
-								     <a href="../member/login.do"><div>로그인</div></a>
-									</li>
+								     <% if(id!=null) { %>
+								       <li>
+								       <a href="../member/logout.do"><div>로그아웃</div></a>
+										</li>
+								     <% } else { %>
+								       <li>
+								       <a href="../member/login.do"><div>로그인</div></a>
+								       </li> 
+								     <% } %>
 									<li>
 										<a href="../member/signin.do"><div>회원가입</div></a>
 									</li>
 								</ul>
-								
 							</div>
 						</div>
 					</div>
@@ -133,7 +136,7 @@ function view2(opt2){
 
 								<!-- Hamburger -->
 
-								<div class="shopping_cart"><a href="../cart/cart.jsp"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></div>
+								<div class="shopping_cart"><a href="../cart/cart.do"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></div>
 								<div class="hamburger menu_mm">
 									<i class="fa fa-bars menu_mm" aria-hidden="true"></i>
 								</div>

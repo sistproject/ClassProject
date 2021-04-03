@@ -104,6 +104,7 @@ public class MemberDAO {
 	   }
 	   System.out.println(result);
 	   return result;
+	   
    }
 }
 
