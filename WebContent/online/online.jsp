@@ -175,7 +175,33 @@
 						<div class="row courses_row">
 							
 							<!-- Course -->
-							<c:forEach var="w" items="${wlist}">
+							<%-- <c:forEach var="cm" items="${cmlist}"> 
+							<div class="col-lg-6 course_col">
+								<div class="course">
+									<div class="course_image"><img src="${cm.poster}" alt=""></div>
+									<div class="course_body">
+										<h3 class="course_title"><a href="course.html">Software Training</a></h3>
+										<div class="course_teacher">${cm.artist}</div>
+										<div class="course_text">
+											<p>${cm.content}</p>
+										</div>
+									</div>
+									<div class="course_footer">
+										<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+											<div class="course_info">
+												<i class="fa fa-graduation-cap" aria-hidden="true"></i>
+												<span>${sm.subtitle}</span>
+											</div>
+											<div class="course_info">
+												<i class="fa fa-star" aria-hidden="true"></i>
+												<span>${cm.hit}</span> <%--조회수 %>
+											</div>
+											<div class="course_price ml-auto">${cm.price}</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							 </c:forEach> --%>
 							<div class="col-lg-6 course_col">
 								<div class="course">
 									<div class="course_image"><img src="images/course_4.png" alt=""></div>
@@ -201,7 +227,6 @@
 									</div>
 								</div>
 							</div>
-							</c:forEach>
 							
 
 						</div>

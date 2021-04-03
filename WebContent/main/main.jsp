@@ -128,7 +128,7 @@ function view2(opt2){
 									</li>
 									<li class="active"><a href="#">Home</a></li>
 									<li><a href="about.html">About</a></li>
-									<li><a href="../online/online.jsp">Courses</a></li>
+									<li><a href="../online/online.do">Courses</a></li>
 									<li><a href="blog.html">Blog</a></li>
 									<li><a href="#">Page</a></li>
 									<li><a href="contact.html">Contact</a></li>
