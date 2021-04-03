@@ -60,7 +60,7 @@ function view2(opt2){
 								     <a href="../member/login.do"><div>로그인</div></a>
 									</li>
 									<li>
-										<a href="../member/join.do"><div>회원가입</div></a>
+										<a href="../member/signin.do"><div>회원가입</div></a>
 									</li>
 								</ul>
 								
