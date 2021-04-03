@@ -19,13 +19,13 @@ public class CartModel {
 	
 //	String id = (String)session.getAttribute("id");
 //	System.out.println(id);
-//	String id="admin";
-//	CartDAO dao = CartDAO.newInstance();
-//	List<CartVO> wlist = dao.workList(id);
-//	List<CartVO> clist = dao.classList(id);
-//	
-//	request.setAttribute("wlist", wlist );
-//	request.setAttribute("clist", clist );;
+	String id="admin";
+	CartDAO dao = CartDAO.newInstance();
+	List<CartVO> wlist = dao.workList(id);
+	List<CartVO> clist = dao.classList(id);
+	
+	request.setAttribute("wlist", wlist );
+	request.setAttribute("clist", clist );;
 	
 	return "../cart/cart.jsp";
 	}

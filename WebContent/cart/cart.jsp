@@ -37,16 +37,16 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col" class="border-0 bg-light">
+                    <th scope="col" class="border-0 bg-light" width=60%>
                       <div class="p-2 px-3 text-uppercase">Product</div>
                     </th>
-                    <th scope="col" class="border-0 bg-light">
+                    <th scope="col" class="border-0 bg-light" width=12%>
                       <div class="py-2 text-uppercase">Price</div>
                     </th>
-                    <th scope="col" class="border-0 bg-light">
+                    <th scope="col" class="border-0 bg-light" width=12%>
                       <div class="py-2 text-uppercase">Quantity</div>
                     </th>
-                    <th scope="col" class="border-0 bg-light">
+                    <th scope="col" class="border-0 bg-light" width=12%>
                       <div class="py-2 text-uppercase">Remove</div>
                     </th>
                   </tr>
@@ -56,7 +56,7 @@
                   <tr>
                     <th scope="row" class="border-0">
                       <div class="p-2">
-                        <img src="${w.poster}" alt="" width="70" class="img-fluid rounded shadow-sm">
+                        <img src="${w.poster}" alt="" style="width:70px; height:70px" class="img-fluid rounded shadow-sm">
                         <div class="ml-3 d-inline-block align-middle">
                           <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">${w.title}</a></h5><span class="text-muted font-weight-normal font-italic d-block">artist: ${w.artist}</span>
                         </div>
@@ -75,16 +75,16 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col" class="border-0 bg-light">
+                    <th scope="col" class="border-0 bg-light" width=60%>
                       <div class="p-2 px-3 text-uppercase">Class</div>
                     </th>
-                    <th scope="col" class="border-0 bg-light">
+                    <th scope="col" class="border-0 bg-light" width=12%>
                       <div class="py-2 text-uppercase">Price</div>
                     </th>
-                    <th scope="col" class="border-0 bg-light">
+                    <th scope="col" class="border-0 bg-light" width=12%>
                       <div class="py-2 text-uppercase">Quantity</div>
                     </th>
-                    <th scope="col" class="border-0 bg-light">
+                    <th scope="col" class="border-0 bg-light" width=12%>
                       <div class="py-2 text-uppercase">Remove</div>
                     </th>
                   </tr>
@@ -94,7 +94,7 @@
                   <tr>
                     <th scope="row" class="border-0">
                       <div class="p-2">
-                        <img src="${c.poster}" alt="" width="70" class="img-fluid rounded shadow-sm">
+                        <img src="${c.poster}" alt="" style="width:70px; height:70px" class="img-fluid rounded shadow-sm">
                         <div class="ml-3 d-inline-block align-middle">
                           <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">${c.title}</a></h5><span class="text-muted font-weight-normal font-italic d-block">artist: ${c.artist}</span>
                         </div>
