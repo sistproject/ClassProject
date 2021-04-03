@@ -7,30 +7,38 @@ package com.sist.vo;
  * 
  */
 public class CartVO {
-	private String id;
-	private int cno, wno;
-
-	public String getId() {
-		return id;
+	private String title,artist,poster,price;
+	private int quantity;
+	public String getTitle() {
+		return title;
 	}
-
-	public void setId(String id) {
-		this.id = id;
+	public void setTitle(String title) {
+		this.title = title;
 	}
-
-	public int getCno() {
-		return cno;
+	public String getArtist() {
+		return artist;
 	}
-
-	public void setCno(int cno) {
-		this.cno = cno;
+	public void setArtist(String artist) {
+		this.artist = artist;
 	}
-
-	public int getWno() {
-		return wno;
+	public String getPoster() {
+		return poster;
 	}
-
-	public void setWno(int wno) {
-		this.wno = wno;
+	public void setPoster(String poster) {
+		this.poster = poster;
 	}
+	public String getPrice() {
+		return price;
+	}
+	public void setPrice(String price) {
+		this.price = price;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	
+	
 }
