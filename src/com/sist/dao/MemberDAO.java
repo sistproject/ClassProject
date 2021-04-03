@@ -39,7 +39,7 @@ public class MemberDAO {
 		   ps.setString(3, pwd);
 		   ps.setString(4, email);
 		   
-		   ps.executeUpdate();
+		   ps.executeUpdate();	
 	   }catch(Exception ex) {
 		   ex.printStackTrace();
 	   }
