@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.OffClassDAO;
-import com.sist.vo.OffClassVO;
+import com.sist.sss.*;
 
 @Controller
 public class OffClassModel {
