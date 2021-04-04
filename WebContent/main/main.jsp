@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Unicat project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../main/styles/bootstrap4/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="../main/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="../main/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
 <link rel="stylesheet" type="text/css" href="../main/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
@@ -25,7 +25,7 @@
 function view(opt){
 	if(opt){
 		category_display.style.display="block";
-		category_size.style.color= "#14bdee";
+		category_size.style.color= "#A593E0";
 	}else{
 		category_display.style.display="none";
 		category_size.style.color= "#384158";
@@ -34,7 +34,7 @@ function view(opt){
 function view2(opt2){
 	if(opt2){
 		category_display.style.display="block";
-		category_size.style.color= "#14bdee";
+		category_size.style.color= "#A593E0";
 	}else{
 		category_display.style.display="none";
 		category_size.style.color= "#384158";
@@ -65,6 +65,9 @@ function view2(opt2){
 							     <% } %>
 								<li>
 									<a href="../member/signin.do"><div>회원가입</div></a>
+								</li>
+								<li>
+									<a href="../member/member_detail.do"><div>마이페이지</div></a>
 								</li>
 							</ul>
 						</div>
@@ -115,7 +118,7 @@ function view2(opt2){
 				<div class="col">
 					<div class="header_content d-flex flex-row align-items-center justify-content-start">
 						<div class="logo_container">
-							<a href="#">
+							<a href="../main/main.do">
 								<div class="logo_text">Unic<span>at</span></div>
 							</a>
 						</div>
@@ -125,7 +128,7 @@ function view2(opt2){
 									<a href="#" onmouseover="view(true)" onmouseout="view(false)">
 									<div id="category_size">카테고리</div></a>
 								</li>
-								<li class="active"><a href="#">Home</a></li>
+								<li class="active"><a href="../main/main.do">Home</a></li>
 								<li><a href="about.html">About</a></li>
 								<li><a href="../online/online.do">Courses</a></li>
 								<li><a href="blog.html">Blog</a></li>
@@ -134,12 +137,7 @@ function view2(opt2){
 							</ul>
 							<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
 
-							<!-- Hamburger -->
-
 							<div class="shopping_cart"><a href="../cart/cart.do"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></div>
-							<div class="hamburger menu_mm">
-								<i class="fa fa-bars menu_mm" aria-hidden="true"></i>
-							</div>
 						</nav>
 
 					</div>
@@ -175,7 +173,7 @@ function view2(opt2){
 <!-- Footer -->
 
 <footer class="footer">
-	<div class="footer_background" style="background-image:url(images/footer_background.png)"></div>
+	<div class="footer_background" style="background-color: #566270"></div>
 	<div class="container">
 		<div class="row footer_row">
 			<div class="col">
@@ -281,17 +279,17 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 </footer>
 </div>
 
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="styles/bootstrap4/popper.js"></script>
-<script src="styles/bootstrap4/bootstrap.min.js"></script>
-<script src="plugins/greensock/TweenMax.min.js"></script>
-<script src="plugins/greensock/TimelineMax.min.js"></script>
-<script src="plugins/scrollmagic/ScrollMagic.min.js"></script>
-<script src="plugins/greensock/animation.gsap.min.js"></script>
-<script src="plugins/greensock/ScrollToPlugin.min.js"></script>
-<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-<script src="plugins/easing/easing.js"></script>
-<script src="plugins/parallax-js-master/parallax.min.js"></script>
-<script src="js/custom.js"></script>
+<script src="../main/js/jquery-3.2.1.min.js"></script>
+<script src="../main/styles/bootstrap4/popper.js"></script>
+<script src="../main/styles/bootstrap4/bootstrap.min.js"></script>
+<script src="../main/plugins/greensock/TweenMax.min.js"></script>
+<script src="../main/plugins/greensock/TimelineMax.min.js"></script>
+<script src="../main/plugins/scrollmagic/ScrollMagic.min.js"></script>
+<script src="../main/plugins/greensock/animation.gsap.min.js"></script>
+<script src="../main/plugins/greensock/ScrollToPlugin.min.js"></script>
+<script src="../main/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="../main/plugins/easing/easing.js"></script>
+<script src="../main/plugins/parallax-js-master/parallax.min.js"></script>
+<script src="../main/js/custom.js"></script>
 </body>
 </html>

@@ -16,13 +16,14 @@
 <link rel="stylesheet" type="text/css" href="../main/plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="../main/styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="../main/styles/responsive.css">
+<link rel="stylesheet" href="../main/styles/main_styles.css">
 
 <script src="./js/bootstrap.bundle.min.js" defer></script>
 <script src="./js/jquery-3.3.1.slim.min.js" defer></script>
 <title>Document</title>
 </head>
 <body>
-  <div class="px-4 px-lg-0">
+  <div class="px-4 px-lg-0" style="margin-top:8%">
     <!-- For demo purpose -->
     <div class="container text-white py-5 text-center">
       <h1 class="display-4">장바구니</h1>
@@ -151,6 +152,7 @@
       </div>
     </div>
   </div>
-  
+<script src="../main/plugins/scrollmagic/ScrollMagic.min.js"></script>
+<script src="../main/js/custom.js"></script>
 </body>
 </html>

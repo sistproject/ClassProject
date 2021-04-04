@@ -1,6 +1,10 @@
 package com.sist.dao;
 import java.sql.*;
 import javax.sql.*;
+
+import com.sist.member.memberVO;
+import com.sist.vo.MemberVO;
+
 import javax.naming.*;
 public class MemberDAO {
    private Connection conn;
@@ -102,10 +106,55 @@ public class MemberDAO {
 	   finally {
 		   disConnection();
 	   }
-	   System.out.println(result);
 	   return result;
-	   
    }
+   /*
+	ADMIN             NUMBER         
+	NAME     NOT NULL VARCHAR2(100)  
+	ID       NOT NULL VARCHAR2(34)   
+	PWD      NOT NULL VARCHAR2(15)   
+	TEL               VARCHAR2(15)   
+	EMAIL    NOT NULL VARCHAR2(100)  
+	POST              VARCHAR2(200)  
+	ADDRESS1          VARCHAR2(2000) 
+	ADDRESS2          VARCHAR2(2000) 
+	SEX               VARCHAR2(3)    
+	BIRTH             DATE  
+*/
+   public MemberVO memberDetailData(String id) {
+	   MemberVO vo = new MemberVO();
+	   try {
+		  getConnection();
+		  String sql = "SELECT name,id,email,tel,post,addr1,addr2,sex,birth FROM member WHERE id=?";
+		  ps=conn.prepareStatement(sql);
+		  ps.setString(1, id);
+		  ResultSet rs=ps.executeQuery();
+		  
+		  rs.next();
+		  vo.setName(rs.getString(1));
+		  vo.setId(rs.getString(2));
+		  vo.setEmial(rs.getString(3));
+		  vo.setTel(rs.getString(4));
+		  vo.setPost(rs.getString(5));
+		  vo.setAddr1(rs.getString(6));
+		  vo.setAddr2(rs.getString(7));
+		  vo.setSex(rs.getString(8));
+		  vo.setBirth(rs.getDate(9));
+		  
+		  rs.close();
+	   }catch(Exception ex) {
+		   ex.printStackTrace();
+	   }finally {
+		   disConnection();
+	   }
+	   return vo;
+   }
+   public static void main(String[] args) {
+	MemberDAO dao = new MemberDAO();
+	MemberVO vo = dao.memberDetailData("admin");
+	System.out.println(vo.getTel());
+	System.out.println(vo.getName());
+}
 }
 
 
