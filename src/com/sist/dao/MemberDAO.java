@@ -1,9 +1,13 @@
 package com.sist.dao;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.sql.*;
 
 import com.sist.member.memberVO;
 import com.sist.vo.MemberVO;
+import com.sist.vo.ZipcodeVO;
 
 import javax.naming.*;
 public class MemberDAO {
@@ -149,12 +153,33 @@ public class MemberDAO {
 	   }
 	   return vo;
    }
-   public static void main(String[] args) {
-	MemberDAO dao = new MemberDAO();
-	MemberVO vo = dao.memberDetailData("admin");
-	System.out.println(vo.getTel());
-	System.out.println(vo.getName());
-}
+   public List<ZipcodeVO> postFindData(String dong){
+	   List<ZipcodeVO> list = new ArrayList<ZipcodeVO>();
+	   try {
+		  getConnection();
+		  String sql = "SELECT zipcode,sido,gugun,dong,NVL(bunji,' ') "
+		  		+ "FROM zipcode WHERE dong LIKE'%'||?||'%'";
+		  
+		  ps=conn.prepareStatement(sql);
+		  ps.setString(1, dong);
+		   ResultSet rs=ps.executeQuery();
+		   while(rs.next())  {
+			   ZipcodeVO vo=new ZipcodeVO();
+			   vo.setZipcode(rs.getString(1));
+			   vo.setSido(rs.getString(2));
+			   vo.setGugun(rs.getString(3));
+			   vo.setDong(rs.getString(4));
+			   vo.setBunji(rs.getString(5));
+			   list.add(vo);
+		   }
+		   rs.close();
+	   }catch(Exception ex) {
+		   ex.printStackTrace();
+	   }finally {
+		   disConnection();
+	   }
+	   return list;
+   }
 }
 
 

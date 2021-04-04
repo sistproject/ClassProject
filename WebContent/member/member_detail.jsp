@@ -11,9 +11,12 @@
 <meta name="description" content="Unicat project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Bootstrap core CSS -->
-<link rel="stylesheet" href="../main/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="../memberdetail/vendor/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="../main/css/shop-homepage.css">
 <link rel="stylesheet" href="../main/styles/main_styles.css">
+<link rel="stylesheet" href="../shadow/css/shadowbox.css">
+<script type="text/javascript" src="../shadow/js/shadowbox.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <style>
 .join_row{
 	width:700px;
@@ -26,6 +29,23 @@
 	border-radius: 20px;
 }
 </style>
+
+<script type="text/javascript">
+Shadowbox.init({
+	players:["iframe"]
+});
+$(function(){
+	$('#postbtn').click(()=>{
+		Shadowbox.open({
+			content:'../member/postfind.jsp',
+			player:'iframe',
+			title:'우편번호 검색',
+			width:540,
+			height:450
+		})
+	})
+});
+</script>
 </head>
 <body>
  <!-- Page Content -->
@@ -69,7 +89,7 @@
 		<tr>
 		<th width=20% class="text-right">Email</th>
 		<td width=80%>
-		<input type=text name=email id=emial class="input-sm" size=45 value="${vo.email }">
+		<input type=text name=email id=emial class="input-sm" size=40 value="${vo.email }">
 		<small>Error message</small>
 		</td>
 		</tr>
@@ -148,8 +168,8 @@
 <!-- /.container -->
 
 <!-- Bootstrap core JavaScript -->
-<script src="../main/vendor/jquery/jquery.min.js"></script>
-<script src="../main/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../memberdetail/vendor/jquery/jquery.min.js"></script>
+<script src="../memberdetail/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script src="../main/plugins/scrollmagic/ScrollMagic.min.js"></script>
 <script src="../main/js/custom.js"></script>

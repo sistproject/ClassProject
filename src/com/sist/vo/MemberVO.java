@@ -31,7 +31,7 @@ public class MemberVO {
 	public String getEmail() {
 		return email;
 	}
-	public void setEmail(String emial) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 	public String getTel() {
