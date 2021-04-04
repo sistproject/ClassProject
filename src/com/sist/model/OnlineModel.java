@@ -36,7 +36,7 @@ public class OnlineModel {
 			endPage = totalPage;
 
 		request.setAttribute("count", count);
-		request.setAttribute("omList", omList);
+		request.setAttribute("omList", omList); // online main List
 
 		request.setAttribute("block", BLOCK);
 		request.setAttribute("startPage", startPage);
@@ -51,11 +51,9 @@ public class OnlineModel {
 	@RequestMapping("online/online_detail.do")
 	public String online_detail(HttpServletRequest request, HttpServletResponse response) {
 		String cno = request.getParameter("cno");
-		
-		
-		
-		
-		
+		OnlineDAO dao = OnlineDAO.newInstance();
+		List<OnlineVO> ondList = dao.onlineDetailData(Integer.parseInt(cno));
+		request.setAttribute("ondList", ondList); // online Detail List
 		
 		return "../online/online_detail.jsp";
 

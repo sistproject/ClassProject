@@ -211,41 +211,14 @@
 					</div>
 				</div>
 				</c:forEach>
-							
-							<div class="col-lg-6 course_col">
-								<div class="course">
-									<div class="course_image"><img src="images/course_4.png" alt=""></div>
-									<div class="course_body">
-										<h3 class="course_title"><a href="course.html">Software Training</a></h3>
-										<div class="course_teacher">Mr. John Taylor</div>
-										<div class="course_text">
-											<p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
-										</div>
-									</div>
-									<div class="course_footer">
-										<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-											<div class="course_info">
-												<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-												<span>20 Student</span>
-											</div>
-											<div class="course_info">
-												<i class="fa fa-star" aria-hidden="true"></i>
-												<span>5 Ratings</span>
-											</div>
-											<div class="course_price ml-auto">$130</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							
 
 						</div>
 						<div class="row pagination_row">
 							<div class="col">
 								<div class="pagination_container d-flex flex-row align-items-center justify-content-start">
-									<ul>
+									<ul class="pagination_list">
 							          <c:if test="${startPage>1 }">
-							           <li><a href="../online/online.do?page=${startPage-1 }">&laquo; 이전</a></li>
+							           <li><a href="../online/online.do?page=${startPage-1 }">이전</a></li>
 							          </c:if>
 							          <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
 							            <c:if test="${i==curpage }">
@@ -257,24 +230,9 @@
 							            <li ${type }><a href="../online/online.do?page=${i }">${i }</a></li>
 							          </c:forEach>
 							          <c:if test="${endPage<totalpage }">
-							            <li><a href="../online/online.do?page=${endPage+1 }">다음 &raquo;</a></li>
+							            <li><a href="../online/online.do?page=${endPage+1 }"> 다음</a></li>
 							          </c:if>
 							        </ul>
-									
-									
-									
-									<div class="courses_show_container ml-auto clearfix">
-										<div class="courses_show_text">Showing <span class="courses_showing">1-6</span> of <span class="courses_total">26</span> results:</div>
-										<div class="courses_show_content">
-											<span>Show: </span>
-											<select id="courses_show_select" class="courses_show_select">
-												<option>06</option>
-												<option>12</option>
-												<option>24</option>
-												<option>36</option>
-											</select>
-										</div>
-									</div>
 								</div>
 							</div>
 						</div>
