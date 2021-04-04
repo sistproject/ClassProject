@@ -4,17 +4,19 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+
 public class Manager {
 	public void productData() {
 		try {
 			int k = 1;
 			for (int p = 8; p <= 207; p++) {
 				try {
+					OnlineDAO dao = new OnlineDAO();
+					OnlineVO vo = new OnlineVO();
 					// 아이디어스 온라인 클래스
 					Document doc = Jsoup.connect("https://www.idus.com/oc/class/" + p).get();
 
 					// System.out.println(doc); 
-
 					
 					System.out.println("number: " + k);
 
@@ -26,13 +28,16 @@ public class Manager {
 					Elements context1 = doc.select("h3.article_block__title");
 					Elements context2 = doc.select("p.article_block__para");
 
+					
 					for (int j = 0; j < artist.size(); j++) {
 						try {
 							System.out.println("artist: " + artist.get(j).text());
-							System.out.println("subject:" + subject.get(j).text());
+//							System.out.println("subject:" + subject.get(j).text());
 							System.out.println("product: " + title.get(j).text());
-							System.out.println("context1: " + context1.get(j).text());
-						
+//							System.out.println("context1: " + context1.get(j).text());
+							vo.setCtitle(title.get(j).text());
+							vo.setCartist(artist.get(j).text());
+							
 						} catch (Exception e) {
 							System.out.println("null");
 						}
@@ -46,6 +51,12 @@ public class Manager {
 					}
 					System.out.println(img);
 					System.out.println(contents);
+					
+					vo.setCcontent(contents);
+					vo.setCposter(img);
+					vo.setCprice("16500");
+					
+					dao.onlineDataInsert(vo);
 					
 					k++;
 					
