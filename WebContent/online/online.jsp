@@ -18,6 +18,10 @@
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="styles/courses.css">
 <link rel="stylesheet" type="text/css" href="styles/courses_responsive.css">
+
+<!-- fade -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
 </head>
 <body>
 
@@ -179,7 +183,7 @@
 				<!-- Course -->
 				
 				<c:forEach var="om" items="${omList}"> 
-				<div class="col-lg-6 course_col">
+				<div class="col-lg-6 course_col" data-aos="zoom-in-down">
 					<div class="course">
 						<div class="course_image"><img src="${om.cposter}" alt=""/></div>
 						<div class="course_body">
@@ -551,5 +555,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="plugins/parallax-js-master/parallax.min.js"></script>
 <script src="plugins/colorbox/jquery.colorbox-min.js"></script>
 <script src="js/courses.js"></script>
+<!-- fade -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
 </body>
 </html>
