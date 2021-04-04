@@ -185,7 +185,9 @@
 				<c:forEach var="om" items="${omList}"> 
 				<div class="col-lg-6 course_col" data-aos="zoom-in-down">
 					<div class="course">
+						<a href="../online/online_detail.do?cno=${om.cno }">
 						<div class="course_image"><img src="${om.cposter}" alt=""/></div>
+						</a>
 						<div class="course_body">
 							<h3 class="course_title"><a href="course.html">${om.ctitle }</a></h3>
 							<div class="course_teacher">${om.cartist}</div>
