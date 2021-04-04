@@ -59,8 +59,9 @@ public class OffClassDAO {
 			   getConnection();
 			   // SQL문장
 			   String sql="SELECT c_no,c_poster,c_title,c_artist,c_price,c_category,c_address "
-					   +"FROM thisclass ORDER BY c_no ASC "
-					   +"WHERE c_onoff=1 AND num BETWEEN ? AND ? ";
+					   +"FROM thisclass "
+					   +"WHERE c_onoff=1 AND num BETWEEN ? AND ? "
+					   +"ORDER BY c_no ASC";
 			   // 전송 객체 생성
 			   ps=conn.prepareStatement(sql);
 			   int rowSize=12;
