@@ -15,7 +15,7 @@ import java.util.*;
 public class OnlineDAO {
 	private Connection conn;
 	private PreparedStatement ps;
-	private static CartDAO dao;
+	private static OnlineDAO dao;
 
 	// 미리 만들어진 객체주소를 얻어온다 (Connection)
 	public void getConnection() {
@@ -39,9 +39,9 @@ public class OnlineDAO {
 		}
 	}
 
-	public static CartDAO newInstance() {
+	public static OnlineDAO newInstance() {
 		if (dao == null)
-			dao = new CartDAO();
+			dao = new OnlineDAO();
 		return dao;
 	}
 	
@@ -68,8 +68,12 @@ public class OnlineDAO {
 				 end=30;
 				 
 			 }
-			 String sql="SELECT * FROM class "
-					   +"WHERE no BETWEEN ? AND ?";
+			 /*
+			  * private String ctitle, cposter, cartist, cprice;
+				private int cno;
+			  */
+			 String sql="SELECT c_no, c_title, c_poster, c_artist, c_price FROM class "
+					   +"WHERE c_no BETWEEN ? AND ?";
 			 ps=conn.prepareStatement(sql);
 			 ps.setInt(1, start);
 			 ps.setInt(2, end);
@@ -79,12 +83,10 @@ public class OnlineDAO {
 			 {
 				 OnlineVO vo=new OnlineVO();
 				 vo.setCno(rs.getInt(1));
-				 vo.setCposter(rs.getString(2));
-				 vo.setCtitle(rs.getString(3));
+				 vo.setCtitle(rs.getString(2));
+				 vo.setCposter(rs.getString(3));
 				 vo.setCartist(rs.getString(4));
 				 vo.setCprice(rs.getString(5));
-				 
-				 
 				 
 				 list.add(vo);
 			 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -175,33 +176,35 @@
 						<div class="row courses_row">
 							
 							<!-- Course -->
-							<%-- <c:forEach var="cm" items="${cmlist}"> 
+							
+							<c:forEach var="om" items="${omList}"> 
 							<div class="col-lg-6 course_col">
 								<div class="course">
-									<div class="course_image"><img src="${cm.poster}" alt=""></div>
+									<div class="course_image"><img src="${om.cposter}" alt=""/></div>
 									<div class="course_body">
-										<h3 class="course_title"><a href="course.html">Software Training</a></h3>
-										<div class="course_teacher">${cm.artist}</div>
+										<h3 class="course_title"><a href="course.html">${om.ctitle }</a></h3>
+										<div class="course_teacher">${om.cartist}</div>
 										<div class="course_text">
-											<p>${cm.content}</p>
+											<p>뭐를 적을까</p>
 										</div>
 									</div>
 									<div class="course_footer">
 										<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
 											<div class="course_info">
 												<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-												<span>${sm.subtitle}</span>
+												<span>${om.cno}</span>
 											</div>
 											<div class="course_info">
 												<i class="fa fa-star" aria-hidden="true"></i>
-												<span>${cm.hit}</span> <%--조회수 %>
+												<span>만족도</span> 
 											</div>
-											<div class="course_price ml-auto">${cm.price}</div>
+											<div class="course_price ml-auto">${om.cprice}</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							 </c:forEach> --%>
+							</c:forEach>
+							
 							<div class="col-lg-6 course_col">
 								<div class="course">
 									<div class="course_image"><img src="images/course_4.png" alt=""></div>
