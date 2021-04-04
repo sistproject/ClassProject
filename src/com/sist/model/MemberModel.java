@@ -10,6 +10,7 @@ import com.sist.controller.RequestMapping;
 import com.sist.dao.CartDAO;
 import com.sist.dao.MemberDAO;
 import com.sist.vo.MemberVO;
+import com.sist.vo.ZipcodeVO;
 
 
 @Controller
@@ -77,4 +78,18 @@ public class MemberModel {
 		request.setAttribute("result",result);
 		return "../member/login_ok.jsp";
 	}
+	@RequestMapping("member/post_result.do")
+	  public String member_post(HttpServletRequest request,HttpServletResponse response) {
+		  try {
+			  request.setCharacterEncoding("UTF-8");
+		  }catch (Exception e) {}
+		  String dong = request.getParameter("dong");
+		  MemberDAO dao = MemberDAO.newInstance();
+		  List<ZipcodeVO> list = dao.postFindData(dong);
+//		  for(ZipcodeVO vo:list) {
+//			  System.out.println(vo.getAddress());
+//		  }
+		  request.setAttribute("list",list);
+		  return "../member/post_result.jsp";
+	  }
 }
