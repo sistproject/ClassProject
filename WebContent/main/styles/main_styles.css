@@ -39,6 +39,69 @@
 /*********************************
 2. Body and some general stuff
 *********************************/
+.category_wrapper{
+	font-size: 0px;
+	position: absolute;
+	z-index: 9;
+	top: 40px;
+	left: 738.5px;
+	
+}
+.category{
+	display:inline-block;
+	background-color: #ffffff;
+}
+
+.category_content{
+	width: 210px;
+	height: 350px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 17px;
+	padding-bottom: 17px;
+	border: 1px solid rgb(217,217,217);
+}
+
+.category_content li{
+	width:175px;
+	height:25px;
+	margin-top:6px;
+	margin-bottom:6px;
+	background-color: #ffffff;
+	padding-left: 13px;
+	padding-right: 10px;
+	padding-top:2px;
+	font-family: "고딕";
+	font-size: 13px;
+}
+
+.category_content li:hover{
+	background-color:  #14bdee;
+	color:black;
+}
+
+.mouse_check{
+	width:100px;
+	height:90px;
+	opacity:0;
+}
+
+.mouse_check2{
+	display: none;
+}
+
+a:link {
+	color: white; text-decoration: none;
+}
+a:visited {
+	color: white; text-decoration: none;
+}
+a:hover {
+	color: white; text-decoration: none;
+	font-weight: bold;
+}
+
+
 
 *
 {
@@ -414,10 +477,6 @@ section
 3.4 Main Nav
 *********************************/
 
-.main_nav_contaner
-{
-
-}
 .main_nav:not(div),
 .search_button,
 .shopping_cart
@@ -447,7 +506,7 @@ section
 .main_nav li a:hover,
 .main_nav li.active a
 {
-	color: #14bdee;
+	color:#14bdee;
 }
 .main_nav li.active::after
 {
@@ -457,7 +516,7 @@ section
 	left: 0;
 	width: 100%;
 	height: 2px;
-	background: #14bdee;
+	background:#14bdee;
 	content: '';
 }
 
@@ -485,7 +544,7 @@ section
 .search_button:hover i,
 .shopping_cart:hover i
 {
-	color: #14bdee;
+	color:#14bdee;
 }
 .header_search_form
 {
@@ -542,10 +601,6 @@ section
 3.5 Hamburger
 *********************************/
 
-.hamburger_container
-{
-
-}
 .hamburger
 {
 	display: none;

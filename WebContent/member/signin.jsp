@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Form Validator</title>
 <link rel="stylesheet" href="style.css" />
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script> 
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(()=>{
@@ -79,6 +80,8 @@ function allFilled(){
           <small>Error message</small>
         </div>
         <button class="btn_submit" disabled>Submit</button>
+        <span>Already have an account?</span>
+      	<div class="btn_signin" onclick="location.href='login.jsp'">LOG IN</div>
       </form>
     </div>
     <p class="notice">
