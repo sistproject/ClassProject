@@ -11,6 +11,7 @@ public class MainModel {
 	public String login(HttpServletRequest request,HttpServletResponse response) {
 		String name = "";
 		request.setAttribute("name", name);
+		request.setAttribute("main_jsp", "../main/home.jsp");
 		return "../main/main.jsp";
 	}
 }

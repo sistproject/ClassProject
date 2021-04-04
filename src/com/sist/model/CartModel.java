@@ -25,8 +25,8 @@ public class CartModel {
 	
 	request.setAttribute("wlist", wlist );
 	request.setAttribute("clist", clist );;
-	
-	return "../cart/cart.jsp";
+	request.setAttribute("main_jsp", "../cart/cart.jsp");
+	return "../main/main.jsp";
 	}
 
 }
