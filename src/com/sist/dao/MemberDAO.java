@@ -125,7 +125,7 @@ public class MemberDAO {
 	   MemberVO vo = new MemberVO();
 	   try {
 		  getConnection();
-		  String sql = "SELECT name,id,email,tel,post,addr1,addr2,sex,birth FROM member WHERE id=?";
+		  String sql = "SELECT name,id,email,tel,post,address1,address2,sex,birth FROM member WHERE id=?";
 		  ps=conn.prepareStatement(sql);
 		  ps.setString(1, id);
 		  ResultSet rs=ps.executeQuery();
@@ -133,7 +133,7 @@ public class MemberDAO {
 		  rs.next();
 		  vo.setName(rs.getString(1));
 		  vo.setId(rs.getString(2));
-		  vo.setEmial(rs.getString(3));
+		  vo.setEmail(rs.getString(3));
 		  vo.setTel(rs.getString(4));
 		  vo.setPost(rs.getString(5));
 		  vo.setAddr1(rs.getString(6));
