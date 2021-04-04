@@ -19,14 +19,14 @@ public class OnlineDAO {
 	public void onlineDataInsert(OnlineVO vo) {
 		 try {
 			 conn=dm.getConnection();
-			 String sql = "INSERT INTO testclass(c_no, c_title, c_content, c_poster, c_artist, c_price,c_onoff) VALUES "
-				+ "((SELECT NVL(MAX(c_no)+1,1) FROM testclass),?,?,?,?,?,0)";
+			 String sql = "INSERT INTO thisclass(c_no, c_title, c_artist, c_price, c_onoff, c_poster, c_content) VALUES "
+				+ "((SELECT NVL(MAX(c_no)+1,1) FROM thisclass),?,?,?,0,?,?)";
 				ps=conn.prepareStatement(sql);
 				ps.setString(1, vo.getCtitle());
-				ps.setString(2, vo.getCcontent());
-				ps.setString(3, vo.getCposter());
-				ps.setString(4, vo.getCartist());
-				ps.setString(5, vo.getCprice());
+				ps.setString(2, vo.getCartist());
+				ps.setString(3, vo.getCprice());
+				ps.setString(4, vo.getCposter());
+				ps.setString(5, vo.getCcontent());
 				
 				ps.executeUpdate();
 		 }catch(Exception ex) {

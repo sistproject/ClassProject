@@ -17,7 +17,7 @@ public class OnlineModel {
 
 		String page = request.getParameter("page");
 		if (page == null) {
-			page = "1";
+			page = "1120";
 		}
 		int curpage = Integer.parseInt(page);
 
