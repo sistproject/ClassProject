@@ -9,7 +9,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.*;
 
-import com.sist.sss.OffClassVO;
+import com.sist.vo.OffClassVO;
 
 
 
@@ -50,7 +50,7 @@ public class OffClassDAO {
 			   
 	   }
 	   // Class나열
-	   public List<OffClassVO> classListData(int cno)
+	   public List<OffClassVO> classListData(int page)
 	   {
 		   List<OffClassVO> list=new ArrayList<OffClassVO>();
 		   try
@@ -58,23 +58,27 @@ public class OffClassDAO {
 			   // 연결
 			   getConnection();
 			   // SQL문장
-			   String sql="SELECT cno,cposter,ctitle,cartist,cprice,ccategory,caddress "
-					   +"FROM thisclass "
-					   +"ORDER BY no ASC";
+			   String sql="SELECT c_no,c_poster,c_title,c_artist,c_price,c_category,c_address "
+					   +"FROM thisclass ORDER BY c_no ASC "
+					   +"WHERE c_onoff=1 AND num BETWEEN ? AND ? ";
 			   // 전송 객체 생성
 			   ps=conn.prepareStatement(sql);
-			   ps.setInt(1, cno);
-			   // 실행 
+			   int rowSize=12;
+			   int start=(rowSize*page)-(rowSize-1); 
+			   int end=rowSize*page;
+			   ps.setInt(1, start);
+			   ps.setInt(2, end);
 			   ResultSet rs=ps.executeQuery();
 			   while(rs.next())
 			   {
 				    OffClassVO vo=new OffClassVO();
+				    vo.setCno(rs.getInt(1));
 				   	vo.setCposter(rs.getString(2));
-				   	vo.setCcategory(rs.getString(3));
-				   	vo.setCtitle(rs.getString(4));
-				   	vo.setCartist(rs.getString(5));
-				   	vo.setCaddress(rs.getString(6));
-				   	vo.setCprice(rs.getString(7));
+				   	vo.setCtitle(rs.getString(3));
+				   	vo.setCartist(rs.getString(4));
+				   	vo.setCprice(rs.getString(5));
+				   	vo.setCcategory(rs.getString(6));
+				   	vo.setCaddress(rs.getString(7));
 				   	list.add(vo);
 			   }
 			   rs.close();
@@ -88,6 +92,31 @@ public class OffClassDAO {
 		   }
 		   return list;
 	   }
+	   // 오프라인 클래스 총 갯수
+	   public int OffClassCount()
+	   {
+		   int count=0;
+		   try
+		   {
+			   getConnection();
+			   String sql="SELECT COUNT(*) FROM thisclass "
+					   +"WHERE c_onoff=1";
+			   ps=conn.prepareStatement(sql);
+			   ResultSet rs=ps.executeQuery();
+			   rs.next();
+			   count=rs.getInt(1);
+			   rs.close();
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   disConnection();
+		   }
+		   return count;
+	   }
+	   
 	   /*
 	    * 	C_NO        NOT NULL NUMBER        
 			C_TITLE              VARCHAR2(300) 
@@ -104,21 +133,22 @@ public class OffClassDAO {
 			C_CONTENTS           CLOB     
 	    */
 	   // Class 상세보기
-	   public OffClassVO ClassDetailData(int cno)
+	   public List<OffClassVO> OffDetailData(int cno)
 	   {
-		   OffClassVO vo=new OffClassVO();
+		   List<OffClassVO> list=new ArrayList<OffClassVO>();
 		   try
 		   {
 			   getConnection();
-			   String sql="SELECT cno,ctitle,ccontent,cposter,cartist,cprice,caddress,ctime,conoff,"
-					   	+"ccategory, cintro,csubtitles,ccontents "
+			   String sql="SELECT c_no,c_title,c_content,c_poster,c_artist,c_price,c_address,c_time,"
+					   	+"c_category, c_intro,c_subtitles,c_contents "
 					   	+"FROM thisclass "
-					   	+"WHERE cno=?";
+					   	+"WHERE c_onoff=1 AND c_no=?";
 			   ps=conn.prepareStatement(sql);
 			   ps.setInt(1, cno);
 			   // 결과값 받기
 			   ResultSet rs=ps.executeQuery(); 
 			   rs.next();
+			   OffClassVO vo=new OffClassVO();
 			   vo.setCno(rs.getInt(1));
 			   vo.setCtitle(rs.getString(2));
 			   vo.setCcontent(rs.getString(3));
@@ -127,11 +157,10 @@ public class OffClassDAO {
 			   vo.setCprice(rs.getString(6));
 			   vo.setCaddress(rs.getString(7));
 			   vo.setCtime(rs.getString(8));
-			   vo.setConoff(rs.getInt(9));
-			   vo.setCcategory(rs.getString(10));
-			   vo.setCintro(rs.getString(11));
-			   vo.setCsubtitles(rs.getString(12));
-			   vo.setCcontents(rs.getString(13));
+			   vo.setCcategory(rs.getString(9));
+			   vo.setCintro(rs.getString(10));
+			   vo.setCsubtitles(rs.getString(11));
+			   vo.setCcontents(rs.getString(12));
 			   rs.close();
 			   
 		   }catch(Exception ex)
@@ -142,7 +171,7 @@ public class OffClassDAO {
 		   {
 			   disConnection();
 		   }
-		   return vo;
+		   return list;
 	   }
 }
 

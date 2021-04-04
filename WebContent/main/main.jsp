@@ -131,7 +131,7 @@ function view2(opt2){
 								<li class="active"><a href="../main/main.do">Home</a></li>
 								<li><a href="about.html">About</a></li>
 								<li><a href="../online/online.do">Courses</a></li>
-								<li><a href="blog.html">Blog</a></li>
+								<li><a href="../offclass/offclass.do">오프라인</a></li>
 								<li><a href="#">Page</a></li>
 								<li><a href="contact.html">Contact</a></li>
 							</ul>

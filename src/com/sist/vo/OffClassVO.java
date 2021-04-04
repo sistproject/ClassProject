@@ -1,4 +1,4 @@
-package com.sist.sss;
+package com.sist.vo;
 
 /*
  *  C_NO        NOT NULL NUMBER        
