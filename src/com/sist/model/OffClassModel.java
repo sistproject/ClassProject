@@ -40,6 +40,7 @@ public class OffClassModel {
 	    request.setAttribute("totalPage", totalPage);
 	    request.setAttribute("curpage", curpage);
 	    request.setAttribute("main_jsp", "../offclass/offclass.jsp");
+	    request.setAttribute("menu", "class");
 		
 		return "../main/main.jsp";
 	}
