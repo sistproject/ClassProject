@@ -1,5 +1,7 @@
 package com.sist.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,7 +36,9 @@ public class MemberModel {
 		String id = (String)session.getAttribute("id");
 		MemberDAO dao = MemberDAO.newInstance();
 		MemberVO vo = dao.memberDetailData(id);
+		System.out.println(vo.getTel());
 		request.setAttribute("vo",vo);
+		request.setAttribute("menu", "work");
 		request.setAttribute("main_jsp", "../member/member_detail.jsp");
 		return "../main/main.jsp";
 	}
@@ -56,8 +60,6 @@ public class MemberModel {
 		String id=request.getParameter("id");
 		String email=request.getParameter("email");
 		String pwd=request.getParameter("pwd");
-		System.out.println(id);
-		System.out.println(email);
 		MemberDAO dao = MemberDAO.newInstance();
 		dao.insertMember(name, id, pwd, email);
 		
@@ -79,17 +81,62 @@ public class MemberModel {
 		return "../member/login_ok.jsp";
 	}
 	@RequestMapping("member/post_result.do")
-	  public String member_post(HttpServletRequest request,HttpServletResponse response) {
-		  try {
-			  request.setCharacterEncoding("UTF-8");
-		  }catch (Exception e) {}
-		  String dong = request.getParameter("dong");
-		  MemberDAO dao = MemberDAO.newInstance();
-		  List<ZipcodeVO> list = dao.postFindData(dong);
+	public String member_post(HttpServletRequest request,HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		}catch (Exception e) {}
+		String dong = request.getParameter("dong");
+		MemberDAO dao = MemberDAO.newInstance();
+		List<ZipcodeVO> list = dao.postFindData(dong);
 //		  for(ZipcodeVO vo:list) {
 //			  System.out.println(vo.getAddress());
 //		  }
-		  request.setAttribute("list",list);
-		  return "../member/post_result.jsp";
-	  }
+		request.setAttribute("list",list);
+		return "../member/post_result.jsp";
+	}
+	@RequestMapping("member/member_update.do")
+	public String member_update(HttpServletRequest request,HttpServletResponse response) throws ParseException {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		}catch (Exception e) {}
+		
+		MemberDAO dao = MemberDAO.newInstance();
+		MemberVO vo = new MemberVO();
+		
+		String name=request.getParameter("name");
+		String id=request.getParameter("id");
+		String email=request.getParameter("email");
+		String pwd=request.getParameter("pwd");
+		
+		String sex=request.getParameter("sex");
+		String birth=request.getParameter("birth");
+		
+		String post=request.getParameter("post");
+		String addr1=request.getParameter("addr1");
+		String addr2=request.getParameter("addr2");
+		
+		String tel1=request.getParameter("tel1");
+		String tel2=request.getParameter("tel2");
+		String tel3=request.getParameter("tel3");
+		
+		//private String name,id,email,tel,post,addr,sex,pwd;
+		//private Date birth;
+		
+		vo.setName(name);
+		vo.setId(id);
+		vo.setEmail(email);
+		vo.setPwd(pwd);
+		vo.setSex(sex);
+		vo.setBirth(birth);
+		vo.setPost(post);
+		vo.setAddr1(addr1);
+		vo.setAddr2(addr2);
+		vo.setTel(tel1+tel2+tel3);
+		
+
+		dao.memberUpdateData(vo);
+		
+		return "redirect: ../member/member_detail.do";
+	}
+	
 }

@@ -129,7 +129,7 @@ public class MemberDAO {
 	   MemberVO vo = new MemberVO();
 	   try {
 		  getConnection();
-		  String sql = "SELECT name,id,email,tel,post,address1,address2,sex,birth FROM member WHERE id=?";
+		  String sql = "SELECT name,id,email,tel,post,address1,address2,sex,birth,pwd FROM member WHERE id=?";
 		  ps=conn.prepareStatement(sql);
 		  ps.setString(1, id);
 		  ResultSet rs=ps.executeQuery();
@@ -143,7 +143,8 @@ public class MemberDAO {
 		  vo.setAddr1(rs.getString(6));
 		  vo.setAddr2(rs.getString(7));
 		  vo.setSex(rs.getString(8));
-		  vo.setBirth(rs.getDate(9));
+		  vo.setBirth(rs.getString(9));
+		  vo.setPwd(rs.getString(10));
 		  
 		  rs.close();
 	   }catch(Exception ex) {
@@ -179,6 +180,30 @@ public class MemberDAO {
 		   disConnection();
 	   }
 	   return list;
+   }
+   public MemberVO memberUpdateData(MemberVO vo) {
+	   try {
+		  getConnection();
+		  String sql = "UPDATE member SET name=?, pwd=?, email=?, tel=?, post=?, address1=?, address2=?, sex=?, birth=? WHERE id=?";
+		  ps=conn.prepareStatement(sql);
+		  ps.setString(1, vo.getName());
+		  ps.setString(2, vo.getPwd());
+		  ps.setString(3, vo.getEmail());
+		  ps.setString(4, vo.getTel());
+		  ps.setString(5, vo.getPost());
+		  ps.setString(6, vo.getAddr1());
+		  ps.setString(7, vo.getAddr2());
+		  ps.setString(8, vo.getSex());
+		  ps.setString(9,vo.getBirth());
+		  ps.setString(10, vo.getId());
+		  
+		  ps.executeUpdate();
+	   }catch(Exception ex) {
+		   ex.printStackTrace();
+	   }finally {
+		   disConnection();
+	   }
+	   return vo;
    }
 }
 

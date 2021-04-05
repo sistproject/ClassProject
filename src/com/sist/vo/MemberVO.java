@@ -14,8 +14,14 @@ package com.sist.vo;
  */
 import java.util.*;
 public class MemberVO {
-	private String name,id,email,tel,post,addr1,addr2,sex;
-	private Date birth;
+	private String name,id,email,tel,post,addr1,addr2,sex,pwd,birth;
+	
+	public String getPwd() {
+		return pwd;
+	}
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
 	public String getName() {
 		return name;
 	}
@@ -64,11 +70,12 @@ public class MemberVO {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	public Date getBirth() {
+	public String getBirth() {
 		return birth;
 	}
-	public void setBirth(Date birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
+	
 	
 }
