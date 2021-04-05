@@ -69,6 +69,7 @@ public class OnlineDAO {
 				vo.setCposter(rs.getString(3));
 				vo.setCartist(rs.getString(4));
 				vo.setCprice(rs.getString(5));
+				vo.setCcontent(rs.getString(6));
 				list.add(vo);
 			}
 			rs.close();
@@ -104,24 +105,24 @@ public class OnlineDAO {
 	}
 	
 	// 온라인 클래스 디테일 페이지 데이터
-	public List<OnlineVO> onlineDetailData(int cno) {
-		List<OnlineVO> list = new ArrayList<OnlineVO>();
+	public OnlineVO onlineDetailData(int cno) {
+		OnlineVO vo = new OnlineVO();
 		try {
 			getConnection();
-			String sql = "SELECT c_no, c_title, c_poster, c_artist, c_price "
-						+ "FROM class "
+			String sql = "SELECT c_no, c_title, c_poster, c_artist, c_price, c_content "
+						+ "FROM thisclass "
 						+ "WHERE c_no = ?";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, cno);
 			ResultSet rs = ps.executeQuery();
 			rs.next();
-			OnlineVO vo = new OnlineVO();
 			vo.setCno(rs.getInt(1));
 			vo.setCtitle(rs.getString(2));
 			vo.setCposter(rs.getString(3));
 			vo.setCartist(rs.getString(4));
 			vo.setCprice(rs.getString(5));
-			list.add(vo);
+			vo.setCcontent(rs.getString(6));
+			
 			rs.close();
 		}catch(Exception ex) {
 			ex.printStackTrace();
@@ -129,7 +130,7 @@ public class OnlineDAO {
 			disConnection();
 		}
 		
-		return list;
+		return vo;
 		
 	}
 	

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -183,33 +184,35 @@
 				<!-- Course -->
 				
 				<c:forEach var="om" items="${omList}"> 
-				<div class="col-lg-4 course_col" data-aos="zoom-in-down">
-					<div class="course">
-						<a href="../online/online_detail.do?cno=${om.cno }">
-						<div class="course_image"><img src="${om.cposter}" alt=""/></div>
-						</a>
-						<div class="course_body">
-							<h3 class="course_title"><a href="course.html">${om.ctitle }</a></h3>
-							<div class="course_teacher">${om.cartist}</div>
-							<div class="course_text">
-								<p>뭐를 적을까</p>
+					<div class="col-lg-4 course_col" data-aos="zoom-in-down">
+						
+						<div class="course">
+							
+							<div class="course_image"><img src="${fn:substring(om.cposter,0,fn:indexOf(om.cposter,'^'))}" alt=""/></div>
+							<div class="course_body">
+								<h3 class="course_title"><a href="../online/online_detail.do?cno=${om.cno }">${om.ctitle }</a></h3>
+								<div class="course_teacher">${om.cartist}</div>
+								<div class="course_text">
+									<p>클래스 확인하기</p>
+								</div>
 							</div>
-						</div>
-						<div class="course_footer">
-							<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-								<div class="course_info">
-									<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-									<span>${om.cno}</span>
+				
+							<div class="course_footer">
+								<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+									<div class="course_info">
+										<i class="fa fa-graduation-cap" aria-hidden="true"></i>
+										<span>${om.cno}</span>
+									</div>
+									<div class="course_info">
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<span>만족도</span> 
+									</div>
+									<div class="course_price ml-auto">${om.cprice}</div>
 								</div>
-								<div class="course_info">
-									<i class="fa fa-star" aria-hidden="true"></i>
-									<span>만족도</span> 
-								</div>
-								<div class="course_price ml-auto">${om.cprice}</div>
 							</div>
 						</div>
 					</div>
-				</div>
+					
 				</c:forEach>
 
 						</div>
