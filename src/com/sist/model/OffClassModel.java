@@ -54,6 +54,7 @@ public class OffClassModel {
 		List<OffClassVO> ofdList=dao.classListData(Integer.parseInt(cno));
 		request.setAttribute("ofdList", ofdList);
 		request.setAttribute("main_jsp", "../offclass/offclass_detail.jsp");
+		request.setAttribute("menu", "class");
 		
 		return "../main/main.jsp";
 	}

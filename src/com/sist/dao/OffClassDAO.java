@@ -58,10 +58,11 @@ public class OffClassDAO {
 			   // 연결
 			   getConnection();
 			   // SQL문장
-			   String sql="SELECT c_no,c_poster,c_title,c_artist,c_price,c_category,c_address "
-					   +"FROM thisclass "
-					   +"WHERE c_onoff=1 AND num BETWEEN ? AND ? "
-					   +"ORDER BY c_no ASC";
+			   String sql="SELECT c_no, c_poster, c_title, c_artist, c_price, c_category, c_address, num "
+						+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_category, c_address, rownum as num "
+						+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_category, c_address " 
+						+ "FROM thisclass ORDER BY c_no ASC)) "
+						+ "WHERE num BETWEEN ? AND ?";
 			   // 전송 객체 생성
 			   ps=conn.prepareStatement(sql);
 			   int rowSize=12;
@@ -100,8 +101,7 @@ public class OffClassDAO {
 		   try
 		   {
 			   getConnection();
-			   String sql="SELECT COUNT(*) FROM thisclass "
-					   +"WHERE c_onoff=1";
+			   String sql="SELECT COUNT(*) FROM thisclass";
 			   ps=conn.prepareStatement(sql);
 			   ResultSet rs=ps.executeQuery();
 			   rs.next();
@@ -140,10 +140,10 @@ public class OffClassDAO {
 		   try
 		   {
 			   getConnection();
-			   String sql="SELECT c_no,c_title,c_content,c_poster,c_artist,c_price,c_address,c_time,"
-					   	+"c_category, c_intro,c_subtitles,c_contents "
-					   	+"FROM thisclass "
-					   	+"WHERE c_onoff=1 AND c_no=?";
+			   String sql = "SELECT c_no, c_title, c_content, c_poster, c_artist, c_price, c_address, c_time, "
+					   	+ "c_category, c_intro, c_subtitles, c_contents "
+					   	+ "FROM thisclass "
+					   	+ "WHERE c_no=?";
 			   ps=conn.prepareStatement(sql);
 			   ps.setInt(1, cno);
 			   // 결과값 받기
