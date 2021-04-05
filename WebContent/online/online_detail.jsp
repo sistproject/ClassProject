@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -160,19 +160,19 @@
 		<div class="container">
 			<div class="row">
 
-				<!-- Course --> <!-- 값 -->
+				<!-- Course -->
 				<div class="col-lg-8">
-					<c:forEach var="ond" items="${ondList }">
+					
 					<div class="course_container">
-						<div class="course_title">${ond.ctitle }</div>
+						<div class="course_title">${ondVO.ctitle }</div>
 						<div class="course_info d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
-
+					
 							<!-- Course Info Item -->
 							<div class="course_info_item">
-								<div class="course_info_title">Teacher:></div>
-								<div class="course_info_text"><a href="#">${ond.cartist }</a></div>
+								<div class="course_info_title">Teacher:</div>
+								<div class="course_info_text"><a href="#">${ondVO.cartist }</a></div>
 							</div>
-
+					
 							<!-- Course Info Item -->
 							<div class="course_info_item">
 								<div class="course_info_title">Reviews:</div>
@@ -186,19 +186,38 @@
 							</div>
 
 						</div>
-					
+						
 						<!-- Course Image -->
-						<div class="course_image"><img src="${ond.cposter }" alt=""></div>
-					
+							<c:forTokens var="img" items="${ondVO.cposter }" delims="^">
+				               <div class="course_image"><img src="${img }" alt=""></div>
+							</c:forTokens>
+							
+							<c:forTokens var="content" items="${ondVO.ccontent }" delims="^">
+								<p>${content }</p>			               
+							</c:forTokens>
+						
+						
+						
+						<%--
+						<c:forEach var="poster" items="${pList}" varStatus="status">
+						    <div class="course_image"><img src="${poster}" alt=""></div>
+						    <p>${cList[status.index]}</p> 
+						</c:forEach>
+						--%>
+						
+						
 						<!-- Course Tabs -->
 						<div class="course_tabs_container">
+
 							<div class="tabs d-flex flex-row align-items-center justify-content-start">
 								<div class="tab active">description</div>
 								<div class="tab">curriculum</div>
 								<div class="tab">reviews</div>
 							</div>
 							<div class="tab_panels">
-
+			
+				
+			
 								<!-- Description -->
 								<div class="tab_panel active">
 									<div class="tab_panel_title">Software Training</div>
@@ -459,9 +478,10 @@
 
 							</div>
 						</div>
+						
 					</div>
 				</div>
-				
+
 				<!-- Course Sidebar -->
 				<div class="col-lg-4">
 					<div class="sidebar">
@@ -470,8 +490,8 @@
 						<div class="sidebar_section">
 							<div class="sidebar_section_title">Course Feature</div>
 							<div class="sidebar_feature">
-								<div class="course_price">${ond.cprice }</div>
-				</c:forEach>
+								<div class="course_price">${ondVO.cprice }원</div>
+
 								<!-- Features -->
 								<div class="feature_list">
 
@@ -540,9 +560,11 @@
 								<div class="teacher_info">
 									<p>Hi! I am Masion, I’m a marketing & management  eros pulvinar velit laoreet, sit amet egestas erat dignissim. Sed quis rutrum tellus, sit amet viverra felis. Cras sagittis sem sit amet urna feugiat rutrum nam nulla ipsum.</p>
 								</div>
+						
 							</div>
+						
 						</div>
-
+						
 						<!-- Latest Course -->
 						<div class="sidebar_section">
 							<div class="sidebar_section_title">Latest Courses</div>
@@ -583,7 +605,7 @@
 			</div>
 		</div>
 	</div>
-
+	
 	<!-- Newsletter -->
 
 	<div class="newsletter">

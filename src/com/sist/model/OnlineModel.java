@@ -14,7 +14,7 @@ import com.sist.vo.OnlineVO;
 public class OnlineModel {
 	@RequestMapping("online/online.do")
 	public String online(HttpServletRequest request, HttpServletResponse response) {
-
+		// 페이지 나누기
 		String page = request.getParameter("page");
 		if (page == null) {
 			page = "1";
@@ -51,12 +51,53 @@ public class OnlineModel {
 
 	@RequestMapping("online/online_detail.do")
 	public String online_detail(HttpServletRequest request, HttpServletResponse response) {
+		try
+		  {
+			  request.setCharacterEncoding("UTF-8");
+		  }catch(Exception ex){
+			  ex.printStackTrace();
+		  }
 		String cno = request.getParameter("cno");
 		OnlineDAO dao = OnlineDAO.newInstance();
-		List<OnlineVO> ondList = dao.onlineDetailData(Integer.parseInt(cno));
-		request.setAttribute("ondList", ondList); // online Detail List
+		OnlineVO vo = dao.onlineDetailData(Integer.parseInt(cno));
+		 
+		List<String> pList = new ArrayList<String>(); // poster List
+		String poster = vo.getCposter();
+		StringTokenizer pst = new StringTokenizer(poster, "^");
+		while(pst.hasMoreTokens()) {
+			pList.add(pst.nextToken());
+		}
 		
+		List<String> cList = new ArrayList<String>(); // content List
+		String content = vo.getCcontent();
+		StringTokenizer cst = new StringTokenizer(content, "^");
+		while(cst.hasMoreTokens()) {
+			pList.add(cst.nextToken());
+		}
+		
+		
+		request.setAttribute("ondVO", vo); // online detail VO
+		request.setAttribute("pList", pList);
+		request.setAttribute("cList", cList);
+
 		return "../online/online_detail.jsp";
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	}
+
 }
