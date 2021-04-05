@@ -20,7 +20,12 @@
     String id=(String)session.getAttribute("id"); // 없는 경우:null 
     System.out.println(id);
 %>
-<%  String menu = (String)request.getAttribute("menu"); %>
+<%  
+	String menu = (String)request.getAttribute("menu"); 
+	if(menu==null){
+		menu = "work";
+	}
+%>
 <!-- 카테고리 -->
 <script type="text/javascript">
 function view(opt){

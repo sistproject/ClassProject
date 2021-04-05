@@ -44,6 +44,7 @@ public class OnlineModel {
 		request.setAttribute("totalpage", totalPage);
 		request.setAttribute("curpage", curpage);
 //	    request.setAttribute("main_jsp", "../online/online.jsp");
+		request.setAttribute(page, omList);
 
 		return "../online/online.jsp";
 	}
