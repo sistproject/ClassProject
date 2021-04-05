@@ -11,6 +11,7 @@ import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.CartDAO;
 import com.sist.dao.MemberDAO;
+import com.sist.vo.CartVO;
 import com.sist.vo.MemberVO;
 import com.sist.vo.ZipcodeVO;
 
@@ -36,10 +37,34 @@ public class MemberModel {
 		String id = (String)session.getAttribute("id");
 		MemberDAO dao = MemberDAO.newInstance();
 		MemberVO vo = dao.memberDetailData(id);
-		System.out.println(vo.getTel());
 		request.setAttribute("vo",vo);
-		request.setAttribute("menu", "work");
 		request.setAttribute("main_jsp", "../member/member_detail.jsp");
+		return "../main/main.jsp";
+	}
+	@RequestMapping("member/member_order.do")
+	public String memberOrder(HttpServletRequest request,HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		// 주문내용 전체 최신순
+		//select cno,wno from cart where id=id and ono!=0 order by ono desc
+		CartDAO dao = CartDAO.newInstance();
+		List<CartVO> list = new ArrayList<CartVO>();
+		List<CartVO> wlist = dao.workOrder(id);
+		List<CartVO> clist = dao.classOrder(id);
+		System.out.println("ordertable");
+		for(CartVO vo:wlist) {
+			list.add(vo);
+		}
+		for(CartVO vo:clist) {
+			list.add(vo);
+		}
+		for(CartVO vo:list) {
+			System.out.println(vo.getTitle());
+			System.out.println(vo.getPoster());
+		}
+		
+		request.setAttribute("list", list);
+		request.setAttribute("main_jsp", "../member/order.jsp");
 		return "../main/main.jsp";
 	}
 	@RequestMapping("member/idcheck.do")

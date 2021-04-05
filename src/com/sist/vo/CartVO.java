@@ -7,8 +7,28 @@ package com.sist.vo;
  * 
  */
 public class CartVO {
-	private String title,artist,poster,price;
-	private int quantity;
+	private String title,artist,poster,price,regdate;
+	private int no,quantity,ono;
+	
+	
+	public String getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	}
+	public int getOno() {
+		return ono;
+	}
+	public void setOno(int ono) {
+		this.ono = ono;
+	}
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
 	public String getTitle() {
 		return title;
 	}

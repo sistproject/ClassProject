@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%  String menu = (String)request.getAttribute("menu"); %>
 <!DOCTYPE html>
 <html>
 <html lang="ko">
@@ -14,7 +13,7 @@
 <!-- Bootstrap core CSS -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../memberdetail/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="../main/vendor/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="../main/css/shop-homepage.css">
 <link rel="stylesheet" href="../main/styles/main_styles.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
@@ -93,8 +92,8 @@ function checkNumber(event) {
       <div class="col-lg-3">
         <h1 class="my-4">MY PAGE</h1>
         <div class="list-group">
-          <a href="member/member_detail.do" class="list-group-item" style="color:#566270">회원정보 수정</a>
-          <a href="#" class="list-group-item" style="color:#566270">주문 내역</a>
+          <a href="../member/member_detail.do" class="list-group-item" style="color:#566270">회원정보 수정</a>
+          <a href="../member/member_order.do" class="list-group-item" style="color:#566270">주문 내역</a>
           <a href="#" class="list-group-item" style="color:#566270">내가 쓴 글</a>
           <a href="#" class="list-group-item" style="color:#566270">쿠폰함</a>
           <a href="#" class="list-group-item" style="color:#566270">찜목록</a>
@@ -205,8 +204,8 @@ function checkNumber(event) {
 <!-- /.container -->
 
 <!-- Bootstrap core JavaScript -->
-<script src="../memberdetail/vendor/jquery/jquery.min.js"></script>
-<script src="../memberdetail/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../main/vendor/jquery/jquery.min.js"></script>
+<script src="../main/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script src="../main/plugins/scrollmagic/ScrollMagic.min.js"></script>
 <script src="../main/js/custom.js"></script>
