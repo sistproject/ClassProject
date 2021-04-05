@@ -185,19 +185,20 @@
 						<div class="course_image"><img src="${of.cposter}" alt=""/></div>
 						</a>
 						<div class="course_body">
+							<div class="course_category">${of.ccategory }</div>
 							<h3 class="course_title"><a href="course.html">${of.ctitle }</a></h3>
-							<div class="course_teacher">${of.cartist}</div>
+							<div class="course_teacher">${of.cartist }</div>
 							
 						</div>
 						<div class="course_footer">
 							<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
 								<div class="course_info">
 									<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-									<span>${of.cno}</span>
+									<span>${of.caddress}</span>
 								</div>
 								<div class="course_info">
 									<i class="fa fa-star" aria-hidden="true"></i>
-									<span>별</span> 
+									<span></span> 
 								</div>
 								<div class="course_price ml-auto">${of.cprice}</div>
 							</div>

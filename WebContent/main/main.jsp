@@ -20,6 +20,7 @@
     String id=(String)session.getAttribute("id"); // 없는 경우:null 
     System.out.println(id);
 %>
+<%  String menu = (String)request.getAttribute("menu"); %>
 <!-- 카테고리 -->
 <script type="text/javascript">
 function view(opt){
@@ -41,6 +42,22 @@ function view2(opt2){
 	}
 }
 </script>
+<style type="text/css">
+.w_c_wrapper{
+	display: inline-block;
+}
+
+.work_class{
+	margin-right: 80px;
+}
+.work_class li{
+	display: inline-block;
+	font-size: 18px;
+}
+.work_class a{
+	color: gray;
+}
+</style>
 </head>
 <body>
 <div class="super_container">
@@ -123,6 +140,28 @@ function view2(opt2){
 							</a>
 						</div>
 						<nav class="main_nav_contaner ml-auto">
+							<div class="w_c_wrapper">
+							<ul class="work_class">
+								<li><a href="../main/main.do" 
+								<%if(menu.equals("work")){%>
+									style="color: red"
+								<%} else{%>
+									style="color: gray;"
+								<%}%>
+								>작품</a></li>
+								<li>/</li>
+								<li><a href="../main/cmain.do" 
+								<%if(menu.equals("class")){%>
+									style="color: red"
+								<%} else{%>
+									style="color: gray;"
+								<%}%>
+								>클래스</a></li>
+							
+							</ul>
+							</div>
+							<div class="w_c_wrapper">
+							<%if(menu.equals("work")) {%>
 							<ul class="main_nav">
 								<li>
 									<a href="#" onmouseover="view(true)" onmouseout="view(false)">
@@ -131,12 +170,28 @@ function view2(opt2){
 								<li class="active"><a href="../main/main.do">Home</a></li>
 								<li><a href="about.html">About</a></li>
 								<li><a href="../online/online.do">Courses</a></li>
+								<li><a href="#">abc</a></li>
+								<li><a href="#">Page</a></li>
+								<li><a href="contact.html">Contact</a></li>
+							</ul>
+							</div>
+							<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
+							<%}else if(menu.equals("class")) {%>
+							<ul class="main_nav">
+								<li>
+									<a href="#" onmouseover="view(true)" onmouseout="view(false)">
+									<div id="category_size">카테고리</div></a>
+								</li>
+								<li class="active"><a href="../main/cmain.do">Home</a></li>
+								<li><a href="about.html">About</a></li>
+								<li><a href="#">Courses</a></li>
 								<li><a href="../offclass/offclass.do">오프라인</a></li>
 								<li><a href="#">Page</a></li>
 								<li><a href="contact.html">Contact</a></li>
 							</ul>
+							</div>
 							<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
-
+							<%} %>
 							<div class="shopping_cart"><a href="../cart/cart.do"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></div>
 						</nav>
 
