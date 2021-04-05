@@ -58,8 +58,9 @@ public class OnlineDAO {
 			int rowSize = 12;
 			int start = (rowSize * page) - (rowSize - 1);
 			int end = rowSize * page;
-			ps.setInt(1, start);
-			ps.setInt(2, end);
+			ps.setInt(1, start+13365);
+			ps.setInt(2, end+13365);
+			
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				OnlineVO vo = new OnlineVO();
