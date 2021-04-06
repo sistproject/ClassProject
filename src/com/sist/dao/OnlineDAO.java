@@ -8,6 +8,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.sist.vo.OnlineReplyVO;
 import com.sist.vo.OnlineVO;
 
 import java.util.*;
@@ -133,6 +134,123 @@ public class OnlineDAO {
 		return vo;
 		
 	}
+	
+    // 댓글 읽기
+    public List<OnlineReplyVO> onlineReplyReadData(int cno)
+    {
+   	 List<OnlineReplyVO> list=new ArrayList<OnlineReplyVO>();
+   	 try
+   	 {
+   		 // 연결
+   		 getConnection();
+   		 String sql="SELECT no,id,name,msg,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') "
+   				   +"FROM online_reply "
+   				   +"WHERE cno=?";
+   		 ps=conn.prepareStatement(sql);
+   		 ps.setInt(1, cno);
+   		 ResultSet rs=ps.executeQuery();
+   		 while(rs.next())
+   		 {
+   			OnlineReplyVO vo=new OnlineReplyVO();
+   			 vo.setNo(rs.getInt(1));
+   			 vo.setId(rs.getString(2));
+   			 vo.setName(rs.getString(3));
+   			 vo.setMsg(rs.getString(4));
+   			 vo.setDbday(rs.getString(5));
+   			 list.add(vo);
+   		 }
+   		 rs.close();
+   	 }catch(Exception ex)
+   	 {
+   		 ex.printStackTrace();
+   	 }
+   	 finally
+   	 {
+   		 disConnection();
+   	 }
+   	 return list;
+    }
+	
+	
+	
+	
+	// 댓글 올리기
+    public void OnlineReplyInsert(OnlineReplyVO vo)
+    {
+   	 try
+   	 {
+   		 getConnection();
+   		 String sql="INSERT INTO online_reply VALUES("
+   				   +"on_no_seq.nextval,?,?,?,?,SYSDATE)";
+   		 ps=conn.prepareStatement(sql);
+   		 ps.setInt(1, vo.getCno());
+   		 ps.setString(2, vo.getId());
+   		 ps.setString(3, vo.getName());
+   		 ps.setString(4, vo.getMsg());
+   		 
+   		 // 실행
+   		 ps.executeUpdate();
+   	 }catch(Exception ex)
+   	 {
+   		 ex.printStackTrace();
+   	 }
+   	 finally
+   	 {
+   		 disConnection();
+   	 }
+   	 
+    }
+    
+    // 댓글 수정
+    public void onlineReplyUpdate(OnlineReplyVO vo)
+    {
+   	 try
+   	 {
+   		 getConnection();
+   		 String sql="UPDATE online_reply SET "
+   				   +"msg=? "
+   				   +"WHERE no=?";
+   		 ps=conn.prepareStatement(sql);
+   		 ps.setString(1, vo.getMsg());
+   		 ps.setInt(2, vo.getNo());
+   		 
+   		 ps.executeUpdate();
+   	 }catch(Exception ex)
+   	 {
+   		 ex.printStackTrace();
+   	 }
+   	 finally
+   	 {
+   		 disConnection();
+   	 }
+    }
+    
+    
+    
+    
+    
+    
+    // 댓글 삭제
+    public void foodReplyDelete(int no)
+    {
+   	 try
+   	 {
+   		 getConnection();
+   		 String sql="DELETE FROM online_reply "
+   				   +"WHERE no=?";
+   		 ps=conn.prepareStatement(sql);
+   		 ps.setInt(1, no);
+   		 ps.executeUpdate();
+   	 }catch(Exception ex)
+   	 {
+   		 ex.printStackTrace();
+   	 }
+   	 finally
+   	 {
+   		 disConnection();
+   	 }
+    }
+    
 	
 	
 

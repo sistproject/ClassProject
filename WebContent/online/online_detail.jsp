@@ -18,6 +18,37 @@
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="styles/course.css">
 <link rel="stylesheet" type="text/css" href="styles/course_responsive.css">
+
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+let i=0;
+$(function(){
+	$('.delBtn').click(function(){
+		let no=$(this).attr("data-no");
+		let cno=$(this).attr("data-cno");
+		location.href="../online/online_reply_delete.do?no="+no+"&cno="+cno;
+	});
+	
+	$('.updateBtn').click(function(){
+		$('.updateli').hide();
+		$('.updateBtn').text("수정");
+		let no=$(this).attr("data-no");
+		if(i==0)
+		{
+			$(this).text("취소");
+			$('#m'+no).show("slow");
+			i=1;
+		}
+		else
+		{
+			$(this).text("수정");
+			$('#m'+no).hide("slow");
+			i=0;
+		}
+		
+	});
+});
+</script>
 </head>
 <body>
 
@@ -210,7 +241,7 @@
 						<div class="course_tabs_container">
 
 							<div class="tabs d-flex flex-row align-items-center justify-content-start">
-								<div class="tab active">description</div>
+								<div class="tab active">수강평</div>
 								<div class="tab">curriculum</div>
 								<div class="tab">reviews</div>
 							</div>
@@ -220,74 +251,57 @@
 			
 								<!-- Description -->
 								<div class="tab_panel active">
-									<div class="tab_panel_title">Software Training</div>
-									<div class="tab_panel_content">
-										<div class="tab_panel_text">
-											<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosquad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a augue. Sed non mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a augue. Sed non neque elit. Sed ut imperdiet nisi. Proin condimentum fermentum nunc. Lorem Ipsn gravida nibh vel velit auctor aliquet. Class aptent taciti sociosquad litora torquent per conubia nostra, per inceptos himenaeos.</p>
-										</div>
-										<div class="tab_panel_section">
-											<div class="tab_panel_subtitle">Requirements</div>
-											<ul class="tab_panel_bullets">
-												<li>Lorem Ipsn gravida nibh vel velit auctor aliquet. Class aptent taciti sociosquad litora torquent.</li>
-												<li>Cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a.</li>
-												<li>Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat.</li>
-												<li>Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio.</li>
-											</ul>
-										</div>
-										<div class="tab_panel_section">
-											<div class="tab_panel_subtitle">What is the target audience?</div>
-											<div class="tab_panel_text">
-												<p>This course is intended for anyone interested in learning to master his or her own body.This course is aimed at beginners, so no previous experience with hand balancing skillts is necessary Aenean viverra tincidunt nibh, in imperdiet nunc. Suspendisse eu ante pretium, consectetur leo at, congue quam. Nullam hendrerit porta ante vitae tristique. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</p>
-											</div>
-										</div>
-										<div class="tab_panel_faq">
-											<div class="tab_panel_title">FAQ</div>
-
-											<!-- Accordions -->
-											<div class="accordions">
-												
-												<div class="elements_accordions">
-
-													<div class="accordion_container">
-														<div class="accordion d-flex flex-row align-items-center"><div>Can I just enroll in a single course?</div></div>
-														<div class="accordion_panel">
-															<p>Lorem ipsun gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a.</p>
-														</div>
-													</div>
-
-													<div class="accordion_container">
-														<div class="accordion d-flex flex-row align-items-center active"><div>I'm not interested in the entire Specialization?</div></div>
-														<div class="accordion_panel">
-															<p>Lorem ipsun gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a.</p>
-														</div>
-													</div>
-
-													<div class="accordion_container">
-														<div class="accordion d-flex flex-row align-items-center"><div>What is the refund policy?</div></div>
-														<div class="accordion_panel">
-															<p>Lorem ipsun gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a.</p>
-														</div>
-													</div>
-
-													<div class="accordion_container">
-														<div class="accordion d-flex flex-row align-items-center"><div>What background knowledge is necessary?</div></div>
-														<div class="accordion_panel">
-															<p>Lorem ipsun gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a.</p>
-														</div>
-													</div>
-
-													<div class="accordion_container">
-														<div class="accordion d-flex flex-row align-items-center"><div>Do i need to take the courses in a specific order?</div></div>
-														<div class="accordion_panel">
-															<p>Lorem ipsun gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a.</p>
-														</div>
-													</div>
-
-												</div>
-
-											</div>
-										</div>
-									</div>
+									<div class="tab_panel_title">수강평</div>
+									<c:if test="${sessionScope.id!=null }">
+								        <form action="../online/online_reply_insert.do" method="post" >
+								          <table class="table">
+								            <tr>
+								             <td>
+								              <textarea rows="10" cols="100" name="msg"></textarea>
+								              <%--<c:set var="page" value="${param.page}"/> 
+								              <input type="hidden" name=cno value="${page}">--%>
+								              <input type="hidden" name=cno value="${ondVO.cno}">
+								              <input type="submit" value="댓글쓰기" class="btn btn-sm btn-danger">
+								               <c:forEach var="rvo" items="${rList }">
+										          <li>
+										            <article>
+										              <header>
+										                <figure class="avatar">
+										                 <c:if test="${sessionScope.id==rvo.id }">
+										                  <span class="btn btn-xs btn-success updateBtn" data-no="${rvo.no }">수정</span>
+										                  <span class="btn btn-xs btn-danger delBtn" data-no="${rvo.no }" data-cno="${ondVO.cno }">삭제</span>
+										                 </c:if>
+										                </figure>
+										                <address>
+										                By <a href="#">${rvo.name }</a>
+										                </address>
+										                <time datetime="2045-04-06T08:15+00:00">${rvo.dbday }</time>
+										              </header>
+										              <div class="comcont">
+										                <pre style="white-space: pre-wrap;border:none;background-color:white;">${rvo.msg }</pre>
+										              </div>
+										            </article>
+										          </li>
+										          <li style="display:none" id="m${rvo.no }" class="updateli">
+										            <form action="../online/online_reply_update.do" method="post">
+											          <table class="table">
+											            <tr>
+											             <td>
+											              <textarea rows="7" cols="25" name="msg">${rvo.msg }</textarea>
+											              <input type="hidden" name=cno value="${ondVO.cno }">
+											              <input type="hidden" name=no value="${rvo.no }">
+											              <input type="submit" value="댓글수정" class="btn btn-sm btn-danger">
+											             </td>
+											            </tr>
+											          </table>
+											        </form>
+										          </li>
+									          </c:forEach>
+								             </td>
+								            </tr>
+								          </table>
+								        </form>
+							        </c:if>
 								</div>
 
 								<!-- Curriculum -->
