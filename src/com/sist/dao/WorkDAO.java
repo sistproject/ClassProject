@@ -1,12 +1,10 @@
 package com.sist.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.sql.DataSource;
+
+import javax.naming.*;
+import javax.sql.*;
 import com.sist.vo.WorkDetailVO;
 import com.sist.vo.WorkVO;
 
@@ -15,17 +13,22 @@ import java.util.*;
 public class WorkDAO {
 	private Connection conn;
 	private PreparedStatement ps;
-	private static WorkDAO dao;
-
+	
+	private final String url="jdbc:oracle:thin:@211.238.142.196:1521:XE";
+	
+	public WorkDAO() {
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
 	// 미리 만들어진 객체주소를 얻어온다 (Connection)
 	public void getConnection() {
 		try {
-			Context init = new InitialContext();
-			Context c = (Context) init.lookup("java://comp/env");
-			DataSource ds = (DataSource) c.lookup("jdbc/oracle");
-			conn = ds.getConnection();
+			conn=DriverManager.getConnection(url,"hr","happy");
 		} catch (Exception ex) {
-
+			ex.printStackTrace();
 		}
 	}
 
@@ -39,11 +42,10 @@ public class WorkDAO {
 		}
 	}
 
-	public static WorkDAO newInstance() {
-		if (dao == null)
-			dao = new WorkDAO();
-		return dao;
-	}
+	/*
+	 * public static WorkDAO newInstance() { if (dao == null) dao = new WorkDAO();
+	 * return dao; }
+	 */
 	// 작품 메인페이지 데이터 리스트
 	public List<WorkVO> WorkMainData() {
 		List<WorkVO> list = new ArrayList<WorkVO>();
@@ -82,7 +84,7 @@ public class WorkDAO {
 			   getConnection();
 			   String sql="SELECT w_no,w_poster,w_title "
 					     +"FROM thiswork "
-					     +"WHERE no=?";
+					     +"WHERE w_no=?";
 			   ps=conn.prepareStatement(sql);
 			   ps.setInt(1, w_no);
 			   // 실행
@@ -130,7 +132,7 @@ public class WorkDAO {
 				 */
 			getConnection();
 			String sql="SELECT w_no,w_title,w_content,w_poster,w_price,w_artist,w_point,"
-					+ "w_delivery,w_score,w_tag,w_like,w_purchase,w_hit,w_regdate,cal_no "
+					+ "w_delivery,w_score,w_tag,w_like,w_purchase,w_hit,w_regdate "
 					+ "FROM thiswork "
 					+ "WHERE w_no=?";
 			ps=conn.prepareStatement(sql);
@@ -151,7 +153,7 @@ public class WorkDAO {
 			vo.setW_purchase(rs.getInt(12));
 			vo.setW_hit(rs.getInt(13));
 			vo.setW_regdate(rs.getDate(14));
-			vo.setCatl_no(rs.getInt(15));
+			
 			
 			rs.close();
 		}catch(Exception ex)
@@ -173,7 +175,7 @@ public class WorkDAO {
 				String sql="SELECT w_no,w_title,w_poster,w_artist,num "
 						+ "FROM (SELECT w_no,w_title,w_poster,w_artist,rownum as num "
 						+ "FROM (SELECT w_no,w_title,w_poster,w_artist "
-						+ "FROM thiswork ORDER BY dbms_random.random())) "
+						+ "FROM thiswork ORDER BY w_no)) "
 						+ "WHERE num BETWEEN ? AND ?";
 				ps = conn.prepareStatement(sql);
 				int rowSize = 12;
@@ -206,7 +208,7 @@ public class WorkDAO {
 			int count = 0;
 			try {
 				getConnection();
-				String sql = "SELECT COUNT(*) FROM class";
+				String sql = "SELECT COUNT(*) FROM thiswork";
 				ps = conn.prepareStatement(sql);
 				ResultSet rs = ps.executeQuery();
 				rs.next();
@@ -224,23 +226,22 @@ public class WorkDAO {
 		}
 		
 		// 쿠키
-		public WorkVO WorkCookiePrintData(int no)
+		public WorkDetailVO WorkCookiePrintData(int w_no)
 		   {
-			   WorkVO vo=new WorkVO();
+			   WorkDetailVO vo=new WorkDetailVO();
 			   try
 			   {
 				   getConnection();
-				   String sql="SELECT no,poster,title "
-						     +"FROM food_house "
-						     +"WHERE no=?";
+				   String sql="SELECT w_no,w_poster,w_title "
+						     +"FROM thiswork "
+						     +"WHERE w_no=?";
 				   ps=conn.prepareStatement(sql);
-				   ps.setInt(1, no);
+				   ps.setInt(1, w_no);
 				   // 실행
 				   ResultSet rs=ps.executeQuery();
 				   rs.next();
 				   vo.setW_no(rs.getInt(1));
-				   String s=rs.getString(2);
-				   vo.setW_poster(s.substring(0,s.indexOf("^")));
+				   vo.setW_poster(rs.getString(2));
 				   vo.setW_title(rs.getString(3));
 				   rs.close();
 			   }catch(Exception ex)
@@ -255,6 +256,13 @@ public class WorkDAO {
 
 
        }
+		public static void main(String[] args) {
+			WorkDAO dao=new WorkDAO();
+			WorkDetailVO vo=dao.WorkDetailData(7);
+			
+			System.out.println(vo.getW_artist());
+			
+		}
 }
 
 

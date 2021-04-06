@@ -23,6 +23,8 @@
 						<div class="container">
 							<div class="row">
 								<div class="col text-center">
+									<div class="home_slider_title">The Premium System Education</div>
+									<div class="home_slider_subtitle">Future Of Education Technology</div>
 								</div>
 							</div>
 						</div>
@@ -35,6 +37,8 @@
 						<div class="container">
 							<div class="row">
 								<div class="col text-center">
+									<div class="home_slider_title">The Premium System Education</div>
+									<div class="home_slider_subtitle">Future Of Education Technology</div>
 									<div class="home_slider_form_container">
 										<form action="#" id="home_search_form_1" class="home_search_form d-flex flex-lg-row flex-column align-items-center justify-content-between">
 										</form>
@@ -277,9 +281,9 @@
 		</div>
 		<!-- /////// 쿠키 //////// -->
 	       <h2 class="sectiontitle">최근 본 작품</h2>
-	       <c:forEach var="fvo" items="${wList }" varStatus="s">
+	       <c:forEach var="fvo" items="${fList }" varStatus="s">
 	        <c:if test="${s.index<9 }">
-	         <a href="../work/work_detail.do?no=${fvo.w_no }">
+	         <a href="../work/work_detail.do?w_no=${fvo.w_no }">
 	         <img class="radius-10" src="${fvo.w_poster }" title="${fvo.w_title }" style="width:100px;height:100px"></a>
 	        </c:if>
 	      </c:forEach>

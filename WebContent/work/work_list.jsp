@@ -74,6 +74,9 @@ function view2(opt2){
 .work_class a{
 	color: gray;
 }
+.list_number li a{
+   color:black;
+}
 </style>
 </head>
 <body>
@@ -260,12 +263,12 @@ function view2(opt2){
 						<div class="col-lg-3 col-md-6 team_col">
 							<div class="team_item">
 								<div class="team_image">
-									<a href="../work/work_detail.do?no=${vo.w_no }"><img
+									<a href="../work/work_detail_before.do?w_no=${vo.w_no }"><img
 										src="${vo.w_poster }" alt=""></a>
 								</div>
 								<div class="team_body" style="width: 250px; height: 295px">
 									<div class="team_title">
-										<a href="../work/work_detai.do?no=${vo.w_no }">${vo.w_title }</a>
+										<a href="../work/work_detail_before.do?w_no=${vo.w_no }">${vo.w_title }</a>
 									</div>
 									<div class="team_subtitle">${vo.w_artist }</div>
 									<div class="social_list">
@@ -288,11 +291,11 @@ function view2(opt2){
 					<div class="col">
 						<div
 							class="pagination_container d-flex flex-row align-items-center justify-content-start">
-							<ul class="pagination_list">
-								<c:if test="${startPage>1 }">
-									<li><a href="../online/online.do?page=${startPage-1 }">이전</a></li>
+							<ul class="list_number">
+								<c:if test="${startpage>1 }">
+									<li><a href="../work/work.do?page=${startpage-1 }">이전</a></li>
 								</c:if>
-								<c:forEach var="i" begin="${startPage }" end="${endPage }"
+								<c:forEach var="i" begin="0" end="10"
 									step="1">
 									<c:if test="${i==curpage }">
 										<c:set var="type" value="class=current" />
@@ -302,8 +305,8 @@ function view2(opt2){
 									</c:if>
 									<li ${type }><a href="../online/online.do?page=${i }">${i }</a></li>
 								</c:forEach>
-								<c:if test="${endPage<totalpage }">
-									<li><a href="../online/online.do?page=${endPage+1 }">
+								<c:if test="${endpage<totalpage }">
+									<li><a href="../online/online.do?page=${endpage+1 }">
 											다음</a></li>
 								</c:if>
 							</ul>

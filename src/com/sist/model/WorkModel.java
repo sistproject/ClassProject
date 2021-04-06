@@ -26,11 +26,11 @@ public class WorkModel {
 		if(page==null)
 			page="1";
 		int curpage=Integer.parseInt(page);
-		WorkDAO dao=WorkDAO.newInstance();
+		WorkDAO dao=new WorkDAO();
 		List<WorkDetailVO> rList=dao.WorkListData(curpage);
 		int count=dao.WorkMainCount();
 		int totalpage=(int)(Math.ceil(count/12.0));
-		
+		System.out.println(rList.get(0)+"============================il========================");
 		final int BLOCK=10;
 		int startpage=((curpage-1)/BLOCK*BLOCK)+1;
 		int endpage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
@@ -55,21 +55,16 @@ public class WorkModel {
 	@RequestMapping("work/work_detail_before.do")
 	  public String detail_before(HttpServletRequest request,HttpServletResponse response)
 	  {
-		try
-		{
-			
+		
 		  String w_no=request.getParameter("w_no");
-		  System.out.println("okkkkkkkkkkkkkkkkkkk");
-		  System.out.println(w_no);
+		 
+		  
 		  Cookie cookie=new Cookie("m"+w_no, w_no);// 문자열만 저장이 가능 
 		  cookie.setMaxAge(60*60);
 		  cookie.setPath("/");
 		  response.addCookie(cookie);
-		}catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		  return "redirect:../work/work_detail.do?no=";
+		
+		  return "redirect:../work/work_detail.do?w_no="+w_no;
 	  }
 	@RequestMapping("work/work_detail.do")
 	public String work_detail(HttpServletRequest request, HttpServletResponse response)
@@ -78,9 +73,12 @@ public class WorkModel {
 		{
 		System.out.println("============================================detail");
 		String w_no=request.getParameter("w_no");
-		WorkDAO dao=WorkDAO.newInstance();
+		WorkDAO dao=new WorkDAO();
+		System.out.println("==============================6888==============detail");
 		WorkDetailVO vo=dao.WorkDetailData(Integer.parseInt(w_no));
+		System.out.println("==============================6666==============detail");
 		request.setAttribute("vo", vo);
+		System.out.println("============================777==============detail");
 		request.setAttribute("main_jsp", "../work/work_detail.jsp");
 		}catch(Exception ex)
 		{

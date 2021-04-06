@@ -166,7 +166,7 @@
 								<li>By  ${vo.w_artist }</li>
 							</ul>
 						</div>
-						<div class="blog_image"><img src="vo.w_poster" alt=""></div>
+						<div class="blog_image"><img src="${ vo.w_poster}" alt=""></div>
 						<p>${vo.w_content }</p>
 					</div>
 					<div class="blog_extra d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
