@@ -48,6 +48,7 @@ function view2(opt2){
 }
 </script>
 <style type="text/css">
+
 .container{
 	min-width:1500px;
 }
