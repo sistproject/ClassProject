@@ -48,6 +48,9 @@ function view2(opt2){
 }
 </script>
 <style type="text/css">
+.container{
+	min-width:1500px;
+}
 .w_c_wrapper{
 	display: inline-block;
 }
@@ -139,12 +142,12 @@ function view2(opt2){
 			<div class="row">
 				<div class="col">
 					<div class="header_content d-flex flex-row align-items-center justify-content-start">
-						<div class="logo_container">
+						<div class="logo_container" style="width:200px">
 							<a href="../main/main.do">
 								<div class="logo_text">Unic<span>at</span></div>
 							</a>
 						</div>
-						<nav class="main_nav_contaner ml-auto">
+						<nav class="main_nav_contaner">
 							<div class="w_c_wrapper">
 							<ul class="work_class">
 								<li><a href="../main/main.do" 
@@ -165,19 +168,20 @@ function view2(opt2){
 							
 							</ul>
 							</div>
-							<div class="w_c_wrapper">
+							<div class="w_c_wrapper"> <!--  -->
 							<%if(menu.equals("work")) {%>
 							<ul class="main_nav">
 								<li>
 									<a href="#" onmouseover="view(true)" onmouseout="view(false)">
 									<div id="category_size">카테고리</div></a>
 								</li>
-								<li class="active"><a href="../main/main.do">Home</a></li>
-								<li><a href="about.html">About</a></li>
-								<li><a href="../online/online.do">Courses</a></li>
-								<li><a href="#">abc</a></li>
-								<li><a href="#">Page</a></li>
-								<li><a href="contact.html">Contact</a></li>
+								<li class="active"><a href="../main/main.do">홈</a></li>
+								<li><a href="#">작품 전체</a></li>
+								<li><a href="#">인기 작품</a></li>
+								<li><a href="#">오늘의 발견</a></li>
+								<li><a href="#">실시간 구매</a></li>
+								<li><a href="#">작가님 추천</a></li>
+								<li><a href="#">실시간 추천</a></li>
 							</ul>
 							</div>
 							<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
@@ -187,19 +191,18 @@ function view2(opt2){
 									<a href="#" onmouseover="view(true)" onmouseout="view(false)">
 									<div id="category_size">카테고리</div></a>
 								</li>
-								<li class="active"><a href="../main/cmain.do">Home</a></li>
-								<li><a href="about.html">About</a></li>
-								<li><a href="#">Courses</a></li>
+								<li class="active"><a href="../main/cmain.do">홈</a></li>
+								<li><a href="../online/online.do">온라인</a></li>
 								<li><a href="../offclass/offclass.do">오프라인</a></li>
-								<li><a href="#">Page</a></li>
-								<li><a href="contact.html">Contact</a></li>
+								<li><a href="#">인기 클래스</a></li>
+								<li><a href="#">추천 클래스</a></li>
+								<li><a href="#">신규 클래스</a></li>
 							</ul>
 							</div>
 							<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
 							<%} %>
 							<div class="shopping_cart"><a href="../cart/cart.do"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></div>
 						</nav>
-
 					</div>
 				</div>
 			</div>
