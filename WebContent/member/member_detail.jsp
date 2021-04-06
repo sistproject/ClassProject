@@ -154,8 +154,14 @@ function checkNumber(event) {
 		<tr>
 		<th width=20% class="text-right">sex</th>
 		<td width=80%>
+		<c:if test="${vo.sex eq '남자'}">
 		<input type=radio name=sex class="input-sm" checked value="남자" >남자
 		<input type=radio name=sex class="input-sm" value="여자" style="margin-left:30px;">여자
+		</c:if>
+		<c:if test="${vo.sex eq '여자'}">
+		<input type=radio name=sex class="input-sm" value="남자" >남자
+		<input type=radio name=sex class="input-sm" checked value="여자" style="margin-left:30px;">여자
+		</c:if>
 		</td>
 		</tr>
 		<tr>

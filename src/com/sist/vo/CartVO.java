@@ -7,10 +7,21 @@ package com.sist.vo;
  * 
  */
 public class CartVO {
-	private String title,artist,poster,price,regdate;
-	private int no,quantity,ono;
-	
-	
+	private String title,artist,poster,price,regdate,type;
+	private int no,quantity,ono,onoff;
+
+	public int getOnoff() {
+		return onoff;
+	}
+	public void setOnoff(int onoff) {
+		this.onoff = onoff;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public String getRegdate() {
 		return regdate;
 	}

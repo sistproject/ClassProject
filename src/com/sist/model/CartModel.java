@@ -83,7 +83,6 @@ public class CartModel {
 		//    4    admin	23		null	null
 		//    5    jun      null	48 		null
 
-		
 		return "redirect:../cart/cart.do";
 	}
 
