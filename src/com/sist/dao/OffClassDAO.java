@@ -10,6 +10,7 @@ import javax.naming.InitialContext;
 import javax.sql.*;
 
 import com.sist.vo.OffClassVO;
+import com.sist.vo.ReserveVO;
 
 
 
@@ -50,7 +51,7 @@ public class OffClassDAO {
 			   
 	   }
 	   // Class나열
-	   public List<OffClassVO> classListData(int page)
+	   public List<OffClassVO> OffClassData(int page)
 	   {
 		   List<OffClassVO> list=new ArrayList<OffClassVO>();
 		   try
@@ -58,10 +59,10 @@ public class OffClassDAO {
 			   // 연결
 			   getConnection();
 			   // SQL문장
-			   String sql="SELECT c_no, c_poster, c_title, c_artist, c_price, c_category, c_address, num "
-						+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_category, c_address, rownum as num "
-						+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_category, c_address " 
-						+ "FROM thisclass ORDER BY c_no ASC)) "
+			   String sql="SELECT c_no, c_poster, c_title, c_artist, c_price, c_category, infoaddr, num "
+						+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_category, infoaddr, rownum as num "
+						+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_category, infoaddr " 
+						+ "FROM thisclass ORDER BY c_no DESC)) "
 						+ "WHERE num BETWEEN ? AND ?";
 			   // 전송 객체 생성
 			   ps=conn.prepareStatement(sql);
@@ -80,7 +81,7 @@ public class OffClassDAO {
 				   	vo.setCartist(rs.getString(4));
 				   	vo.setCprice(rs.getString(5));
 				   	vo.setCcategory(rs.getString(6));
-				   	vo.setCaddress(rs.getString(7));
+				   	vo.setInfoaddr(rs.getString(7));
 				   	list.add(vo);
 			   }
 			   rs.close();
@@ -134,14 +135,14 @@ public class OffClassDAO {
 			C_CONTENTS           CLOB     
 	    */
 	   // Class 상세보기
-	   public List<OffClassVO> OffDetailData(int cno)
+	   public OffClassVO OffDetailData(int cno)
 	   {
-		   List<OffClassVO> list=new ArrayList<OffClassVO>();
+		   OffClassVO vo=new OffClassVO();
 		   try
 		   {
 			   getConnection();
 			   String sql = "SELECT c_no, c_title, c_content, c_poster, c_artist, c_price, c_address, c_time, "
-					   	+ "c_category, c_intro, c_subtitles, c_contents "
+					   	+ "c_category, c_intro, c_subtitles, c_contents, infoaddr "
 					   	+ "FROM thisclass "
 					   	+ "WHERE c_no=?";
 			   ps=conn.prepareStatement(sql);
@@ -149,7 +150,6 @@ public class OffClassDAO {
 			   // 결과값 받기
 			   ResultSet rs=ps.executeQuery(); 
 			   rs.next();
-			   OffClassVO vo=new OffClassVO();
 			   vo.setCno(rs.getInt(1));
 			   vo.setCtitle(rs.getString(2));
 			   vo.setCcontent(rs.getString(3));
@@ -162,6 +162,7 @@ public class OffClassDAO {
 			   vo.setCintro(rs.getString(10));
 			   vo.setCsubtitles(rs.getString(11));
 			   vo.setCcontents(rs.getString(12));
+			   vo.setInfoaddr(rs.getString(13));
 			   rs.close();
 			   
 		   }catch(Exception ex)
@@ -172,9 +173,217 @@ public class OffClassDAO {
 		   {
 			   disConnection();
 		   }
-		   return list;
+		   return vo;
 	   }
+	   
+	   
+	   	
+	     // 찜하기
+	     public void offCartInsert(int crno,String id)
+	     {
+	    	 try
+	    	 {
+	    		 getConnection();
+	    		 String sql="INSERT INTO cart VALUES("
+	    				   +"cart_crno_seq.nextval,?,?)";
+	    		 ps=conn.prepareStatement(sql);
+	    		 ps.setInt(2, crno);
+	    		 ps.setString(1, id);
+	    		 
+	    		 ps.executeUpdate();
+	    	 }catch(Exception ex)
+	    	 {
+	    		 ex.printStackTrace();
+	    	 }
+	    	 finally
+	    	 {
+	    		 disConnection();
+	    	 }
+	     }
+	     // 찜하기 체크
+	     public int offCartCheck(int c_no,String id)
+	     {
+	    	 int count=0;
+	    	 try
+	    	 {
+	    		 getConnection();
+	    		 String sql="SELECT COUNT(*) FROM cart "
+	    				   +"WHERE c_no=? AND id=?";
+	    		 ps=conn.prepareStatement(sql);
+	    		 ps.setInt(1, c_no);
+	    		 ps.setString(2, id);
+	    		 ResultSet rs=ps.executeQuery();
+	    		 rs.next();
+	    		 count=rs.getInt(1);
+	    		 rs.close();
+	    	 }catch(Exception ex)
+	    	 {
+	    		 ex.printStackTrace();
+	    	 }
+	    	 finally
+	    	 {
+	    		 disConnection();
+	    	 }
+	    	 return count;
+	     }
+	     
+	     
+	     // 아래부터 예약관련 코드
+	     public List<OffClassVO> offclassReserveAllData()
+	     {
+	    	 List<OffClassVO> list=new ArrayList<OffClassVO>();
+		     try
+		     {
+		    	 getConnection();
+	    		 String sql="SELECT c_no, c_title ,c_poster, infoaddr "
+	    				   +"FROM thisclass "
+	    				   +"ORDER BY no ASC";
+	    		 ps=conn.prepareStatement(sql);
+	    		 ResultSet rs=ps.executeQuery();
+	    		 while(rs.next())
+	    		 {
+	    			 OffClassVO vo=new OffClassVO();
+	    			 vo.setCno(rs.getInt(1));
+	    			 vo.setCtitle(rs.getString(2));
+	    			 vo.setCposter(rs.getString(3));
+	    			 vo.setInfoaddr(rs.getString(4));
+	    			 list.add(vo);
+	    		 }
+	    		 rs.close();
+	    	 }catch(Exception ex) 
+	    	 {
+	    		 ex.printStackTrace();
+	    	 }
+	    	 finally
+	    	 {
+	    		 disConnection();
+	    	 }
+	    	 return list;
+	     }
+	     
+	     public String offclassReserveDate(int c_no)
+	     {
+	    	 String rday="";
+	    	 try
+	    	 {
+	    		 getConnection();
+	    		 String sql="SELECT rdays FROM thisclass "
+	    				   +"WHERE c_no=?";
+	    		 ps=conn.prepareStatement(sql);
+	    		 ps.setInt(1, c_no);
+	    		 ResultSet rs=ps.executeQuery();
+	    		 rs.next();
+	    		 rday=rs.getString(1);
+	    		 rs.close();
+	    	 }catch(Exception ex)
+	    	 {
+	    		 ex.printStackTrace();
+	    	 }
+	    	 finally
+	    	 {
+	    		 disConnection();
+	    	 }
+	    	 return rday;
+	     }
+	     
+	     public String offclassReserveTimeData(int day)
+	     {
+	    	 String time="";
+	    	 try
+	    	 {
+	    		 getConnection();
+	    		 String sql="SELECT tno FROM rday "
+	    				 +"WHERE no=?"; 
+	    		 ps=conn.prepareStatement(sql);
+	    		 ps.setInt(1, day);
+	    		 ResultSet rs=ps.executeQuery();
+	    		 rs.next();
+	    		 time=rs.getString(1);
+	    		 rs.close();
+	    	 }catch(Exception ex)
+	    	 {
+	    		 ex.printStackTrace();
+	    	 }
+	    	 finally
+	    	 {
+	    		 disConnection();
+	    	 }
+	    	 return time;
+	     }
+	     
+	     public String offclassReserveGetTime(int no)
+	     {
+	    	 String time="";
+	    	 try
+	    	 {
+	    		 getConnection();
+	    		 String sql="SELECT time FROM rtime "
+	    				 +"WHERE no=?";
+	    		 ps=conn.prepareStatement(sql);
+	    		 ps.setInt(1, no);
+	    		 ResultSet rs=ps.executeQuery();
+	    		 rs.next();
+	    		 time=rs.getString(1);
+	    		 rs.close();
+	    	 }catch(Exception ex)
+	    	 {
+	    		 ex.printStackTrace();
+	    	 }
+	    	 finally
+	    	 {
+	    		 disConnection();
+	    	 }
+	    	 
+	    	 return time;
+	     }
+	     
+	     public void offclassReserveSave(ReserveVO vo)
+	     {
+	    	 try
+	    	 {
+	    		 getConnection();
+	    		 String sql="INSERT INTO offclass_reserve VALUES("
+	    		 		+ "(SELECT NVL(MAX(no)+1,1) FROM project_reserve),?,?,?,?,?,"
+	    				 +"0,SYSDATE)";  
+	    		 ps=conn.prepareStatement(sql);
+	    		 ps.setString(1, vo.getId());
+	    		 ps.setString(2, vo.getTitle());
+	    		 ps.setString(3, vo.getDay());
+	    		 ps.setString(4, vo.getTime());
+	    		 ps.setString(5, vo.getInwon());
+	    		 ps.executeUpdate();
+	    	 }catch(Exception ex)
+	    	 {
+	    		 ex.printStackTrace();
+	    	 }
+	    	 finally
+	    	 {
+	    		disConnection(); 
+	    	 }
+	     }
+	     
+	     public void reserve_ok(int no)
+	     {
+	    	 try
+	    	 {
+	    		 getConnection();
+	    		 String sql="UPDATE offclass_reserve SET "
+	    				 +"state=1 "
+	    				 +"WHERE no=?"; 
+	    	 ps=conn.prepareStatement(sql);
+	    	 ps.setInt(1, no);
+	    	 ps.executeUpdate();
+	    	 }catch(Exception ex)
+	    	 {
+	    		 ex.printStackTrace();
+	    	 }
+	    	 finally
+	    	 {
+	    		 disConnection();
+	    	 }
+	     }
 }
+
 
 
 

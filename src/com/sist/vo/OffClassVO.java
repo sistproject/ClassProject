@@ -18,7 +18,16 @@ package com.sist.vo;
 public class OffClassVO {
 	private int cno, conoff;
 	private String ctitle, ccontent, cposter, cartist, cprice, caddress, ctime, ccategory, cintro, csubtitles,
-			ccontents;
+			ccontents, infoaddr;
+
+	
+	public String getInfoaddr() {
+		return infoaddr;
+	}
+
+	public void setInfoaddr(String infoaddr) {
+		this.infoaddr = infoaddr;
+	}
 
 	public int getCno() {
 		return cno;
