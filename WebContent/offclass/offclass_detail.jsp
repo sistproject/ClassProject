@@ -550,7 +550,7 @@
 									
 								
           							
-										<a href="../offclass/offclass_detail.do?cno=${vo.cno}" class="myButton">CART</a>&nbsp;&nbsp;&nbsp;<a href="../offclass/reserve.do" class="myrButton">예약하기</a>
+										<a href="../offclass/cart.do?cno=${vo.cno}" class="myButton">CART</a>&nbsp;&nbsp;&nbsp;<a href="../offclass/reserve.do" class="myrButton">예약하기</a>
 						
 
 								</div>

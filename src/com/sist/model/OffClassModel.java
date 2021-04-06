@@ -71,14 +71,14 @@ public class OffClassModel {
 	  @RequestMapping("offclass/cart.do")
 	  public String offclass_cart(HttpServletRequest request,HttpServletResponse response)
 	  {
-	 	  String cno=request.getParameter("cno");
+	 	  String c_no=request.getParameter("c_no");
 	 	  HttpSession session=request.getSession();
 	 	  String id=(String)session.getAttribute("id");
 	 	  
 	 	  OffClassDAO dao=OffClassDAO.newInstance();
 	 	  // 저장 
-	 	  dao.offCartInsert(Integer.parseInt(cno), id);
-	 	  return "redirect:../offclass/offclass_detail.do?no="+cno;
+	 	  dao.offCartInsert(Integer.parseInt(c_no), id);
+	 	  return "redirect:../offclass/offclass_detail.do?no="+c_no;
 }
 	  
 	  
