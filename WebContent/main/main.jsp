@@ -153,7 +153,7 @@ function view2(opt2){
 							<ul class="work_class">
 								<li><a href="../main/main.do" 
 								<%if(menu.equals("work")){%>
-									style="color: red"
+									style="color: #A593E0"
 								<%} else{%>
 									style="color: gray;"
 								<%}%>
@@ -161,7 +161,7 @@ function view2(opt2){
 								<li>/</li>
 								<li><a href="../main/cmain.do" 
 								<%if(menu.equals("class")){%>
-									style="color: red"
+									style="color: #A593E0"
 								<%} else{%>
 									style="color: gray;"
 								<%}%>
