@@ -237,7 +237,7 @@ public class OffClassDAO {
 		    	 getConnection();
 	    		 String sql="SELECT c_no, c_title ,c_poster, infoaddr "
 	    				   +"FROM thisclass "
-	    				   +"ORDER BY no ASC";
+	    				   +"ORDER BY c_no ASC";
 	    		 ps=conn.prepareStatement(sql);
 	    		 ResultSet rs=ps.executeQuery();
 	    		 while(rs.next())
