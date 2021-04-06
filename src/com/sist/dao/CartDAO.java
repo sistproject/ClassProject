@@ -192,7 +192,7 @@ public class CartDAO {
 				   vo.setPoster(rs.getString(4));
 				   vo.setPrice(rs.getString(5));
 				   vo.setQuantity(rs.getInt(6));
-				   vo.setRegdate(rs.getString(7));
+				   vo.setRegdate(rs.getString(7).substring(0,rs.getString(7).indexOf(" ")));
 				   list.add(vo);
 			   }
 			   rs.close();
@@ -224,7 +224,7 @@ public class CartDAO {
 				   vo.setPoster(rs.getString(4));
 				   vo.setPrice(rs.getString(5));
 				   vo.setQuantity(rs.getInt(6));
-				   vo.setRegdate(rs.getString(7));
+				   vo.setRegdate(rs.getString(7).substring(0,rs.getString(7).indexOf(" ")));
 				   list.add(vo);
 			   }
 			   rs.close();

@@ -51,17 +51,25 @@ public class MemberModel {
 		List<CartVO> list = new ArrayList<CartVO>();
 		List<CartVO> wlist = dao.workOrder(id);
 		List<CartVO> clist = dao.classOrder(id);
-		System.out.println("ordertable");
-		for(CartVO vo:wlist) {
+		try {
+			for(CartVO vo:wlist) {
 			list.add(vo);
-		}
-		for(CartVO vo:clist) {
-			list.add(vo);
-		}
-		for(CartVO vo:list) {
-			System.out.println(vo.getTitle());
-			System.out.println(vo.getPoster());
-		}
+			}
+			for(CartVO vo:clist) {
+				list.add(vo);
+			}
+			int wmax = wlist.get(0).getOno();
+			int cmax = clist.get(0).getOno();
+			int newest = cmax;
+			if (wmax>cmax) newest=wmax;
+			System.out.println(newest);
+			for(CartVO vo:list) {
+				System.out.println(vo.getTitle());
+				System.out.println(vo.getPoster());
+			}
+			request.setAttribute("newest", newest);
+		}catch (Exception e) {}
+		
 		
 		request.setAttribute("list", list);
 		request.setAttribute("main_jsp", "../member/order.jsp");
@@ -113,9 +121,6 @@ public class MemberModel {
 		String dong = request.getParameter("dong");
 		MemberDAO dao = MemberDAO.newInstance();
 		List<ZipcodeVO> list = dao.postFindData(dong);
-//		  for(ZipcodeVO vo:list) {
-//			  System.out.println(vo.getAddress());
-//		  }
 		request.setAttribute("list",list);
 		return "../member/post_result.jsp";
 	}
