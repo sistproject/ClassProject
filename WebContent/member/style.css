@@ -10,7 +10,7 @@
 }
 
 :root {
-  --main-color: #5567ff;
+  --main-color: #A593E0;
   --error-color: #e74c3c;
   --gray-border: #e1e2e3;
 }
@@ -33,7 +33,7 @@ body {
 .container {
   width: 375px;
   background-color: #fff;
-  border-radius: 30px;
+  border-radius: 20px;
   
 }
 

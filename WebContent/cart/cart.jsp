@@ -1,6 +1,20 @@
+<%@page import="oracle.jdbc.aq.AQDequeueOptions.DeliveryFilter"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	String id=(String)session.getAttribute("id");
+	int deliveryFee = 3000;
+	int discount = 0;
+	int total= (int)request.getAttribute("total"); 
+	int cnt= (int)request.getAttribute("cnt"); 
+	if(total>100000) {
+		deliveryFee = 0;
+		discount = deliveryFee*cnt;
+	}
+	int price=total + deliveryFee*cnt;
+	
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -8,16 +22,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="./css/bootstrap.min.css">
-<link rel="stylesheet" href="./css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="../main/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="../main/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-<link rel="stylesheet" type="text/css" href="../main/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-<link rel="stylesheet" type="text/css" href="../main/plugins/OwlCarousel2-2.2.1/animate.css">
+
 <link rel="stylesheet" type="text/css" href="../main/styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="../main/styles/responsive.css">
 <link rel="stylesheet" href="../main/styles/main_styles.css">
-
 <script src="./js/bootstrap.bundle.min.js" defer></script>
 <script src="./js/jquery-3.3.1.slim.min.js" defer></script>
 <title>Document</title>
@@ -56,7 +64,7 @@
                 </thead>
                 <tbody>
                 <c:forEach var="w" items="${wlist}">
-                  <tr>
+                  <tr class="items">
                     <th scope="row" class="border-0">
                       <div class="p-2">
                         <img src="${w.poster}" alt="" style="width:70px; height:70px" class="img-fluid rounded shadow-sm">
@@ -67,7 +75,7 @@
                     </th>
                     <td class="border-0 align-middle"><strong>${w.price}</strong></td>
                     <td class="border-0 align-middle"><strong>${w.quantity}</strong></td>
-                    <td class="border-0 align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a></td>
+                    <td class="border-0 align-middle"><a href="../cart/cart_remove.do?wno=${w.no }" class="text-dark"><i id="remove" class="fa fa-trash"></i></a></td>
                   </tr>
                   </c:forEach>
                 </tbody>
@@ -94,7 +102,7 @@
                 </thead>
                 <tbody>
                   <c:forEach var="c" items="${clist}">
-                  <tr>
+                  <tr class="items">
                     <th scope="row" class="border-0">
                       <div class="p-2">
                         <img src="${c.poster}" alt="" style="width:70px; height:70px" class="img-fluid rounded shadow-sm">
@@ -105,7 +113,7 @@
                     </th>
                     <td class="border-0 align-middle"><strong>${c.price}</strong></td>
                     <td class="border-0 align-middle"><strong>${c.quantity}</strong></td>
-                    <td class="border-0 align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a></td>
+                    <td class="border-0 align-middle"><a href="../cart/cart_remove.do?cno=${c.no }" class="text-dark"><i id="remove" class="fa fa-trash"></i></a></td>
                   </tr>
                   </c:forEach>
                 </tbody>
@@ -138,13 +146,13 @@
             <div class="p-4">
               <p class="font-italic mb-4">Shipping and additional costs are calculated based on values you have entered.</p>
               <ul class="list-unstyled mb-4">
-                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Order Subtotal </strong><strong>$390.00</strong></li>
-                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">deliveryFee</strong><strong>$10.00</strong></li>
-                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">discount</strong><strong>$0.00</strong></li>
+                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Order Subtotal </strong><strong>₩ ${total}</strong></li>
+                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">deliveryFee</strong><strong>₩ <%=deliveryFee %></strong></li>
+                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">discount</strong><strong>₩ <%=discount %></strong></li>
                 <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
-                  <h5 class="font-weight-bold">$400.00</h5>
+                  <h5 class="font-weight-bold">₩ <%=price%></h5>
                 </li>
-              </ul><a href="#" class="btn btn-dark rounded-pill py-2 btn-block">Procceed to checkout</a>
+              </ul><a href="../cart/cart_checkout.do" class="btn btn-dark rounded-pill py-2 btn-block" id="checkout">Procceed to checkout</a>
             </div>
           </div>
         </div>
