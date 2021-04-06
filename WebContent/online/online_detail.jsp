@@ -219,22 +219,16 @@ $(function(){
 						</div>
 						
 						<!-- Course Image -->
-							<c:forTokens var="img" items="${ondVO.cposter }" delims="^">
-				               <div class="course_image"><img src="${img }" alt=""></div>
-							</c:forTokens>
 							
-							<c:forTokens var="content" items="${ondVO.ccontent }" delims="^">
-								<p>${content }</p>			               
-							</c:forTokens>
 						
 						
 						
-						<%--
+						
 						<c:forEach var="poster" items="${pList}" varStatus="status">
 						    <div class="course_image"><img src="${poster}" alt=""></div>
 						    <p>${cList[status.index]}</p> 
 						</c:forEach>
-						--%>
+						
 						
 						
 						<!-- Course Tabs -->

@@ -56,33 +56,45 @@ public class OnlineModel {
 
 	@RequestMapping("online/online_detail.do")
 	public String online_detail(HttpServletRequest request, HttpServletResponse response) {
-		try
-		  {
-			  request.setCharacterEncoding("UTF-8");
-		  }catch(Exception ex){
-			  ex.printStackTrace();
-		  }
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 		String cno = request.getParameter("cno"); // 글 번호
 		OnlineDAO dao = OnlineDAO.newInstance();
 		OnlineVO vo = dao.onlineDetailData(Integer.parseInt(cno)); // cno로 참조
 		List<OnlineReplyVO> rList = dao.onlineReplyReadData(Integer.parseInt(cno)); // 해당 글 번호의 댓글 데이터 리스트
-		
-		
+
 		List<String> pList = new ArrayList<String>(); // poster List
 		String poster = vo.getCposter();
 		StringTokenizer pst = new StringTokenizer(poster, "^");
-		while(pst.hasMoreTokens()) {
-			pList.add(pst.nextToken());
+		int count = 0;
+		while (pst.hasMoreTokens()) {
+			if (count < 5) {
+				pList.add(pst.nextToken());
+				count++;
+			} else {
+				count = 0;
+				break;
+			}
+
 		}
-		
+
 		List<String> cList = new ArrayList<String>(); // content List
 		String content = vo.getCcontent();
 		StringTokenizer cst = new StringTokenizer(content, "^");
-		while(cst.hasMoreTokens()) {
-			pList.add(cst.nextToken());
+
+		while (cst.hasMoreTokens()) {
+			if (count < 5) {
+				cList.add(cst.nextToken());
+				count++;
+			} else {
+				count = 0;
+				break;
+			}
 		}
-		
-		
+
 		request.setAttribute("ondVO", vo); // online detail VO
 		request.setAttribute("rList", rList);
 		request.setAttribute("pList", pList);
@@ -91,63 +103,62 @@ public class OnlineModel {
 		return "../online/online_detail.jsp";
 
 	}
-	
+
 	@RequestMapping("online/online_reply_insert.do")
-	  public String online_reply_insert(HttpServletRequest request,HttpServletResponse response)
-	  {
-		  // 댓글 데이터 받기 
-		  try
-		  {
-			  request.setCharacterEncoding("UTF-8");
-		  }catch(Exception ex) {}
-		  String cno=request.getParameter("cno");
-		  String msg=request.getParameter("msg");
-		  String page = request.getParameter("page");
+	public String online_reply_insert(HttpServletRequest request, HttpServletResponse response) {
+		// 댓글 데이터 받기
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (Exception ex) {
+		}
+		String cno = request.getParameter("cno");
+		String msg = request.getParameter("msg");
+		String page = request.getParameter("page");
 //		  System.out.println("page:"+page); // 상세페이지에서 page값을 못 받아온다.
-		  HttpSession session=request.getSession();
-		  String id=(String)session.getAttribute("id");
-		  String name=(String)session.getAttribute("name");
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		String name = (String) session.getAttribute("name");
 //		  System.out.println(id + "<<>>" + name + msg); //데이터 받는지 확인
-		  OnlineReplyVO vo=new OnlineReplyVO();
-		  vo.setName(name);
-		  vo.setMsg(msg);
-		  vo.setId(id);
-		  vo.setCno(Integer.parseInt(cno));
-		  //DAO연결 
-		  OnlineDAO dao=OnlineDAO.newInstance();
-		  dao.OnlineReplyInsert(vo);
+		OnlineReplyVO vo = new OnlineReplyVO();
+		vo.setName(name);
+		vo.setMsg(msg);
+		vo.setId(id);
+		vo.setCno(Integer.parseInt(cno));
+		// DAO연결
+		OnlineDAO dao = OnlineDAO.newInstance();
+		dao.OnlineReplyInsert(vo);
 //		  return "redirect:../food/food_detail.do?no="+cno;
-		  return "redirect:../online/online_detail.do?&cno="+cno; // ?cno= 클래스의 번호
-	  }
-	  // 댓글 삭제
-	  @RequestMapping("online/online_reply_delete.do")
-	  public String food_reply_delete(HttpServletRequest request,HttpServletResponse response)
-	  {
-		  String no=request.getParameter("no");
-		  String cno=request.getParameter("cno");
-		  OnlineDAO dao=OnlineDAO.newInstance();
+		return "redirect:../online/online_detail.do?&cno=" + cno; // ?cno= 클래스의 번호
+	}
+
+	// 댓글 삭제
+	@RequestMapping("online/online_reply_delete.do")
+	public String food_reply_delete(HttpServletRequest request, HttpServletResponse response) {
+		String no = request.getParameter("no");
+		String cno = request.getParameter("cno");
+		OnlineDAO dao = OnlineDAO.newInstance();
 //		  DB연동 
-		  dao.foodReplyDelete(Integer.parseInt(no));
-		  return "redirect:../online/online_detail.do?cno="+cno;
-	  }
-	  // http://localhost/JSPLastProject/food/food_detail.do?no=2
-	  // 댓글 수정 
-	  @RequestMapping("online/online_reply_update.do")
-	  public String food_reply_update(HttpServletRequest request,HttpServletResponse response)
-	  {
-		  try
-		  {
-			  request.setCharacterEncoding("UTF-8");
-		  }catch(Exception ex) {}
-		  String msg=request.getParameter("msg");
-		  String no=request.getParameter("no");
-		  String cno=request.getParameter("cno");
-		  OnlineReplyVO vo=new OnlineReplyVO();
-		  vo.setNo(Integer.parseInt(no));
-		  vo.setMsg(msg);
-		  OnlineDAO dao=OnlineDAO.newInstance();
-		  dao.onlineReplyUpdate(vo);
-		  return "redirect:../online/online_detail.do?cno="+cno;
-	  }
+		dao.foodReplyDelete(Integer.parseInt(no));
+		return "redirect:../online/online_detail.do?cno=" + cno;
+	}
+
+	// http://localhost/JSPLastProject/food/food_detail.do?no=2
+	// 댓글 수정
+	@RequestMapping("online/online_reply_update.do")
+	public String food_reply_update(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (Exception ex) {
+		}
+		String msg = request.getParameter("msg");
+		String no = request.getParameter("no");
+		String cno = request.getParameter("cno");
+		OnlineReplyVO vo = new OnlineReplyVO();
+		vo.setNo(Integer.parseInt(no));
+		vo.setMsg(msg);
+		OnlineDAO dao = OnlineDAO.newInstance();
+		dao.onlineReplyUpdate(vo);
+		return "redirect:../online/online_detail.do?cno=" + cno;
+	}
 
 }
