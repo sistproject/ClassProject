@@ -35,7 +35,7 @@ $(function(){
 			data:{"title":title,"day":day,"time":time,"inwon":inwon},  
 			success:function(result)
 			{
-				location.href="../main/cart.do";  // 이부분 확인할 것!!!
+				location.href="../cart/cart.do";  // 이부분 확인할 것!!!
 			}
 		})
 	});

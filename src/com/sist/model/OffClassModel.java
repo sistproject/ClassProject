@@ -69,7 +69,7 @@ public class OffClassModel {
 	  
 	  //찜하기 
 	  @RequestMapping("offclass/cart.do")
-	  public String food_jjim(HttpServletRequest request,HttpServletResponse response)
+	  public String offclass_cart(HttpServletRequest request,HttpServletResponse response)
 	  {
 	 	  String cno=request.getParameter("cno");
 	 	  HttpSession session=request.getSession();
@@ -80,6 +80,8 @@ public class OffClassModel {
 	 	  dao.offCartInsert(Integer.parseInt(cno), id);
 	 	  return "redirect:../offclass/offclass_detail.do?no="+cno;
 }
+	  
+	  
 
 	  // 예약
 	  
@@ -242,7 +244,7 @@ public class OffClassModel {
 		  OffClassDAO dao=OffClassDAO.newInstance();
 		  dao.offclassReserveSave(vo);
 		  
-		  return "redirect:../main/cart.do";   // 이부분 확인할것!!!
+		  return "redirect:../cart/cart.do";   // 이부분 확인할것!!!
 	  }
 }
 

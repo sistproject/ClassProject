@@ -5,6 +5,52 @@
 <html lang="en">
 <head>
 <title>Course Details</title>
+<style type="text/css">
+.myButton {
+	background-color:#f0ecc5;
+	border-radius:28px;
+	border:1px solid #f0ecc5;
+	display:inline-block;
+	cursor:pointer;
+	color:#080608;
+	font-family:Times New Roman;
+	font-size:17px;
+	font-weight:bold;
+	padding:13px 40px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #f0ecc5;
+}
+.myButton:hover {
+	background-color:#f0ecc5;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+.myrButton {
+	background-color:#a593e0;
+	border-radius:28px;
+	border:1px solid #a593e0;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	font-weight:bold;
+	padding:13px 110px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+.myrButton:hover {
+	background-color:#a593e0;
+}
+.myrButton:active {
+	position:relative;
+	top:1px;
+}
+
+</style>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Unicat project">
@@ -474,37 +520,78 @@
 
 									<!-- Feature -->
 									<div class="feature d-flex flex-row align-items-center justify-content-start">
-										<div class="feature_title"><i class="fa fa-clock-o" aria-hidden="true"></i><span>뭐를넣을까</span></div>
-										<div class="feature_text ml-auto">아아아</div>
+										<div class="feature_title"><i class="fa fa-clock-o" aria-hidden="true"></i><span>Duration:</span></div>
+										<div class="feature_text ml-auto">2 weeks</div>
 									</div>
 
 									<!-- Feature -->
 									<div class="feature d-flex flex-row align-items-center justify-content-start">
-										<div class="feature_title"><i class="fa fa-file-text-o" aria-hidden="true"></i><span>뭐를넣을까</span></div>
-										<div class="feature_text ml-auto">아아아</div>
+										<div class="feature_title"><i class="fa fa-file-text-o" aria-hidden="true"></i><span>Lectures:</span></div>
+										<div class="feature_text ml-auto">10</div>
 									</div>
 
 									<!-- Feature -->
 									<div class="feature d-flex flex-row align-items-center justify-content-start">
-										<div class="feature_title"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span>뺄까?</span></div>
-										<div class="feature_text ml-auto">아아아</div>
+										<div class="feature_title"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span>Lectures:</span></div>
+										<div class="feature_text ml-auto">6</div>
 									</div>
 
 									<!-- Feature -->
 									<div class="feature d-flex flex-row align-items-center justify-content-start">
-										<div class="feature_title"><i class="fa fa-list-alt" aria-hidden="true"></i><span>뺄까?</span></div>
-										<div class="feature_text ml-auto">아아아</div>
+										<div class="feature_title"><i class="fa fa-list-alt" aria-hidden="true"></i><span>Lectures:</span></div>
+										<div class="feature_text ml-auto">Yes</div>
 									</div>
 
 									<!-- Feature -->
+									<div class="feature d-flex flex-row align-items-center justify-content-start">
+										<div class="feature_title"><i class="fa fa-users" aria-hidden="true"></i><span>Lectures:</span></div>
+										<div class="feature_text ml-auto">35</div>
+									</div>
 									
-									
+								
+          							
+										<a href="../offclass/offclass_detail.do?cno=${vo.cno}" class="myButton">CART</a>&nbsp;&nbsp;&nbsp;<a href="../offclass/reserve.do" class="myrButton">예약하기</a>
+						
 
 								</div>
 							</div>
 						</div>
 
 						<!-- Feature -->
+						<div class="sidebar_section">
+							<div class="sidebar_section_title">Teacher</div>
+							<div class="sidebar_teacher">
+								<div class="teacher_title_container d-flex flex-row align-items-center justify-content-start">
+									<div class="teacher_image"><img src="images/teacher.jpg" alt=""></div>
+									<div class="teacher_title">
+										<div class="teacher_name"><a href="#">Jacke Masito</a></div>
+										<div class="teacher_position">Marketing & Management</div>
+									</div>
+								</div>
+								<div class="teacher_meta_container">
+									<!-- Teacher Rating -->
+									<div class="teacher_meta d-flex flex-row align-items-center justify-content-start">
+										<div class="teacher_meta_title">Average Rating:</div>
+										<div class="teacher_meta_text ml-auto"><span>4.7</span><i class="fa fa-star" aria-hidden="true"></i></div>
+									</div>
+									<!-- Teacher Review -->
+									<div class="teacher_meta d-flex flex-row align-items-center justify-content-start">
+										<div class="teacher_meta_title">Review:</div>
+										<div class="teacher_meta_text ml-auto"><span>12k</span><i class="fa fa-comment" aria-hidden="true"></i></div>
+									</div>
+									<!-- Teacher Quizzes -->
+									<div class="teacher_meta d-flex flex-row align-items-center justify-content-start">
+										<div class="teacher_meta_title">Quizzes:</div>
+										<div class="teacher_meta_text ml-auto"><span>600</span><i class="fa fa-user" aria-hidden="true"></i></div>
+									</div>
+								</div>
+								<div class="teacher_info">
+									<p>Hi! I am Masion, I’m a marketing & management  eros pulvinar velit laoreet, sit amet egestas erat dignissim. Sed quis rutrum tellus, sit amet viverra felis. Cras sagittis sem sit amet urna feugiat rutrum nam nulla ipsum.</p>
+								</div>
+						
+							</div>
+						
+						</div>
 						
 
 						<!-- Latest Course -->

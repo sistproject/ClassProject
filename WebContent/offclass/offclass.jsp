@@ -194,7 +194,7 @@
 											</div>
 											<div class="course_info">
 												<i class="fa fa-star" aria-hidden="true"></i>
-												<span>5 Ratings</span>
+												<span>${of.cscore }</span>
 											</div>
 											<div class="course_price ml-auto">${of.cprice }</div>
 										</div>

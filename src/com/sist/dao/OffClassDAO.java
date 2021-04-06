@@ -59,9 +59,9 @@ public class OffClassDAO {
 			   // 연결
 			   getConnection();
 			   // SQL문장
-			   String sql="SELECT c_no, c_poster, c_title, c_artist, c_price, c_category, infoaddr, num "
-						+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_category, infoaddr, rownum as num "
-						+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_category, infoaddr " 
+			   String sql="SELECT c_no, c_poster, c_title, c_artist, c_price, c_category, infoaddr, c_score, num "
+						+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_category, infoaddr, c_score, rownum as num "
+						+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_category, infoaddr, c_score " 
 						+ "FROM thisclass ORDER BY c_no DESC)) "
 						+ "WHERE num BETWEEN ? AND ?";
 			   // 전송 객체 생성
@@ -82,6 +82,7 @@ public class OffClassDAO {
 				   	vo.setCprice(rs.getString(5));
 				   	vo.setCcategory(rs.getString(6));
 				   	vo.setInfoaddr(rs.getString(7));
+				   	vo.setCscore(rs.getString(8));
 				   	list.add(vo);
 			   }
 			   rs.close();
@@ -179,7 +180,7 @@ public class OffClassDAO {
 	   
 	   	
 	     // 찜하기
-	     public void offCartInsert(int crno,String id)
+	     public void offCartInsert(int c_no,String id)
 	     {
 	    	 try
 	    	 {
@@ -187,7 +188,7 @@ public class OffClassDAO {
 	    		 String sql="INSERT INTO cart VALUES("
 	    				   +"cart_crno_seq.nextval,?,?)";
 	    		 ps=conn.prepareStatement(sql);
-	    		 ps.setInt(2, crno);
+	    		 ps.setInt(2, c_no);
 	    		 ps.setString(1, id);
 	    		 
 	    		 ps.executeUpdate();

@@ -18,9 +18,17 @@ package com.sist.vo;
 public class OffClassVO {
 	private int cno, conoff;
 	private String ctitle, ccontent, cposter, cartist, cprice, caddress, ctime, ccategory, cintro, csubtitles,
-			ccontents, infoaddr;
+			ccontents, infoaddr, cscore;
 
 	
+	public String getCscore() {
+		return cscore;
+	}
+
+	public void setCscore(String cscore) {
+		this.cscore = cscore;
+	}
+
 	public String getInfoaddr() {
 		return infoaddr;
 	}
