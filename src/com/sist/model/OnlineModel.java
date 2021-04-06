@@ -1,5 +1,6 @@
 package com.sist.model;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -8,10 +9,8 @@ import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import java.util.*;
 import com.sist.dao.CartDAO;
-//import com.sist.dao.FoodDAO;
 import com.sist.dao.OnlineDAO;
 import com.sist.vo.OnlineReplyVO;
-//import com.sist.vo.FoodReplyVO;
 import com.sist.vo.OnlineVO;
 
 @Controller
@@ -25,7 +24,7 @@ public class OnlineModel {
 			page = "1";
 		}
 		int curpage = Integer.parseInt(page);
-
+		
 		OnlineDAO dao = OnlineDAO.newInstance();
 		List<OnlineVO> omList = dao.onlineData(curpage);
 		int count = dao.onlineMainCount();
@@ -39,7 +38,49 @@ public class OnlineModel {
 
 		if (endPage > totalPage)
 			endPage = totalPage;
+		
+		// 쿠키 
+//		// 전체 쿠키 삭제하기
+//	    Cookie[] cookies = request.getCookies() ;
+//	     
+//	    if(cookies != null){
+//	        for(int i=0; i < cookies.length; i++){
+//	             
+//	            // 쿠키의 유효시간을 0으로 설정하여 만료시킨다
+//	            cookies[i].setMaxAge(0) ;
+//	             
+//	            // 응답 헤더에 추가한다
+//	            response.addCookie(cookies[i]) ;
+//	        }
+//	    }
 
+//		  List<OnlineVO> kList=new ArrayList<OnlineVO>();
+//		  
+//		  Cookie[] cookies=request.getCookies();			
+//		  if(cookies != null)
+//		  {
+//			  for(int i=cookies.length-1;i>=0;i--)
+//			  {
+//				  if(cookies[i].getName().startsWith("m"))
+//				  { 	
+//					  cookies[i].setPath("/");
+//					  System.out.println(cookies[i].getName()); // key
+//					  String cno=cookies[i].getValue(); // value
+//					  System.out.println(cookies[i].getValue());
+//					  System.out.println("통과?");
+//	//					  여기까지
+//					  OnlineVO vo=dao.onlineCookiePrintData(Integer.parseInt(cno));
+//					  
+//					  kList.add(vo);
+//					  
+//	
+//				  }
+//			  }
+//		  }
+		
+		
+		
+//		request.setAttribute("kList", kList); // 쿠키 데이터
 		request.setAttribute("count", count);
 		request.setAttribute("omList", omList); // online main List
 
@@ -53,6 +94,25 @@ public class OnlineModel {
 
 		return "../online/online.jsp";
 	}
+	
+	
+	
+	  @RequestMapping("online/online_before.do")
+	  public String detail_before(HttpServletRequest request,HttpServletResponse response)
+	  {	
+		  System.out.println("===============================before");
+		  String cno=request.getParameter("cno");
+		  System.out.println("출력");
+		  System.out.println(cno);
+		  System.out.println("했나?");
+		  Cookie cookie=new Cookie("m"+cno, cno);// 문자열만 저장이 가능 
+		  cookie.setMaxAge(60*60);
+		  cookie.setPath("/");
+		  response.addCookie(cookie);
+		  return "redirect:../online/online_detail.do?cno="+cno;
+	  }
+	  
+	  
 
 	@RequestMapping("online/online_detail.do")
 	public String online_detail(HttpServletRequest request, HttpServletResponse response) {
@@ -103,6 +163,7 @@ public class OnlineModel {
 		return "../online/online_detail.jsp";
 
 	}
+	
 
 	@RequestMapping("online/online_reply_insert.do")
 	public String online_reply_insert(HttpServletRequest request, HttpServletResponse response) {
@@ -133,19 +194,19 @@ public class OnlineModel {
 
 	// 댓글 삭제
 	@RequestMapping("online/online_reply_delete.do")
-	public String food_reply_delete(HttpServletRequest request, HttpServletResponse response) {
+	public String online_reply_delete(HttpServletRequest request, HttpServletResponse response) {
 		String no = request.getParameter("no");
 		String cno = request.getParameter("cno");
 		OnlineDAO dao = OnlineDAO.newInstance();
 //		  DB연동 
-		dao.foodReplyDelete(Integer.parseInt(no));
+		dao.onlineReplyDelete(Integer.parseInt(no));
 		return "redirect:../online/online_detail.do?cno=" + cno;
 	}
 
 	// http://localhost/JSPLastProject/food/food_detail.do?no=2
 	// 댓글 수정
 	@RequestMapping("online/online_reply_update.do")
-	public String food_reply_update(HttpServletRequest request, HttpServletResponse response) {
+	public String online_reply_update(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			request.setCharacterEncoding("UTF-8");
 		} catch (Exception ex) {

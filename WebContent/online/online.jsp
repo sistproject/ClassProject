@@ -190,7 +190,7 @@
 							
 							<div class="course_image"><img src="${fn:substring(om.cposter,0,fn:indexOf(om.cposter,'^'))}" alt=""/></div>
 							<div class="course_body">
-								<h3 class="course_title"><a href="../online/online_detail.do?cno=${om.cno }">${om.ctitle }</a></h3>
+								<h3 class="course_title"><a href="../online/online_before.do?cno=${om.cno }">${om.ctitle }</a></h3>
 								<div class="course_teacher">${om.cartist}</div>
 								<div class="course_text">
 									<p>클래스 확인하기</p>
@@ -201,7 +201,7 @@
 								<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
 									<div class="course_info">
 										<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-										<span>${om.cno}</span>
+										<span>${om.cno }</span>
 									</div>
 									<div class="course_info">
 										<i class="fa fa-star" aria-hidden="true"></i>
@@ -262,36 +262,14 @@
 
 						<!-- Latest Course -->
 						<div class="sidebar_section">
-							<div class="sidebar_section_title">Latest Courses</div>
+							<div class="sidebar_section_title">최근 본 클래스</div>
 							<div class="sidebar_latest">
-
-								<!-- Latest Course -->
-								<div class="latest d-flex flex-row align-items-start justify-content-start">
-									<div class="latest_image"><div><img src="images/latest_1.jpg" alt=""></div></div>
-									<div class="latest_content">
-										<div class="latest_title"><a href="course.html">How to Design a Logo a Beginners Course</a></div>
-										<div class="latest_price">Free</div>
-									</div>
-								</div>
-
-								<!-- Latest Course -->
-								<div class="latest d-flex flex-row align-items-start justify-content-start">
-									<div class="latest_image"><div><img src="images/latest_2.jpg" alt=""></div></div>
-									<div class="latest_content">
-										<div class="latest_title"><a href="course.html">Photography for Beginners Masterclass</a></div>
-										<div class="latest_price">$170</div>
-									</div>
-								</div>
-
-								<!-- Latest Course -->
-								<div class="latest d-flex flex-row align-items-start justify-content-start">
-									<div class="latest_image"><div><img src="images/latest_3.jpg" alt=""></div></div>
-									<div class="latest_content">
-										<div class="latest_title"><a href="course.html">The Secrets of Body Language</a></div>
-										<div class="latest_price">$220</div>
-									</div>
-								</div>
-
+						      <c:forEach var="kvo" items="${kList }" varStatus="s">
+						        <c:if test="${s.index<9 }">
+						         <a href="../online/online_detail.do?cno=${kvo.cno }">
+						         <img class="radius-10" src="${kvo.cposter }" title="${kvo.ctitle }" style="width:100px;height:100px"></a>
+						        </c:if>
+						      </c:forEach>
 							</div>
 						</div>
 
