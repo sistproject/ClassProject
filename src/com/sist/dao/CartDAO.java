@@ -59,6 +59,7 @@ public class CartDAO {
 				   vo.setPrice(rs.getString(4));
 				   vo.setQuantity(rs.getInt(5));
 				   vo.setNo(rs.getInt(6));
+				   vo.setType("w");
 				   list.add(vo);
 			   }
 			   rs.close();
@@ -74,7 +75,7 @@ public class CartDAO {
 		   List<CartVO> list = new ArrayList<CartVO>();
 		   try {
 			   getConnection();
-			   String sql="SELECT c.c_title,c.c_artist,c.c_poster,c.c_price,cr.quantity,c.c_no "
+			   String sql="SELECT c.c_title,c.c_artist,c.c_poster,c.c_price,cr.quantity,c.c_no,c.c_onoff "
 					   + "FROM cart cr,member m,thisclass c "
 					   + "WHERE m.id = cr.id AND c.c_no=cr.c_no AND m.id=? AND ono=0";
 			   ps=conn.prepareStatement(sql);
@@ -88,6 +89,8 @@ public class CartDAO {
 				   vo.setPrice(rs.getString(4));
 				   vo.setQuantity(rs.getInt(5));
 				   vo.setNo(rs.getInt(6));
+				   vo.setOnoff(rs.getInt(7));
+				   vo.setType("c");
 				   list.add(vo);
 			   }
 			   rs.close();
@@ -177,7 +180,7 @@ public class CartDAO {
 		   try {
 			   getConnection();
 			   String sql="SELECT cr.ono, cr.c_no, c.c_title,c.c_poster,"
-			   		+ "c.c_price,cr.quantity,cr.regdate "
+			   		+ "c.c_price,cr.quantity,cr.regdate,c.c_onoff "
 			   		+ "FROM cart cr, member m, thisclass c "
 			   		+ "WHERE m.id = cr.id AND c.c_no=cr.c_no "
 			   		+ "AND cr.id=? and cr.ono!=0 ORDER BY cr.ono DESC";
@@ -192,7 +195,9 @@ public class CartDAO {
 				   vo.setPoster(rs.getString(4));
 				   vo.setPrice(rs.getString(5));
 				   vo.setQuantity(rs.getInt(6));
-				   vo.setRegdate(rs.getString(7));
+				   vo.setRegdate(rs.getString(7).substring(0,rs.getString(7).indexOf(" ")));
+				   vo.setOnoff(rs.getInt(8));
+				   vo.setType("c");
 				   list.add(vo);
 			   }
 			   rs.close();
@@ -224,7 +229,8 @@ public class CartDAO {
 				   vo.setPoster(rs.getString(4));
 				   vo.setPrice(rs.getString(5));
 				   vo.setQuantity(rs.getInt(6));
-				   vo.setRegdate(rs.getString(7));
+				   vo.setRegdate(rs.getString(7).substring(0,rs.getString(7).indexOf(" ")));
+				   vo.setType("w");
 				   list.add(vo);
 			   }
 			   rs.close();

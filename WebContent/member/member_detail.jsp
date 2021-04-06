@@ -33,6 +33,9 @@
 small{
 	color:red;
 }
+.btn{
+	cursor:pointer;
+}
 
 </style>
 
@@ -151,8 +154,14 @@ function checkNumber(event) {
 		<tr>
 		<th width=20% class="text-right">sex</th>
 		<td width=80%>
+		<c:if test="${vo.sex eq '남자'}">
 		<input type=radio name=sex class="input-sm" checked value="남자" >남자
 		<input type=radio name=sex class="input-sm" value="여자" style="margin-left:30px;">여자
+		</c:if>
+		<c:if test="${vo.sex eq '여자'}">
+		<input type=radio name=sex class="input-sm" value="남자" >남자
+		<input type=radio name=sex class="input-sm" checked value="여자" style="margin-left:30px;">여자
+		</c:if>
 		</td>
 		</tr>
 		<tr>
@@ -166,7 +175,7 @@ function checkNumber(event) {
 		<th width=20% class="text-right">Post</th>
 		<td width=80%>
 		<input type=text name=post id=post class="input-sm" size=10 style="float:left" value="${vo.post }" readonly>
-		<input type=button value="우편번호 검색" class="btn btn-sm btn-primary" id=postbtn style="float:left">
+		<input type=button value="우편번호 검색" class="btn btn-sm postbtn" id=postbtn style="float:left;background-color:#A593E0">
 		</td>
 		</tr>
 		<tr>
@@ -190,9 +199,9 @@ function checkNumber(event) {
 		</td>
 		</tr>
 		<tr>
-		<td colspan="2">
-		<button id="submit" class="btn btn-sm btn-success">저장</button>
-		<input type=button value="취소" class="btn btn-sm btn-warning" onclick="javascript:history.back()">
+		<td colspan="2" class="text-center">
+		<button id="submit" class="btn btn-sm submitbtn"  style="background-color:#A593E0;margin-right:20px">저장</button>
+		<input type=button value="취소" class="btn btn-sm btn-secondary" onclick="javascript:history.back()">
 		</td>
 		</tr>
 		</table>
