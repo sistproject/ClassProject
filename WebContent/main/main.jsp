@@ -179,7 +179,7 @@ function view2(opt2){
 								<li class="active"><a href="../main/main.do">홈</a></li>
 								<li><a href="#">작품 전체</a></li>
 								<li><a href="#">인기 작품</a></li>
-								<li><a href="#">오늘의 발견</a></li>
+								<li><a href="../work/work_list.do">오늘의 발견</a></li>
 								<li><a href="#">실시간 구매</a></li>
 								<li><a href="#">작가님 추천</a></li>
 								<li><a href="#">실시간 추천</a></li>

@@ -11,11 +11,8 @@ import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.CartDAO;
 import com.sist.dao.MemberDAO;
-import com.sist.dao.WorkDAO;
 import com.sist.vo.CartVO;
 import com.sist.vo.MemberVO;
-import com.sist.vo.WorkVO;
-import com.sist.vo.ZipcodeVO;
 
 
 @Controller
@@ -115,17 +112,6 @@ public class MemberModel {
 		request.setAttribute("result",result);
 		return "../member/login_ok.jsp";
 	}
-	@RequestMapping("member/post_result.do")
-	public String member_post(HttpServletRequest request,HttpServletResponse response) {
-		try {
-			request.setCharacterEncoding("UTF-8");
-		}catch (Exception e) {}
-		String dong = request.getParameter("dong");
-		MemberDAO dao = MemberDAO.newInstance();
-		List<ZipcodeVO> list = dao.postFindData(dong);
-		request.setAttribute("list",list);
-		return "../member/post_result.jsp";
-	}
 	@RequestMapping("member/member_update.do")
 	public String member_update(HttpServletRequest request,HttpServletResponse response) throws ParseException {
 		try {
@@ -169,24 +155,6 @@ public class MemberModel {
 		dao.memberUpdateData(vo);
 		
 		return "redirect: ../member/member_detail.do";
-	}
-	@RequestMapping("main/main.do")
-	public String main_home(HttpServletRequest request,HttpServletResponse response)
-	{
-		try
-		{
-		System.out.println("==========================");
-		WorkDAO dao=WorkDAO.newInstance();
-		//String w_no=request.getParameter("w_no");
-		List<WorkVO> wList=dao.WorkMainData();
-		request.setAttribute("wList", wList);
-		request.setAttribute("main_jsp", "../main/home.jsp");
-		}catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		return "../main/main.jsp";
-
 	}
 	
 }
