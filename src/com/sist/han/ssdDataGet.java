@@ -17,6 +17,19 @@ public class ssdDataGet {
 	private Connection conn;
 	private PreparedStatement ps;
 	
+	public void hitData() {
+		try {
+			dm.getConnection();
+			String sql = "INSERT INTO thisclass(hit, value) ";
+			for(int i=1; i<=15723; i++) {
+				
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			dm.disConnection(conn, ps);
+		}
+	}
 	public void ssdInsertData(ssdVO vo) {
 		try {
 			conn = dm.getConnection();
