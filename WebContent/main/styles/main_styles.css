@@ -40,14 +40,16 @@
 /*********************************
 2. Body and some general stuff
 *********************************/
+
 .category_wrapper{
 	font-size: 0px;
 	position: absolute;
 	z-index: 9;
 	top: 40px;
-	left: 738.5px;
+	left: 587.5px;
 	
 }
+
 .category{
 	display:inline-block;
 	background-color: #FFFFF3;
