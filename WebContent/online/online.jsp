@@ -184,7 +184,7 @@
 				<!-- Course -->
 				
 				<c:forEach var="om" items="${omList}"> 
-					<div class="col-lg-4 course_col" data-aos="zoom-in-down">
+					<div class="col-lg-4 course_col flexbox" data-aos="zoom-in-down" >
 						
 						<div class="course">
 							

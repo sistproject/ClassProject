@@ -54,33 +54,31 @@ public class OnlineModel {
 //	        }
 //	    }
 
-//		  List<OnlineVO> kList=new ArrayList<OnlineVO>();
-//		  
-//		  Cookie[] cookies=request.getCookies();			
-//		  if(cookies != null)
-//		  {
-//			  for(int i=cookies.length-1;i>=0;i--)
-//			  {
-//				  if(cookies[i].getName().startsWith("m"))
-//				  { 	
-//					  cookies[i].setPath("/");
-//					  System.out.println(cookies[i].getName()); // key
-//					  String cno=cookies[i].getValue(); // value
-//					  System.out.println(cookies[i].getValue());
-//					  System.out.println("통과?");
-//	//					  여기까지
-//					  OnlineVO vo=dao.onlineCookiePrintData(Integer.parseInt(cno));
-//					  
-//					  kList.add(vo);
-//					  
-//	
-//				  }
-//			  }
-//		  }
+		  List<OnlineVO> kList=new ArrayList<OnlineVO>();
+		  
+		  Cookie[] cookies=request.getCookies();			
+		  if(cookies != null)
+		  {
+			  for(int i=cookies.length-1;i>=0;i--)
+			  {
+				  if(cookies[i].getName().startsWith("m"))
+				  { 	
+					  cookies[i].setPath("/");
+					  System.out.println(cookies[i].getName()); // key
+					  String cno=cookies[i].getValue(); // value
+					  System.out.println(cookies[i].getValue());
+					  OnlineVO vo=dao.onlineCookiePrintData(Integer.parseInt(cno));
+					  System.out.println(vo.getCno());
+					  kList.add(vo);
+					  
+	
+				  }
+			  }
+		  }
 		
 		
 		
-//		request.setAttribute("kList", kList); // 쿠키 데이터
+		request.setAttribute("kList", kList); // 쿠키 데이터
 		request.setAttribute("count", count);
 		request.setAttribute("omList", omList); // online main List
 
@@ -109,6 +107,7 @@ public class OnlineModel {
 		  cookie.setMaxAge(60*60);
 		  cookie.setPath("/");
 		  response.addCookie(cookie);
+		  System.out.println("==============================쿠키 생성");
 		  return "redirect:../online/online_detail.do?cno="+cno;
 	  }
 	  
