@@ -20,6 +20,9 @@ public class OnlineModel {
 		System.out.println("-===============================================================online");
 		// 페이지 나누기
 		String page = request.getParameter("page");
+		System.out.println("페이지 출력");
+		System.out.println(page);
+		System.out.println("페이지 출력 완료");
 		if (page == null) {
 			page = "1";
 		}
