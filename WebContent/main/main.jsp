@@ -195,7 +195,7 @@ function view2(opt2){
 								<li class="active"><a href="../main/cmain.do">홈</a></li>
 								<li><a href="../online/online.do">온라인</a></li>
 								<li><a href="../offclass/offclass.do">오프라인</a></li>
-								<li><a href="#">인기 클래스</a></li>
+								<li><a href="../class/trendclass.do">인기 클래스</a></li>
 								<li><a href="#">추천 클래스</a></li>
 								<li><a href="#">신규 클래스</a></li>
 								<li><a href="../offclass/reserve.do">클래스 예약</a></li>
