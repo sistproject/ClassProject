@@ -231,7 +231,7 @@ public class OnlineDAO {
     
     
     // 댓글 삭제
-    public void foodReplyDelete(int no)
+    public void onlineReplyDelete(int no)
     {
    	 try
    	 {
@@ -249,6 +249,38 @@ public class OnlineDAO {
    	 {
    		 disConnection();
    	 }
+    }
+    
+    
+ // cookie에 출력할 데이터 
+    public OnlineVO onlineCookiePrintData(int cno)
+    {
+    	OnlineVO vo=new OnlineVO();
+ 	   try
+ 	   {
+ 		   getConnection();
+ 		   String sql="SELECT c_no,c_poster,c_title "
+ 				     +"FROM thisclass "
+ 				     +"WHERE c_no=?";
+ 		   ps=conn.prepareStatement(sql);
+ 		   ps.setInt(1, cno);
+ 		   // 실행
+ 		   ResultSet rs=ps.executeQuery();
+ 		   rs.next();
+ 		   vo.setCno(rs.getInt(1));
+ 		   String s=rs.getString(2);
+ 		   vo.setCposter(s.substring(0,s.indexOf("^")));
+ 		   vo.setCtitle(rs.getString(3));
+ 		   rs.close();
+ 	   }catch(Exception ex)
+ 	   {
+ 		   ex.printStackTrace();
+ 	   }
+ 	   finally
+ 	   {
+ 		   disConnection();
+ 	   }
+ 	   return vo;
     }
     
 	
