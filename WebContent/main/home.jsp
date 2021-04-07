@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="super_container">
 	<!-- Home -->
 	<div style="height:100px"></div>
 	<div class="home">
@@ -19,52 +20,14 @@
 				<!-- Home Slider Item -->
 				<div class="owl-item">
 					<div class="home_slider_background" style="background-image:url(광고1.jpg)"></div>
-					<div class="home_slider_content">
-						<div class="container">
-							<div class="row">
-								<div class="col text-center">
-									<div class="home_slider_title">The Premium System Education</div>
-									<div class="home_slider_subtitle">Future Of Education Technology</div>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 				<!-- Home Slider Item -->
 				<div class="owl-item">
 					<div class="home_slider_background" style="background-image:url(광고2.jpg)"></div>
-					<div class="home_slider_content">
-						<div class="container">
-							<div class="row">
-								<div class="col text-center">
-									<div class="home_slider_title">The Premium System Education</div>
-									<div class="home_slider_subtitle">Future Of Education Technology</div>
-									<div class="home_slider_form_container">
-										<form action="#" id="home_search_form_1" class="home_search_form d-flex flex-lg-row flex-column align-items-center justify-content-between">
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 				<!-- Home Slider Item -->
 				<div class="owl-item">
 					<div class="home_slider_background" style="background-image:url(광고3.jpg)"></div>
-					<div class="home_slider_content">
-						<div class="container">
-							<div class="row">
-								<div class="col text-center">
-									<div class="home_slider_title">The Premium System Education</div>
-									<div class="home_slider_subtitle">Future Of Education Technology</div>
-									<div class="home_slider_form_container">
-										<form action="#" id="home_search_form_1" class="home_search_form d-flex flex-lg-row flex-column align-items-center justify-content-between">
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -95,8 +58,8 @@
 				<c:if test="${s.index<8 }">
 				<div class="col-lg-3 col-md-6 team_col">
 					<div class="team_item">
-						<div class="team_image"><img src="${vo.w_poster }" alt=""></div>
-						<div class="team_body">
+						<div class="team_image"><img src="${vo.w_poster }" style="width: 180px;height: 190px;" alt=""></div>
+						<div class="team_body"  style="width: 340px;height: 275px;">
 							<div class="team_title"><a href="#">${vo.w_title }</a></div>
 							<div class="team_subtitle">${vo.w_artist }</div>
 							<div class="social_list">
@@ -134,8 +97,8 @@
 				<c:if test="${s.index>358 and s.index<367}">
 				<div class="col-lg-3 col-md-6 team_col">
 					<div class="team_item">
-						<div class="team_image"><img src="${vo.w_poster }" alt=""></div>
-						<div class="team_body">
+						<div class="team_image"><img src="${vo.w_poster }" style="width: 180px;height: 190px;" alt=""></div>
+						<div class="team_body"  style="width: 340px;height: 275px;">
 							<div class="team_title"><a href="#">${vo.w_title }</a></div>
 							<div class="team_subtitle">${vo.w_artist }</div>
 							<div class="social_list">
@@ -174,8 +137,8 @@
 				<c:if test="${s.index>409 and s.index<418 }">
 				<div class="col-lg-3 col-md-6 team_col">
 					<div class="team_item">
-						<div class="team_image"><img src="${vo.w_poster }" alt=""></div>
-						<div class="team_body">
+						<div class="team_image"><img src="${vo.w_poster }" style="width: 180px;height: 190px;" alt=""></div>
+						<div class="team_body"  style="width: 340px;height: 275px;">
 							<div class="team_title"><a href="#">${vo.w_title }</a></div>
 							<div class="team_subtitle">${vo.w_artist }</div>
 							<div class="social_list">
@@ -215,8 +178,8 @@
 				<c:if test="${s.index>376 and s.index<385 }">
 				<div class="col-lg-3 col-md-6 team_col">
 					<div class="team_item">
-						<div class="team_image"><img src="${vo.w_poster }" alt=""></div>
-						<div class="team_body">
+						<div class="team_image"><img src="${vo.w_poster }" style="width: 180px;height: 190px;" alt=""></div>
+						<div class="team_body"  style="width: 340px;height: 275px;">
 							<div class="team_title"><a href="#">${vo.w_title }</a></div>
 							<div class="team_subtitle">${vo.w_artist }</div>
 							<div class="social_list">
@@ -251,13 +214,13 @@
 			</div>
 			<div class="row team_row">
 				
-				<!-- 인기 작품 -->
+				<!-- 실시간 추천작품 -->
 				<c:forEach var="vo" items="${wList }" varStatus="s">
 				<c:if test="${s.index>425 and s.index<434 }">
 				<div class="col-lg-3 col-md-6 team_col">
 					<div class="team_item">
-						<div class="team_image"><img src="${vo.w_poster }" alt=""></div>
-						<div class="team_body">
+						<div class="team_image"><img src="${vo.w_poster }" style="width: 180px;height: 190px;" alt=""></div>
+						<div class="team_body"  style="width: 340px;height: 275px;">
 							<div class="team_title"><a href="#">${vo.w_title }</a></div>
 							<div class="team_subtitle">${vo.w_artist }</div>
 							<div class="social_list">
@@ -281,9 +244,9 @@
 		</div>
 		<!-- /////// 쿠키 //////// -->
 	       <h2 class="sectiontitle">최근 본 작품</h2>
-	       <c:forEach var="fvo" items="${wList }" varStatus="s">
+	       <c:forEach var="fvo" items="${fList }" varStatus="s">
 	        <c:if test="${s.index<9 }">
-	         <a href="../work/work_detail.do?no=${fvo.w_no }">
+	         <a href="../work/work_detail.do?w_no=${fvo.w_no }">
 	         <img class="radius-10" src="${fvo.w_poster }" title="${fvo.w_title }" style="width:100px;height:100px"></a>
 	        </c:if>
 	      </c:forEach>
@@ -291,5 +254,6 @@
 	<!-- ------------------------------------------------------------------------------------------------------------------------------------- -->
 			</div>
 		</div>
+	</div>
 </body>
 </html>

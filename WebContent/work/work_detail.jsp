@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,142 +14,231 @@
 <link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="styles/blog_single.css">
 <link rel="stylesheet" type="text/css" href="styles/blog_single_responsive.css">
-<link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link rel="stylesheet" type="text/css" href="../main/styles/bootstrap4/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../main/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="../main/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="../main/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="../main/plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="../main/styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="../main/styles/responsive.css">
+<% //세션에 저장되어 있는 데이터 읽기
+    String id=(String)session.getAttribute("id"); // 없는 경우:null 
+    System.out.println(id);
+%>
+<%  
+	String menu = (String)request.getAttribute("menu"); 
+	if(menu==null){
+		menu = "work";
+	}
+%>
+<!-- 카테고리 -->
+<script type="text/javascript">
+function view(opt){
+	if(opt){
+		category_display.style.display="block";
+		category_size.style.color= "#A593E0";
+	}else{
+		category_display.style.display="none";
+		category_size.style.color= "#384158";
+	}
+}
+function view2(opt2){
+	if(opt2){
+		category_display.style.display="block";
+		category_size.style.color= "#A593E0";
+	}else{
+		category_display.style.display="none";
+		category_size.style.color= "#384158";
+	}
+}
+</script>
+<style type="text/css">
+
+.container{
+	min-width:1500px;
+}
+.w_c_wrapper{
+	display: inline-block;
+}
+
+.work_class{
+	margin-right: 80px;
+}
+.work_class li{
+	display: inline-block;
+	font-size: 18px;
+}
+.work_class a{
+	color: gray;
+}
+</style>
 </head>
 <body>
-
 <div class="super_container">
-
-	<!-- Header -->
-
-	<header class="header">
-			
-		<!-- Top Bar -->
-		<div class="top_bar">
-			<div class="top_bar_container">
-				<div class="container">
-					<div class="row">
-						<div class="col">
-							<div class="top_bar_content d-flex flex-row align-items-center justify-content-start">
-								<ul class="top_bar_contact_list">
-									<li><div class="question">Have any questions?</div></li>
-									<li>
-										<i class="fa fa-phone" aria-hidden="true"></i>
-										<div>001-1234-88888</div>
+<!-- Header -->
+<header class="header">
+	<!-- Top Bar -->
+	<div class="top_bar">
+		<div class="top_bar_container">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="top_bar_content d-flex flex-row align-items-center justify-content-end">
+							<ul class="top_bar_contact_list">
+							     <% if(id!=null) { %>
+							       <li>
+							       <a href="../member/logout.do"><div>로그아웃</div></a>
 									</li>
-									<li>
-										<i class="fa fa-envelope-o" aria-hidden="true"></i>
-										<div>info.deercreative@gmail.com</div>
-									</li>
-								</ul>
-								<div class="top_bar_login ml-auto">
-									<div class="login_button"><a href="#">Register or Login</a></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>				
-		</div>
-
-		<!-- Header Content -->
-		<div class="header_container">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="header_content d-flex flex-row align-items-center justify-content-start">
-							<div class="logo_container">
-								<a href="#">
-									<div class="logo_text">Unic<span>at</span></div>
-								</a>
-							</div>
-							<nav class="main_nav_contaner ml-auto">
-								<ul class="main_nav">
-									<li><a href="index.html">Home</a></li>
-									<li><a href="about.html">About</a></li>
-									<li><a href="courses.html">Courses</a></li>
-									<li><a href="blog.html">Blog</a></li>
-									<li><a href="#">Page</a></li>
-									<li><a href="contact.html">Contact</a></li>
-								</ul>
-								<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
-
-								<!-- Hamburger -->
-
-								<div class="shopping_cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
-								<div class="hamburger menu_mm">
-									<i class="fa fa-bars menu_mm" aria-hidden="true"></i>
-								</div>
-							</nav>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Header Search Panel -->
-		<div class="header_search_container">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="header_search_content d-flex flex-row align-items-center justify-content-end">
-							<form action="#" class="header_search_form">
-								<input type="search" class="search_input" placeholder="Search" required="required">
-								<button class="header_search_button d-flex flex-column align-items-center justify-content-center">
-									<i class="fa fa-search" aria-hidden="true"></i>
-								</button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>			
-		</div>			
-	</header>
-
-	<!-- Menu -->
-
-	<div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
-		<div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
-		<div class="search">
-			<form action="#" class="header_search_form menu_mm">
-				<input type="search" class="search_input menu_mm" placeholder="Search" required="required">
-				<button class="header_search_button d-flex flex-column align-items-center justify-content-center menu_mm">
-					<i class="fa fa-search menu_mm" aria-hidden="true"></i>
-				</button>
-			</form>
-		</div>
-		<nav class="menu_nav">
-			<ul class="menu_mm">
-				<li class="menu_mm"><a href="index.html">Home</a></li>
-				<li class="menu_mm"><a href="#">About</a></li>
-				<li class="menu_mm"><a href="#">Courses</a></li>
-				<li class="menu_mm"><a href="#">Blog</a></li>
-				<li class="menu_mm"><a href="#">Page</a></li>
-				<li class="menu_mm"><a href="contact.html">Contact</a></li>
-			</ul>
-		</nav>
-	</div>
-	
-	<!-- Home -->
-
-	<div class="home">
-		<div class="breadcrumbs_container">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="breadcrumbs">
-							<ul>
-								<li><a href="index.html">Home</a></li>
-								<li><a href="blog.html">Blog</a></li>
-								<li>Blog Single</li>
+							     <% } else { %>
+							       <li>
+							       <a href="../member/login.do"><div>로그인</div></a>
+							       </li> 
+							     <% } %>
+								<li>
+									<a href="../member/signin.do"><div>회원가입</div></a>
+								</li>
+								<li>
+									<a href="../member/member_detail.do"><div>마이페이지</div></a>
+								</li>
 							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>			
+		</div>				
 	</div>
+
+	<div class="category_wrapper">
+	<div class="mouse_check" onmouseover="view(true)" onmouseout="view(false)"></div>
+	<div class="mouse_check2" id="category_display" onmouseover="view2(true)" onmouseout="view2(false)">
+	<div class="category">
+		<ul class="category_content">
+			<li>가다라마바사아</li>
+			<li>가나다라마바사아</li>
+			<li>가나다라마바사아</li>
+			<li>가나다라마바사아</li>
+			<li>가나다라마바사아</li>
+			<li>가나다라마바사아</li>
+			<li>가나다라마바사아</li>
+			<li>가나다라마바사아</li>
+			<li>가나다라마바사아</li>
+			<li>가나다라마바사아</li>
+		</ul>
+	</div>
+	
+	<div class="category">
+		<ul class="category_content">			
+			<li>가다라마바사아</li>
+			<li>가나다라마바사아</li>
+			<li>가나다라마바사아</li>
+			<li>가나다라마바사아</li>
+			<li>가나다라마바사아</li>
+			<li>가나다라마바사아</li>
+			<li>가나다라마바사아</li>
+			<li>가나다라마바사아</li>
+			<li>가나다라마바사아</li>
+			<li>가나다라마바사아</li>
+		</ul>
+	</div>
+	</div>
+	</div>
+		<!-- Header Content -->
+	<div class="header_container">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="header_content d-flex flex-row align-items-center justify-content-start">
+						<div class="logo_container" style="width:200px">
+							<a href="../main/main.do">
+								<div class="logo_text">Unic<span>at</span></div>
+							</a>
+						</div>
+						<nav class="main_nav_contaner">
+							<div class="w_c_wrapper">
+							<ul class="work_class">
+								<li><a href="../main/main.do" 
+								<%if(menu.equals("work")){%>
+									style="color: #A593E0"
+								<%} else{%>
+									style="color: gray;"
+								<%}%>
+								>작품</a></li>
+								<li>/</li>
+								<li><a href="../main/cmain.do" 
+								<%if(menu.equals("class")){%>
+									style="color: #A593E0"
+								<%} else{%>
+									style="color: gray;"
+								<%}%>
+								>클래스</a></li>
+							
+							</ul>
+							</div>
+							<div class="w_c_wrapper"> <!--  -->
+							<%if(menu.equals("work")) {%>
+							<ul class="main_nav">
+								<li>
+									<a href="#" onmouseover="view(true)" onmouseout="view(false)">
+									<div id="category_size">카테고리</div></a>
+								</li>
+								<li class="active"><a href="../main/main.do">홈</a></li>
+								<li><a href="#">작품 전체</a></li>
+								<li><a href="#">인기 작품</a></li>
+								<li><a href="../work/work_list.do">오늘의 발견</a></li>
+								<li><a href="#">실시간 구매</a></li>
+								<li><a href="#">작가님 추천</a></li>
+								<li><a href="#">실시간 추천</a></li>
+							</ul>
+							</div>
+							<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
+							<%}else if(menu.equals("class")) {%>
+							<ul class="main_nav">
+								<li>
+									<a href="#" onmouseover="view(true)" onmouseout="view(false)">
+									<div id="category_size">카테고리</div></a>
+								</li>
+								<li class="active"><a href="../main/cmain.do">홈</a></li>
+								<li><a href="../online/online.do">온라인</a></li>
+								<li><a href="../offclass/offclass.do">오프라인</a></li>
+								<li><a href="#">인기 클래스</a></li>
+								<li><a href="#">추천 클래스</a></li>
+								<li><a href="#">신규 클래스</a></li>
+								<li><a href="../offclass/reserve.do">클래스 예약</a></li>
+							</ul>
+							</div>
+							<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
+							<%} %>
+							<div class="shopping_cart"><a href="../cart/cart.do"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></div>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+
+	<!-- Header Search Panel -->
+	<div class="header_search_container">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="header_search_content d-flex flex-row align-items-center justify-content-end">
+						<form action="#" class="header_search_form">
+							<input type="search" class="search_input" placeholder="Search" required="required">
+							<button class="header_search_button d-flex flex-column align-items-center justify-content-center">
+								<i class="fa fa-search" aria-hidden="true"></i>
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>			
+	</div>			
+</header>
+
+	
+	<!-- Home -->
+     <div style="margin-top:150px"></div>
 
 	<!-- Blog -->
 
@@ -158,149 +247,49 @@
 			<div class="row">
 
 				<!-- Blog Content -->
-				<div class="col-lg-8">
+				<div class="col-lg-6">
 					<div class="blog_content">
 						<div class="blog_meta">
 							<ul>
-								<li>Post on ${vo.w_regdate }</li>
-								<li>By  ${vo.w_artist }</li>
+							    <li>By          ${vo.w_artist }</li>
+								<li>Post on     ${vo.w_regdate }</li>
 							</ul>
 						</div>
-						<div class="blog_image"><img src="vo.w_poster" alt=""></div>
-						<p>${vo.w_content }</p>
-					</div>
-					<div class="blog_extra d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
-						<div class="blog_tags">
-							<span>Tags: </span>
-							<ul>
-								<li>${vo.w_tag }</li>
-							</ul>
-						</div>
-						<div class="blog_social ml-lg-auto">
-							<span>Share: </span>
-							<ul>
-								<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
-							</ul>
-						</div>
-					</div>
-					<!-- Comments -->
-					<div class="comments_container">
-						<div class="comments_title"><span>30</span> Comments</div>
-						<ul class="comments_list">
-							<li>
-								<div class="comment_item d-flex flex-row align-items-start jutify-content-start">
-									<div class="comment_image"><div><img src="images/comment_1.jpg" alt=""></div></div>
-									<div class="comment_content">
-										<div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
-											<div class="comment_author"><a href="#">Jennifer Aniston</a></div>
-											<div class="comment_rating"><div class="rating_r rating_r_4"><i></i><i></i><i></i><i></i><i></i></div></div>
-											<div class="comment_time ml-auto">October 19,2018</div>
-										</div>
-										<div class="comment_text">
-											<p>There are many variations of passages of Lorem Ipsum available, but the majority have alteration in some form, by injected humour.</p>
-										</div>
-										<div class="comment_extras d-flex flex-row align-items-center justify-content-start">
-											<div class="comment_extra comment_likes"><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i><span>108</span></a></div>
-											<div class="comment_extra comment_reply"><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span>Reply</span></a></div>
-										</div>
+						<div class="blog_image"><img src="${vo.w_poster }" style="width:720px; height:600ps object-fit:fill" alt=""></div>
+						<div style="margin-top:15px"></div>
+						<div class="team_body" style="width:720px; height: 450px">
+							<div class="team_title">${vo.w_content }</div>
+							 <div class="social_list">
+								<span>Tags: </span>
+										<ul>
+											<li>${vo.w_tag }</li>
+										</ul>
 									</div>
 								</div>
-								<ul>
-									<li>
-										<div class="comment_item d-flex flex-row align-items-start jutify-content-start">
-											<div class="comment_image"><div><img src="images/comment_2.jpg" alt=""></div></div>
-											<div class="comment_content">
-												<div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
-													<div class="comment_author"><a href="#">John Smith</a></div>
-													<div class="comment_rating"><div class="rating_r rating_r_4"><i></i><i></i><i></i><i></i><i></i></div></div>
-													<div class="comment_time ml-auto">October 19,2018</div>
-												</div>
-												<div class="comment_text">
-													<p>There are many variations of passages of Lorem Ipsum available, but the majority have alteration in some form, by injected humour.</p>
-												</div>
-												<div class="comment_extras d-flex flex-row align-items-center justify-content-start">
-													<div class="comment_extra comment_likes"><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i><span>108</span></a></div>
-													<div class="comment_extra comment_reply"><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span>Reply</span></a></div>
-												</div>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</li>
-							<li>
-								<div class="comment_item d-flex flex-row align-items-start jutify-content-start">
-									<div class="comment_image"><div><img src="images/comment_3.jpg" alt=""></div></div>
-									<div class="comment_content">
-										<div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
-											<div class="comment_author"><a href="#">Jane Austen</a></div>
-											<div class="comment_rating"><div class="rating_r rating_r_4"><i></i><i></i><i></i><i></i><i></i></div></div>
-											<div class="comment_time ml-auto">October 19,2018</div>
-										</div>
-										<div class="comment_text">
-											<p>There are many variations of passages of Lorem Ipsum available, but the majority have alteration in some form, by injected humour.</p>
-										</div>
-										<div class="comment_extras d-flex flex-row align-items-center justify-content-start">
-											<div class="comment_extra comment_likes"><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i><span>108</span></a></div>
-											<div class="comment_extra comment_reply"><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span>Reply</span></a></div>
-										</div>
-									</div>
-								</div>
-							</li>
-						</ul>
-						<div class="add_comment_container">
-							<div class="add_comment_title">Write a comment</div>
-							<div class="add_comment_text">Your email address will not be published. Required fields are marked *</div>
-							<form action="#" class="comment_form">
-								<div>
-									<div class="form_title">Review*</div>
-									<textarea class="comment_input comment_textarea" required="required"></textarea>
-								</div>
-								<div class="row">
-									<div class="col-md-6 input_col">
-										<div class="form_title">Name*</div>
-										<input type="text" class="comment_input" required="required">
-									</div>
-									<div class="col-md-6 input_col">
-										<div class="form_title">Email*</div>
-										<input type="text" class="comment_input" required="required">
-									</div>
-								</div>
-								<div class="comment_notify">
-									<input type="checkbox" id="checkbox_notify" name="regular_checkbox" class="regular_checkbox checkbox_account" checked>
-									<label for="checkbox_notify"><i class="fa fa-check" aria-hidden="true"></i></label>
-									<span>Notify me of new posts by email</span>
-								</div>
-								<div>
-									<button type="submit" class="comment_button trans_200">submit</button>
-								</div>
-							</form>
-						</div>
-					</div>
+				 </div>
 				</div>
-
 				<!-- Blog Sidebar -->
-				<div class="col-lg-4">
+				<div class="col-lg-6">
+				 <div style="margin-top:45px"></div>
 					<div class="sidebar">
-
 						<!-- Categories -->
-						<div class="sidebar_section">
-							<div class="sidebar_section_title">${vo.w_title }</div>
-							<p>${vo.w_artist }</p>
+						<div class="team_body" style="width:650px; height: 300px; text-align:left; vertical-align:text-top;">
+
+							  <div class="sidebar_section">
+							<div class="sidebar_section_title"><h2>${vo.w_title }</h2></div>
 							<div class="sidebar_categories">
 								<ul class="categories_list">
-									<li><class="clearfix">${vo.w_artist }<span>(25)</span></li>
-									<li><class="clearfix">${vo.w_price }<span>${vo.w_like }</span></li>
-									<li><class="clearfix">적립금  ${vo.w_point }P<span>${vo.w_purchase }</span></li>
-									<li><class="clearfix">평점  ${vo.w_score }<span></span></li>
-									<li><class="clearfix">배송기간 ${vo.w_delivery }<span></span></li>
+									<li class="clearfix">${vo.w_artist }<span>(25)</span></li>
+									<li class="clearfix">${vo.w_price }<span>${vo.w_like }</span></li>
+									<li class="clearfix">적립금  ${vo.w_point }P<span>${vo.w_purchase }</span></li>
+									<li class="clearfix">평점  ${vo.w_score }<span></span></li>
+									<li class="clearfix">배송기간 ${vo.w_delivery }<span></span></li>
 								</ul>
 							</div>
-							
+						    </div>
+
 						</div>
+						
 
 						<!-- Latest News -->
 						<div class="sidebar_section">
@@ -336,222 +325,13 @@
 
 							</div>
 						</div>
-
-						<!-- Gallery -->
-						<div class="sidebar_section">
-							<div class="sidebar_section_title">Instagram</div>
-							<div class="sidebar_gallery">
-								<ul class="gallery_items d-flex flex-row align-items-start justify-content-between flex-wrap">
-									<li class="gallery_item">
-										<div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
-										<a class="colorbox" href="images/gallery_1_large.jpg">
-											<img src="images/gallery_1.jpg" alt="">
-										</a>
-									</li>
-									<li class="gallery_item">
-										<div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
-										<a class="colorbox" href="images/gallery_2_large.jpg">
-											<img src="images/gallery_2.jpg" alt="">
-										</a>
-									</li>
-									<li class="gallery_item">
-										<div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
-										<a class="colorbox" href="images/gallery_3_large.jpg">
-											<img src="images/gallery_3.jpg" alt="">
-										</a>
-									</li>
-									<li class="gallery_item">
-										<div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
-										<a class="colorbox" href="images/gallery_4_large.jpg">
-											<img src="images/gallery_4.jpg" alt="">
-										</a>
-									</li>
-									<li class="gallery_item">
-										<div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
-										<a class="colorbox" href="images/gallery_5_large.jpg">
-											<img src="images/gallery_5.jpg" alt="">
-										</a>
-									</li>
-									<li class="gallery_item">
-										<div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
-										<a class="colorbox" href="images/gallery_6_large.jpg">
-											<img src="images/gallery_6.jpg" alt="">
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-
-						<!-- Tags -->
-						<div class="sidebar_section">
-							<div class="sidebar_section_title">Tags</div>
-							<div class="sidebar_tags">
-								<ul class="tags_list">
-									<li><a href="#">creative</a></li>
-									<li><a href="#">unique</a></li>
-									<li><a href="#">photography</a></li>
-									<li><a href="#">ideas</a></li>
-									<li><a href="#">wordpress</a></li>
-									<li><a href="#">startup</a></li>
-								</ul>
-							</div>
-						</div>
-
-						<!-- Banner -->
-						<div class="sidebar_section">
-							<div class="sidebar_banner d-flex flex-column align-items-center justify-content-center text-center">
-								<div class="sidebar_banner_background" style="background-image:url(images/banner_1.jpg)"></div>
-								<div class="sidebar_banner_overlay"></div>
-								<div class="sidebar_banner_content">
-									<div class="banner_title">Free Book</div>
-									<div class="banner_button"><a href="#">download now</a></div>
-								</div>
-							</div>
-						</div>
-
-					</div>
+         			</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!-- Newsletter -->
 
-	<div class="newsletter">
-		<div class="newsletter_background" style="background-image:url(images/newsletter_background.jpg)"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<div class="newsletter_container d-flex flex-lg-row flex-column align-items-center justify-content-start">
-
-						<!-- Newsletter Content -->
-						<div class="newsletter_content text-lg-left text-center">
-							<div class="newsletter_title">sign up for news and offers</div>
-							<div class="newsletter_subtitle">Subcribe to lastest smartphones news & great deals we offer</div>
-						</div>
-
-						<!-- Newsletter Form -->
-						<div class="newsletter_form_container ml-lg-auto">
-							<form action="#" id="newsletter_form" class="newsletter_form d-flex flex-row align-items-center justify-content-center">
-								<input type="email" class="newsletter_input" placeholder="Your Email" required="required">
-								<button type="submit" class="newsletter_button">subscribe</button>
-							</form>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Footer -->
-
-	<footer class="footer">
-		<div class="footer_background" style="background-image:url(images/footer_background.png)"></div>
-		<div class="container">
-			<div class="row footer_row">
-				<div class="col">
-					<div class="footer_content">
-						<div class="row">
-
-							<div class="col-lg-3 footer_col">
-					
-								<!-- Footer About -->
-								<div class="footer_section footer_about">
-									<div class="footer_logo_container">
-										<a href="#">
-											<div class="footer_logo_text">Unic<span>at</span></div>
-										</a>
-									</div>
-									<div class="footer_about_text">
-										<p>Lorem ipsum dolor sit ametium, consectetur adipiscing elit.</p>
-									</div>
-									<div class="footer_social">
-										<ul>
-											<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-										</ul>
-									</div>
-								</div>
-								
-							</div>
-
-							<div class="col-lg-3 footer_col">
-					
-								<!-- Footer Contact -->
-								<div class="footer_section footer_contact">
-									<div class="footer_title">Contact Us</div>
-									<div class="footer_contact_info">
-										<ul>
-											<li>Email: Info.deercreative@gmail.com</li>
-											<li>Phone:  +(88) 111 555 666</li>
-											<li>40 Baria Sreet 133/2 New York City, United States</li>
-										</ul>
-									</div>
-								</div>
-								
-							</div>
-
-							<div class="col-lg-3 footer_col">
-					
-								<!-- Footer links -->
-								<div class="footer_section footer_links">
-									<div class="footer_title">Contact Us</div>
-									<div class="footer_links_container">
-										<ul>
-											<li><a href="index.html">Home</a></li>
-											<li><a href="about.html">About</a></li>
-											<li><a href="contact.html">Contact</a></li>
-											<li><a href="#">Features</a></li>
-											<li><a href="courses.html">Courses</a></li>
-											<li><a href="#">Events</a></li>
-											<li><a href="#">Gallery</a></li>
-											<li><a href="#">FAQs</a></li>
-										</ul>
-									</div>
-								</div>
-								
-							</div>
-
-							<div class="col-lg-3 footer_col clearfix">
-					
-								<!-- Footer links -->
-								<div class="footer_section footer_mobile">
-									<div class="footer_title">Mobile</div>
-									<div class="footer_mobile_content">
-										<div class="footer_image"><a href="#"><img src="images/mobile_1.png" alt=""></a></div>
-										<div class="footer_image"><a href="#"><img src="images/mobile_2.png" alt=""></a></div>
-									</div>
-								</div>
-								
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row copyright_row">
-				<div class="col">
-					<div class="copyright d-flex flex-lg-row flex-column align-items-center justify-content-start">
-						<div class="cr_text"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
-						<div class="ml-lg-auto cr_links">
-							<ul class="cr_list">
-								<li><a href="#">Copyright notification</a></li>
-								<li><a href="#">Terms of Use</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
-</div>
 
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="styles/bootstrap4/popper.js"></script>
@@ -560,5 +340,18 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="plugins/parallax-js-master/parallax.min.js"></script>
 <script src="plugins/colorbox/jquery.colorbox-min.js"></script>
 <script src="js/blog_single.js"></script>
+
+<script src="../main/js/jquery-3.2.1.min.js"></script>
+<script src="../main/styles/bootstrap4/popper.js"></script>
+<script src="../main/styles/bootstrap4/bootstrap.min.js"></script>
+<script src="../main/plugins/greensock/TweenMax.min.js"></script>
+<script src="../main/plugins/greensock/TimelineMax.min.js"></script>
+<script src="../main/plugins/scrollmagic/ScrollMagic.min.js"></script>
+<script src="../main/plugins/greensock/animation.gsap.min.js"></script>
+<script src="../main/plugins/greensock/ScrollToPlugin.min.js"></script>
+<script src="../main/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="../main/plugins/easing/easing.js"></script>
+<script src="../main/plugins/parallax-js-master/parallax.min.js"></script>
+<script src="../main/js/custom.js"></script>
 </body>
 </html>
