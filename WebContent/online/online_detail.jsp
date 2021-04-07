@@ -52,18 +52,26 @@
 			}
 
 		});
+		$('.replyBtn').click((event)=>{
+			event.preventDefault();
+			let msg = $('#msg').val();
+			console.log(msg);
+			$.ajax({
+			    type:'post',
+			    url: '../online/online_reply_insert.do',
+			   	data: {
+			   	'cno':${ondVO.cno},
+			    'msg':msg
+			    },
+			    success: function(result){
+					
+			    		
+			    }
+			});
+		})
 	});
+
 	
-	$.ajax({
-	    type:'post',
-	    url: '../onlineReply.do',
-	   data: {
-	    'msg':msg
-	    },
-	    success: function(result){
-	    	$('.reply').html(result);
-	    }
-	})
 	
 </script>
 <style type="text/css">
@@ -313,7 +321,55 @@
 
 									<!-- Description -->
 									<div class="tab_panel active reply">
-										여기
+	<c:if test="${sessionScope.id!=null }">
+		<button>
+			<table class="table">
+				<tr>
+					<td><textarea rows="10" cols="100" name="msg" id="msg"></textarea> <%--<c:set var="page" value="${param.page}"/> 
+								              									<input type="hidden" name=cno value="${page}">--%>
+						<input type="hidden" name=cno value="${ondVO.cno}"> 
+						<input type="submit" value="댓글쓰기" class="btn btn-sm btn-danger replyBtn">
+						<c:forEach var="rvo" items="${rList }">
+							<li>
+								<article>
+									<header>
+										<figure class="avatar">
+											<c:if test="${sessionScope.id==rvo.id }">
+												<span class="btn btn-xs btn-success updateBtn"
+													data-no="${rvo.no }">수정</span>
+												<span class="btn btn-xs btn-danger delBtn"
+													data-no="${rvo.no }" data-cno="${ondVO.cno }">삭제</span>
+											</c:if>
+										</figure>
+										<address>
+											By <a href="#">${rvo.name }</a>
+										</address>
+										<time datetime="2045-04-06T08:15+00:00">${rvo.dbday }</time>
+									</header>
+									<div class="comcont">
+										<pre style="white-space: pre-wrap; border: none; background-color: white;">${rvo.msg }</pre>
+									</div>
+								</article>
+							</li>
+							<li style="display: none" id="m${rvo.no }" class="updateli">
+								<button>
+									<table class="table">
+										<tr>
+											<td>
+												<textarea rows="7" cols="25" name="msg">${rvo.msg }</textarea>
+												<input type="hidden" name=cno value="${ondVO.cno }">
+												<input type="hidden" name=no value="${rvo.no }"> <input type="submit" value="댓글수정" class="btn btn-sm btn-danger">
+											</td>
+										</tr>
+									</table>
+								</button>
+							</li>
+						</c:forEach>
+						</td>
+				</tr>
+			</table>
+		</button>
+	</c:if>
 									</div>
 
 									<!-- Curriculum -->
@@ -710,9 +766,8 @@
 											<div class="feature_text ml-auto">35</div>
 										</div>
 										
-
-											<a href="../online/jjim.do?cno=13555&wno=159" class="myButton">찜</a>
-									
+											<a href="../member/jjim.do?no=${ondVO.cno}&type=cn" class="myButton">찜</a>
+											
 									</div>
 								</div>
 							</div>
