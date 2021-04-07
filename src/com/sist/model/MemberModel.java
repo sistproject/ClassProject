@@ -102,14 +102,6 @@ public class MemberModel {
 		try {
 			request.setCharacterEncoding("UTF-8");
 		}catch (Exception e) {}
-		
-		String id=request.getParameter("id");
-		String pwd=request.getParameter("pwd");
-		
-		MemberDAO dao = MemberDAO.newInstance();
-		String result = dao.isLogin(id, pwd);
-		
-		request.setAttribute("result",result);
 		return "../member/login_ok.jsp";
 	}
 	@RequestMapping("member/member_update.do")

@@ -9,6 +9,8 @@ import com.sist.member.memberVO;
 import com.sist.vo.MemberVO;
 
 import javax.naming.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 public class MemberDAO {
    private Connection conn;
    private PreparedStatement ps;
@@ -72,7 +74,7 @@ public class MemberDAO {
 	   }
 	   return cnt;
    }
-   public String isLogin(String id,String pwd) {
+   public String isLogin(String id,String pwd,HttpServletRequest request) {
 	   String result="";
 	   try {
 		   getConnection();
@@ -86,7 +88,7 @@ public class MemberDAO {
 		   if(count==0) {// ID가 없는 상태
 			   result="NOID";
 		   } else {// ID가 존재하는 상태
-			   sql="SELECT pwd,name FROM member "
+			   sql="SELECT pwd,name,admin FROM member "
 				  +"WHERE id=?";
 			   ps=conn.prepareStatement(sql);
 			   ps.setString(1, id);
@@ -94,9 +96,16 @@ public class MemberDAO {
 			   rs.next();
 			   String db_pwd=rs.getString(1);
 			   String name=rs.getString(2);
+			   int admin=rs.getInt(3);
 			   rs.close();
 			   
-			   if(db_pwd.equals(pwd)) result=name;
+			   if(db_pwd.equals(pwd)) {
+				   result=name;
+				   if(admin==1) {
+					   HttpSession session = request.getSession();
+					   session.setAttribute("admin", "1");
+				   }
+			   }
 			   else result="NOPWD";
 		   }
 	   }catch(Exception ex) {

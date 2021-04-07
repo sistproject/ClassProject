@@ -19,10 +19,10 @@ public class WorkModel {
 	@RequestMapping("work/work_list.do")
 	public String work_list(HttpServletRequest request, HttpServletResponse response)
 	{
-		
+
 		try{
 			String page=request.getParameter("page");
-		
+
 		if(page==null)
 			page="1";
 		int curpage=Integer.parseInt(page);
@@ -30,14 +30,14 @@ public class WorkModel {
 		List<WorkDetailVO> rList=dao.WorkListData(curpage);
 		int count=dao.WorkMainCount();
 		int totalpage=(int)(Math.ceil(count/12.0));
-		
+
 		final int BLOCK=10;
 		int startpage=((curpage-1)/BLOCK*BLOCK)+1;
 		int endpage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
 		if(endpage>totalpage)
 			endpage=totalpage;
 		System.out.println("================================list");
-		
+
 		request.setAttribute("count", count);
 		request.setAttribute("rList", rList);
 		request.setAttribute("block", BLOCK);
@@ -57,7 +57,7 @@ public class WorkModel {
 	  {
 		try
 		{
-			
+
 		  String w_no=request.getParameter("w_no");
 		  System.out.println("okkkkkkkkkkkkkkkkkkk");
 		  System.out.println(w_no);

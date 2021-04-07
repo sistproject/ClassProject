@@ -101,6 +101,10 @@ function checkNumber(event) {
           <a href="#" class="list-group-item" style="color:#566270">쿠폰함</a>
           <a href="#" class="list-group-item" style="color:#566270">찜목록</a>
         </div>
+        <div class="help" onclick="location.href='../board/qaboard.do'" style="cursor:pointer;">
+          <span>도움이 필요하신가요?</span>
+          <div>1:1 문의하기</div>
+        </div>
       </div>
       <!-- /.col-lg-3 -->
 

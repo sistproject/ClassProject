@@ -5,7 +5,7 @@
     String id=request.getParameter("id");
     String pwd=request.getParameter("password");
 
-    String result=dao.isLogin(id, pwd);
+    String result=dao.isLogin(id, pwd,request);
     if(result.equals("NOID")) { %>
          <script>
          alert("ID가 존재하지 않습니다!!");

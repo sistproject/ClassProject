@@ -265,7 +265,7 @@ function view2(opt2){
 								</div>
 								<div class="team_body" style="width: 250px; height: 295px">
 									<div class="team_title">
-										<a href="../work/work_detai.do?no=${vo.w_no }">${vo.w_title }</a>
+										<a href="../work/work_detail.do?no=${vo.w_no }">${vo.w_title }</a>
 									</div>
 									<div class="team_subtitle">${vo.w_artist }</div>
 									<div class="social_list">

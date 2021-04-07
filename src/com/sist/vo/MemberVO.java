@@ -15,7 +15,14 @@ package com.sist.vo;
 import java.util.*;
 public class MemberVO {
 	private String name,id,email,tel,post,addr1,addr2,sex,pwd,birth;
+	private int admin;
 	
+	public int getAdmin() {
+		return admin;
+	}
+	public void setAdmin(int admin) {
+		this.admin = admin;
+	}
 	public String getPwd() {
 		return pwd;
 	}
