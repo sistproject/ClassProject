@@ -30,6 +30,7 @@ public class OnlineModel {
 		
 		OnlineDAO dao = OnlineDAO.newInstance();
 		List<OnlineVO> omList = dao.onlineData(curpage);
+		
 		int count = dao.onlineMainCount();
 		int totalPage = (int) (Math.ceil(count / 12.0));
 
@@ -106,10 +107,10 @@ public class OnlineModel {
 		  System.out.println("출력");
 		  System.out.println(cno);
 		  System.out.println("했나?");
-		  Cookie cookie=new Cookie("m"+cno, cno);// 문자열만 저장이 가능 
-		  cookie.setMaxAge(60*60);
-		  cookie.setPath("/");
-		  response.addCookie(cookie);
+		  Cookie cookies=new Cookie("m"+cno, cno);// 문자열만 저장이 가능 
+		  cookies.setMaxAge(60*60);
+		  cookies.setPath("/");
+		  response.addCookie(cookies);
 		  System.out.println("==============================쿠키 생성");
 		  return "redirect:../online/online_detail.do?cno="+cno;
 	  }
@@ -224,5 +225,30 @@ public class OnlineModel {
 		dao.onlineReplyUpdate(vo);
 		return "redirect:../online/online_detail.do?cno=" + cno;
 	}
+	
+	// ajax이용해서 댓글 처리
+	@RequestMapping("online/onlineReply.do")
+	public String online_reply_ajax(HttpServletRequest request, HttpServletResponse response) {
+		String msg = request.getParameter("msg");
+		
+		
+		return "redirect:../online/online_detail.do?msg="+msg;
+	}	
+	
+	
+	@RequestMapping("online/jjim.do")
+	  public String online_jjim(HttpServletRequest request,HttpServletResponse response)
+	  {
+		  String cno=request.getParameter("cno");
+		  String wno = request.getParameter("wno");
+		  HttpSession session=request.getSession();
+		  String id=(String)session.getAttribute("id");
+		  
+		  OnlineDAO dao=OnlineDAO.newInstance();
+		  // 저장 
+		  dao.onlineJjimInsert(Integer.parseInt(cno),Integer.parseInt(wno), id);
+		  return "redirect:../online/online_detail.do?cno="+cno;
+	  }
+	
 
 }

@@ -207,7 +207,7 @@ transition: .5s ease;
 				<c:forEach var="om" items="${omList}"> 
 					<div class="col-lg-4 course_col flexbox" data-aos="zoom-in-down" >
 						
-						<div class="course">
+						<div class="course" style="width:240px; height:367px; margin-right: 5px">
 							
 							<div class="course_image"><img src="${fn:substring(om.cposter,0,fn:indexOf(om.cposter,'^'))}" alt=""/></div>
 							<div class="course_body">
@@ -226,7 +226,7 @@ transition: .5s ease;
 									</div>
 									<div class="course_info">
 										<i class="fa fa-star" aria-hidden="true"></i>
-										<span>만족도</span> 
+<%-- 										<span>평점: ${om.cscore }</span>  --%>
 									</div>
 									<div class="course_price ml-auto">${om.cprice}</div>
 								</div>
