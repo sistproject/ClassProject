@@ -312,14 +312,7 @@
 																		</div>
 																	</article>
 																</li>
-
-															</c:forEach></td>
-													</tr>
-												</table>
-											</form>
-
-
-											<li style="display: none" id="m${rvo.no }" class="updateli">
+																<li style="display: none" id="m${rvo.no }" class="updateli">
 												<form action="../online/online_reply_update.do"
 													method="post">
 													<table class="table">
@@ -333,7 +326,15 @@
 													</table>
 												</form>
 											</li>
+																
 
+															</c:forEach></td>
+													</tr>
+												</table>
+											</form>
+
+
+											
 
 										</c:if>
 									</div>
@@ -507,23 +508,23 @@
 											<div class="review_rating_bars">
 												<ul>
 													<li><span>5 Star</span>
-													<div class="review_rating_bar">
+														<div class="review_rating_bar">
 															<div style="width: 90%;"></div>
 														</div></li>
 													<li><span>4 Star</span>
-													<div class="review_rating_bar">
+														<div class="review_rating_bar">
 															<div style="width: 75%;"></div>
 														</div></li>
 													<li><span>3 Star</span>
-													<div class="review_rating_bar">
+														<div class="review_rating_bar">
 															<div style="width: 32%;"></div>
 														</div></li>
 													<li><span>2 Star</span>
-													<div class="review_rating_bar">
+														<div class="review_rating_bar">
 															<div style="width: 10%;"></div>
 														</div></li>
 													<li><span>1 Star</span>
-													<div class="review_rating_bar">
+														<div class="review_rating_bar">
 															<div style="width: 3%;"></div>
 														</div></li>
 												</ul>
