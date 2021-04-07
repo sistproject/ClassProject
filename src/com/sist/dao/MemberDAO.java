@@ -183,6 +183,26 @@ public class MemberDAO {
 	   }
 	   return vo;
    }
+   public void jjim(String id, int no,String type) {
+	   try {
+		   getConnection();
+		   
+		   String sql="INSERT INTO jjim(no,id,?) VALUES("
+				   +"oj_no_seq.nextval,?,?)";
+		   ps=conn.prepareStatement(sql);
+		   
+		   if(type.equals("w")) ps.setString(1, "w_no");
+		   else ps.setString(1, "c_no");
+		   ps.setString(2, id);
+		   ps.setInt(3, no);
+		   
+		   ps.executeUpdate();
+	   }catch(Exception ex) {
+		   ex.printStackTrace();
+	   }finally {
+		   disConnection();
+	   }
+   }
 }
 
 

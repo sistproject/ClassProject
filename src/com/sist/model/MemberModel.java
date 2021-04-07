@@ -148,5 +148,18 @@ public class MemberModel {
 		
 		return "redirect: ../member/member_detail.do";
 	}
+	@RequestMapping("member/jjim.do")
+	public String jjim(HttpServletRequest request,HttpServletResponse response) {
+
+		String no=request.getParameter("no");
+		String type=request.getParameter("type");  //w(work), cn(classonline), cf(classoffline)
+	 	HttpSession session=request.getSession();
+	 	String id=(String)session.getAttribute("id");
+		MemberDAO dao = MemberDAO.newInstance();
+		dao.jjim(id, Integer.parseInt(no), type);
+		if(type.equals("w")) return "redirect:../work/work_detail.do?w_no="+no;
+		else if(type.equals("cn")) return "redirect:../online/online_detail.do?cno="+no;
+		return "redirect:../offclass/offclass_detail.do?cno="+no;
+	}
 	
 }
