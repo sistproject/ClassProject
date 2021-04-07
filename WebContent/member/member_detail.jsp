@@ -109,6 +109,7 @@ function checkNumber(event) {
       <!-- /.col-lg-3 -->
 
 		<div class="wrapper row3 join_row">
+		<div style="height:30px"></div>
 		<h2 class="sectiontitle" >회원 정보 수정</h2>
 		<div style="height:30px"></div>
 		<form method=post action="../member/member_update.do" name="form">
@@ -179,7 +180,7 @@ function checkNumber(event) {
 		<th width=20% class="text-right">Post</th>
 		<td width=80%>
 		<input type=text name=post id=post class="input-sm" size=10 style="float:left" value="${vo.post }" readonly>
-		<input type=button value="우편번호 검색" class="btn btn-sm postbtn" id=postbtn style="float:left;background-color:#A593E0">
+		&nbsp;&nbsp;<input type=button value="우편번호 검색" class="btn btn-sm postbtn" id=postbtn style="float:left;background-color:#A593E0">
 		</td>
 		</tr>
 		<tr>
