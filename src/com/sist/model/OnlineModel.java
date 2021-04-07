@@ -215,6 +215,7 @@ public class OnlineModel {
 		}
 		String msg = request.getParameter("msg");
 		String no = request.getParameter("no");
+		System.out.println("받아온 no값"+ no + "출력");
 		String cno = request.getParameter("cno");
 		OnlineReplyVO vo = new OnlineReplyVO();
 		vo.setNo(Integer.parseInt(no));
