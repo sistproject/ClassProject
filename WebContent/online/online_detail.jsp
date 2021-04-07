@@ -34,8 +34,7 @@
 				function() {
 					let no = $(this).attr("data-no");
 					let cno = $(this).attr("data-cno");
-					location.href = "../online/online_reply_delete.do?no=" + no
-							+ "&cno=" + cno;
+					location.href = "../online/online_reply_delete.do?no=" + no+ "&cno=" + cno;
 				});
 
 		$('.updateBtn').click(function() {
@@ -54,7 +53,43 @@
 
 		});
 	});
+	
+	$.ajax({
+	    type:'post',
+	    url: '../onlineReply.do',
+	   data: {
+	    'msg':msg
+	    },
+	    success: function(result){
+	    	$('.reply').html(result);
+	    }
+	})
+	
 </script>
+<style type="text/css">
+.myButton {
+	background-color:#f0ecc5;
+	border-radius:28px;
+	border:1px solid #f0ecc5;
+	display:inline-block;
+	cursor:pointer;
+	color:#080608;
+	font-family:Times New Roman;
+	font-size:17px;
+	font-weight:bold;
+	padding:13px 40px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #f0ecc5;
+}
+.myButton:hover {
+	background-color:#f0ecc5;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+</style>
 </head>
 <body>
 
@@ -277,66 +312,8 @@
 
 
 									<!-- Description -->
-									<div class="tab_panel active">
-										<div class="tab_panel_title">수강평</div>
-										<c:if test="${sessionScope.id!=null }">
-											<form action="../online/online_reply_insert.do" method="post">
-												<table class="table">
-													<tr>
-														<td><textarea rows="10" cols="100" name="msg"></textarea>
-															<%--<c:set var="page" value="${param.page}"/> 
-								              <input type="hidden" name=cno value="${page}">--%>
-															<input type="hidden" name=cno value="${ondVO.cno}">
-															<input type="submit" value="댓글쓰기"
-															class="btn btn-sm btn-danger"> <c:forEach
-																var="rvo" items="${rList }">
-																<li>
-																	<article>
-																		<header>
-																			<figure class="avatar">
-																				<c:if test="${sessionScope.id==rvo.id }">
-																					<span class="btn btn-xs btn-success updateBtn"
-																						data-no="${rvo.no }">수정</span>
-																					<span class="btn btn-xs btn-danger delBtn"
-																						data-no="${rvo.no }" data-cno="${ondVO.cno }">삭제</span>
-																				</c:if>
-																			</figure>
-																			<address>
-																				By <a href="#">${rvo.name }</a>
-																			</address>
-																			<time datetime="2045-04-06T08:15+00:00">${rvo.dbday }</time>
-																		</header>
-																		<div class="comcont">
-																			<pre
-																				style="white-space: pre-wrap; border: none; background-color: white;">${rvo.msg }</pre>
-																		</div>
-																	</article>
-																</li>
-																<li style="display: none" id="m${rvo.no }" class="updateli">
-												<form action="../online/online_reply_update.do"
-													method="post">
-													<table class="table">
-														<tr>
-															<td><textarea rows="7" cols="25" name="msg">${rvo.msg }</textarea>
-																<input type="hidden" name=cno value="${ondVO.cno }">
-																<input type="hidden" name=no value="${rvo.no }">
-																<input type="submit" value="댓글수정"
-																class="btn btn-sm btn-danger"></td>
-														</tr>
-													</table>
-												</form>
-											</li>
-																
-
-															</c:forEach></td>
-													</tr>
-												</table>
-											</form>
-
-
-											
-
-										</c:if>
+									<div class="tab_panel active reply">
+										여기
 									</div>
 
 									<!-- Curriculum -->
@@ -679,6 +656,9 @@
 							<!-- Feature -->
 							<div class="sidebar_section">
 								<div class="sidebar_section_title">Course Feature</div>
+								
+								
+								
 								<div class="sidebar_feature">
 									<div class="course_price">${ondVO.cprice }원</div>
 
@@ -729,10 +709,17 @@
 											</div>
 											<div class="feature_text ml-auto">35</div>
 										</div>
+										
 
+											<a href="../online/jjim.do?cno=13555&wno=159" class="myButton">찜</a>
+									
 									</div>
 								</div>
 							</div>
+							
+							
+							
+							
 
 							<!-- Feature -->
 							<div class="sidebar_section">

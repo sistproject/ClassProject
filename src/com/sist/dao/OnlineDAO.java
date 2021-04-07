@@ -50,7 +50,7 @@ public class OnlineDAO {
 		List<OnlineVO> list = new ArrayList<OnlineVO>();
 		try {// c_no, c_title, c_artist, c_price, c_poster, c_content
 			getConnection();
-			String sql = "SELECT c_no, c_title, c_poster, c_artist, c_price, c_content num "
+			String sql = "SELECT c_no, c_title, c_poster, c_artist, c_price, c_content, num "
 						+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_content, rownum as num "
 						+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_content "
 						+ "FROM thisclass ORDER BY c_no asc)) "
@@ -71,6 +71,7 @@ public class OnlineDAO {
 				vo.setCartist(rs.getString(4));
 				vo.setCprice(rs.getString(5));
 				vo.setCcontent(rs.getString(6));
+//				vo.setCscore(rs.getDouble(7));
 				list.add(vo);
 			}
 			rs.close();
@@ -240,6 +241,30 @@ public class OnlineDAO {
    				   +"WHERE no=?";
    		 ps=conn.prepareStatement(sql);
    		 ps.setInt(1, no);
+   		 ps.executeUpdate();
+   	 }catch(Exception ex)
+   	 {
+   		 ex.printStackTrace();
+   	 }
+   	 finally
+   	 {
+   		 disConnection();
+   	 }
+    }
+    
+    // 찜하기
+    public void onlineJjimInsert(int cno,int wno, String id)
+    {
+   	 try
+   	 {
+   		 getConnection();
+   		 String sql="INSERT INTO offclass_jjim VALUES("
+   				   +"oj_no_seq.nextval,?,?,?)";
+   		 ps=conn.prepareStatement(sql);
+   		 ps.setInt(3, wno);
+   		 ps.setInt(2, cno);
+   		 ps.setString(1, id);
+   		 
    		 ps.executeUpdate();
    	 }catch(Exception ex)
    	 {

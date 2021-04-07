@@ -14,12 +14,22 @@ C_CATEGORY           VARCHAR2(2000)
 C_INTRO              VARCHAR2(100)  
 C_SUBTITLES          VARCHAR2(2000) 
 C_CONTENTS           CLOB           
-INFOADDR             VARCHAR2(50)   
+INFOADDR             VARCHAR2(50)  
+C_SCORE              NUMBER(2,1)  
  * c_no, c_title, c_artist, c_price, c_onoff, c_poster, c_content
  */
 public class OnlineVO {
-	private int cno;
+	private int cno,wno;
+	private double cscore;
 	private String ctitle, cartist, cprice, cposter, ccontent;
+
+	public double getCscore() {
+		return cscore;
+	}
+
+	public void setCscore(double cscore) {
+		this.cscore = cscore;
+	}
 
 	public int getCno() {
 		return cno;
