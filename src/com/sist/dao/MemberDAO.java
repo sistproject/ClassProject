@@ -186,36 +186,33 @@ public class MemberDAO {
    public void jjim(String id, int no,String type) {
 	   try {
 		   getConnection();
-		   String sql="SELECT COUNT(*) FROM jjim WHERE id=? AND ?=?";
+		   String sql="SELECT COUNT(*) FROM jjim where id=? and c_no=?";
+		   if(type.equals("w")) sql="SELECT COUNT(*) FROM jjim where id=? and w_no=?";
 		   ps=conn.prepareStatement(sql);
+
 		   ps.setString(1, id);
-		   if(type.equals("w")) ps.setString(2, "w_no");
-		   else ps.setString(2, "c_no");
-		   ps.setInt(3, no);
-		   
+		   ps.setInt(2, no);
 		   ResultSet rs=ps.executeQuery();
 		   rs.next();
 		   int count=rs.getInt(1);
+		   System.out.println(count);
 		   rs.close();
 		   if(count==0) {
-			   sql="INSERT INTO jjim(no,id,?) VALUES("
+			   sql="INSERT INTO jjim(no,id,c_no) VALUES("
 					   +"jjim_no_seq.nextval,?,?)";
-			   ps=conn.prepareStatement(sql);
-			   
-			   if(type.equals("w")) ps.setString(1, "w_no");
-			   else ps.setString(1, "c_no");
-			   ps.setString(2, id);
-			   ps.setInt(3, no);
-			   ps.executeUpdate();
-		   }else {
-			   sql="DELETE FROM jjim WHERE id=? AND ?=?"
-					   +"jjim_no_seq.nextval,?,?)";
+			   if(type.equals("w")) sql="INSERT INTO jjim(no,id,w_no) VALUES(jjim_no_seq.nextval,?,?)";
 			   ps=conn.prepareStatement(sql);
 			   
 			   ps.setString(1, id);
-			   if(type.equals("w")) ps.setString(2, "w_no");
-			   else ps.setString(2, "c_no");
-			   ps.setInt(3, no);
+			   ps.setInt(2, no);
+			   ps.executeUpdate();
+		   }else {
+			   sql="DELETE FROM jjim WHERE id=? AND c_no=?";
+			   if(type.equals("w")) sql="DELETE FROM jjim WHERE id=? AND w_no=?";
+			   ps=conn.prepareStatement(sql);
+			   
+			   ps.setString(1, id);
+			   ps.setInt(2, no);
 			   ps.executeUpdate();
 		   }
 	   }catch(Exception ex) {

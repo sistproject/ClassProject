@@ -155,6 +155,8 @@ public class MemberModel {
 		String type=request.getParameter("type");  //w(work), cn(classonline), cf(classoffline)
 	 	HttpSession session=request.getSession();
 	 	String id=(String)session.getAttribute("id");
+	 	System.out.println(no);
+	 	System.out.println(type);
 		MemberDAO dao = MemberDAO.newInstance();
 		dao.jjim(id, Integer.parseInt(no), type);
 		if(type.equals("w")) return "redirect:../work/work_detail.do?w_no="+no;
