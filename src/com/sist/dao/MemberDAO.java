@@ -186,17 +186,38 @@ public class MemberDAO {
    public void jjim(String id, int no,String type) {
 	   try {
 		   getConnection();
-		   
-		   String sql="INSERT INTO jjim(no,id,?) VALUES("
-				   +"oj_no_seq.nextval,?,?)";
+		   String sql="SELECT COUNT(*) FROM jjim WHERE id=? AND ?=?";
 		   ps=conn.prepareStatement(sql);
-		   
-		   if(type.equals("w")) ps.setString(1, "w_no");
-		   else ps.setString(1, "c_no");
-		   ps.setString(2, id);
+		   ps.setString(1, id);
+		   if(type.equals("w")) ps.setString(2, "w_no");
+		   else ps.setString(2, "c_no");
 		   ps.setInt(3, no);
 		   
-		   ps.executeUpdate();
+		   ResultSet rs=ps.executeQuery();
+		   rs.next();
+		   int count=rs.getInt(1);
+		   rs.close();
+		   if(count==0) {
+			   sql="INSERT INTO jjim(no,id,?) VALUES("
+					   +"jjim_no_seq.nextval,?,?)";
+			   ps=conn.prepareStatement(sql);
+			   
+			   if(type.equals("w")) ps.setString(1, "w_no");
+			   else ps.setString(1, "c_no");
+			   ps.setString(2, id);
+			   ps.setInt(3, no);
+			   ps.executeUpdate();
+		   }else {
+			   sql="DELETE FROM jjim WHERE id=? AND ?=?"
+					   +"jjim_no_seq.nextval,?,?)";
+			   ps=conn.prepareStatement(sql);
+			   
+			   ps.setString(1, id);
+			   if(type.equals("w")) ps.setString(2, "w_no");
+			   else ps.setString(2, "c_no");
+			   ps.setInt(3, no);
+			   ps.executeUpdate();
+		   }
 	   }catch(Exception ex) {
 		   ex.printStackTrace();
 	   }finally {
