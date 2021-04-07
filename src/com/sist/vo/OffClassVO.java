@@ -16,9 +16,37 @@ package com.sist.vo;
 	C_CONTENTS           CLOB          
  */
 public class OffClassVO {
-	private int cno, conoff;
+	private int cno, conoff, chit;
+	private double cscore;
 	private String ctitle, ccontent, cposter, cartist, cprice, caddress, ctime, ccategory, cintro, csubtitles,
-			ccontents;
+			ccontents, infoaddr;
+	
+
+
+
+	public int getChit() {
+		return chit;
+	}
+
+	public void setChit(int chit) {
+		this.chit = chit;
+	}
+
+	public double getCscore() {
+		return cscore;
+	}
+
+	public void setCscore(double cscore) {
+		this.cscore = cscore;
+	}
+
+	public String getInfoaddr() {
+		return infoaddr;
+	}
+
+	public void setInfoaddr(String infoaddr) {
+		this.infoaddr = infoaddr;
+	}
 
 	public int getCno() {
 		return cno;
