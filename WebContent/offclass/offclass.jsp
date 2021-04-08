@@ -7,6 +7,14 @@
 <html lang="en">
 <head>
 <title>Courses</title>
+<style type="text/css">
+ul.pagination_list{
+	  display: table;
+	  margin-left: auto;
+	  margin-right: auto;
+}
+
+</style>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Unicat project">
@@ -221,7 +229,7 @@
 							            </c:if>
 							            <li ${type }><a href="../offclass/offclass.do?page=${i }">${i }</a></li>
 							          </c:forEach>
-							          <c:if test="${endPage<totalpage }">
+							          <c:if test="${endPage<totalPage }">
 							            <li><a href="../offclass/offclass.do?page=${endPage+1 }"> 다음</a></li>
 							          </c:if>
 							        </ul>

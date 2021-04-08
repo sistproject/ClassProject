@@ -63,7 +63,7 @@ public class OffClassDAO {
 			   String sql="SELECT c_no, c_poster, c_title, c_artist, c_price, c_category, infoaddr, c_score, num "
 						+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_category, infoaddr, c_score, rownum as num "
 						+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_category, infoaddr, c_score " 
-						+ "FROM thisclass WHERE c_onoff=1 ORDER BY c_no DESC)) "
+						+ "FROM thisclass WHERE c_onoff=1 ORDER BY c_no ASC)) "
 						+ "WHERE num BETWEEN ? AND ?";
 			   // 전송 객체 생성
 			   ps=conn.prepareStatement(sql);
@@ -83,7 +83,7 @@ public class OffClassDAO {
 				   	vo.setCprice(rs.getString(5));
 				   	vo.setCcategory(rs.getString(6));
 				   	vo.setInfoaddr(rs.getString(7));
-				   	vo.setCscore(rs.getString(8));
+				   	vo.setCscore(rs.getDouble(8));
 				   	list.add(vo);
 			   }
 			   rs.close();
@@ -186,8 +186,8 @@ public class OffClassDAO {
 	    	 try
 	    	 {
 	    		 getConnection();
-	    		 String sql="INSERT INTO offclass_jjim VALUES("
-	    				   +"oj_no_seq.nextval,?,?)";
+	    		 String sql="INSERT INTO jjim VALUES("
+	    				   +"jjim_no_seq.nextval,?,?)";
 	    		 ps=conn.prepareStatement(sql);
 	    		 ps.setInt(2, c_no);
 	    		 ps.setString(1, id);
@@ -209,7 +209,7 @@ public class OffClassDAO {
 	    	 try
 	    	 {
 	    		 getConnection();
-	    		 String sql="SELECT COUNT(*) FROM offclass_jjim "
+	    		 String sql="SELECT COUNT(*) FROM jjim "
 	    				   +"WHERE c_no=? AND id=?";
 	    		 ps=conn.prepareStatement(sql);
 	    		 ps.setInt(1, c_no);
@@ -239,6 +239,7 @@ public class OffClassDAO {
 		    	 getConnection();
 	    		 String sql="SELECT c_no, c_title ,c_poster, infoaddr "
 	    				   +"FROM thisclass "
+	    				   +"WHERE c_onoff=1 "
 	    				   +"ORDER BY c_no ASC";
 	    		 ps=conn.prepareStatement(sql);
 	    		 ResultSet rs=ps.executeQuery();
@@ -420,6 +421,76 @@ public class OffClassDAO {
 	    		 disConnection();
 	    	 }
 	    	 return list;
+	     }
+	     
+	     
+	     // 댓글 올리기
+	     public void offclassReplyInsert(OffclassReplyVO vo)
+	     {
+	    	 try
+	    	 {
+	    		 getConnection();
+	    		 String sql="INSERT INTO offclass_reply VALUES("
+	    				 +"or_no_seq.nextval,?,?,?,?,SYSDATE)";
+	    		 ps=conn.prepareStatement(sql);
+	    		 ps.setInt(1, vo.getCno());
+	    		 ps.setString(2, vo.getId());
+	    		 ps.setString(3, vo.getName());
+	    		 ps.setString(4, vo.getMsg());
+	    		 
+	    		 ps.executeUpdate();
+	    	 }catch(Exception ex)
+	    	 {
+	    		 ex.printStackTrace();
+	    	 }
+	    	 finally
+	    	 {
+	    		 disConnection();
+	    	 }
+	     }
+	     
+	     // 댓글 수정
+	     public void offclassReplyUpdate(OffclassReplyVO vo)
+	     {
+	    	 try
+	    	 {
+	    		 getConnection();
+	    		 String sql="UPDATE offclass_reply SET "
+	    				 +"msg=?"
+	    				 +"WHERE c_no=?";
+	    		 ps=conn.prepareStatement(sql);
+	    		 ps.setString(1, vo.getMsg());
+	    		 ps.setInt(2, vo.getCno());
+	    		 ps.executeUpdate();
+	    	 }catch(Exception ex)
+	    	 {
+	    		 ex.printStackTrace();
+	    	 }
+	    	 finally
+	    	 {
+	    		 disConnection();
+	    	 }
+	     }
+	     
+	     // 댓글 삭제
+	     public void offclassReplyDelete(int cno)
+	     {
+	    	 try
+	    	 {
+	    		 getConnection();
+	    		 String sql="DELETE FROM offclass_reply "
+	    				   +"WHERE c_no=?";
+	    		 ps=conn.prepareStatement(sql);
+	    		 ps.setInt(1, cno);
+	    		 ps.executeUpdate();
+	    	 }catch(Exception ex)
+	    	 {
+	    		 ex.printStackTrace();
+	    	 }
+	    	 finally
+	    	 {
+	    		 disConnection();
+	    	 }
 	     }
 }
 

@@ -10,6 +10,7 @@ import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.OffClassDAO;
 import com.sist.vo.OffClassVO;
+import com.sist.vo.OffclassReplyVO;
 import com.sist.vo.ReserveVO;
 
 @Controller
@@ -58,11 +59,16 @@ public class OffClassModel {
 		OffClassDAO dao=OffClassDAO.newInstance();
 		OffClassVO vo=dao.OffDetailData(Integer.parseInt(cno));
 		
-
+		List<OffclassReplyVO> rList=dao.offclassReplyReadData(Integer.parseInt(cno));
+		request.setAttribute("rList", rList);
 		request.setAttribute("vo", vo);
 		request.setAttribute("main_jsp", "../offclass/offclass_detail.jsp");
 		request.setAttribute("menu", "class");
 		
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		int count=dao.offJjimCheck(Integer.parseInt(cno), id);
+		request.setAttribute("count", count);
 		return "../main/main.jsp";
 	}
 
@@ -250,11 +256,64 @@ public class OffClassModel {
 	  
 	  
 	  // 댓글
-	 /*
 	  @RequestMapping("offclass/offclass_reply_insert.do")
-	 public String offclass_reply_insert(HttpServletRequest request,)
-}
-*/
+	  public String offclass_reply_insert(HttpServletRequest request,HttpServletResponse response)
+	  {
+		  try
+		  {
+			  request.setCharacterEncoding("UTF-8");
+		  }catch(Exception ex){}
+		  String c_no=request.getParameter("cno");
+		  String msg=request.getParameter("msg");
+		  HttpSession session=request.getSession();
+		  String id=(String)session.getAttribute("id");
+		  String name=(String)session.getAttribute("name");
+		  OffclassReplyVO vo=new OffclassReplyVO();
+		  vo.setName(name);
+		  vo.setMsg(msg);
+		  vo.setId(id);
+		  vo.setCno(Integer.parseInt(c_no));
+		  
+		  // DAO
+		  OffClassDAO dao=OffClassDAO.newInstance();
+		  dao.offclassReplyInsert(vo);
+
+		  return "redirect:../offclass/offclass_detail.do?cno="+c_no;
+	  }
+	  
+	  // 댓글 삭제
+	  @RequestMapping("offclass/offclass_reply_delete.do")
+	  public String offclass_reply_delete(HttpServletRequest request,HttpServletResponse response)
+	  {
+		  String c_no=request.getParameter("cno");
+		  String cno=request.getParameter("cno");
+		  OffClassDAO dao=OffClassDAO.newInstance();
+		  //DB연동 
+		  dao.offclassReplyDelete(Integer.parseInt(cno));
+		  return "redirect:../offclass/offclass_detail.do?cno="+c_no;
+	  }
+	  
+	// 댓글 수정 
+	  @RequestMapping("offclass/offclass_reply_update.do")
+	  public String offclass_reply_update(HttpServletRequest request,HttpServletResponse response)
+	  {
+		  try
+		  {
+			  request.setCharacterEncoding("UTF-8");
+		  }catch(Exception ex) {}
+		  String msg=request.getParameter("msg");
+		  String c_no=request.getParameter("cno");
+		  String cno=request.getParameter("cno");
+		  OffclassReplyVO vo=new OffclassReplyVO();
+		  vo.setCno(Integer.parseInt(cno));
+		  vo.setMsg(msg);
+		  OffClassDAO dao=OffClassDAO.newInstance();
+		  dao.offclassReplyUpdate(vo);
+		  return "redirect:../offclass/offclass_detail.do?cno="+c_no;
+		  
+		  
+	  }
+
 }
 
 

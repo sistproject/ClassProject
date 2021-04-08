@@ -51,6 +51,36 @@
 }
 
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+let i=0;
+$(function(){
+	$('.delBtn').click(function(){
+		let no=$(this).attr("data-no");
+		let cno=$(this).attr("data-cno");
+		location.href="../offclass/offclass_reply_delete.do?no="+no+"&cno="+cno;
+	});
+	
+	$('.updateBtn').click(function(){
+		$('.updateli').hide();
+		$('.updateBtn').text("수정");
+		let no=$(this).attr("data-no");
+		if(i==0)
+		{
+			$(this).text("취소");
+			$('#m'+no).show("slow");
+			i=1;
+		}
+		else
+		{
+			$(this).text("수정");
+			$('#m'+no).hide("slow");
+			i=0;
+		}
+		
+	});
+});
+</script>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Unicat project">
@@ -409,90 +439,69 @@
 								<!-- Reviews -->
 								<div class="tab_panel tab_panel_3">
 									<div class="tab_panel_title">Course Review</div>
-
-									<!-- Rating -->
-									<div class="review_rating_container">
-										<div class="review_rating">
-											<div class="review_rating_num">4.5</div>
-											<div class="review_rating_stars">
-												<div class="rating_r rating_r_4"><i></i><i></i><i></i><i></i><i></i></div>
-											</div>
-											<div class="review_rating_text">(28 Ratings)</div>
-										</div>
-										<div class="review_rating_bars">
-											<ul>
-												<li><span>5 Star</span><div class="review_rating_bar"><div style="width:90%;"></div></div></li>
-												<li><span>4 Star</span><div class="review_rating_bar"><div style="width:75%;"></div></div></li>
-												<li><span>3 Star</span><div class="review_rating_bar"><div style="width:32%;"></div></div></li>
-												<li><span>2 Star</span><div class="review_rating_bar"><div style="width:10%;"></div></div></li>
-												<li><span>1 Star</span><div class="review_rating_bar"><div style="width:3%;"></div></div></li>
-											</ul>
-										</div>
-									</div>
-									
+										<c:if test="${sessionScope.id!=null }">
+									        <form action="../offclass/offclass_reply_insert.do" method="post">
+									          <table class="table" style="text-center">
+									            <tr>
+									             <td>
+									              <textarea rows="10" cols="100" name="msg"></textarea>
+									              <input type="hidden" name=cno value="${vo.cno }">
+									              <br>
+									              <input type="submit" value="댓글쓰기" class="btn btn-sm btn-danger">
+									             </td>
+									            </tr>
+									          </table>
+									        </form>
+								        </c:if>
 									<!-- Comments -->
 									<div class="comments_container">
 										<ul class="comments_list">
+										<c:forEach var="rvo" items="${rList }">
 											<li>
+											
 												<div class="comment_item d-flex flex-row align-items-start jutify-content-start">
-													<div class="comment_image"><div><img src="images/comment_1.jpg" alt=""></div></div>
+													<div class="comment_image"><div><img src="images/rr.png" alt=""></div></div>
 													<div class="comment_content">
 														<div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
-															<div class="comment_author"><a href="#">Milley Cyrus</a></div>
-															<div class="comment_rating"><div class="rating_r rating_r_4"><i></i><i></i><i></i><i></i><i></i></div></div>
-															<div class="comment_time ml-auto">1 day ago</div>
-														</div>
-														<div class="comment_text">
-															<p>There are many variations of passages of Lorem Ipsum available, but the majority have alteration in some form, by injected humour.</p>
-														</div>
-														<div class="comment_extras d-flex flex-row align-items-center justify-content-start">
-															<div class="comment_extra comment_likes"><a href="#"><i class="fa fa-heart" aria-hidden="true"></i><span>15</span></a></div>
-															<div class="comment_extra comment_reply"><a href="#"><i class="fa fa-reply" aria-hidden="true"></i><span>Reply</span></a></div>
-														</div>
-													</div>
-												</div>
-												<ul>
-													<li>
-														<div class="comment_item d-flex flex-row align-items-start jutify-content-start">
-															<div class="comment_image"><div><img src="images/comment_2.jpg" alt=""></div></div>
-															<div class="comment_content">
-																<div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
-																	<div class="comment_author"><a href="#">John Tyler</a></div>
-																	<div class="comment_rating"><div class="rating_r rating_r_4"><i></i><i></i><i></i><i></i><i></i></div></div>
-																	<div class="comment_time ml-auto">1 day ago</div>
-																</div>
-																<div class="comment_text">
-																	<p>There are many variations of passages of Lorem Ipsum available, but the majority have alteration in some form, by injected humour.</p>
-																</div>
-																<div class="comment_extras d-flex flex-row align-items-center justify-content-start">
-																	<div class="comment_extra comment_likes"><a href="#"><i class="fa fa-heart" aria-hidden="true"></i><span>15</span></a></div>
-																	<div class="comment_extra comment_reply"><a href="#"><i class="fa fa-reply" aria-hidden="true"></i><span>Reply</span></a></div>
-																</div>
+														<div class="comment_author"><a href="#">${rvo.name }</a></div>
+														<figure class="avatar">
+															<c:if test="${sessionScope.id==rvo.id }">
+																<span class="btn btn-xs btn-success updateBtn"
+																	data-no="${rvo.no }">수정</span>
+																<span class="btn btn-xs btn-danger delBtn"
+																	data-no="${rvo.no }" data-cno="${vo.cno }">삭제</span>
+															</c:if>
+														</figure>
+															
+															<div class="comment_time ml-auto">${rvo.dbday }
+															
 															</div>
 														</div>
-													</li>
-												</ul>
-											</li>
-											<li>
-												<div class="comment_item d-flex flex-row align-items-start jutify-content-start">
-													<div class="comment_image"><div><img src="images/comment_3.jpg" alt=""></div></div>
-													<div class="comment_content">
-														<div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
-															<div class="comment_author"><a href="#">Milley Cyrus</a></div>
-															<div class="comment_rating"><div class="rating_r rating_r_4"><i></i><i></i><i></i><i></i><i></i></div></div>
-															<div class="comment_time ml-auto">1 day ago</div>
-														</div>
 														<div class="comment_text">
-															<p>There are many variations of passages of Lorem Ipsum available, but the majority have alteration in some form, by injected humour.</p>
+															<pre style="white-space: pre-wrap;border:none;background-color:white;">${rvo.msg }</pre>
 														</div>
-														<div class="comment_extras d-flex flex-row align-items-center justify-content-start">
-															<div class="comment_extra comment_likes"><a href="#"><i class="fa fa-heart" aria-hidden="true"></i><span>15</span></a></div>
-															<div class="comment_extra comment_reply"><a href="#"><i class="fa fa-reply" aria-hidden="true"></i><span>Reply</span></a></div>
-														</div>
+													
 													</div>
 												</div>
-											</li>
+												</li>
+												<li style="display: none" id="m${rvo.no }" class="updateli">
+
+									<table class="table">
+										<tr>
+											<td>
+												<textarea rows="7" cols="120" name="msg">${rvo.msg }</textarea>
+												<input type="hidden" name=cno value="${vo.cno }">
+												<input type="hidden" name=no value="${rvo.no }"> <input type="submit" value="댓글수정" class="btn btn-sm btn-danger">
+											</td>
+										</tr>
+									</table>
+
+							</li>
+						</c:forEach>
+						
+										
 										</ul>
+
 										<div class="add_comment_container">
 											<div class="add_comment_title">Add a review</div>
 											<div class="add_comment_text">You must be <a href="#">logged</a> in to post a comment.</div>
@@ -550,7 +559,7 @@
 									
 								
           							
-										<a href="../offclass/jjim.do?cno=${vo.cno}" class="myButton">찜</a>&nbsp;&nbsp;&nbsp;<a href="../offclass/reserve.do" class="myrButton">예약하기</a>
+										<a href="../member/jjim.do?no=${vo.cno}&type=cf" class="myButton">찜</a>&nbsp;&nbsp;&nbsp;<a href="../offclass/reserve.do" class="myrButton">예약하기</a>
 						
 
 								</div>
