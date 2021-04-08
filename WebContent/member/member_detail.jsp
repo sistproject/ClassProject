@@ -97,9 +97,9 @@ function checkNumber(event) {
         <div class="list-group">
           <a href="../member/member_detail.do" class="list-group-item" style="color:#566270">회원정보 수정</a>
           <a href="../member/member_order.do" class="list-group-item" style="color:#566270">주문 내역</a>
-          <a href="#" class="list-group-item" style="color:#566270">내가 쓴 글</a>
+          <a href="../member/member_mypost.do" class="list-group-item" style="color:#566270">내가 쓴 글</a>
           <a href="#" class="list-group-item" style="color:#566270">쿠폰함</a>
-          <a href="#" class="list-group-item" style="color:#566270">찜목록</a>
+          <a href="../member/member_myjjim.do" class="list-group-item" style="color:#566270">찜목록</a>
         </div>
         <div class="help" onclick="location.href='../board/qaboard.do'" style="cursor:pointer;">
           <span>도움이 필요하신가요?</span>

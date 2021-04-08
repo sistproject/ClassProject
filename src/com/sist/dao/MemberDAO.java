@@ -6,6 +6,8 @@ import java.util.List;
 import javax.sql.*;
 
 import com.sist.member.memberVO;
+import com.sist.vo.BoardVO;
+import com.sist.vo.CartVO;
 import com.sist.vo.MemberVO;
 
 import javax.naming.*;
@@ -220,6 +222,80 @@ public class MemberDAO {
 	   }finally {
 		   disConnection();
 	   }
+   }
+   public List<BoardVO> mypost(String id) {
+	   List<BoardVO> list = new ArrayList<BoardVO>();
+	   try {
+		   getConnection();
+		   String sql="SELECT bno,id,btitle,bcontent,hits,regdate FROM board where id=?";
+		   ps=conn.prepareStatement(sql);
+		   ps.setString(1, id);
+		   
+		   ResultSet rs=ps.executeQuery();
+		   while(rs.next()) {
+			   BoardVO vo = new BoardVO();
+			   vo.setBno(rs.getInt(1));
+			   vo.setId(rs.getString(2));
+			   vo.setTitle(rs.getString(3));
+			   vo.setContent(rs.getString(4));
+			   vo.setHits(rs.getInt(5));
+			   vo.setRegdate(rs.getString(6));
+			   list.add(vo);
+		   }
+		   rs.close();
+	   }catch(Exception ex) {
+		   ex.printStackTrace();
+	   }finally {
+		   disConnection();
+	   }
+	   return list;
+   }
+   public List<CartVO> myjjim(String id) {
+	   List<CartVO> list = new ArrayList<CartVO>();
+	   try {
+		   getConnection();
+		   String sql="SELECT w.w_title,w.w_artist,w.w_poster,w.w_price,w.w_no "
+			   		+ "FROM jjim j,member m,thiswork w "
+			   		+ "WHERE m.id = j.id AND w.w_no=j.w_no AND m.id=?";
+		   ps=conn.prepareStatement(sql);
+		   ps.setString(1, id);
+		   ResultSet rs = ps.executeQuery();
+		   while(rs.next()) {
+			   CartVO vo = new CartVO();
+			   vo.setTitle(rs.getString(1));
+			   vo.setArtist(rs.getString(2));
+			   vo.setPoster(rs.getString(3));
+			   vo.setPrice(rs.getString(4));
+			   vo.setQuantity(rs.getInt(5));
+			   vo.setNo(rs.getInt(6));
+			   vo.setType("w");
+			   list.add(vo);
+		   }
+		   sql="SELECT c.c_title,c.c_artist,c.c_poster,c.c_price,c.c_no,c.c_onoff "
+				   + "FROM jjim j,member m,thisclass c "
+				   + "WHERE m.id = j.id AND c.c_no=j.c_no AND m.id=?";
+		   ps=conn.prepareStatement(sql);
+		   ps.setString(1, id);
+		   rs = ps.executeQuery();
+		   while(rs.next()) {
+			   CartVO vo = new CartVO();
+			   vo.setTitle(rs.getString(1));
+			   vo.setArtist(rs.getString(2));
+			   vo.setPoster(rs.getString(3));
+			   vo.setPrice(rs.getString(4));
+			   vo.setQuantity(rs.getInt(5));
+			   vo.setNo(rs.getInt(6));
+			   vo.setOnoff(rs.getInt(7));
+			   vo.setType("c");
+			   list.add(vo);
+		   }
+		   rs.close();
+	   }catch(Exception ex) {
+		   ex.printStackTrace();
+	   }finally {
+		   disConnection();
+	   }
+	   return list;
    }
 }
 

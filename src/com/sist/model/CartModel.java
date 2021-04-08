@@ -39,6 +39,18 @@ public class CartModel {
 	request.setAttribute("main_jsp", "../cart/cart.jsp");
 	return "../main/main.jsp";
 	}
+	@RequestMapping("cart/addcart.do")
+	public String add(HttpServletRequest request,HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		String no = request.getParameter("no");
+		String type = request.getParameter("type");
+		String amount = request.getParameter("amount");
+		CartDAO dao = CartDAO.newInstance();
+		dao.cartInsert(Integer.parseInt(no), id, type, Integer.parseInt(amount));
+		
+		return "../cart/cart.do";
+	}
 	@RequestMapping("cart/cart_remove.do")
 	public String cartRemove(HttpServletRequest request,HttpServletResponse response) {
 		

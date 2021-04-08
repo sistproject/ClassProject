@@ -56,20 +56,24 @@
       </div>
 <div class="wrapper row3 join_row">
 	<div style="height:30px"></div>
-		<h2 class="sectiontitle" >주문내역</h2>
+		<h2 class="sectiontitle" >찜목록</h2>
 		<div style="height:30px"></div>
 		<div style="height:600px;">
 		<table class="table">
 		<tr>
-	        <th class="text-center">주문일자</th>
+	        <th class="text-center">상품번호</th>
 	        <th class="text-center">상품명</th>
-	        <th class="text-center">결제가격</th>
+	        <th class="text-center">가격</th>
 	     </tr>
-	     <c:forEach var="i" begin="0" end="${newest}" step="1">
+	     <c:if test="${list==null }">
+	     <tr>
+	     <td><h4>찜한 상품이 없습니다</h4></td>
+	     </tr>
+	     </c:if>
+	     <c:if test="${list!=null }">
 		<c:forEach var="vo" items="${list}" >
-		<c:if test="${vo.ono==newest-i}">
 	              <tr>
-			        <td>${vo.regdate}</td>
+			        <td>${vo.no}</td>
 			        <td>
 			        <c:if test="${vo.type eq 'w'}">
 			        <a href="../work/work_detail.do?w_no=${vo.no}" class="detaila">
@@ -84,11 +88,10 @@
 			        </c:if>
 			        <img src="${vo.poster}" alt="" style="width:30px; height:30px" class="img-fluid rounded shadow-sm">
 			        ${vo.title }</a></td>
-			        <td>${vo.quantity*vo.price}</td>
+			        <td>${vo.price}</td>
 			      </tr>
-			</c:if>
 	      </c:forEach>
-	      </c:forEach>
+	      </c:if>
 		</table>
 		</div>
 </div>

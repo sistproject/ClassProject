@@ -2,9 +2,16 @@ package com.sist.vo;
 
 public class BoardVO {
 	private String id,title,content,type,regdate,poster,add; //type: work/onclass/offclass
-	private int isFree,wno,cno,hits,bno;   //0:문의 1:자유, 문의일경우 관련 wno/cno
+	private int isFree,wno,cno,hits,bno,root;   //0:문의 1:자유, 문의일경우 관련 wno/cno
 	
 	
+	
+	public int getRoot() {
+		return root;
+	}
+	public void setRoot(int root) {
+		this.root = root;
+	}
 	public String getAdd() {
 		return add;
 	}

@@ -13,6 +13,25 @@
 <link rel="stylesheet" href="../main/css/shop-homepage.css">
 <link rel="stylesheet" href="../main/styles/main_styles.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(()=>{
+	$('.sendBtn').click(()=>{
+		let subject = $('input[name=title]').val();
+		if(subject.trim()==""){
+			 $('input[name=id]').focus();
+			return;
+		}
+		let content= $('textarea').val();
+		if(content.trim()==""){
+			 $('textarea').focus();
+			return;
+		}
+		
+		$('#frm').submit();
+	})
+})
+
+</script>
 <style>
 .join_row{
 	width:700px;
@@ -25,18 +44,8 @@
 	border-radius: 10px;
 	font-family: 'Source Sans Pro', sans-serif;
 }
-.detaila:link {
-	color: gray; text-decoration: none;
-}
-.detaila:visited {
-	color: gray; text-decoration: none;
-}
-.detaila:hover {
-	color: gray; text-decoration: none;
-	font-weight: bold;
-}
-.newpost,
-.mypost {
+.back,
+.sendBtn {
 	cursor:pointer;
 	padding: .25rem .5rem;
     font-size: .875rem;
@@ -46,57 +55,63 @@
     background-color: #A593E0;
 
 }
-.newpost:hover,.mypost:hover{
+.back{
+	background-color:#E0E3DA;
+	margin-left:15px;
+}
+.back:hover{
 	background-color: #8269d3;
 }
-
+.sendBtn:hover{
+	background-color: #8269d3;
+}
 </style>
 </head>
 <body>
 <div class="wrapper row3 join_row">
 		<div style="height:100px"></div>
-		<h2 class="sectiontitle" class="text-center" style="display:block;text-align:center">자유게시판</h2>
-		<div style="height:10px"></div>
-		<div class="text-right">
-		<button class="newpost" onclick="location.href='../board/insert.do?type=1'">새글</button>
-		<button class="mypost" onclick="location.href='../member/member_mypost.do'">내가 쓴 글</button>
-		</div>
-		<div style="height:10px"></div>
-		<div style="height:600px;">
-		<table class="table">
-		<tr>
-	        <th class="text-center" width=10%>번호</th>
-	        <th class="text-center" width=45%>제목</th>
-	        <th class="text-center" width=15%>이름</th>
-	        <th class="text-center" width=20%>작성일</th>
-	        <th class="text-center" width=10%>조회수</th>
-	     </tr>
-		<c:forEach var="vo" items="${list}" varStatus="i">
-	              <tr>
-			        <td class="text-center" width=10%>${list.size()-i.index}</td>
-			        <td width=45%>
-			        <a href="../board/freedetail.do?no=${vo.bno}" class="detaila">${vo.title}</a>
-			        </td>
-			        <td class="text-center" width=15%>${vo.id}</td>
-			        <td class="text-center" width=20%>${vo.regdate.substring(0,vo.regdate.indexOf(" "))}</td>
-			        <td class="text-center" width=10%>${vo.hits}</td>
-			      </tr>
-	      </c:forEach>
-		</table>
-</div>
-
-<div class="wrapper row3 join_row">
-  <table class="table">
+		<h2 class="sectiontitle" class="text-center" style="display:block;text-align:center">답변하기</h2>
+		<div style="height:30px"></div>
+		<div style="height:800px;">
+	 <form method=post action="../board/answer_ok.do?root=${bno}" id="frm" autocomplete="off">
+    <table class="table">
     <tr>
-     <td class="text-right">
-      <a href="list.jsp?page=" class="btn btn-sm btn-success">이전</a>
-      1 page / 1 pages
-      <a href="list.jsp?page=" class="btn btn-sm btn-info">다음</a>
-     </td>
+    <th class="text-right danger" width=15%>ID</th>
+    <td width=85%>
+    	<input type=text name=id class="input-sm" size=55 value="${id}" readonly style="border: none;">
+    </td>
     </tr>
-  </table>
+    <tr>
+    <th class="text-right danger" width=15%>제목</th>
+    <td width=85%>
+    	<input type=text name=title class="input-sm" size=55 value="re: ${vo.title}">
+    </td>
+    </tr>
+    <tr>
+    <th class="text-right danger" width=15% valign="top">내용</th>
+    <td width=85%>
+    	<textarea rows="10" cols="62" name=content></textarea>
+    </td>
+    </tr>
+    <tr>
+    <tr>
+    <th class="text-right danger" width=15% valign="top">상품 정보</th>
+    <td width=85%>
+    	<input type=text name=add class="input-sm" size=55 readonly value="${vo.add}" style="border: none">
+    	<input type=hidden name=addc value="${cno}">
+    	<input type=hidden name=addw value="${wno}">
+    </td>
+    </tr>
+    <tr>
+    <td colspan="2" class="text-center">
+        <button class="sendBtn">등록</button>
+    	<button class="back" onclick="javascript:history.back();">취소</button>
+    </td>
+    </tr>
+    </table>
+    </form>
  </div>
- </div>
+</div>
 
  <script src="../main/js/jquery-3.2.1.min.js"></script>
 <script src="../main/styles/bootstrap4/popper.js"></script>
