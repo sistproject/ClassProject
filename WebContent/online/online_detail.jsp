@@ -102,6 +102,28 @@ body{
 	top:1px;
 }
 
+.myrButton {
+	background-color:#a593e0;
+	border-radius:28px;
+	border:1px solid #a593e0;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	font-weight:bold;
+	padding:13px 110px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+.myrButton:hover {
+	background-color:#a593e0;
+}
+.myrButton:active {
+	position:relative;
+	top:1px;
+}
+
 </style>
 </head>
 <body>
@@ -593,6 +615,8 @@ body{
 										</div>
 										
 											<a href="../member/jjim.do?no=${ondVO.cno}&type=cn" class="myButton">찜</a>
+											
+											&nbsp;&nbsp;&nbsp;<a href="../cart/addcart.do?no=${ondVO.cno }&type=c&amount=1" class="myrButton">수강신청</a>
 											
 									</div>
 								</div>

@@ -17,7 +17,6 @@ public class CartModel {
 	@RequestMapping("cart/cart.do")
 	public String login(HttpServletRequest request,HttpServletResponse response) {
 	HttpSession session = request.getSession();
-	
 	String id = (String)session.getAttribute("id");
 	CartDAO dao = CartDAO.newInstance();
 	List<CartVO> wlist = dao.workList(id);
@@ -26,6 +25,7 @@ public class CartModel {
 	int total = 0;
 	for(CartVO vo:wlist) {
 		total+=(Integer.parseInt(vo.getPrice()))*vo.getQuantity();
+		System.out.println("Aaaa");
 	}
 	for(CartVO vo:clist) {
 		total+=(Integer.parseInt(vo.getPrice()))*vo.getQuantity();
@@ -49,7 +49,7 @@ public class CartModel {
 		CartDAO dao = CartDAO.newInstance();
 		dao.cartInsert(Integer.parseInt(no), id, type, Integer.parseInt(amount));
 		
-		return "../cart/cart.do";
+		return "redirect:../cart/cart.do";
 	}
 	@RequestMapping("cart/cart_remove.do")
 	public String cartRemove(HttpServletRequest request,HttpServletResponse response) {
