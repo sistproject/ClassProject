@@ -53,48 +53,50 @@ function view2(opt2){
 		category_size.style.color= "#384158";
 	}
 }
-let i = 0;
-$(function() {
-	$('.delBtn').click(
-			function() {
-				let no = $(this).attr("data-no");
-				let cno = $(this).attr("data-cno");
-				location.href = "../online/online_reply_delete.do?no=" + no+ "&cno=" + cno;
-			});
 
-	$('.updateBtn').click(function() {
-		$('.updateli').hide();
-		$('.updateBtn').text("수정");
-		let no = $(this).attr("data-no");
-		if (i == 0) {
-			$(this).text("취소");
-			$('#m' + no).show("slow");
-			i = 1;
-		} else {
-			$(this).text("수정");
-			$('#m' + no).hide("slow");
-			i = 0;
-		}
+	let i = 0;
+	$(function() {
+		$('.delBtn').click(
+				function() {
+					let no = $(this).attr("data-no");
+					let cno = $(this).attr("data-cno");
+					location.href = "../online/online_reply_delete.do?no=" + no+ "&cno=" + cno;
+				});
 
-	});
-	$('.replyBtn').click((event)=>{
-		event.preventDefault();
-		let msg = $('#msg').val();
-		console.log(msg);
-		$.ajax({
-		    type:'post',
-		    url: '../online/online_reply_insert.do',
-		   	data: {
-		   	'cno':${ondVO.cno},
-		    'msg':msg
-		    },
-		    success: function(result){
-				
-		    		
-		    }
+		$('.updateBtn').click(function() {
+			$('.updateli').hide();
+			$('.updateBtn').text("수정");
+			let no = $(this).attr("data-no");
+			if (i == 0) {
+				$(this).text("취소");
+				$('#m' + no).show("slow");
+				i = 1;
+			} else {
+				$(this).text("수정");
+				$('#m' + no).hide("slow");
+				i = 0;
+			}
+
 		});
-	})
-});
+		$('.replyBtn').click((event)=>{
+			event.preventDefault();
+			let msg = $('#msg').val();
+			console.log(msg);
+			$.ajax({
+			    type:'post',
+			    url: '../online/online_reply_insert.do',
+			   	data: {
+			   	'cno':${ondVO.cno},
+			    'msg':msg
+			    },
+			    success: function(result){
+					
+			    		
+			    }
+			});
+		})
+	});
+
 
 </script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
@@ -112,9 +114,6 @@ $('#adside').removeClass('fixed');
 });
 });
 </script>
-
-
-출처: https://kaiequal.tistory.com/21 [카이이퀄]
 <style type="text/css">
 
 .container{
@@ -155,6 +154,28 @@ $('#adside').removeClass('fixed');
 	position:relative;
 	top:1px;
 }
+
+.myrButton {
+	background-color:#a593e0;
+	border-radius:28px;
+	border:1px solid #a593e0;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	font-weight:bold;
+	padding:13px 110px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+.myrButton:hover {
+	background-color:#a593e0;
+}
+.myrButton:active {
+	position:relative;
+	top:1px;
+}
 #adsideWrapper {
  position: absolute;
 }
@@ -181,7 +202,7 @@ margin-top:30px;
 			<div class="row">
 
 				<!-- Blog Content -->
-				<div class="col-lg-6">
+				<div class="col-lg-6" style="height:1600px;">
 					<div class="blog_content">
 						<div class="blog_meta" style="color:black; padding-bottom:15px; font-size:15px;">
 							<ul>
@@ -201,7 +222,64 @@ margin-top:30px;
 									</div>
 								</div>
 				            </div>
-				</div>
+<div class="reply" style="border:1px; color:black; padding-top:300px;">
+	<c:choose>
+	<c:when test="${sessionScpoe.id==null }">
+      <strong>로그인시 댓글 이용 가능합니다.</strong>
+    </c:when>
+	<c:otherwise>
+	  ${sessionScope.id!=null }
+		<form action="../work/"mathod="post">
+			<table class="table">
+				<tr>
+					<td><textarea rows="10" cols="100" name="msg"></textarea> <%--<c:set var="page" value="${param.page}"/> 
+								              									<input type="hidden" name=cno value="${page}">--%>
+						<input type="hidden" name=w_no value="${vo.w_no}"> 
+						<input type="submit" value="댓글쓰기" class="btn btn-sm btn-danger">
+						<c:forEach var="vo" items="${reList }">
+							<li>
+								<article>
+									<header>
+										<figure class="avatar">
+											<c:if test="${sessionScope.id==vo.id }">
+												<span class="btn btn-xs btn-success updateBtn"
+													data-no="${vo.no }">수정</span>
+												<span class="btn btn-xs btn-danger delBtn"
+													data-no="${vo.no }" data-cno="${vo.w_no }">삭제</span>
+											</c:if>
+										</figure>
+										<address>
+											By <a href="#">${vo.name }</a>
+										</address>
+										<time datetime="2045-04-06T08:15+00:00">${vo.dbday }</time>
+									</header>
+									<div class="comcont">
+										<pre style="white-space: pre-wrap; border: none; background-color: white;">${vo.msg }</pre>
+									</div>
+								</article>
+							</li>
+							<li style="display: none" id="m${vo.no }" class="updateli">
+								<button>
+									<table class="table">
+										<tr>
+										<td>
+											<textarea rows="7" cols="25" name="msg">${vo.msg }</textarea>
+											<input type="hidden" name=w_no value="${vo.w_no }">
+											<input type="hidden" name=no value="${vo.w_no }"> <input type="submit" value="댓글수정" class="btn btn-sm btn-danger">
+										</td>
+									</tr>
+								</table>
+							</button>
+						</li>
+					</c:forEach>
+				</td>
+			</tr>
+		</table>
+	  </form>>
+    </c:otherwise>	
+    </c:choose>				 
+  </div>
+  </div>
 					<!-- Blog Sidebar -->
 <div class="col-lg-6">
   <div style="margin-top:45px"></div>
@@ -221,20 +299,16 @@ margin-top:30px;
 				<li class="clearfix" style="padding-bottom:50px;">배송기간&emsp;&emsp;${vo.w_delivery }</li>
 			  </ul>
 			</div>
+		  </div>
+		  <div  style="text-align:right">
+		     <a href="../member/jjim.do?no=${vo.w_no}&type=w" class="myButton">찜</a>&nbsp;&nbsp;&nbsp;<a href="../cart/addcart.do?no=${vo.w_no }&type=w&amount=1" class="myrButton">예약하기</a>
+		  </div>
+	    </div>
 		</div>
-		<div  style="text-align:right">
-		 <a href="../member/jjim.do?no=${vo.w_no}&type=w" class="myButton">찜</a><a href="#" class="myrButton">결제하기</a>
-		</div>
+      </div>	
 	</div>
-	
-						</div>
-         			</div>
-         			
-         			
-         			
-				</div>
-			</div>
-		</div>
+ </div>
+</div>
 	
 
 

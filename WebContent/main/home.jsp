@@ -19,15 +19,15 @@
 				
 				<!-- Home Slider Item -->
 				<div class="owl-item">
-					<div class="home_slider_background" style="background-image:url(광고1.jpg)"></div>
+					<div class="home_slider_background" style="background-image:url(img1.jpg)"></div>
 				</div>
 				<!-- Home Slider Item -->
 				<div class="owl-item">
-					<div class="home_slider_background" style="background-image:url(광고2.jpg)"></div>
+					<div class="home_slider_background" style="background-image:url(img2.jpg)"></div>
 				</div>
 				<!-- Home Slider Item -->
 				<div class="owl-item">
-					<div class="home_slider_background" style="background-image:url(광고3.jpg)"></div>
+					<div class="home_slider_background" style="background-image:url(img3.jpg)"></div>
 				</div>
 			</div>
 		</div>

@@ -232,6 +232,48 @@ public class WorkModel {
 
 		return "../main/main.jsp";
 	}
+     /////-------------------------------- 작품 전체 --------------------------------/////
+	@RequestMapping("work/work_total.do")
+	public String work_total(HttpServletRequest request, HttpServletResponse response)
+	{
+		
+		// 페이지 나누기
+				String page = request.getParameter("page");
+				System.out.println("페이지 출력");
+				System.out.println(page);
+				System.out.println("페이지 출력 완료");
+				if (page == null) {
+					page = "1";
+				}
+				int curpage = Integer.parseInt(page);
+				
+				WorkDAO dao=new WorkDAO();
+				List<WorkDetailVO> rList = dao.WorkListData(curpage);
+				int count = dao.WorkMainCount();
+				int totalpage = (int) (Math.ceil(count / 12.0));
+
+				final int BLOCK = 10;
+				// 102 [1]-[10] [91]~[100] [101][102]
+				int startpage = ((curpage - 1) / BLOCK * BLOCK) + 1;
+				// 1~10 => 1 10-1/10 => 0 9/10
+				int endpage = ((curpage - 1) / BLOCK * BLOCK) + BLOCK;
+
+				if (endpage > totalpage)
+					endpage = totalpage;
+				
+
+		request.setAttribute("count", count);
+		request.setAttribute("rList", rList);
+		request.setAttribute("block", BLOCK);
+		request.setAttribute("startpage", startpage);
+		request.setAttribute("endpage", endpage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("main_jsp", "../work/work_total.jsp");
+		request.setAttribute(page, rList);
+
+		return "../main/main.jsp";
+	}
 	
 	
 	@RequestMapping("work/work_detail_before.do")
@@ -317,13 +359,14 @@ public class WorkModel {
 			// DAO연결
 			WorkDAO dao = new WorkDAO();
 			dao.WorkReplyInsert(vo);
-            //return "redirect:../food/food_detail.do?no="+cno;
-			return "redirect:../work/work_detail.do?&w_no=" + w_no; // ?cno= 클래스의 번호
+            
+			List<WorkReplyVO> list=dao.WorkReplyReadData(Integer.parseInt(w_no));
+			return "../work/work_detail.jsp?&w_no=" + w_no; // ?cno= 클래스의 번호
 		}
 
 		// 댓글 삭제
 		@RequestMapping("work/work_reply_delete.do")
-		public String online_reply_delete(HttpServletRequest request, HttpServletResponse response) {
+		public String work_reply_delete(HttpServletRequest request, HttpServletResponse response) {
 			String no = request.getParameter("no");
 			String w_no = request.getParameter("w_no");
 			WorkDAO dao = new WorkDAO();
@@ -352,14 +395,14 @@ public class WorkModel {
 			return "redirect:../work/work_detail.do?w_no=" + w_no;
 		}
 		
-		// ajax이용해서 댓글 처리
+		/* ajax이용해서 댓글 처리
 		@RequestMapping("work/workreply.do")
 		public String work_reply_ajax(HttpServletRequest request, HttpServletResponse response) {
 			String msg = request.getParameter("msg");
 			
 			
 			return "redirect:../work/work_detail.do?msg="+msg;
-		}
+		}*/
 
 }
 
