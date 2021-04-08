@@ -13,6 +13,7 @@ import com.sist.dao.CartDAO;
 import com.sist.dao.MemberDAO;
 import com.sist.vo.BoardVO;
 import com.sist.vo.CartVO;
+import com.sist.vo.CouponVO;
 import com.sist.vo.MemberVO;
 
 
@@ -186,6 +187,20 @@ public class MemberModel {
 		
 		request.setAttribute("list",list);
 		request.setAttribute("main_jsp","../member/myjjim.jsp");
+		return "../main/main.jsp";
+	}
+	@RequestMapping("member/member_mycoupon.do")
+	public String mycoupon(HttpServletRequest request,HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		MemberDAO dao = MemberDAO.newInstance();
+		List<CouponVO> list = new ArrayList<CouponVO>();
+		for(CouponVO vo:list) {
+			System.out.println(vo.getName());
+		}
+		
+		request.setAttribute("list",list);
+		request.setAttribute("main_jsp","../member/mycoupon.jsp");
 		return "../main/main.jsp";
 	}
 	
