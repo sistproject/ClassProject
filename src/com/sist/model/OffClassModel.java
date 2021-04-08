@@ -90,50 +90,56 @@ public class OffClassModel {
 		OffClassDAO dao=OffClassDAO.newInstance();
 		OffClassVO vo=dao.OffDetailData(Integer.parseInt(cno));
 		List<String> sList = new ArrayList<String>(); // subtitle list
-		System.out.println(vo.getCsubtitles());
-		System.out.println(vo.getCtitle());
-//		String subtitle = vo.getCsubtitles();
-//		StringTokenizer sst = new StringTokenizer(subtitle,"^");
-		
-		
+		String subtitle = "";
 		int count=0;
-//		while (sst.hasMoreTokens()) 
-//		{
-//			if (count<5) 
-//			{
-//				sList.add(sst.nextToken());
-//				count++;
-//			} 
-//			else {
-//				count=0;
-//				break;
-//			}
-//		}
-//			
-//		List<String> cList = new ArrayList<String>(); // content List
-//		String content = vo.getCcontent();
-//		StringTokenizer cst= new StringTokenizer(content,"^");
-//		
-//		while(cst.hasMoreTokens())
-//		{
-//			if (count<5) 
-//			{
-//				cList.add(cst.nextToken());
-//				count++;
-//			} 
-//			else {
-//				count=0;
-//				break;
-//			}
-//		}
+		if(vo.getCsubtitles()!=null) {
+				subtitle = vo.getCsubtitles();
+				StringTokenizer sst = new StringTokenizer(subtitle,"^");
+				
+				while (sst.hasMoreTokens()) 
+				{
+					if (count<5) 
+					{
+						sList.add(sst.nextToken());
+						count++;
+					} 
+					else {
+						count=0;
+						break;
+					}
+				}
+					
+		}
+
+		List<String> cList = new ArrayList<String>(); // content List
+		String content = vo.getCcontent();
+		String contents = vo.getCcontents();
+
+		
+		StringTokenizer cst= new StringTokenizer(content+contents,"^");
+		
+		while(cst.hasMoreTokens())
+		{
+			if (count<5) 
+			{
+				cList.add(cst.nextToken());
+				count++;
+			} 
+			else {
+				count=0;
+				break;
+			}
+		}
 		
 		List<OffclassReplyVO> rList=dao.offclassReplyReadData(Integer.parseInt(cno));
-		
+		System.out.println(rList.size());
+		System.out.println(sList.size());
+		System.out.println(cList.size());
 		
 		
 		request.setAttribute("rList", rList);
 		request.setAttribute("sList", sList);
-//		request.setAttribute("cList", cList);
+		request.setAttribute("cList", cList);
 		request.setAttribute("vo", vo);
 		request.setAttribute("main_jsp", "../offclass/offclass_detail.jsp");
 		request.setAttribute("menu", "class");

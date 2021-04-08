@@ -252,7 +252,7 @@ $(function(){
 							<!-- Course Info Item -->
 							<div class="course_info_item">
 								<div class="course_info_title">소요시간:</div>
-								<div class="course_info_text">${vo.ctime }</a></div>
+								<div class="course_info_text">${vo.cscore }</a></div>
 							</div>
 
 							<!-- Course Info Item -->
@@ -285,7 +285,7 @@ $(function(){
 										<div class="tab_panel_section">
 											<div class="tab_panel_subtitle">내용</div>
 											<ul class="tab_panel_bullets">
-												<li>${vo.ccontents }</li>
+												<li>${vo.ccontent }</li>
 											</ul>
 										</div>
 										<div class="tab_panel_section">
