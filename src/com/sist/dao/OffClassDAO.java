@@ -83,7 +83,7 @@ public class OffClassDAO {
 				   	vo.setCprice(rs.getString(5));
 				   	vo.setCcategory(rs.getString(6));
 				   	vo.setInfoaddr(rs.getString(7));
-				   	vo.setCscore(rs.getString(8));
+				   	vo.setCscore(rs.getDouble(8));
 				   	list.add(vo);
 			   }
 			   rs.close();
@@ -422,9 +422,6 @@ public class OffClassDAO {
 	    	 return list;
 	     }
 }
-
-
-
 
 
 
