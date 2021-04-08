@@ -8,6 +8,7 @@ import javax.sql.*;
 import com.sist.member.memberVO;
 import com.sist.vo.BoardVO;
 import com.sist.vo.CartVO;
+import com.sist.vo.CouponVO;
 import com.sist.vo.MemberVO;
 
 import javax.naming.*;
@@ -240,6 +241,32 @@ public class MemberDAO {
 			   vo.setContent(rs.getString(4));
 			   vo.setHits(rs.getInt(5));
 			   vo.setRegdate(rs.getString(6));
+			   list.add(vo);
+		   }
+		   rs.close();
+	   }catch(Exception ex) {
+		   ex.printStackTrace();
+	   }finally {
+		   disConnection();
+	   }
+	   return list;
+   }
+   public List<CouponVO> mycoupon(String id) {
+	   List<CouponVO> list = new ArrayList<CouponVO>();
+	   try {
+		   getConnection();
+		   String sql="SELECT id,name,type,amount,createAt FROM coupon where id=?";
+		   ps=conn.prepareStatement(sql);
+		   ps.setString(1, id);
+		   
+		   ResultSet rs=ps.executeQuery();
+		   while(rs.next()) {
+			   CouponVO vo = new CouponVO();
+			   vo.setId(rs.getString(1));
+			   vo.setName(rs.getString(2));
+			   vo.setType(rs.getString(3));
+			   vo.setAmount(rs.getInt(4));
+			   vo.setCreatAt(rs.getString(5));
 			   list.add(vo);
 		   }
 		   rs.close();
