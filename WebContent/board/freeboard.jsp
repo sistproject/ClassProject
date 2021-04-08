@@ -15,7 +15,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <style>
 .join_row{
-	width:700px;
+	width:1000px;
 	margin: 0px auto;
 }
  .sectiontitle{
@@ -53,8 +53,17 @@
 </style>
 </head>
 <body>
+<div class="container" style="margin-top:8%">
+<div class="row">
+      <div class="col-lg-3">
+        <h1 class="my-4">BOARD</h1>
+        <div class="list-group">
+          <a href="../board/freeboard.do" class="list-group-item" style="color:#566270">자유 게시판</a>
+          <a href="../board/qaboard.do" class="list-group-item" style="color:#566270">문의 게시판</a>
+          <a href="../member/member_mypost.do" class="list-group-item" style="color:#566270">내가 쓴 글</a>
+        </div>
+        </div>
 <div class="wrapper row3 join_row">
-		<div style="height:100px"></div>
 		<h2 class="sectiontitle" class="text-center" style="display:block;text-align:center">자유게시판</h2>
 		<div style="height:10px"></div>
 		<div class="text-right">

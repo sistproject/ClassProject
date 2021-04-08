@@ -91,6 +91,8 @@
 	      </c:forEach>
 		</table>
 		</div>
+		</div>
+	</div>
 </div>
 
 

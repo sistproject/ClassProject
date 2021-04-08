@@ -86,7 +86,6 @@ public class CartDAO {
 				   vo.setTitle(rs.getString(1));
 				   vo.setArtist(rs.getString(2));
 				   if(rs.getString(3).contains("^")) {
-					   
 					   vo.setPoster(rs.getString(3).substring(0, rs.getString(3).indexOf("^")));
 				   }else {
 					   vo.setPoster(rs.getString(3));
@@ -159,7 +158,7 @@ public class CartDAO {
 			   if(count==0) {
 				   sql="INSERT INTO cart(crno,id,c_no,quantity,rdate) VALUES(cart_crno_SEQ.nextval,"
 					   		+ "?,?,?,?)";
-				   if(type.equals("w")) sql="INSERT INTO cart(crno,id,w_no,quantity) VALUES(cart_crno_SEQ.nextval,"
+				   if(type.equals("w")) sql="INSERT INTO cart(crno,id,w_no,quantity,rdate) VALUES(cart_crno_SEQ.nextval,"
 					   		+ "?,?,?,?)";
 					   		
 				   ps=conn.prepareStatement(sql);
@@ -243,7 +242,8 @@ public class CartDAO {
 				   vo.setOno(rs.getInt(1));
 				   vo.setNo(rs.getInt(2));
 				   vo.setTitle(rs.getString(3));
-				   vo.setPoster(rs.getString(4));
+				   if(rs.getString(4).contains("^")) vo.setPoster(rs.getString(4).substring(0, rs.getString(4).indexOf("^")));
+				   else vo.setPoster(rs.getString(4));
 				   vo.setPrice(rs.getString(5));
 				   vo.setQuantity(rs.getInt(6));
 				   vo.setRegdate(rs.getString(7).substring(0,rs.getString(7).indexOf(" ")));
