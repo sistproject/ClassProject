@@ -5,6 +5,7 @@ import java.util.*;
 import javax.naming.*;
 import javax.sql.DataSource;
 
+import com.sist.vo.MemberVO;
 import com.sist.vo.OffClassVO;
 
 
@@ -125,11 +126,35 @@ public class ClassDAO {
 				String cat = rs.getString(1);
 				cList.add(cat);
 			}
+			rs.close();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			disConnection();
 		}
 		return cList;
+	}
+	
+	public MemberVO getWriterInfo(String id){
+		MemberVO vo = new MemberVO();
+		try {
+			getConnection();
+			String sql = "SELECT name, address1, address2 "
+					+ "FROM member "
+					+ "WHERE id=?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, id);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			vo.setName(rs.getString(1));
+			vo.setAddr1(rs.getString(2));
+			vo.setAddr2(rs.getString(3));
+			rs.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		return vo;
 	}
 }

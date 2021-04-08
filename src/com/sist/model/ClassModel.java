@@ -3,9 +3,12 @@ package com.sist.model;
 import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.ClassDAO;
+import com.sist.vo.MemberVO;
 import com.sist.vo.OffClassVO;
 
 
@@ -45,22 +48,44 @@ public class ClassModel {
 		request.setAttribute("menu", "class");
 		return "../class/trendclass.jsp";
 	}
-	@RequestMapping("class/write.do")
-	public String writeAction(HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping("class/writeWC_ok.do")
+	public String write_ok(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			request.setCharacterEncoding("UTF-8");
 		}catch (Exception e) {}
+		String type = request.getParameter("type_list");
+		String artist = request.getParameter("artist");
+		String address = "";
+		if(type=="3") {
+			String addr1 = request.getParameter("addr1");
+			String addr2 = request.getParameter("addr2");
+			address = addr1+" "+addr2;
+		}
+		String category = request.getParameter("category_list");
+		String poster = request.getParameter("poster");
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String time = request.getParameter("time");
+		String price = request.getParameter("price");
 		
-		System.out.println(request.getParameter("artist"));
-		System.out.println(request.getParameter("address"));
-		System.out.println(request.getParameter("type_list"));
-		System.out.println(request.getParameter("category_list"));
-		System.out.println(request.getParameter("poster"));
-		System.out.println(request.getParameter("title"));
-		System.out.println(request.getParameter("content"));
-		System.out.println(request.getParameter("time"));
-		System.out.println(request.getParameter("price"));
 		request.setAttribute("main_jsp", "../main/home.jsp");
+		request.setAttribute("menu", "class");
+		return "../main/main.jsp";
+	}
+	@RequestMapping("class/writeWC.do")
+	public String writeForm(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		System.out.println(id);
+		if(id==null) {
+			request.setAttribute("main_jsp", "../main/home.jsp");
+			return "../main/main.jsp";
+		}
+		ClassDAO dao = ClassDAO.newInstance();
+		MemberVO mvo = dao.getWriterInfo(id);
+		
+		request.setAttribute("mvo", mvo);
+		request.setAttribute("main_jsp", "../class/writeWC.jsp");
 		request.setAttribute("menu", "class");
 		return "../main/main.jsp";
 	}
