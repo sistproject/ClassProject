@@ -68,7 +68,7 @@ function view2(opt2){
 	color: gray;
 }
 .list_number ul li a{
-   color:black;
+   color:#C7D2FE;
 }
 </style>
 </head>
@@ -123,10 +123,10 @@ function view2(opt2){
 
 				</div>
 				
-				<div class="list_num" style="text-align: center; font-size: 39px;">
+				<div class="row pagination_row">
 							<div class="col">
 								<div class="list_number">
-									<ul>
+									<ul >
 							          <c:if test="${startpage>1 }">
 							           <li style="display:inline-block;"><a href="../work/work_list.do?page=${startpage-1 }">이전</a></li>
 							          </c:if>
@@ -149,7 +149,35 @@ function view2(opt2){
 			</div>
 		</div>
 </div>
+<!-- 
+<div class="row pagination_row">
+							<div class="col">
+								<div class="list_number">
+									<ul>
+							          <c:if test="${startpage>1 }">
+							           <li style="display:inline-block;"><a href="../work/work_list.do?page=${startpage-1 }">이전</a></li>
+							          </c:if>
+							          <c:forEach var="i" begin="${startpage }" end="${endpage }" step="1">
+							            <c:if test="${i==curpage }">
+							             <c:set var="type" value="class=current"/>
+							            </c:if>
+							            <c:if test="${i!=curpage }">
+							             <c:set var="type" value=""/>
+							            </c:if>
+							            <li ${type }  style="display:inline-block;"><a href="../work/work_list.do?page=${i }">${i }</a></li>
+							          </c:forEach>
+							          <c:if test="${endpage<totalpage }">
+							            <li  style="display:inline-block;"><a href="../work/work_list.do?page=${endpage+1 }"> 다음</a></li>
+							          </c:if>
+							        </ul>
+								</div>
+							</div>
+						</div>
 
+
+
+
+ -->
 <script src="../main/js/jquery-3.2.1.min.js"></script>
 <script src="../main/styles/bootstrap4/popper.js"></script>
 <script src="../main/styles/bootstrap4/bootstrap.min.js"></script>

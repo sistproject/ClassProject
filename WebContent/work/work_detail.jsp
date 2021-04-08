@@ -129,6 +129,7 @@ $('#adside').removeClass('fixed');
 	position:relative;
 	top:1px;
 }
+
 #adsideWrapper {
  position: absolute;
 }
@@ -196,7 +197,7 @@ margin-top:30px;
 		  </div>
 		  <div  style="text-align:right">
 		     <a href="../member/jjim.do?no=${vo.w_no}&type=w" class="myButton">찜</a>&nbsp;&nbsp;&nbsp;<a href="../cart/addcart.do?no=${vo.w_no }&type=w&amount=1" class="myrButton">결제하기</a>
-		 <button onclick="location.href='../board/insert.do?type=0&wno=${vo.w_no}'">문의하기</button>
+		 <button id="but" onclick="location.href='../board/insert.do?type=0&wno=${vo.w_no}'">문의하기</button>
 		  </div>
 	    </div>
 		</div>
