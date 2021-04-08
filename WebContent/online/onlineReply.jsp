@@ -9,7 +9,7 @@
 <body>
 	<div class="tab_panel_title">수강평</div>
 	<c:if test="${sessionScope.id!=null }">
-		<button>
+		<form>
 			<table class="table">
 				<tr>
 					<td><textarea rows="10" cols="100" name="msg"></textarea> <%--<c:set var="page" value="${param.page}"/> 
@@ -55,7 +55,7 @@
 						</td>
 				</tr>
 			</table>
-		</button>
+		</form>
 	</c:if>
 </body>
 </html>

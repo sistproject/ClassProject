@@ -195,7 +195,7 @@ public class OnlineModel {
 		
 	 	List<OnlineReplyVO> list = dao.onlineReplyReadData(Integer.parseInt(cno));
 		request.setAttribute("rlist", list);
-		return "../online/online_detail.jsp?cno="+cno; // ?cno= 클래스의 번호
+		return "redirect:../online/online_detail.do?cno="+cno; // ?cno= 클래스의 번호
 	}
 
 	// 댓글 삭제

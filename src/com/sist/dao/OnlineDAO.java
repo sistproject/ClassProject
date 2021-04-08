@@ -148,7 +148,8 @@ public class OnlineDAO {
    		 getConnection();
    		 String sql="SELECT no,id,name,msg,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') "
    				   +"FROM online_reply "
-   				   +"WHERE cno=?";
+   				   +"WHERE cno=? "
+   				   + "ORDER BY no DESC";
    		 ps=conn.prepareStatement(sql);
    		 ps.setInt(1, cno);
    		 ResultSet rs=ps.executeQuery();
@@ -181,18 +182,23 @@ public class OnlineDAO {
     public void OnlineReplyInsert(OnlineReplyVO vo)
     {
    	 try
-   	 {
+   	 {System.out.println("=======================시도");
    		 getConnection();
-   		 String sql="INSERT INTO online_reply VALUES("
-   				   +"on_no_seq.nextval,?,?,?,?,SYSDATE)";
+   		 String sql="INSERT INTO online_reply(no,cno,id,name,msg,regdate) VALUES(on_no_seq.nextval,?,?,?,?,SYSDATE)";
    		 ps=conn.prepareStatement(sql);
+   		 System.out.println("===============================sql준비");
    		 ps.setInt(1, vo.getCno());
+   		 System.out.println("================"+vo.getCno());
    		 ps.setString(2, vo.getId());
+   		 System.out.println("================="+vo.getId());
    		 ps.setString(3, vo.getName());
+   		 System.out.println("==============="+vo.getName());
    		 ps.setString(4, vo.getMsg());
+   		 System.out.println("================="+vo.getMsg());
    		 
    		 // 실행
    		 ps.executeUpdate();
+   		 System.out.println("===========================업데이트 성공");
    	 }catch(Exception ex)
    	 {
    		 ex.printStackTrace();
