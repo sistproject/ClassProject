@@ -90,6 +90,7 @@ public class BoardModel {
 		String wno = request.getParameter("wno");
 		String cno = request.getParameter("cno");
 		BoardDAO dao = BoardDAO.newInstance();
+		System.out.println("wno:"+wno);
 		String title = "";
 		try {
 			title = dao.additional(Integer.parseInt(wno), "w");

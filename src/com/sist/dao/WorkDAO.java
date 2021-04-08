@@ -79,7 +79,7 @@ public class WorkDAO {
 	}
 	
 	// work => cookie에 출력할 데이터 
-	   public WorkDetailVO foodCookiePrintData(int w_no)
+	   public WorkDetailVO WorkCookiePrintData1(int w_no)
 	   {
 		   WorkDetailVO vo=new WorkDetailVO();
 		   try

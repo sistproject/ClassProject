@@ -58,9 +58,9 @@
 				<c:if test="${s.index<8 }">
 				<div class="col-lg-3 col-md-6 team_col">
 					<div class="team_item">
-						<div class="team_image"><img src="${vo.w_poster }" style="width: 180px;height: 190px;" alt=""></div>
+						<div class="team_image"><a href="../work/work_detail_before.do?w_no=${vo.w_no }"><img src="${vo.w_poster }" style="width: 180px;height: 190px;" alt=""></a></div>
 						<div class="team_body"  style="width: 340px;height: 275px;">
-							<div class="team_title"><a href="#">${vo.w_title }</a></div>
+							<div class="team_title"><a href="../work/work_detail_before.do?w_no=${vo.w_no }">${vo.w_title }</a></div>
 							<div class="team_subtitle">${vo.w_artist }</div>
 							<div class="social_list">
 								<ul>
@@ -77,7 +77,7 @@
 			   
 			   <div class="row" style="margin:0 auto">
 				<div class="col">
-					<div class="courses_button trans_200"><a href="#">인기 작품 더보기</a></div>
+					<div class="courses_button trans_200"><a href="../work/work_ingi.do">인기 작품 더보기</a></div>
 				</div>
 			</div>
 		</div>
@@ -97,9 +97,9 @@
 				<c:if test="${s.index>358 and s.index<367}">
 				<div class="col-lg-3 col-md-6 team_col">
 					<div class="team_item">
-						<div class="team_image"><img src="${vo.w_poster }" style="width: 180px;height: 190px;" alt=""></div>
+						<div class="team_image"><a href="../work/work_detail_before.do?w_no=${vo.w_no }"><img src="${vo.w_poster }" style="width: 180px;height: 190px;" alt=""></a></div>
 						<div class="team_body"  style="width: 340px;height: 275px;">
-							<div class="team_title"><a href="#">${vo.w_title }</a></div>
+							<div class="team_title"><a href="../work/work_detail_before.do?w_no=${vo.w_no }">${vo.w_title }</a></div>
 							<div class="team_subtitle">${vo.w_artist }</div>
 							<div class="social_list">
 								<ul>
@@ -116,7 +116,7 @@
 			   
 			   <div class="row" style="margin:0 auto">
 				<div class="col">
-					<div class="courses_button trans_200"><a href="#">오늘의 발견 더보기</a></div>
+					<div class="courses_button trans_200"><a href="../work/work_list.do">오늘의 발견 더보기</a></div>
 				</div>
 			</div>
 		</div>
@@ -137,9 +137,9 @@
 				<c:if test="${s.index>409 and s.index<418 }">
 				<div class="col-lg-3 col-md-6 team_col">
 					<div class="team_item">
-						<div class="team_image"><img src="${vo.w_poster }" style="width: 180px;height: 190px;" alt=""></div>
+						<div class="team_image"><a href="../work/work_detail_before.do?w_no=${vo.w_no }"><img src="${vo.w_poster }" style="width: 180px;height: 190px;" alt=""></a></div>
 						<div class="team_body"  style="width: 340px;height: 275px;">
-							<div class="team_title"><a href="#">${vo.w_title }</a></div>
+							<div class="team_title"><a href="../work/work_detail_before.do?w_no=${vo.w_no }">${vo.w_title }</a></div>
 							<div class="team_subtitle">${vo.w_artist }</div>
 							<div class="social_list">
 								<ul>
@@ -156,7 +156,7 @@
 			   
 			   <div class="row" style="margin:0 auto">
 				<div class="col">
-					<div class="courses_button trans_200"><a href="#">실시간 구매 더보기</a></div>
+					<div class="courses_button trans_200"><a href="../work.work_silgu.do">실시간 구매 더보기</a></div>
 				</div>
 			</div>
 		</div>
@@ -178,9 +178,9 @@
 				<c:if test="${s.index>376 and s.index<385 }">
 				<div class="col-lg-3 col-md-6 team_col">
 					<div class="team_item">
-						<div class="team_image"><img src="${vo.w_poster }" style="width: 180px;height: 190px;" alt=""></div>
+						<div class="team_image"><a href="../work/work_detail_before.do?w_no=${vo.w_no }"><img src="${vo.w_poster }" style="width: 180px;height: 190px;" alt=""></a></div>
 						<div class="team_body"  style="width: 340px;height: 275px;">
-							<div class="team_title"><a href="#">${vo.w_title }</a></div>
+							<div class="team_title"><a href="../work/work_detail_before.do?w_no=${vo.w_no }">${vo.w_title }</a></div>
 							<div class="team_subtitle">${vo.w_artist }</div>
 							<div class="social_list">
 								<ul>
@@ -197,7 +197,7 @@
 			   
 			   <div class="row" style="margin:0 auto">
 				<div class="col">
-					<div class="courses_button trans_200"><a href="#">작가님 추천작품 더보기</a></div>
+					<div class="courses_button trans_200"><a href="../work/work_jak.do">작가님 추천작품 더보기</a></div>
 				</div>
 			</div>
 		</div>
@@ -219,9 +219,9 @@
 				<c:if test="${s.index>425 and s.index<434 }">
 				<div class="col-lg-3 col-md-6 team_col">
 					<div class="team_item">
-						<div class="team_image"><img src="${vo.w_poster }" style="width: 180px;height: 190px;" alt=""></div>
+						<div class="team_image"><a href="../work/work_detail_before.do?w_no=${vo.w_no }"><img src="${vo.w_poster }" style="width: 180px;height: 190px;" alt=""></a></div>
 						<div class="team_body"  style="width: 340px;height: 275px;">
-							<div class="team_title"><a href="#">${vo.w_title }</a></div>
+							<div class="team_title"><a href="../work/work_detail_before.do?w_no=${vo.w_no }">${vo.w_title }</a></div>
 							<div class="team_subtitle">${vo.w_artist }</div>
 							<div class="social_list">
 								<ul>
@@ -238,7 +238,7 @@
 			   
 			   <div class="row" style="margin:0 auto">
 				<div class="col">
-					<div class="courses_button trans_200"><a href="#">실시간 추천작품 더보기</a></div>
+					<div class="courses_button trans_200"><a href="../work/work_sil.do">실시간 추천작품 더보기</a></div>
 				</div>
 			</div>
 		</div>

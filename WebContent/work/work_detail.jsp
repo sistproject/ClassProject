@@ -302,6 +302,7 @@ margin-top:30px;
 		  </div>
 		  <div  style="text-align:right">
 		     <a href="../member/jjim.do?no=${vo.w_no}&type=w" class="myButton">찜</a>&nbsp;&nbsp;&nbsp;<a href="../cart/addcart.do?no=${vo.w_no }&type=w&amount=1" class="myrButton">예약하기</a>
+		 <button onclick="location.href='../board/insert.do?type=0&wno=${vo.w_no}'">문의하기</button>
 		  </div>
 	    </div>
 		</div>
