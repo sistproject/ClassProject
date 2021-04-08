@@ -38,6 +38,7 @@
 	color: gray; text-decoration: none;
 	font-weight: bold;
 }
+body > div > div > div > div.pagination_row > div > div > ul > li > a { color: black;}
 </style>
 </head>
 <body>
@@ -78,7 +79,8 @@
 	     <c:if test="${list.size()!=0 }">
 		<c:forEach var="vo" items="${list}" varStatus="i">
 	              <tr>
-			        <td class="text-center" width=10%>${list.size()-i.index}</td>
+<%-- 			        <td class="text-center" width=10%>${list.size()-i.index}</td> --%>
+			        <td class="text-center" width=10%>${vo.bno}</td>
 			        <td width=45%>
 			        <a href="../board/freedetail.do?no=${vo.bno}" class="detaila">${vo.title}</a>
 			        </td>
@@ -90,6 +92,30 @@
 	      </c:if>
 		</table>
 		</div>
+</div>
+
+<div class="pagination_row">
+	<div class="col">
+		<div class="page"  style="text-align: center" >
+			<ul class="pagination_list">
+		         <c:if test="${startPage>1 }">
+		          <li><a href="../member/member_mypost.do?page=${startPage-1 }">이전</a></li>
+		         </c:if>
+		         <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
+		           <c:if test="${i==curpage }">
+		            <c:set var="type" value="class=current"/>
+		           </c:if>
+		           <c:if test="${i!=curpage }">
+		            <c:set var="type" value=""/>
+		           </c:if>
+		           <li ${type }><a href="../member/member_mypost.do?page=${i }">${i }</a></li>
+		         </c:forEach>
+		         <c:if test="${endPage<totalpage }">
+		           <li><a href="../member/member_mypost.do?page=${endPage+1 }"> 다음</a></li>
+		         </c:if>
+	        </ul>
+		</div>
+	</div>
 </div>
 
 
