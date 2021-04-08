@@ -10,6 +10,9 @@ import com.sist.controller.RequestMapping;
 import com.sist.dao.ClassDAO;
 import com.sist.vo.MemberVO;
 import com.sist.vo.OffClassVO;
+import com.sist.vo.OnlineVO;
+import com.sist.vo.WorkDetailVO;
+import com.sist.vo.WorkVO;
 
 
 @Controller
@@ -53,7 +56,11 @@ public class ClassModel {
 		try {
 			request.setCharacterEncoding("UTF-8");
 		}catch (Exception e) {}
+		
+		System.out.println("1번");
+		
 		String type = request.getParameter("type_list");
+		System.out.println(type);
 		String artist = request.getParameter("artist");
 		String address = "";
 		if(type=="3") {
@@ -68,9 +75,50 @@ public class ClassModel {
 		String time = request.getParameter("time");
 		String price = request.getParameter("price");
 		
-		request.setAttribute("main_jsp", "../main/home.jsp");
-		request.setAttribute("menu", "class");
-		return "../main/main.jsp";
+		ClassDAO dao = ClassDAO.newInstance();
+		if(type.equals("1")) {
+			WorkDetailVO wvo = new WorkDetailVO();
+			wvo.setW_title(title);
+			wvo.setW_content(content);
+			wvo.setW_artist(artist);
+			wvo.setW_poster(poster);
+			wvo.setW_price(price);
+			int no = dao.InsertWork(wvo);
+			request.setAttribute("menu", "work");
+			return "redirect:../work/work_detail_before.do?w_no="+no;
+			
+		}else if(type.equals("2")) {
+			System.out.println("3번");
+			OnlineVO onvo = new OnlineVO();
+			onvo.setCtitle(title);
+			onvo.setCcontent(content);
+			onvo.setCposter(poster);
+			onvo.setCartist(artist);
+			onvo.setCprice(price);
+			onvo.setCcategory(category);
+			int no = dao.InsertOnline(onvo);
+			request.setAttribute("menu", "class");
+			System.out.println("4번");
+			
+			return "redirect:../online/online_before.do?cno="+no;
+		}else {
+			OffClassVO offvo = new OffClassVO();
+			offvo.setCtitle(title);
+			offvo.setCcontent(content);
+			offvo.setCposter(poster);
+			offvo.setCartist(artist);
+			offvo.setCprice(price);
+			offvo.setCaddress(address);
+			offvo.setCcategory(category);
+			offvo.setCtime(time);
+			int no = dao.InsertOffline(offvo);
+			request.setAttribute("menu", "class");
+			
+			return "redirect:../offclass/offclass_detail.do?cno="+no;
+		}
+		
+		//request.setAttribute("main_jsp", "../main/home.jsp");
+		//return "../main/main.jsp";
 	}
 	@RequestMapping("class/writeWC.do")
 	public String writeForm(HttpServletRequest request, HttpServletResponse response) {

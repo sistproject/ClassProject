@@ -7,6 +7,9 @@ import javax.sql.DataSource;
 
 import com.sist.vo.MemberVO;
 import com.sist.vo.OffClassVO;
+import com.sist.vo.OnlineVO;
+import com.sist.vo.WorkDetailVO;
+import com.sist.vo.WorkVO;
 
 
 public class ClassDAO {
@@ -156,5 +159,118 @@ public class ClassDAO {
 			disConnection();
 		}
 		return vo;
+	}
+	
+	public int getClassMaxNum() {
+		int num=0;
+		try {
+			getConnection();
+			String sql = "SELECT MAX(c_no)+1 FROM thisclass";
+			ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			num = rs.getInt(1);
+			System.out.println("num:"+num);
+			rs.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		return num;
+	}
+	public int getWorkMaxNum() {
+		int num=0;
+		try {
+			getConnection();
+			String sql = "SELECT MAX(w_no)+1 FROM thiswork";
+			ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			num = rs.getInt(1);
+			System.out.println("num:"+num);
+			rs.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		return num;
+	}
+	public int InsertWork(WorkDetailVO vo) {
+		int no=0;
+		try {
+			no = getWorkMaxNum();
+			getConnection();
+			String sql = "INSERT INTO thiswork(w_no, w_title, w_content, w_poster, w_price, w_artist, w_regdate) "
+					+ "VALUES(? , ?, ?, ?, ?, ?, SYSDATE)";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, no);
+			ps.setString(2, vo.getW_title());
+			ps.setString(3, vo.getW_content());
+			ps.setString(4, vo.getW_poster());
+			ps.setString(5, vo.getW_price());
+			ps.setString(6, vo.getW_artist());
+			ps.executeUpdate();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		return no;
+	}
+	public int InsertOnline(OnlineVO vo) {
+		int no=0;
+		try {
+			System.out.println("insert 시작");
+			no = getClassMaxNum();
+			getConnection();
+
+			String sql = "INSERT INTO thisclass(c_no, c_title, c_content, c_poster, c_price, "
+					+ "c_artist, c_onoff, c_category) "
+					+ "VALUES(?, ?, ?, ?, ?, ?, 0, ?)";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, no);
+			ps.setString(2, vo.getCtitle());
+			ps.setString(3, vo.getCcontent());
+			ps.setString(4, vo.getCposter());
+			ps.setString(5, vo.getCprice());
+			ps.setString(6, vo.getCartist());
+			ps.setString(7, vo.getCcategory());
+			ps.executeUpdate();
+			System.out.println("insert 완료");
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		return no;
+	}
+	public int InsertOffline(OffClassVO vo) {
+		int no=0;
+		try {
+			no = getClassMaxNum();
+			getConnection();
+
+			String sql = "INSERT INTO thisclass(c_no, c_title, c_content, c_poster, c_price, "
+					+ "c_artist, c_address, c_onoff, c_time, c_category) "
+					+ "VALUES(?, ?, ?, ?, ?, ?, ?, 0, ?, ?)";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, no);
+			ps.setString(2, vo.getCtitle());
+			ps.setString(3, vo.getCcontent());
+			ps.setString(4, vo.getCposter());
+			ps.setString(5, vo.getCprice());
+			ps.setString(6, vo.getCartist());
+			ps.setString(7, vo.getCaddress());
+			ps.setString(8, vo.getCtime());
+			ps.setString(9, vo.getCcategory());
+			ps.executeUpdate();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		return no;
 	}
 }
