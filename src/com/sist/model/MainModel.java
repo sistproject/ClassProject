@@ -3,12 +3,14 @@ package com.sist.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.WorkDAO;
+import com.sist.vo.OnlineVO;
 import com.sist.vo.WorkDetailVO;
 import com.sist.vo.WorkVO;
 @Controller
@@ -37,24 +39,27 @@ public class MainModel {
 		List<WorkDetailVO> fList=new ArrayList<WorkDetailVO>();
 		System.out.println("=================rr=========");
 		WorkDAO dao=new WorkDAO();
-		/*Cookie[] cookies=request.getCookies();
-		if(cookies!=null)
-		{
-			for(int i=cookies.length-1;i>=0;i--)
-			{
-				if(cookies[i].getName().startsWith("m"))
-				{
-					cookies[i].setPath("/");
-					System.out.println("============tt=====rr===d======");
-					System.out.println(cookies[i].getName());
-					String w_no=cookies[i].getValue();
-					WorkDetailVO vo=dao.WorkCookiePrintData(Integer.parseInt(w_no));
-					if(fList.size()>9)
-						break;
-					fList.add(vo);
-				}
-			}
-		}*/
+		Cookie[] cookies=request.getCookies();			
+		  if(cookies != null)
+		  {
+			  for(int i=cookies.length-1;i>=0;i--)
+			  {
+				  System.out.println("쿠키 포문");
+				  if(cookies[i].getName().startsWith("m"))
+				  { 	
+					  System.out.println("쿠키 조건문");
+					  cookies[i].setPath("/");
+					  System.out.println(cookies[i].getName()); // key
+					  String w_no=cookies[i].getValue(); // value
+					  System.out.println(cookies[i].getValue());
+					  WorkDetailVO vo=dao.WorkCookiePrintData(Integer.parseInt(w_no));
+					  System.out.println(vo.getW_no());
+					  fList.add(vo);
+					  
+	
+				  }
+			  }
+		  }
 		request.setAttribute("fList", fList);
 		System.out.println("============tt=====rr=========");
 		//String w_no=request.getParameter("w_no");

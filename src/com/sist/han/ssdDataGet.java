@@ -17,19 +17,101 @@ public class ssdDataGet {
 	private Connection conn;
 	private PreparedStatement ps;
 	
-	public void hitData() {
+	public void hitScoreData() {
 		try {
-			dm.getConnection();
-			String sql = "INSERT INTO thisclass(hit, value) ";
-			for(int i=1; i<=15723; i++) {
-				
+			conn = dm.getConnection();
+			String sql = "";
+			for(int i=490; i<=15803; i++) {
+				sql = "SELECT COUNT(*) FROM thisclass WHERE c_no=?";
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, i);
+				ResultSet rs = ps.executeQuery();
+				rs.next();
+				int num = rs.getInt(1);
+				ps.close();
+				if(num==1) {
+					
+					sql = "UPDATE thisclass SET c_score=? "
+							+ "WHERE c_no=?";
+					
+					//sql = "UPDATE thisclass SET c_hit=? "
+					//		+ "WHERE c_no=?";
+					ps = conn.prepareStatement(sql);
+					double c_score = Math.random()*1.5+3.5;
+					ps.setDouble(1, (Math.floor(c_score*10))/10);
+					//ps.setInt(1, (int)(Math.random()*100)+1);
+					ps.setInt(2, i);
+					ps.executeUpdate();
+					System.out.println(i);
+					Thread.sleep(100);
+				}
+				ps.close();
 			}
 		}catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}finally {
 			dm.disConnection(conn, ps);
 		}
 	}
+	
+	public void insertCategory() {
+		try {
+			conn = dm.getConnection();
+			for(int i=491; i<20000; i++) {
+				String sql = "UPDATE thisclass "
+						+ "SET temp_category = ? "
+						+ "WHERE c_title LIKE '%'||?||'%'";
+				String category = getCategory(i);
+				String title = getTitle(i);
+				if(title=="NO") {
+					continue;
+				}
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, category);
+				ps.setString(2, title);
+				ps.executeUpdate();
+				ps.close();
+				Thread.sleep(100);
+				System.out.println(i);
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dm.disConnection(conn, ps);
+		}
+	}
+	
+	public String getCategory(int i) {
+		String category = "";
+		try {
+			Document doc = Jsoup.connect("https://www.sssd.co.kr/main/class/detail/"+i).get();
+			Elements cat = doc.select("div.title-type");
+			category = cat.text();
+		}catch (Exception e) {}
+		return category;
+	}
+	public String getTitle(int i) {
+		String title = "NO";
+		try {
+			Document doc = Jsoup.connect("https://www.sssd.co.kr/main/class/detail/"+i).get();
+			Elements el_metaTags = doc.select("meta[property]");
+			for (Element meta : el_metaTags) {
+				// title
+				if (meta.attr("property").equals("og:title")) {
+					String title1 = meta.attr("content");
+					if (title1.length()<11) {
+						return title;
+					}
+					int idx = title1.indexOf("-");
+					//System.out.println(title.substring(idx + 2));
+					title = title1.substring(idx+2);
+				}
+			}
+		}catch (Exception e) {}
+		return title;
+	}
+	
 	public void ssdInsertData(ssdVO vo) {
 		try {
 			conn = dm.getConnection();
@@ -159,6 +241,6 @@ public class ssdDataGet {
 	}
 	public static void main(String[] args) {
 		ssdDataGet dg = new ssdDataGet();
-		dg.getData();
+		dg.insertCategory();
 	}
 }

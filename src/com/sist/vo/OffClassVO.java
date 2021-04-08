@@ -1,5 +1,4 @@
 package com.sist.vo;
-
 /*
  *  C_NO        NOT NULL NUMBER        
 	C_TITLE              VARCHAR2(300) 
@@ -16,16 +15,27 @@ package com.sist.vo;
 	C_CONTENTS           CLOB          
  */
 public class OffClassVO {
-	private int cno, conoff;
+	private int cno, conoff, chit;
+	private double cscore;
 	private String ctitle, ccontent, cposter, cartist, cprice, caddress, ctime, ccategory, cintro, csubtitles,
-			ccontents, infoaddr, cscore;
-
+			ccontents, infoaddr;
 	
-	public String getCscore() {
+
+
+
+	public int getChit() {
+		return chit;
+	}
+
+	public void setChit(int chit) {
+		this.chit = chit;
+	}
+
+	public double getCscore() {
 		return cscore;
 	}
 
-	public void setCscore(String cscore) {
+	public void setCscore(double cscore) {
 		this.cscore = cscore;
 	}
 

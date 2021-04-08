@@ -33,6 +33,7 @@
 	}
 %>
 <!-- 카테고리 -->
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 function view(opt){
 	if(opt){
@@ -52,6 +53,49 @@ function view2(opt2){
 		category_size.style.color= "#384158";
 	}
 }
+let i = 0;
+$(function() {
+	$('.delBtn').click(
+			function() {
+				let no = $(this).attr("data-no");
+				let cno = $(this).attr("data-cno");
+				location.href = "../online/online_reply_delete.do?no=" + no+ "&cno=" + cno;
+			});
+
+	$('.updateBtn').click(function() {
+		$('.updateli').hide();
+		$('.updateBtn').text("수정");
+		let no = $(this).attr("data-no");
+		if (i == 0) {
+			$(this).text("취소");
+			$('#m' + no).show("slow");
+			i = 1;
+		} else {
+			$(this).text("수정");
+			$('#m' + no).hide("slow");
+			i = 0;
+		}
+
+	});
+	$('.replyBtn').click((event)=>{
+		event.preventDefault();
+		let msg = $('#msg').val();
+		console.log(msg);
+		$.ajax({
+		    type:'post',
+		    url: '../online/online_reply_insert.do',
+		   	data: {
+		   	'cno':${ondVO.cno},
+		    'msg':msg
+		    },
+		    success: function(result){
+				
+		    		
+		    }
+		});
+	})
+});
+
 </script>
 <style type="text/css">
 
@@ -72,6 +116,28 @@ function view2(opt2){
 .work_class a{
 	color: gray;
 }
+.myButton {
+	background-color:#f0ecc5;
+	border-radius:28px;
+	border:1px solid #f0ecc5;
+	display:inline-block;
+	cursor:pointer;
+	color:#080608;
+	font-family:Times New Roman;
+	font-size:17px;
+	font-weight:bold;
+	padding:13px 40px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #f0ecc5;
+}
+.myButton:hover {
+	background-color:#f0ecc5;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
 </style>
 </head>
 <body>
@@ -268,62 +334,152 @@ function view2(opt2){
 								</div>
 				 </div>
 				</div>
-				<!-- Blog Sidebar -->
-				<div class="col-lg-6">
-				 <div style="margin-top:45px"></div>
-					<div class="sidebar">
-						<!-- Categories -->
-						<div class="team_body" style="width:650px; height: 300px; text-align:left; vertical-align:text-top;">
+				<!-- Course Tabs -->
+							<div class="course_tabs_container">
 
-							  <div class="sidebar_section">
-							<div class="sidebar_section_title"><h2>${vo.w_title }</h2></div>
-							<div class="sidebar_categories">
-								<ul class="categories_list">
-									<li class="clearfix">${vo.w_artist }<span>(25)</span></li>
-									<li class="clearfix">${vo.w_price }<span>${vo.w_like }</span></li>
-									<li class="clearfix">적립금  ${vo.w_point }P<span>${vo.w_purchase }</span></li>
-									<li class="clearfix">평점  ${vo.w_score }<span></span></li>
-									<li class="clearfix">배송기간 ${vo.w_delivery }<span></span></li>
-								</ul>
-							</div>
-						    </div>
-
-						</div>
-						
-
-						<!-- Latest News -->
-						<div class="sidebar_section">
-							<div class="sidebar_section_title">Latest Courses</div>
-							<div class="sidebar_latest">
-
-								<!-- Latest Course -->
-								<div class="latest d-flex flex-row align-items-start justify-content-start">
-									<div class="latest_image"><div><img src="images/latest_1.jpg" alt=""></div></div>
-									<div class="latest_content">
-										<div class="latest_title"><a href="course.html">How to Design a Logo a Beginners Course</a></div>
-										<div class="latest_date">november 11, 2017</div>
-									</div>
+								<div
+									class="tabs d-flex flex-row align-items-center justify-content-start">
+									<div class="tab active">수강평</div>
+									<div class="tab">curriculum</div>
+									<div class="tab">reviews</div>
 								</div>
+								<div class="tab_panels">
 
-								<!-- Latest Course -->
-								<div class="latest d-flex flex-row align-items-start justify-content-start">
-									<div class="latest_image"><div><img src="images/latest_2.jpg" alt=""></div></div>
-									<div class="latest_content">
-										<div class="latest_title"><a href="course.html">Photography for Beginners Masterclass</a></div>
-										<div class="latest_date">november 11, 2017</div>
-									</div>
+<!-- //////  댓글  ////////// -->
+							<div class="course_tabs_container">
+
+								<div
+									class="tabs d-flex flex-row align-items-center justify-content-start">
+									<div class="tab active">구매 후기</div>
+									<div class="tab">curriculum</div>
+									<div class="tab">reviews</div>
 								</div>
+								<div class="tab_panels">
 
-								<!-- Latest Course -->
-								<div class="latest d-flex flex-row align-items-start justify-content-start">
-									<div class="latest_image"><div><img src="images/latest_3.jpg" alt=""></div></div>
-									<div class="latest_content">
-										<div class="latest_title"><a href="course.html">The Secrets of Body Language</a></div>
-										<div class="latest_date">november 11, 2017</div>
+
+
+<!-- Description -->
+<div class="tab_panel active reply">
+	<c:if test="${sessionScope.id!=null }">
+		<button>
+			<table class="table">
+				<tr>
+					<td><textarea rows="10" cols="100" name="msg" id="msg"></textarea> <%--<c:set var="page" value="${param.page}"/> 
+								              									<input type="hidden" name=cno value="${page}">--%>
+						<input type="hidden" name=w_no value="${vo.w_no}"> 
+						<input type="submit" value="댓글쓰기" class="btn btn-sm btn-danger replyBtn">
+						<c:forEach var="rvo" items="${reList }">
+							<li>
+								<article>
+									<header>
+										<figure class="avatar">
+											<c:if test="${sessionScope.id==rvo.id }">
+												<span class="btn btn-xs btn-success updateBtn"
+													data-no="${vo.no }">수정</span>
+												<span class="btn btn-xs btn-danger delBtn"
+													data-no="${vo.no }" data-cno="${vo.w_no }">삭제</span>
+											</c:if>
+										</figure>
+										<address>
+											By <a href="#">${vo.name }</a>
+										</address>
+										<time datetime="2045-04-06T08:15+00:00">${vo.dbday }</time>
+									</header>
+									<div class="comcont">
+										<pre style="white-space: pre-wrap; border: none; background-color: white;">${vo.msg }</pre>
 									</div>
-								</div>
+								</article>
+							</li>
+							<li style="display: none" id="m${vo.no }" class="updateli">
+								<button>
+									<table class="table">
+										<tr>
+											<td>
+												<textarea rows="7" cols="25" name="msg">${vo.msg }</textarea>
+												<input type="hidden" name=cno value="${vo.w_no }">
+												<input type="hidden" name=no value="${vo.no }"> <input type="submit" value="댓글수정" class="btn btn-sm btn-danger">
+											</td>
+										</tr>
+									</table>
+								</button>
+							</li>
+						</c:forEach>
+						</td>
+				</tr>
+			</table>
+		</button>
+	</c:if>
+</div>
 
-							</div>
+					<!-- Course Sidebar -->
+					<div class="col-lg-6">
+						<div class="sidebar">
+
+							<!-- Feature -->
+							<div class="sidebar_section">
+								<div class="sidebar_section_title">${vo.w_title }</div>
+								
+								<!-- Feature -->
+										<div
+											class="feature d-flex flex-row align-items-center justify-content-start">
+											<div class="feature_title">
+												<i class="fa fa-clock-o" aria-hidden="true"></i><span>${vo.w_artist }</span>
+											</div>
+											<div class="feature_text ml-auto"></div>
+										</div>
+								
+								
+								<div class="sidebar_feature">
+									<div class="course_price">${vo.w_price }원</div>
+
+									<!-- Features -->
+									<div class="feature_list">
+
+										<!-- Feature -->
+										<div
+											class="feature d-flex flex-row align-items-center justify-content-start">
+											<div class="feature_title">
+												<i class="fa fa-clock-o" aria-hidden="true"></i><span>적립금:</span>
+											</div>
+											<div class="feature_text ml-auto">${vo.w_point }p</div>
+										</div>
+
+										<!-- Feature -->
+										<div
+											class="feature d-flex flex-row align-items-center justify-content-start">
+											<div class="feature_title">
+												<i class="fa fa-file-text-o" aria-hidden="true"></i><span>별점:</span>
+											</div>
+											<div class="feature_text ml-auto">${vo.w_score }</div>
+										</div>
+
+										<!-- Feature -->
+										<div
+											class="feature d-flex flex-row align-items-center justify-content-start">
+											<div class="feature_title">
+												<i class="fa fa-question-circle-o" aria-hidden="true"></i><span>배송:</span>
+											</div>
+											<div class="feature_text ml-auto">${vo.w_delivery }</div>
+										</div>
+
+										<!-- Feature -->
+										<div
+											class="feature d-flex flex-row align-items-center justify-content-start">
+											<div class="feature_title">
+												<i class="fa fa-list-alt" aria-hidden="true"></i><span>Lectures:</span>
+											</div>
+											<div class="feature_text ml-auto">Yes</div>
+										</div>
+
+										<!-- Feature -->
+										<div
+											class="feature d-flex flex-row align-items-center justify-content-start">
+											<div class="feature_title">
+												<i class="fa fa-users" aria-hidden="true"></i><span>Lectures:</span>
+											</div>
+											<div class="feature_text ml-auto">35</div>
+										</div>
+						    <a href="../member/jjim.do?no=${vo.w_no}&type=w" class="myButton">찜</a>&nbsp;&nbsp;&nbsp;<a href="../work/reserve.do" class="myrButton">예약하기</a>
 						</div>
          			</div>
 				</div>
