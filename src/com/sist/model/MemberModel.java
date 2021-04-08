@@ -180,6 +180,10 @@ public class MemberModel {
 		MemberDAO dao = MemberDAO.newInstance();
 		
 		List<CartVO> list = dao.myjjim(id);
+		for(CartVO vo:list) {
+			System.out.println(vo.getTitle());
+		}
+		
 		request.setAttribute("list",list);
 		request.setAttribute("main_jsp","../member/myjjim.jsp");
 		return "../main/main.jsp";
