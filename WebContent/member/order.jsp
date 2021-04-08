@@ -15,7 +15,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <style>
 .join_row{
-	width:800px;
+	width:1000px;
 	margin: 0px auto;
 }
  .sectiontitle{
@@ -69,7 +69,7 @@
 		<c:forEach var="vo" items="${list}" >
 		<c:if test="${vo.ono==newest-i}">
 	              <tr>
-			        <td>${vo.regdate}</td>
+			        <td class="text-center">${vo.regdate}</td>
 			        <td>
 			        <c:if test="${vo.type eq 'w'}">
 			        <a href="../work/work_detail.do?w_no=${vo.no}" class="detaila">
@@ -84,7 +84,7 @@
 			        </c:if>
 			        <img src="${vo.poster}" alt="" style="width:30px; height:30px" class="img-fluid rounded shadow-sm">
 			        ${vo.title }</a></td>
-			        <td>${vo.quantity*vo.price}</td>
+			        <td class="text-center">${vo.quantity*vo.price}</td>
 			      </tr>
 			</c:if>
 	      </c:forEach>

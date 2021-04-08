@@ -15,7 +15,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <style>
 .join_row{
-	width:800px;
+	width:1000px;
 	margin: 0px auto;
 }
  .sectiontitle{
@@ -23,6 +23,9 @@
 	display:inline;
 	padding: 10px;
 	border-radius: 10px;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+.warning{
 	font-family: 'Source Sans Pro', sans-serif;
 }
 .detaila:link {
@@ -67,6 +70,12 @@
 	        <th class="text-center" width=20%>작성일</th>
 	        <th class="text-center" width=10%>조회수</th>
 	     </tr>
+	     <c:if test="${list.size()==0 }">
+	     <tr>
+	     <td colspan="4" class="text-center warning" style="margin-top:20px;"><h4>작성한 글이 없습니다</h4></td>
+	     </tr>
+	     </c:if>
+	     <c:if test="${list.size()!=0 }">
 		<c:forEach var="vo" items="${list}" varStatus="i">
 	              <tr>
 			        <td class="text-center" width=10%>${list.size()-i.index}</td>
@@ -78,6 +87,7 @@
 			        <td class="text-center" width=10%>${vo.hits}</td>
 			      </tr>
 	      </c:forEach>
+	      </c:if>
 		</table>
 		</div>
 </div>
