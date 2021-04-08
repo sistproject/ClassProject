@@ -29,6 +29,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
 
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
 <script type="text/javascript">
 	let i = 0;
 	$(function() {
@@ -72,7 +73,18 @@
 			});
 		})
 	});
+	 $(document).ready(function () { 
+		 var top = $('#adside').offset().top - parseFloat($('#adside').css('marginTop').replace(/auto/, 0));
+		  $(window).scroll(function (event) {
+		 var y = $(this).scrollTop();
 
+		 if (y >= top) {
+		 $('#adside').addClass('fixed');
+		  } else {
+		 $('#adside').removeClass('fixed');
+		 }
+		 });
+		 });
 	
 	
 </script>
@@ -124,6 +136,19 @@ body{
 	top:1px;
 }
 
+#adsideWrapper {
+ position: absolute;
+}
+#adside {
+position: absolute;
+top: 0;
+}
+#adside.fixed {
+ position: fixed;
+top: 80px;
+margin-top:30px;
+}
+
 </style>
 </head>
 <body>
@@ -154,7 +179,7 @@ body{
 				<div class="row">
 
 					<!-- Course -->
-					<div class="col-lg-8">
+					<div class="col-lg-6">
 
 						<div class="course_container">
 							<div class="course_title">${ondVO.ctitle }</div>
@@ -554,191 +579,34 @@ body{
 					</div>
 
 					<!-- Course Sidebar -->
-					<div class="col-lg-4">
-						<div class="sidebar">
-
-							<!-- Feature -->
-							<div class="sidebar_section">
-								<div class="sidebar_section_title">Course Feature</div>
-								
-								
-								
-								<div class="sidebar_feature">
-									<div class="course_price">${ondVO.cprice }원</div>
-
-									<!-- Features -->
-									<div class="feature_list">
-
-										<!-- Feature -->
-										<div
-											class="feature d-flex flex-row align-items-center justify-content-start">
-											<div class="feature_title">
-												<i class="fa fa-clock-o" aria-hidden="true"></i><span>Duration:</span>
-											</div>
-											<div class="feature_text ml-auto">2 weeks</div>
-										</div>
-
-										<!-- Feature -->
-										<div
-											class="feature d-flex flex-row align-items-center justify-content-start">
-											<div class="feature_title">
-												<i class="fa fa-file-text-o" aria-hidden="true"></i><span>Lectures:</span>
-											</div>
-											<div class="feature_text ml-auto">10</div>
-										</div>
-
-										<!-- Feature -->
-										<div
-											class="feature d-flex flex-row align-items-center justify-content-start">
-											<div class="feature_title">
-												<i class="fa fa-question-circle-o" aria-hidden="true"></i><span>Lectures:</span>
-											</div>
-											<div class="feature_text ml-auto">6</div>
-										</div>
-
-										<!-- Feature -->
-										<div
-											class="feature d-flex flex-row align-items-center justify-content-start">
-											<div class="feature_title">
-												<i class="fa fa-list-alt" aria-hidden="true"></i><span>Lectures:</span>
-											</div>
-											<div class="feature_text ml-auto">Yes</div>
-										</div>
-
-										<!-- Feature -->
-										<div
-											class="feature d-flex flex-row align-items-center justify-content-start">
-											<div class="feature_title">
-												<i class="fa fa-users" aria-hidden="true"></i><span>Lectures:</span>
-											</div>
-											<div class="feature_text ml-auto">35</div>
-										</div>
-										
-											<a href="../member/jjim.do?no=${ondVO.cno}&type=cn" class="myButton">찜</a>
+					<div class="col-lg-6">
+					  <div style="margin-top:45px"></div>
+						<div class="sidebar"  id="adsideWrapper">
+						<!-- Categories -->
+						<div class="team_body" id="adside"style="width:650px; height: 515px;padding-top:30px">
+						 <div class="sidebar_section" >
+							<div class="clearfix" style="padding-bottom:15px;font-size: 17px; text-align:left; color: black;">By &nbsp;${ondVO.cartist }</div>
+								<button>문의하기</button>
+								<div class="sidebar_section_title" style="padding-bottom:50px;  text-align:left; color: black;"><h2>${ondVO.ctitle }</h2></div>
+								 <div class="sidebar_categories">
+								  <ul class="categories_list" style="font-size: 22px; text-align:left; color: black;">
+									<li class="clearfix" style="padding-bottom:20px;">가격&emsp;&emsp;&emsp;&emsp;${ondVO.cprice }원&emsp;</li>
+									<li>좋아요&emsp;&emsp;&emsp;${ondVO.chit }</li>
+									
+									<li class="clearfix" style="padding-bottom:20px;">평점&emsp;&emsp;&emsp;&emsp;${ondVO.cscore }</li>
+								  </ul>
+								</div>
+							</div>
+							<div style="text-align:center;">
+							 <a href="../member/jjim.do?no=${ondVO.cno}&type=cn" class="myButton">찜</a>
 											
-											&nbsp;&nbsp;&nbsp;<a href="../cart/addcart.do?no=${ondVO.cno }&type=c&amount=1" class="myrButton">수강신청</a>
-											
-									</div>
-								</div>
+							<a href="../cart/addcart.do?no=${ondVO.cno }&type=c&amount=1" class="myrButton">수강신청</a>
 							</div>
-							
-							
-							
-							
-
-							<!-- Feature -->
-							<div class="sidebar_section">
-								<div class="sidebar_section_title">Teacher</div>
-								<div class="sidebar_teacher">
-									<div
-										class="teacher_title_container d-flex flex-row align-items-center justify-content-start">
-										<div class="teacher_image">
-											<img src="images/teacher.jpg" alt="">
-										</div>
-										<div class="teacher_title">
-											<div class="teacher_name">
-												<a href="#">Jacke Masito</a>
-											</div>
-											<div class="teacher_position">Marketing & Management</div>
-										</div>
-									</div>
-									<div class="teacher_meta_container">
-										<!-- Teacher Rating -->
-										<div
-											class="teacher_meta d-flex flex-row align-items-center justify-content-start">
-											<div class="teacher_meta_title">Average Rating:</div>
-											<div class="teacher_meta_text ml-auto">
-												<span>4.7</span><i class="fa fa-star" aria-hidden="true"></i>
-											</div>
-										</div>
-										<!-- Teacher Review -->
-										<div
-											class="teacher_meta d-flex flex-row align-items-center justify-content-start">
-											<div class="teacher_meta_title">Review:</div>
-											<div class="teacher_meta_text ml-auto">
-												<span>12k</span><i class="fa fa-comment" aria-hidden="true"></i>
-											</div>
-										</div>
-										<!-- Teacher Quizzes -->
-										<div
-											class="teacher_meta d-flex flex-row align-items-center justify-content-start">
-											<div class="teacher_meta_title">Quizzes:</div>
-											<div class="teacher_meta_text ml-auto">
-												<span>600</span><i class="fa fa-user" aria-hidden="true"></i>
-											</div>
-										</div>
-									</div>
-									<div class="teacher_info">
-										<p>Hi! I am Masion, I’m a marketing & management eros
-											pulvinar velit laoreet, sit amet egestas erat dignissim. Sed
-											quis rutrum tellus, sit amet viverra felis. Cras sagittis sem
-											sit amet urna feugiat rutrum nam nulla ipsum.</p>
-									</div>
-
-								</div>
-
-							</div>
-
-							<!-- Latest Course -->
-							<div class="sidebar_section">
-								<div class="sidebar_section_title">Latest Courses</div>
-								<div class="sidebar_latest">
-
-									<!-- Latest Course -->
-									<div
-										class="latest d-flex flex-row align-items-start justify-content-start">
-										<div class="latest_image">
-											<div>
-												<img src="images/latest_1.jpg" alt="">
-											</div>
-										</div>
-										<div class="latest_content">
-											<div class="latest_title">
-												<a href="course.html">How to Design a Logo a Beginners
-													Course</a>
-											</div>
-											<div class="latest_price">Free</div>
-										</div>
-									</div>
-
-									<!-- Latest Course -->
-									<div
-										class="latest d-flex flex-row align-items-start justify-content-start">
-										<div class="latest_image">
-											<div>
-												<img src="images/latest_2.jpg" alt="">
-											</div>
-										</div>
-										<div class="latest_content">
-											<div class="latest_title">
-												<a href="course.html">Photography for Beginners
-													Masterclass</a>
-											</div>
-											<div class="latest_price">$170</div>
-										</div>
-									</div>
-
-									<!-- Latest Course -->
-									<div
-										class="latest d-flex flex-row align-items-start justify-content-start">
-										<div class="latest_image">
-											<div>
-												<img src="images/latest_3.jpg" alt="">
-											</div>
-										</div>
-										<div class="latest_content">
-											<div class="latest_title">
-												<a href="course.html">The Secrets of Body Language</a>
-											</div>
-											<div class="latest_price">$220</div>
-										</div>
-									</div>
-
-								</div>
-							</div>
-
 						</div>
-					</div>
+	
+						</div>
+         			</div>
+         			
 				</div>
 			</div>
 		</div>

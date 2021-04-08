@@ -102,9 +102,9 @@ transition: .5s ease;
 				</c:forEach>
 
 						</div>
-						<div class="row pagination_row">
+						<div class="pagination_row">
 							<div class="col">
-								<div class="pagination_container text-center d-flex flex-row align-items-center justify-content-start">
+								<div class="page"  style="text-align: center" >
 									<ul class="pagination_list">
 							          <c:if test="${startPage>1 }">
 							           <li><a href="../online/online.do?page=${startPage-1 }">이전</a></li>
@@ -147,6 +147,7 @@ transition: .5s ease;
 							</div>
 						</div>
 					</div>
+				<div style="height:30px;"></div>
 				</div>
 			</div>
 		</div>
