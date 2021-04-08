@@ -7,9 +7,16 @@ package com.sist.vo;
  * 
  */
 public class CartVO {
-	private String title,artist,poster,price,regdate,type;
+	private String title,artist,poster,price,regdate,type,rdate;
 	private int no,quantity,ono,onoff;
 
+	
+	public String getRdate() {
+		return rdate;
+	}
+	public void setRdate(String rdate) {
+		this.rdate = rdate;
+	}
 	public int getOnoff() {
 		return onoff;
 	}

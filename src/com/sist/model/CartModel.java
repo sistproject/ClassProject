@@ -46,8 +46,14 @@ public class CartModel {
 		String no = request.getParameter("no");
 		String type = request.getParameter("type");
 		String amount = request.getParameter("amount");
+		String rdate = request.getParameter("rdate");
+		
+		System.out.println(type);
+		System.out.println(amount);
+		System.out.println(rdate);
+		
 		CartDAO dao = CartDAO.newInstance();
-		dao.cartInsert(Integer.parseInt(no), id, type, Integer.parseInt(amount));
+		dao.cartInsert(Integer.parseInt(no), id, type, Integer.parseInt(amount),rdate);
 		
 		return "redirect:../cart/cart.do";
 	}

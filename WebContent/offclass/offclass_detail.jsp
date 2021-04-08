@@ -77,17 +77,6 @@ $(function(){
 			$('#m'+no).hide("slow");
 			i=0;
 		}
-		/*<textarea rows="7" cols="120" name="msg">${rvo.msg }</textarea>
-		<input type="hidden" name=cno value="${vo.cno }">
-		<input type="hidden" name=no value="${rvo.no }"> <input type="submit" value="댓글수정" class="btn btn-sm btn-danger editBtn">
-	*
-	
-	/$('.editBtn').click((event)=>{
-		event.preventDefault();
-		let cno= $('#cno').val();
-		console.log(cno);
-		
-	})
 		
 	});
 });
@@ -262,8 +251,8 @@ $(function(){
 
 							<!-- Course Info Item -->
 							<div class="course_info_item">
-								<div class="course_info_title">평점:</div>
-								<div class="course_info_text">${vo.cscore }</a></div>
+								<div class="course_info_title">소요시간:</div>
+								<div class="course_info_text">${vo.ctime }</a></div>
 							</div>
 
 							<!-- Course Info Item -->
@@ -496,13 +485,13 @@ $(function(){
 												</div>
 												</li>
 												<li style="display: none" id="m${rvo.no }" class="updateli">
-									
+
 								 	<table class="table">
 										<tr>
 											<td>
 												<textarea rows="7" cols="120" name="msg">${rvo.msg }</textarea>
-												<input type="hidden" name=cno id="cno" value="${rvo.no }">
-												<input type="hidden" name=no value="${rvo.no }"> <input type="submit" value="댓글수정" class="btn btn-sm btn-danger editBtn">
+												<input type="hidden" name=cno value="${vo.cno }">
+												<input type="hidden" name=no value="${rvo.no }"> <input type="submit" value="댓글수정" class="btn btn-sm btn-danger">
 											</td>
 										</tr>
 									</table> 
@@ -540,8 +529,8 @@ $(function(){
 
 									<!-- Feature -->
 									<div class="feature d-flex flex-row align-items-center justify-content-start">
-										<div class="feature_title"><i class="fa fa-clock-o" aria-hidden="true"></i><span>소요시간:</span></div>
-										<div class="feature_text ml-auto">${vo.ctime }</div>
+										<div class="feature_title"><i class="fa fa-clock-o" aria-hidden="true"></i><span>Duration:</span></div>
+										<div class="feature_text ml-auto">2 weeks</div>
 									</div>
 
 									<!-- Feature -->
@@ -570,7 +559,7 @@ $(function(){
 									
 								
           							
-										<a href="../member/jjim.do?no=${vo.cno}&type=cf" class="myButton">찜</a>&nbsp;&nbsp;&nbsp;<a href="../offclass/reserve.do" class="myrButton">예약하기</a>
+										<a href="../member/jjim.do?no=${vo.cno}&type=cf" class="myButton">찜</a>&nbsp;&nbsp;&nbsp;<a href="../offclass/reserve.do?no=${vo.cno }" class="myrButton">예약하기</a>
 						
 
 								</div>

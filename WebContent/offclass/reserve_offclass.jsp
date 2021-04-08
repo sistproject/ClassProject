@@ -37,13 +37,11 @@ $(function(){
 </head>
 <body>
   <table class="table">
-    <c:forEach var="vo" items="${list }">
       <tr class="house" data-poster="${vo.cposter }" data-title="${vo.ctitle }" data-no="${vo.cno }">
        <td class="text-center"><img src="${vo.cposter }" style="height: 30px;width:30px"></td>
        <td>${vo.ctitle }</td>
        <td>${vo.infoaddr }</td>
       </tr>
-    </c:forEach>
   </table>
 </body>
 </html>

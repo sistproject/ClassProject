@@ -168,6 +168,8 @@ public class OffClassModel {
 	  @RequestMapping("offclass/reserve.do")
 	  public String offclass_reserve(HttpServletRequest request,HttpServletResponse response)
 	  {
+		  String cno = request.getParameter("no");
+		  request.setAttribute("cno", cno);
 		  request.setAttribute("main_jsp", "../offclass/reserve.jsp");
 		  return "../main/main.jsp";
 	  }
@@ -267,9 +269,15 @@ public class OffClassModel {
 	  @RequestMapping("offclass/reserve_offclass.do")
 	  public String reserve_offclass(HttpServletRequest request,HttpServletResponse response)
 	  {
+		  System.out.println("get");
+		  String cno = request.getParameter("cno");
+		  System.out.println(cno);
 		  OffClassDAO dao=OffClassDAO.newInstance();
-		  List<OffClassVO> list=dao.offclassReserveAllData();
-		  request.setAttribute("list", list);
+		  OffClassVO vo = dao.OffDetailData(Integer.parseInt(cno));
+//		  List<OffClassVO> list=dao.offclassReserveAllData();
+//		  request.setAttribute("list", list);
+		  request.setAttribute("vo", vo);
+		  System.out.println(vo.getCtitle());
 		  return "../offclass/reserve_offclass.jsp";
 	  }
 	  

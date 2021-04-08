@@ -15,11 +15,14 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
+	let cno = ${cno};
 	$.ajax({
 		type:'POST',
 		url:'../offclass/reserve_offclass.do',
+		data:{'cno':cno},
 		success:function(result)
 		{
+			console.log("success")
 			$('#offclass').html(result);
 		}
 	});
@@ -30,10 +33,19 @@ $(function(){
 		let time=$('#reserve_time1').text();
 		let inwon=$('#reserve_inwon1').text();
 		
-		$.ajax({
+		/*$.ajax({
 			type:'post',
 			url:'../offclass/reserve_save.do',
 			data:{"title":title,"day":day,"time":time,"inwon":inwon},  
+			success:function(result)
+			{
+				location.href="../cart/cart.do";  // 이부분 확인할 것!!!
+			}
+		})*/
+		$.ajax({
+			type:'post',
+			url:'../cart/addcart.do',
+			data:{"no":cno,"type":"c","amount":inwon,"rdate":day+" "+time},  
 			success:function(result)
 			{
 				location.href="../cart/cart.do";  // 이부분 확인할 것!!!
