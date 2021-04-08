@@ -309,7 +309,7 @@ function view2(opt2){
 				
 				<div class="row pagination_row">
 							<div class="col">
-								<div class="pagination_container text-center d-flex flex-row align-items-center justify-content-start">
+								<div class="list_number">
 									<ul>
 							          <c:if test="${startpage>1 }">
 							           <li><a href="../work/work_list.do?page=${startpage-1 }">이전</a></li>
