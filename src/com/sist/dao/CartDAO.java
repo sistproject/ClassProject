@@ -142,19 +142,20 @@ public class CartDAO {
 			   disConnection();
 		   }
 	   } 
-	   public void cartInsert(int no,String id, String type,int amount) {
+	   public void cartInsert(int no,String id, String type,int amount,String rdate) {
 		   List<CartVO> list = new ArrayList<CartVO>();
 		   try {
 			   getConnection();
 			   
-			   String sql="INSERT INTO cart(crno,id,c_no,quantity) VALUES(cart_crno_SEQ.nextval,"
-			   		+ "?,?,?)";
+			   String sql="INSERT INTO cart(crno,id,c_no,quantity,rdate) VALUES(cart_crno_SEQ.nextval,"
+			   		+ "?,?,?,?)";
 			   if(type.equals("w")) sql="INSERT INTO cart(crno,id,w_no,quantity) VALUES(cart_crno_SEQ.nextval,"
-				   		+ "?,?,?)";
+				   		+ "?,?,?,?)";
 			   ps=conn.prepareStatement(sql);
 			   ps.setString(1, id);
 			   ps.setInt(2, no);
 			   ps.setInt(3, amount);
+			   ps.setString(4, rdate);
 			   ps.executeUpdate();
 		   }catch(Exception ex) {
 			   ex.printStackTrace();

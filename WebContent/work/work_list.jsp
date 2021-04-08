@@ -122,28 +122,6 @@ function view2(opt2){
 					</c:forEach>
 
 				</div>
-				<%-- <div class="row pagination_row">
-							<div class="col">
-								<div class="number_">
-							          <c:if test="${startpage>1 }">
-							           <a href="../work/work_list.do?page=${startpage-1 }">이전</a>
-							          </c:if>
-							          <c:forEach var="i" begin="${startpage }" end="${endpage }" step="1">
-							            <c:if test="${i==curpage }">
-							             <c:set var="type" value="class=current"/>
-							            </c:if>
-							            <c:if test="${i!=curpage }">
-							             <c:set var="type" value=""/>
-							            </c:if>
-							           <a href="../work/work_list.do?page=${i }"style="color:black;">${i }</a>
-							          </c:forEach>
-							          <c:if test="${endpage<totalpage }">
-							           <li><a href="../work/work_list.do?page=${endpage+1 }"> 다음</a><p>
-							          </c:if>
-							        
-								</div>
-							</div>
-				</div>--%>
 				
 				<div class="list_num" style="text-align: center; font-size: 39px;">
 							<div class="col">

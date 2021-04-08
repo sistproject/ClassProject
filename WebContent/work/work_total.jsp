@@ -86,13 +86,13 @@ function view2(opt2){
 				<div class="row">
 					<div class="col">
 						<div class="section_title_container text-center">
-							<h2>실시간 추천작품</h2>
+							<h2>작품 전체</h2>
 							<div style="border: 1.5px solid #818CF8"></div>
 						</div>
 					</div>
 				</div>
 				<div class="row team_row">
-					<!-- 실시간 추천작품 -->
+					<!-- 작품 전체 -->
 					<c:forEach var="vo" items="${rList }" varStatus="s">
 						<div class="col-lg-3 col-md-6 team_col">
 							<div class="team_item" style="width: 250px; height: 295px">
@@ -128,7 +128,7 @@ function view2(opt2){
 								<div class="list_number">
 									<ul>
 							          <c:if test="${startpage>1 }">
-							           <li style="display:inline-block;"><a href="../work/work_sil.do?page=${startpage-1 }">이전</a></li>
+							           <li style="display:inline-block;"><a href="../work/work_total.do?page=${startpage-1 }">이전</a></li>
 							          </c:if>
 							          <c:forEach var="i" begin="${startpage }" end="${endpage }" step="1">
 							            <c:if test="${i==curpage }">
@@ -137,10 +137,10 @@ function view2(opt2){
 							            <c:if test="${i!=curpage }">
 							             <c:set var="type" value=""/>
 							            </c:if>
-							            <li ${type }  style="display:inline-block;"><a href="../work/work_sil.do?page=${i }">${i }</a></li>
+							            <li ${type }  style="display:inline-block;"><a href="../work/work_total.do?page=${i }">${i }</a></li>
 							          </c:forEach>
 							          <c:if test="${endpage<totalpage }">
-							            <li  style="display:inline-block;"><a href="../work/work_sil.do?page=${endpage+1 }"> 다음</a></li>
+							            <li  style="display:inline-block;"><a href="../work/work_total.do?page=${endpage+1 }"> 다음</a></li>
 							          </c:if>
 							        </ul>
 								</div>

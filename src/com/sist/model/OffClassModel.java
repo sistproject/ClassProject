@@ -43,26 +43,28 @@ public class OffClassModel {
 		  
 		  Cookie[] cookies=request.getCookies();	
 		  System.out.println(cookies.length);
-//		  if(cookies != null)
-//		  {
-//			  for(int i=cookies.length-1;i>=0;i--)
-//			  {
-//				  if(cookies[i].getName().startsWith("m"))
-//				  { 	
-//					  System.out.println("coock");
-//					  cookies[i].setPath("/");
-//					  System.out.println("name"+cookies[i].getName()); // key
-//					  String cno=cookies[i].getValue(); // value
-//					  System.out.println("value"+cookies[i].getValue());
-//					  OffClassVO vo=dao.offclassCookiePrintData(Integer.parseInt(cno));
-//					  System.out.println(vo.getCno());
-//					  kList.add(vo);
-//					  System.out.println("success");
-//					  
-//	
-//				  }
-//			  }
-//		  }
+		  if(cookies != null)
+		  {
+			  System.out.println("not null");
+			  for(int i=cookies.length-1;i>=0;i--)
+			  {
+				  System.out.println("length");
+				  if(cookies[i].getName().startsWith("m"))
+				  { 	
+					  if(!cookies[i].getName().replace("m","").equals("null")) {
+					  cookies[i].setPath("/");
+					   // key
+					  String cno=cookies[i].getValue(); // value
+					  System.out.println("value"+cookies[i].getValue());
+					  OffClassVO vo=dao.offclassCookiePrintData(Integer.parseInt(cno));
+					  System.out.println(vo.getCno());
+					  kList.add(vo);
+					  
+					  }
+					  System.out.println("success");
+				  }
+			  }
+		  }
 		System.out.println(kList.size());
 		
 		request.setAttribute("kList", kList); // 쿠키 데이터
@@ -166,6 +168,8 @@ public class OffClassModel {
 	  @RequestMapping("offclass/reserve.do")
 	  public String offclass_reserve(HttpServletRequest request,HttpServletResponse response)
 	  {
+		  String cno = request.getParameter("no");
+		  request.setAttribute("cno", cno);
 		  request.setAttribute("main_jsp", "../offclass/reserve.jsp");
 		  return "../main/main.jsp";
 	  }
@@ -265,9 +269,15 @@ public class OffClassModel {
 	  @RequestMapping("offclass/reserve_offclass.do")
 	  public String reserve_offclass(HttpServletRequest request,HttpServletResponse response)
 	  {
+		  System.out.println("get");
+		  String cno = request.getParameter("cno");
+		  System.out.println(cno);
 		  OffClassDAO dao=OffClassDAO.newInstance();
-		  List<OffClassVO> list=dao.offclassReserveAllData();
-		  request.setAttribute("list", list);
+		  OffClassVO vo = dao.OffDetailData(Integer.parseInt(cno));
+//		  List<OffClassVO> list=dao.offclassReserveAllData();
+//		  request.setAttribute("list", list);
+		  request.setAttribute("vo", vo);
+		  System.out.println(vo.getCtitle());
 		  return "../offclass/reserve_offclass.jsp";
 	  }
 	  
