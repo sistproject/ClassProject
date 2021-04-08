@@ -6,13 +6,11 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.ClassDAO;
-import com.sist.dao.WorkDAO;
-import com.sist.vo.WorkDetailVO;
-import com.sist.vo.WorkVO;
+import com.sist.dao.OnlineDAO;
+import com.sist.vo.OnlineVO;
 @Controller
 public class MainModel {
 	@RequestMapping("main/main.do")
@@ -22,6 +20,31 @@ public class MainModel {
 		ClassDAO dao = ClassDAO.newInstance();
 		List<String> catList = dao.getCategory();
 		int catCount = dao.getCategoryCount();
+		
+		// 쿠키
+		OnlineDAO Cdao = OnlineDAO.newInstance();
+		  List<OnlineVO> kList=new ArrayList<OnlineVO>();
+				  
+				  Cookie[] cookies=request.getCookies();			
+				  if(cookies != null)
+				  {
+					  for(int i=cookies.length-1;i>=0;i--)
+					  {
+						  if(cookies[i].getName().startsWith("oc") ||cookies[i].getName().startsWith("wc") ) // oc: online cookie, wc: work cookie
+						  { 	
+							  cookies[i].setPath("/");
+							  System.out.println(cookies[i].getName()); // key
+							  String cno=cookies[i].getValue(); // value
+							  System.out.println(cookies[i].getValue());
+							  OnlineVO vo=Cdao.onlineCookiePrintData(Integer.parseInt(cno));
+							  System.out.println(vo.getCno());
+							  kList.add(vo);
+							  
+			
+						  }
+					  }
+				  }
+		 
 		request.setAttribute("catList", catList);
 		request.setAttribute("catCount", catCount);
 		request.setAttribute("name", name);
@@ -44,48 +67,6 @@ public class MainModel {
 		request.setAttribute("menu", "class");
 		return "../main/main.jsp";
 	}
-	@RequestMapping("main/main.do")
-	public String main_home(HttpServletRequest request,HttpServletResponse response) {
-		
-        // 쿠키
-		List<WorkDetailVO> fList=new ArrayList<WorkDetailVO>();
-		System.out.println("=================rr=========");
-		WorkDAO dao=new WorkDAO();
-		Cookie[] cookies=request.getCookies();			
-		  if(cookies != null)
-		  {
-			  for(int i=cookies.length-1;i>=0;i--)
-			  {
-				  System.out.println("쿠키 포문");
-				  if(cookies[i].getName().startsWith("m"))
-				  { 	
-					  System.out.println("쿠키 조건문");
-					  cookies[i].setPath("/");
-					  System.out.println(cookies[i].getName()); // key
-					  String w_no=cookies[i].getValue(); // value
-					  System.out.println(cookies[i].getValue());
-					  WorkDetailVO vo=dao.WorkCookiePrintData(Integer.parseInt(w_no));
-					  System.out.println(vo.getW_no());
-					  fList.add(vo);
-					  
-	
-				  }
-			  }
-		  }
-		request.setAttribute("fList", fList);
-		System.out.println("============tt=====rr=========");
-		//String w_no=request.getParameter("w_no");
-		List<WorkVO> wList=dao.WorkMainData();
-		request.setAttribute("wList", wList);
-		//request.setAttribute("menu", "work");
-		request.setAttribute("main_jsp", "../main/home.jsp");
-
-		return "../main/main.jsp";
-
-	}
-
-
-
 
 
 }
