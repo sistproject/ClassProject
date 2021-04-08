@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,10 +94,15 @@
 	width:800px;
 	margin:0px auto;
 	padding:10px;
+	position:relative;
+}
+#img{
+	margin:10px;
 }
 #preview{
-	max-width:200px;
-	max-height:200px;
+	max-width:300px;
+	max-height:300px;
+	margin:10px;
 }
 
 #type_list {
@@ -109,6 +115,7 @@
     -webkit-appearance: none; /* 네이티브 외형 감추기 */
     -moz-appearance: none;
     appearance: none;
+    margin: 10px;
 }
 
 #category_list {
@@ -121,24 +128,43 @@
     -webkit-appearance: none; /* 네이티브 외형 감추기 */
     -moz-appearance: none;
     appearance: none;
+    margin: 10px;
 }
 
+#time,
+#price{
+	display:inline-block;
+	margin: 10px;
+}
 
+.form-control{
+	margin:10px;
+}
 
+#title,
+#content{
+	margin-left:10px;
+}
 
+#writeSmBtn{
+	left: 10px;
+	position: relative;
+}
 </style>
 </head>
 <body>
+<div style="height:150px"></div>
 <div class="write_wrapper">
-	<form action="../class/write.do" method="post">
-		<input type="hidden" name="artist" value="artist">
-		<input type="hidden" name="address" value="address">
+	<form action="../class/writeWC_ok.do" method="post">
+		<input type="hidden" name="artist" value="${mvo.name }">
+		<input type="hidden" name="address1" value="${mvo.addr1 }">
+		<input type="hidden" name="address2" value="${mvo.addr2 }">
 		<input type="hidden" name="poster" value="">
 		
 		<select id="type_list" name="type_list">
-			<option value="작품">작품</option>
-			<option value="온라인">온라인 클래스</option>
-			<option value="오프라인">오프라인 클래스</option>
+			<option value="1">작품</option>
+			<option value="2">온라인 클래스</option>
+			<option value="3">오프라인 클래스</option>
 		</select>
 		<select id="category_list" name="category_list">
 			<option value="1">1</option>
@@ -155,17 +181,17 @@
 		<br>
 		<input name="img" type="file" id="img"/><br>
 		<img src="" id="preview">
-		<input type="text" name="title" class="form-control"
+		<input type="text" name="title" class="form-control" id="title"
 			placeholder="제목을 입력해주세요." required>
-		<textarea class="form-control" rows="10" name="content"
+		<textarea class="form-control" rows="10" name="content" id="content"
 			placeholder="내용을 입력해주세요" required></textarea>
 		<div class="inline_box">
-			<input type="text" id="time" name="time" class="form-control col-lg-4"
+			<input type="text" id="time" name="time" class="form-control col-lg-2"
 			placeholder="시간(분)" required>
-			<input type="text" id="price" name="price" class="form-control col-lg-4"
+			<input type="text" id="price" name="price" class="form-control col-lg-2"
 			placeholder="가격(원)" required>
 		</div>
-		<button type="submit" class="btn btn-secondary mb-3">글쓰기</button>
+		<button type="submit" class="btn btn-secondary mb-3" id="writeSmBtn">글쓰기</button>
 	</form>
 </div>
 </body>
