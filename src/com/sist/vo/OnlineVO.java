@@ -23,7 +23,16 @@ RDAYS                VARCHAR2(100)
 public class OnlineVO {
 	private int cno,wno, chit;
 	private double cscore;
-	private String ctitle, cartist, cprice, cposter, ccontent;
+	private String ctitle, cartist, cprice, cposter, ccontent, ccategory;
+	
+
+	public String getCcategory() {
+		return ccategory;
+	}
+
+	public void setCcategory(String ccategory) {
+		this.ccategory = ccategory;
+	}
 
 	public double getCscore() {
 		return cscore;
