@@ -146,7 +146,7 @@ public class CartDAO {
 		   List<CartVO> list = new ArrayList<CartVO>();
 		   try {
 			   getConnection();
-			   System.out.println(type.equals("c"));
+			   
 			   String sql="INSERT INTO cart(crno,id,c_no,quantity) VALUES(cart_crno_SEQ.nextval,"
 			   		+ "?,?,?)";
 			   if(type.equals("w")) sql="INSERT INTO cart(crno,id,w_no,quantity) VALUES(cart_crno_SEQ.nextval,"
@@ -156,7 +156,6 @@ public class CartDAO {
 			   ps.setInt(2, no);
 			   ps.setInt(3, amount);
 			   ps.executeUpdate();
-			   System.out.println("success");
 		   }catch(Exception ex) {
 			   ex.printStackTrace();
 		   }
