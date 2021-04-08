@@ -191,9 +191,9 @@ margin-top:30px;
 						</div>
 						<div class="blog_image"><img src="${vo.w_poster }" style="width:720px; height:1000px object-fit:fill" alt=""></div>
 						<div style="margin-top:15px"></div>
-						<div class="team_body" style="width:720px; height: 700px">
+						<div class="body" style="width:720px; height: 500px; padding-top:30px;">
 							<div class="team_title" style="font-size:20px; color:black;">${vo.w_content }</div>
-							 <div class="social_list"  style="padding-top:50px; color:black;font-size:16px">
+							 <div class="social_list"  style="padding-top:30px; color:black;font-size:16px">
 								<span>Tags: </span>
 										<ul>
 											<li>${vo.w_tag }</li>

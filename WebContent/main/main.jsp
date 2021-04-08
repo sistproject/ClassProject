@@ -219,12 +219,12 @@ function view2(opt2){
 									<div id="category_size">카테고리</div></a>
 								</li>
 								<li class="active"><a href="../main/main.do">홈</a></li>
-								<li><a href="#">작품 전체</a></li>
-								<li><a href="#">인기 작품</a></li>
+								<li><a href="../work/work_total.do">작품 전체</a></li>
+								<li><a href="../work/work_ingi.do">인기 작품</a></li>
 								<li><a href="../work/work_list.do">오늘의 발견</a></li>
-								<li><a href="#">실시간 구매</a></li>
-								<li><a href="#">작가님 추천</a></li>
-								<li><a href="#">실시간 추천</a></li>
+								<li><a href="../work/work_sil.do">실시간 구매</a></li>
+								<li><a href="../work/work_jak.do">작가님 추천</a></li>
+								<li><a href="../work/work_silgu.do">실시간 추천</a></li>
 							</ul>
 							</div>
 							<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>

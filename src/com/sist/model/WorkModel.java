@@ -22,6 +22,7 @@ import com.sist.vo.WorkVO;
 
 @Controller
 public class WorkModel {
+	//////------------------------- 오늘의 발견 ----------------------------//////
 	@RequestMapping("work/work_list.do")
 	public String work_list(HttpServletRequest request, HttpServletResponse response)
 	{
@@ -50,33 +51,7 @@ public class WorkModel {
 				if (endpage > totalpage)
 					endpage = totalpage;
 				
-		// 쿠키
-				 // 쿠키
-				List<WorkDetailVO> fList=new ArrayList<WorkDetailVO>();
-				System.out.println("=================rr=========");
-				WorkDAO Cdao=new WorkDAO();
-				Cookie[] cookies=request.getCookies();			
-				  if(cookies != null)
-				  {
-					  for(int i=cookies.length-1;i>=0;i--)
-					  {
-						  System.out.println("쿠키 포문");
-						  if(cookies[i].getName().startsWith("wc"))
-						  { 	
-							  System.out.println("쿠키 조건문");
-							  cookies[i].setPath("/");
-							  System.out.println(cookies[i].getName()); // key
-							  String w_no=cookies[i].getValue(); // value
-							  System.out.println(cookies[i].getValue());
-							  WorkDetailVO vo=Cdao.WorkCookiePrintData(Integer.parseInt(w_no));
-							  System.out.println(vo.getW_no());
-							  fList.add(vo);
-							  
-			
-						  }
-					  }
-				  }
-		request.setAttribute("kList", fList); // 쿠키 데이터
+
 		request.setAttribute("count", count);
 		request.setAttribute("rList", rList);
 		request.setAttribute("block", BLOCK);
@@ -89,6 +64,176 @@ public class WorkModel {
 
 		return "../main/main.jsp";
 	}
+	/////----------------------- 인기 작품 ---------------------------------//////
+	@RequestMapping("work/work_ingi.do")
+	public String work_ingi(HttpServletRequest request, HttpServletResponse response)
+	{
+		
+		// 페이지 나누기
+				String page = request.getParameter("page");
+				System.out.println("페이지 출력");
+				System.out.println(page);
+				System.out.println("페이지 출력 완료");
+				if (page == null) {
+					page = "1";
+				}
+				int curpage = Integer.parseInt(page);
+				
+				WorkDAO dao=new WorkDAO();
+				List<WorkDetailVO> rList = dao.WorkListData(curpage);
+				int count = dao.WorkMainCount();
+				int totalpage = (int) (Math.ceil(count / 12.0));
+
+				final int BLOCK = 10;
+				// 102 [1]-[10] [91]~[100] [101][102]
+				int startpage = ((curpage - 1) / BLOCK * BLOCK) + 1;
+				// 1~10 => 1 10-1/10 => 0 9/10
+				int endpage = ((curpage - 1) / BLOCK * BLOCK) + BLOCK;
+
+				if (endpage > totalpage)
+					endpage = totalpage;
+				
+
+		request.setAttribute("count", count);
+		request.setAttribute("rList", rList);
+		request.setAttribute("block", BLOCK);
+		request.setAttribute("startpage", startpage);
+		request.setAttribute("endpage", endpage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("main_jsp", "../work/work_ingi.jsp");
+		request.setAttribute(page, rList);
+
+		return "../main/main.jsp";
+	}
+	//////----------------------- 실기간 추천작품 -----------------------------------//////
+	@RequestMapping("work/work_sil.do")
+	public String work_sil(HttpServletRequest request, HttpServletResponse response)
+	{
+		
+		// 페이지 나누기
+				String page = request.getParameter("page");
+				System.out.println("페이지 출력");
+				System.out.println(page);
+				System.out.println("페이지 출력 완료");
+				if (page == null) {
+					page = "1";
+				}
+				int curpage = Integer.parseInt(page);
+				
+				WorkDAO dao=new WorkDAO();
+				List<WorkDetailVO> rList = dao.WorkListData(curpage);
+				int count = dao.WorkMainCount();
+				int totalpage = (int) (Math.ceil(count / 12.0));
+
+				final int BLOCK = 10;
+				// 102 [1]-[10] [91]~[100] [101][102]
+				int startpage = ((curpage - 1) / BLOCK * BLOCK) + 1;
+				// 1~10 => 1 10-1/10 => 0 9/10
+				int endpage = ((curpage - 1) / BLOCK * BLOCK) + BLOCK;
+
+				if (endpage > totalpage)
+					endpage = totalpage;
+				
+
+		request.setAttribute("count", count);
+		request.setAttribute("rList", rList);
+		request.setAttribute("block", BLOCK);
+		request.setAttribute("startpage", startpage);
+		request.setAttribute("endpage", endpage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("main_jsp", "../work/work_sil.jsp");
+		request.setAttribute(page, rList);
+
+		return "../main/main.jsp";
+	}
+	//////----------------------------- 실시간 구매-------------------------------- ///////
+	@RequestMapping("work/work_silgu.do")
+	public String work_silgu(HttpServletRequest request, HttpServletResponse response)
+	{
+		
+		// 페이지 나누기
+				String page = request.getParameter("page");
+				System.out.println("페이지 출력");
+				System.out.println(page);
+				System.out.println("페이지 출력 완료");
+				if (page == null) {
+					page = "1";
+				}
+				int curpage = Integer.parseInt(page);
+				
+				WorkDAO dao=new WorkDAO();
+				List<WorkDetailVO> rList = dao.WorkListData(curpage);
+				int count = dao.WorkMainCount();
+				int totalpage = (int) (Math.ceil(count / 12.0));
+
+				final int BLOCK = 10;
+				// 102 [1]-[10] [91]~[100] [101][102]
+				int startpage = ((curpage - 1) / BLOCK * BLOCK) + 1;
+				// 1~10 => 1 10-1/10 => 0 9/10
+				int endpage = ((curpage - 1) / BLOCK * BLOCK) + BLOCK;
+
+				if (endpage > totalpage)
+					endpage = totalpage;
+				
+
+		request.setAttribute("count", count);
+		request.setAttribute("rList", rList);
+		request.setAttribute("block", BLOCK);
+		request.setAttribute("startpage", startpage);
+		request.setAttribute("endpage", endpage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("main_jsp", "../work/work_silgu.jsp");
+		request.setAttribute(page, rList);
+
+		return "../main/main.jsp";
+	}
+	/////-------------------------------- 작가님 추천 --------------------------------/////
+	@RequestMapping("work/work_jak.do")
+	public String work_jak(HttpServletRequest request, HttpServletResponse response)
+	{
+		
+		// 페이지 나누기
+				String page = request.getParameter("page");
+				System.out.println("페이지 출력");
+				System.out.println(page);
+				System.out.println("페이지 출력 완료");
+				if (page == null) {
+					page = "1";
+				}
+				int curpage = Integer.parseInt(page);
+				
+				WorkDAO dao=new WorkDAO();
+				List<WorkDetailVO> rList = dao.WorkListData(curpage);
+				int count = dao.WorkMainCount();
+				int totalpage = (int) (Math.ceil(count / 12.0));
+
+				final int BLOCK = 10;
+				// 102 [1]-[10] [91]~[100] [101][102]
+				int startpage = ((curpage - 1) / BLOCK * BLOCK) + 1;
+				// 1~10 => 1 10-1/10 => 0 9/10
+				int endpage = ((curpage - 1) / BLOCK * BLOCK) + BLOCK;
+
+				if (endpage > totalpage)
+					endpage = totalpage;
+				
+
+		request.setAttribute("count", count);
+		request.setAttribute("rList", rList);
+		request.setAttribute("block", BLOCK);
+		request.setAttribute("startpage", startpage);
+		request.setAttribute("endpage", endpage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("main_jsp", "../work/work_jak.jsp");
+		request.setAttribute(page, rList);
+
+		return "../main/main.jsp";
+	}
+	
+	
 	@RequestMapping("work/work_detail_before.do")
 	  public String detail_before(HttpServletRequest request,HttpServletResponse response)
 	  {
