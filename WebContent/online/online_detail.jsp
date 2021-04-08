@@ -253,9 +253,9 @@ margin-top:30px;
 																						data-no="${rvo.no }" data-cno="${ondVO.cno }">삭제</span>
 																				</c:if>
 																			</figure>
-																			<address>
-																				By <a href="#">${rvo.name }</a>
-																			</address>
+																			<div style="color:blue;">
+																				By ${rvo.name }
+																			</div>
 																			<time datetime="2045-04-06T08:15+00:00">${rvo.dbday }</time>
 																		</header>
 																		<div class="comcont">
@@ -626,7 +626,10 @@ margin-top:30px;
 						<div class="team_body" id="adside"style="width:650px; height: 515px;padding-top:30px">
 						 <div class="sidebar_section" >
 							<div class="clearfix" style="padding-bottom:15px;font-size: 17px; text-align:left; color: black;">By &nbsp;${ondVO.cartist }</div>
-								<button>문의하기</button>
+								
+								
+								<button onclick="location.href='../board/insert.do?type=0&cno=${ondVO.cno}'">문의하기</button>
+								
 								<div class="sidebar_section_title" style="padding-bottom:50px;  text-align:left; color: black;"><h2>${ondVO.ctitle }</h2></div>
 								 <div class="sidebar_categories">
 								  <ul class="categories_list" style="font-size: 22px; text-align:left; color: black;">

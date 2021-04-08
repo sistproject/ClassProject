@@ -30,6 +30,7 @@ public class BoardModel {
 	    BoardDAO dao=new BoardDAO();
 	    List<BoardVO> list=dao.qaBoardList();  
 	    List<BoardVO> alist=dao.answerBoard();
+	    
 		request.setAttribute("list", list );
 		request.setAttribute("alist", alist );
 		request.setAttribute("main_jsp", "../board/qaboard.jsp");
@@ -65,7 +66,6 @@ public class BoardModel {
 		for(BoardVO bvo:alist) {
 			if(bvo.getBno() == Integer.parseInt(no)) vo=bvo;
 		}
-		
 		request.setAttribute("vo", vo);
 		request.setAttribute("main_jsp", "../board/qadetail.jsp");
 		return "../main/main.jsp";
@@ -89,11 +89,14 @@ public class BoardModel {
 		String type = request.getParameter("type");
 		String wno = request.getParameter("wno");
 		String cno = request.getParameter("cno");
+		BoardDAO dao = BoardDAO.newInstance();
 		String title = "";
 		try {
-			BoardDAO dao = BoardDAO.newInstance();
 			title = dao.additional(Integer.parseInt(wno), "w");
-		if(cno!=null) title=dao.additional(Integer.parseInt(cno), "c");
+		}catch (Exception e) {}
+		try {
+			title=dao.additional(Integer.parseInt(cno), "c");
+			
 		}catch (Exception e) {}
 		request.setAttribute("id", id);
 		request.setAttribute("type", type);
@@ -153,8 +156,6 @@ public class BoardModel {
 		
 		BoardDAO dao = BoardDAO.newInstance();
 		List<BoardVO> list = dao.freeboardList();
-		System.out.println(type);
-		System.out.println(type.equals("0"));
 		if(type.equals("0")) {
 			list = dao.qaBoardList();
 		}
@@ -222,9 +223,7 @@ public class BoardModel {
 		String id=request.getParameter("id");
 		String title=request.getParameter("title");
 		String content=request.getParameter("content");
-		System.out.println(bno);
-		System.out.println(id);
-		System.out.println(title);
+
 		BoardDAO dao = BoardDAO.newInstance();
 		BoardVO vo = new BoardVO();
 		vo.setId(id);

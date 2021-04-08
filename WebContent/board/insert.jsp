@@ -73,7 +73,15 @@ $(()=>{
 		<h2 class="sectiontitle" class="text-center" style="display:block;text-align:center">글쓰기</h2>
 		<div style="height:30px"></div>
 		<div style="height:800px;">
+	<c:if test="${cno!=null }">
+	 <form method=post action="../board/insert_ok.do?type=${type}&cno=${cno}" id="frm" autocomplete="off">
+	 </c:if>
+	<c:if test="${wno!=null }">
+	 <form method=post action="../board/insert_ok.do?type=${type}&wno=${wno}" id="frm" autocomplete="off">
+	 </c:if>
+	<c:if test="${wno==null&&cno==null}">
 	 <form method=post action="../board/insert_ok.do?type=${type}" id="frm" autocomplete="off">
+	 </c:if>
     <table class="table">
     <tr>
     <th class="text-right danger" width=15%>ID</th>

@@ -154,7 +154,8 @@ public class BoardDAO {
 				   vo.setHits(rs.getInt(6));
 				   vo.setRegdate(rs.getString(7));
 				   vo.setBno(rs.getInt(8));
-				   vo.setPoster(rs.getString(9));
+				   if(rs.getString(9).contains("^")) vo.setPoster(rs.getString(9).substring(0,rs.getString(9).indexOf("^")));
+				   else vo.setPoster(rs.getString(9));
 				   vo.setAdd(rs.getString(10));
 				   list.add(vo);
 			   }
@@ -277,8 +278,8 @@ public class BoardDAO {
 		   String title="";
 		   try {
 			   getConnection();
-			   String sql="SELECT c_title FROM thiswork WHRER c_no=?";
-			   if(wc.equals('w')) sql="SELECT w_title FROM thiswork WHRER w_no=?";
+			   String sql="SELECT c_title FROM thisclass WHERE c_no=?";
+			   if(wc.equals("w")) sql="SELECT w_title FROM thiswork WHERE w_no=?";
 			   ps=conn.prepareStatement(sql);
 			   ps.setInt(1,no);
 			   ResultSet rs = ps.executeQuery();
