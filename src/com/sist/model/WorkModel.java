@@ -1,5 +1,6 @@
 package com.sist.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -48,7 +49,34 @@ public class WorkModel {
 
 				if (endpage > totalpage)
 					endpage = totalpage;
-		
+				
+		// 쿠키
+				 // 쿠키
+				List<WorkDetailVO> fList=new ArrayList<WorkDetailVO>();
+				System.out.println("=================rr=========");
+				WorkDAO Cdao=new WorkDAO();
+				Cookie[] cookies=request.getCookies();			
+				  if(cookies != null)
+				  {
+					  for(int i=cookies.length-1;i>=0;i--)
+					  {
+						  System.out.println("쿠키 포문");
+						  if(cookies[i].getName().startsWith("wc"))
+						  { 	
+							  System.out.println("쿠키 조건문");
+							  cookies[i].setPath("/");
+							  System.out.println(cookies[i].getName()); // key
+							  String w_no=cookies[i].getValue(); // value
+							  System.out.println(cookies[i].getValue());
+							  WorkDetailVO vo=Cdao.WorkCookiePrintData(Integer.parseInt(w_no));
+							  System.out.println(vo.getW_no());
+							  fList.add(vo);
+							  
+			
+						  }
+					  }
+				  }
+		request.setAttribute("kList", fList); // 쿠키 데이터
 		request.setAttribute("count", count);
 		request.setAttribute("rList", rList);
 		request.setAttribute("block", BLOCK);
@@ -56,10 +84,10 @@ public class WorkModel {
 		request.setAttribute("endpage", endpage);
 		request.setAttribute("totalpage", totalpage);
 		request.setAttribute("curpage", curpage);
-		//request.setAttribute("main_jsp", "../work/work_list.jsp");
+		request.setAttribute("main_jsp", "../work/work_list.jsp");
 		request.setAttribute(page, rList);
 
-		return "../work/work_list.jsp";
+		return "../main/main.jsp";
 	}
 	@RequestMapping("work/work_detail_before.do")
 	  public String detail_before(HttpServletRequest request,HttpServletResponse response)
@@ -70,7 +98,7 @@ public class WorkModel {
 		  System.out.println("출력");
 		  System.out.println(w_no);
 		  System.out.println("했나?");
-		  Cookie cookies=new Cookie("m"+w_no, w_no);// 문자열만 저장이 가능 
+		  Cookie cookies=new Cookie("wc"+w_no, w_no);// 문자열만 저장이 가능 
 		  cookies.setMaxAge(60*60);
 		  cookies.setPath("/");
 		  response.addCookie(cookies);

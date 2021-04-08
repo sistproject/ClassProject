@@ -309,22 +309,22 @@ function view2(opt2){
 				
 				<div class="row pagination_row">
 							<div class="col">
-								<div class="pagination_container text-center d-flex flex-row align-items-center justify-content-start">
+								<div class="list_number">
 									<ul>
-							          <c:if test="${startPage>1 }">
-							           <li><a href="../online/online.do?page=${startPage-1 }">이전</a></li>
+							          <c:if test="${startpage>1 }">
+							           <li><a href="../work/work_list.do?page=${startpage-1 }">이전</a></li>
 							          </c:if>
-							          <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
+							          <c:forEach var="i" begin="${startpage }" end="${endpage }" step="1">
 							            <c:if test="${i==curpage }">
 							             <c:set var="type" value="class=current"/>
 							            </c:if>
 							            <c:if test="${i!=curpage }">
 							             <c:set var="type" value=""/>
 							            </c:if>
-							            <li ${type }><a href="../online/online.do?page=${i }">${i }</a></li>
+							            <li ${type }><a href="../work/work_list.do?page=${i }">${i }</a></li>
 							          </c:forEach>
-							          <c:if test="${endPage<totalpage }">
-							            <li><a href="../online/online.do?page=${endPage+1 }"> 다음</a></li>
+							          <c:if test="${endpage<totalpage }">
+							            <li><a href="../work/work_list.do?page=${endpage+1 }"> 다음</a></li>
 							          </c:if>
 							        </ul>
 								</div>
