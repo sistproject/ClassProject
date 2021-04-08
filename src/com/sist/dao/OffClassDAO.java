@@ -457,10 +457,10 @@ public class OffClassDAO {
 	    		 getConnection();
 	    		 String sql="UPDATE offclass_reply SET "
 	    				 +"msg=?"
-	    				 +"WHERE c_no=?";
+	    				 +"WHERE no=?";
 	    		 ps=conn.prepareStatement(sql);
 	    		 ps.setString(1, vo.getMsg());
-	    		 ps.setInt(2, vo.getCno());
+	    		 ps.setInt(2, vo.getNo());
 	    		 ps.executeUpdate();
 	    	 }catch(Exception ex)
 	    	 {
@@ -473,15 +473,15 @@ public class OffClassDAO {
 	     }
 	     
 	     // 댓글 삭제
-	     public void offclassReplyDelete(int cno)
+	     public void offclassReplyDelete(int no)
 	     {
 	    	 try
 	    	 {
 	    		 getConnection();
 	    		 String sql="DELETE FROM offclass_reply "
-	    				   +"WHERE c_no=?";
+	    				   +"WHERE no=?";
 	    		 ps=conn.prepareStatement(sql);
-	    		 ps.setInt(1, cno);
+	    		 ps.setInt(1, no);
 	    		 ps.executeUpdate();
 	    	 }catch(Exception ex)
 	    	 {

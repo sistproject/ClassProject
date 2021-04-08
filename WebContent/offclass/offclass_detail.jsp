@@ -486,7 +486,7 @@ $(function(){
 												</li>
 												<li style="display: none" id="m${rvo.no }" class="updateli">
 
-									<table class="table">
+								 	<table class="table">
 										<tr>
 											<td>
 												<textarea rows="7" cols="120" name="msg">${rvo.msg }</textarea>
@@ -494,7 +494,7 @@ $(function(){
 												<input type="hidden" name=no value="${rvo.no }"> <input type="submit" value="댓글수정" class="btn btn-sm btn-danger">
 											</td>
 										</tr>
-									</table>
+									</table> 
 
 							</li>
 						</c:forEach>

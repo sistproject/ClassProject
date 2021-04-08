@@ -285,11 +285,11 @@ public class OffClassModel {
 	  @RequestMapping("offclass/offclass_reply_delete.do")
 	  public String offclass_reply_delete(HttpServletRequest request,HttpServletResponse response)
 	  {
+		  String no=request.getParameter("no");
 		  String c_no=request.getParameter("cno");
-		  String cno=request.getParameter("cno");
 		  OffClassDAO dao=OffClassDAO.newInstance();
 		  //DB연동 
-		  dao.offclassReplyDelete(Integer.parseInt(cno));
+		  dao.offclassReplyDelete(Integer.parseInt(no));
 		  return "redirect:../offclass/offclass_detail.do?cno="+c_no;
 	  }
 	  
@@ -302,10 +302,10 @@ public class OffClassModel {
 			  request.setCharacterEncoding("UTF-8");
 		  }catch(Exception ex) {}
 		  String msg=request.getParameter("msg");
+		  String no=request.getParameter("no");
 		  String c_no=request.getParameter("cno");
-		  String cno=request.getParameter("cno");
 		  OffclassReplyVO vo=new OffclassReplyVO();
-		  vo.setCno(Integer.parseInt(cno));
+		  vo.setNo(Integer.parseInt(no));
 		  vo.setMsg(msg);
 		  OffClassDAO dao=OffClassDAO.newInstance();
 		  dao.offclassReplyUpdate(vo);
