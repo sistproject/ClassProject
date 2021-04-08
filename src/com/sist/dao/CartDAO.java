@@ -146,17 +146,39 @@ public class CartDAO {
 		   List<CartVO> list = new ArrayList<CartVO>();
 		   try {
 			   getConnection();
-			   
-			   String sql="INSERT INTO cart(crno,id,c_no,quantity,rdate) VALUES(cart_crno_SEQ.nextval,"
-			   		+ "?,?,?,?)";
-			   if(type.equals("w")) sql="INSERT INTO cart(crno,id,w_no,quantity) VALUES(cart_crno_SEQ.nextval,"
-				   		+ "?,?,?,?)";
+			   String sql = "SELECT COUNT(*) FROM cart WHERE id = ? AND c_no = ?";
+			   if(type.equals("w")) sql = "SELECT COUNT(*) FROM cart WHERE id = ? AND w_no = ?";
 			   ps=conn.prepareStatement(sql);
 			   ps.setString(1, id);
 			   ps.setInt(2, no);
-			   ps.setInt(3, amount);
-			   ps.setString(4, rdate);
-			   ps.executeUpdate();
+			   ResultSet rs = ps.executeQuery();
+			   rs.next();
+			   int count = rs.getInt(1);
+			   System.out.println(count);
+			   rs.close();
+			   if(count==0) {
+				   sql="INSERT INTO cart(crno,id,c_no,quantity,rdate) VALUES(cart_crno_SEQ.nextval,"
+					   		+ "?,?,?,?)";
+				   if(type.equals("w")) sql="INSERT INTO cart(crno,id,w_no,quantity) VALUES(cart_crno_SEQ.nextval,"
+					   		+ "?,?,?,?)";
+					   		
+				   ps=conn.prepareStatement(sql);
+				   ps.setString(1, id);
+				   ps.setInt(2, no);
+				   ps.setInt(3, amount);
+				   ps.setString(4, rdate);
+				   ps.executeUpdate();
+				   
+			   }else {
+				   sql = "UPDATE cart SET quantity=quantity+1 WHERE id = ? AND c_no = ?";
+				   if(type.equals("w")) sql = "UPDATE cart SET quantity=quantity+1 WHERE id = ? AND w_no = ?";
+				   ps=conn.prepareStatement(sql);
+				   ps.setString(1, id);
+				   ps.setInt(2, no);
+				   ps.executeQuery();
+				   
+			   }
+			   
 		   }catch(Exception ex) {
 			   ex.printStackTrace();
 		   }
