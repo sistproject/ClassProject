@@ -111,7 +111,7 @@ public class OnlineDAO {
 		OnlineVO vo = new OnlineVO();
 		try {
 			getConnection();
-			String sql = "SELECT c_no, c_title, c_poster, c_artist, c_price, c_content "
+			String sql = "SELECT c_no, c_title, c_poster, c_artist, c_price, c_content, c_score,c_hit "
 						+ "FROM thisclass "
 						+ "WHERE c_no = ?";
 			ps = conn.prepareStatement(sql);
@@ -124,6 +124,8 @@ public class OnlineDAO {
 			vo.setCartist(rs.getString(4));
 			vo.setCprice(rs.getString(5));
 			vo.setCcontent(rs.getString(6));
+			vo.setCscore(rs.getDouble(7));
+			vo.setChit(rs.getInt(8));
 			
 			rs.close();
 		}catch(Exception ex) {
