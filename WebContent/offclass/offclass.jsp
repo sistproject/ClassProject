@@ -258,6 +258,20 @@ ul.pagination_list{
 							</div>
 						</div>
 
+
+						<!-- Cookie -->
+						<div class="sidebar_section">
+							<div class="sidebar_section_title">최근 방문한 오프라인 클래스</div>
+								<c:forEach var="kvo" items="${kList }" varStatus="s">
+							        <c:if test="${s.index<9 }">
+							         <a href="../offclass/offclass_detail.do?cno=${kvo.cno }">
+							         <img class="radius-10 " src="${kvo.cposter }" title="${kvo.ctitle }" style="width:100px;height:100px"></a>
+							        </c:if>
+							      </c:forEach>
+						</div>
+
+
+<%--
 						<!-- Latest Course -->
 						<div class="sidebar_section">
 							<div class="sidebar_section_title">Latest Courses</div>
@@ -294,8 +308,7 @@ ul.pagination_list{
 						</div>
 
 						<!-- Gallery -->
-						<div class="sidebar_section">
-							<div class="sidebar_section_title">Instagram</div>
+						<div class="sidebar_section_title">Instagram</div>
 							<div class="sidebar_gallery">
 								<ul class="gallery_items d-flex flex-row align-items-start justify-content-between flex-wrap">
 									<li class="gallery_item">
@@ -336,7 +349,9 @@ ul.pagination_list{
 									</li>
 								</ul>
 							</div>
-						</div>
+						</div>   
+						
+						--%>
 
 						<!-- Tags -->
 						<div class="sidebar_section">
@@ -370,6 +385,12 @@ ul.pagination_list{
 		</div>
 	</div>
 
+
+
+ --%>
+ 
+ 
+ 
 	<!-- Newsletter -->
 
 	<div class="newsletter">

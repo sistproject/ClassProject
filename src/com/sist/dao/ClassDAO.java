@@ -62,11 +62,12 @@ public class ClassDAO {
 				vo.setCno(rs.getInt(1));
 				vo.setCtitle(rs.getString(2));
 				vo.setCposter(rs.getString(3));
-				vo.setCartist(rs.getString(4));
-				vo.setCprice(rs.getString(5));
-				vo.setInfoaddr(rs.getString(6));
-				vo.setCscore(rs.getDouble(7));
-				vo.setChit(rs.getInt(8));
+				vo.setCcategory(rs.getString(4));
+				vo.setCartist(rs.getString(5));
+				vo.setCprice(rs.getString(6));
+				vo.setInfoaddr(rs.getString(7));
+				vo.setCscore(rs.getDouble(8));
+				vo.setChit(rs.getInt(9));
 				list.add(vo);
 			}
 			rs.close();
@@ -93,5 +94,42 @@ public class ClassDAO {
 			disConnection();
 		}
 		return count;
+	}
+	
+	public int getCategoryCount() {
+		int num = 0;
+		try {
+			getConnection();
+			String sql = "SELECT COUNT(DISTINCT c_category) "
+					+ "FROM thisclass "
+					+ "WHERE c_category IS NOT NULL";
+			ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			num = rs.getInt(1);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		return num;
+	}
+	public List<String> getCategory(){
+		List<String> cList = new ArrayList<String>();
+		try {
+			getConnection();
+			String sql = "SELECT DISTINCT c_category FROM thisclass WHERE c_category IS NOT NULL";
+			ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				String cat = rs.getString(1);
+				cList.add(cat);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		return cList;
 	}
 }

@@ -2,6 +2,7 @@ package com.sist.model;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -11,6 +12,7 @@ import com.sist.controller.RequestMapping;
 import com.sist.dao.OffClassDAO;
 import com.sist.vo.OffClassVO;
 import com.sist.vo.OffclassReplyVO;
+import com.sist.vo.OnlineVO;
 import com.sist.vo.ReserveVO;
 
 @Controller
@@ -37,6 +39,29 @@ public class OffClassModel {
 		if(endPage>totalPage)
 			endPage=totalPage; 
 		
+		List<OffClassVO> kList=new ArrayList<OffClassVO>();
+		  
+		  Cookie[] cookies=request.getCookies();			
+		  if(cookies != null)
+		  {
+			  for(int i=cookies.length-1;i>=0;i--)
+			  {
+				  if(cookies[i].getName().startsWith("m"))
+				  { 	
+					  cookies[i].setPath("/");
+					  System.out.println(cookies[i].getName()); // key
+					  String cno=cookies[i].getValue(); // value
+					  System.out.println(cookies[i].getValue());
+					  OffClassVO vo=dao.offclassCookiePrintData(Integer.parseInt(cno));
+					  System.out.println(vo.getCno());
+					  kList.add(vo);
+					  
+	
+				  }
+			  }
+		  }
+		
+		request.setAttribute("kList", kList); // 쿠키 데이터
 		request.setAttribute("count", count);
 		request.setAttribute("ofList", ofList);
 		
@@ -58,17 +83,58 @@ public class OffClassModel {
 		// DAO
 		OffClassDAO dao=OffClassDAO.newInstance();
 		OffClassVO vo=dao.OffDetailData(Integer.parseInt(cno));
+		List<String> sList = new ArrayList<String>(); // subtitle list
+//		String subtitle = vo.getCsubtitles();
+//		StringTokenizer sst = new StringTokenizer(subtitle,"^");
+		
+		
+		int count=0;
+//		while (sst.hasMoreTokens()) 
+//		{
+//			if (count<5) 
+//			{
+//				sList.add(sst.nextToken());
+//				count++;
+//			} 
+//			else {
+//				count=0;
+//				break;
+//			}
+//		}
+//			
+//		List<String> cList = new ArrayList<String>(); // content List
+//		String content = vo.getCcontent();
+//		StringTokenizer cst= new StringTokenizer(content,"^");
+//		
+//		while(cst.hasMoreTokens())
+//		{
+//			if (count<5) 
+//			{
+//				cList.add(cst.nextToken());
+//				count++;
+//			} 
+//			else {
+//				count=0;
+//				break;
+//			}
+//		}
 		
 		List<OffclassReplyVO> rList=dao.offclassReplyReadData(Integer.parseInt(cno));
+		
+		
+		
 		request.setAttribute("rList", rList);
+		request.setAttribute("sList", sList);
+//		request.setAttribute("cList", cList);
 		request.setAttribute("vo", vo);
 		request.setAttribute("main_jsp", "../offclass/offclass_detail.jsp");
 		request.setAttribute("menu", "class");
 		
 		HttpSession session=request.getSession();
 		String id=(String)session.getAttribute("id");
-		int count=dao.offJjimCheck(Integer.parseInt(cno), id);
+		//int count=dao.offJjimCheck(Integer.parseInt(cno), id);
 		request.setAttribute("count", count);
+		
 		return "../main/main.jsp";
 	}
 
@@ -293,7 +359,7 @@ public class OffClassModel {
 		  return "redirect:../offclass/offclass_detail.do?cno="+c_no;
 	  }
 	  
-	// 댓글 수정 
+	  // 댓글 수정 
 	  @RequestMapping("offclass/offclass_reply_update.do")
 	  public String offclass_reply_update(HttpServletRequest request,HttpServletResponse response)
 	  {
@@ -313,7 +379,22 @@ public class OffClassModel {
 		  
 		  
 	  }
-
+	  
+	  
+	  // 쿠키
+	  
+	  
+	  @RequestMapping("offclass/offclass.do")
+	  public String offclass(HttpServletRequest request,HttpServletResponse response)
+	  {
+		  String c_no=request.getParameter("cno");
+		  Cookie cookie=new Cookie("m"+c_no, c_no);
+		  cookie.setMaxAge(60*60);		
+		  cookie.setPath("/");
+		  response.addCookie(cookie);
+		  return "redirect:../offclass/offclass.do?no="+c_no;  
+	  }
+		
 }
 
 
