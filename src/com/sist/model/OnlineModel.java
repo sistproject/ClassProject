@@ -93,8 +93,9 @@ public class OnlineModel {
 		request.setAttribute("curpage", curpage);
 //	    request.setAttribute("main_jsp", "../online/online.jsp");
 		request.setAttribute(page, omList);
+		request.setAttribute("main_jsp", "../online/online.jsp");
 
-		return "../online/online.jsp";
+		return "../main/main.jsp";
 	}
 	
 	
@@ -162,8 +163,9 @@ public class OnlineModel {
 		request.setAttribute("rList", rList);
 		request.setAttribute("pList", pList);
 		request.setAttribute("cList", cList);
+		request.setAttribute("main_jsp", "../online/online_detail.jsp");
 
-		return "../online/online_detail.jsp";
+		return "../main/main.jsp";
 
 	}
 	
@@ -177,11 +179,11 @@ public class OnlineModel {
 		}
 		String cno = request.getParameter("cno");
 		String msg = request.getParameter("msg");
-		String page = request.getParameter("page");
-//		  System.out.println("page:"+page); // 상세페이지에서 page값을 못 받아온다.
+		System.out.println(cno+" "+msg);
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		String name = (String) session.getAttribute("name");
+		
 //		  System.out.println(id + "<<>>" + name + msg); //데이터 받는지 확인
 		OnlineReplyVO vo = new OnlineReplyVO();
 		vo.setName(name);
@@ -191,8 +193,10 @@ public class OnlineModel {
 		// DAO연결
 		OnlineDAO dao = OnlineDAO.newInstance();
 		dao.OnlineReplyInsert(vo);
-//		  return "redirect:../food/food_detail.do?no="+cno;
-		return "redirect:../online/online_detail.do?&cno=" + cno; // ?cno= 클래스의 번호
+		
+	 	List<OnlineReplyVO> list = dao.onlineReplyReadData(Integer.parseInt(cno));
+		request.setAttribute("rlist", list);
+		return "../online/online_detail.jsp?cno="+cno; // ?cno= 클래스의 번호
 	}
 
 	// 댓글 삭제
@@ -226,14 +230,14 @@ public class OnlineModel {
 		return "redirect:../online/online_detail.do?cno=" + cno;
 	}
 	
-	// ajax이용해서 댓글 처리
-	@RequestMapping("online/onlineReply.do")
-	public String online_reply_ajax(HttpServletRequest request, HttpServletResponse response) {
-		String msg = request.getParameter("msg");
-		
-		
-		return "redirect:../online/online_detail.do?msg="+msg;
-	}	
+//	// ajax이용해서 댓글 처리
+//	@RequestMapping("online/onlineReply.do")
+//	public String online_reply_ajax(HttpServletRequest request, HttpServletResponse response) {
+//		String msg = request.getParameter("msg");
+//		
+//		
+//		return "redirect:../online/online_detail.do?msg="+msg;
+//	}	
 	
 	
 	@RequestMapping("online/jjim.do")
