@@ -15,7 +15,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <style>
 .join_row{
-	width:800px;
+	width:1000px;
 	margin: 0px auto;
 }
  .sectiontitle{
@@ -23,6 +23,9 @@
 	display:inline;
 	padding: 10px;
 	border-radius: 10px;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+.warning{
 	font-family: 'Source Sans Pro', sans-serif;
 }
 .detaila:link {
@@ -65,15 +68,15 @@
 	        <th class="text-center">상품명</th>
 	        <th class="text-center">가격</th>
 	     </tr>
-	     <c:if test="${list==null }">
+	     <c:if test="${list.size()==0}">
 	     <tr>
-	     <td><h4>찜한 상품이 없습니다</h4></td>
+	     <td colspan="4" class="text-center warning" style="margin-top:20px;"><h4>찜한 상품이 없습니다</h4></td>
 	     </tr>
 	     </c:if>
-	     <c:if test="${list!=null }">
+	     <c:if test="${list.size()!=0}">
 		<c:forEach var="vo" items="${list}" >
 	              <tr>
-			        <td>${vo.no}</td>
+			        <td class="text-center">${vo.no}</td>
 			        <td>
 			        <c:if test="${vo.type eq 'w'}">
 			        <a href="../work/work_detail.do?w_no=${vo.no}" class="detaila">
@@ -88,7 +91,7 @@
 			        </c:if>
 			        <img src="${vo.poster}" alt="" style="width:30px; height:30px" class="img-fluid rounded shadow-sm">
 			        ${vo.title }</a></td>
-			        <td>${vo.price}</td>
+			        <td class="text-center">${vo.price}</td>
 			      </tr>
 	      </c:forEach>
 	      </c:if>

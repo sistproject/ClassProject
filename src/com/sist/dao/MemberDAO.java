@@ -266,8 +266,7 @@ public class MemberDAO {
 			   vo.setArtist(rs.getString(2));
 			   vo.setPoster(rs.getString(3));
 			   vo.setPrice(rs.getString(4));
-			   vo.setQuantity(rs.getInt(5));
-			   vo.setNo(rs.getInt(6));
+			   vo.setNo(rs.getInt(5));
 			   vo.setType("w");
 			   list.add(vo);
 		   }
@@ -281,11 +280,10 @@ public class MemberDAO {
 			   CartVO vo = new CartVO();
 			   vo.setTitle(rs.getString(1));
 			   vo.setArtist(rs.getString(2));
-			   vo.setPoster(rs.getString(3));
+			   vo.setPoster(rs.getString(3).substring(0, rs.getString(3).indexOf("^")));
 			   vo.setPrice(rs.getString(4));
-			   vo.setQuantity(rs.getInt(5));
-			   vo.setNo(rs.getInt(6));
-			   vo.setOnoff(rs.getInt(7));
+			   vo.setNo(rs.getInt(5));
+			   vo.setOnoff(rs.getInt(6));
 			   vo.setType("c");
 			   list.add(vo);
 		   }

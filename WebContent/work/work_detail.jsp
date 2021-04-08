@@ -189,7 +189,7 @@ margin-top:30px;
 								<li>Post on     ${vo.w_regdate }</li>
 							</ul>
 						</div>
-						<div class="blog_image"><img src="${vo.w_poster }" style="width:720px; height:600px object-fit:fill" alt=""></div>
+						<div class="blog_image"><img src="${vo.w_poster }" style="width:720px; height:1000px object-fit:fill" alt=""></div>
 						<div style="margin-top:15px"></div>
 						<div class="team_body" style="width:720px; height: 700px">
 							<div class="team_title" style="font-size:20px; color:black;">${vo.w_content }</div>
@@ -229,6 +229,9 @@ margin-top:30px;
 	
 						</div>
          			</div>
+         			
+         			
+         			
 				</div>
 			</div>
 		</div>

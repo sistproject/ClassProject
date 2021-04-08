@@ -70,7 +70,7 @@ public class WorkModel {
 		  System.out.println("출력");
 		  System.out.println(w_no);
 		  System.out.println("했나?");
-		  Cookie cookies=new Cookie("m"+w_no, w_no);// 문자열만 저장이 가능 
+		  Cookie cookies=new Cookie("wc"+w_no, w_no);// 문자열만 저장이 가능 
 		  cookies.setMaxAge(60*60);
 		  cookies.setPath("/");
 		  response.addCookie(cookies);
