@@ -144,7 +144,7 @@ public class OffClassDAO {
 		   {
 			   getConnection();
 			   String sql = "SELECT c_no, c_title, c_content, c_poster, c_artist, c_price, c_address, c_time, "
-					   	+ "c_category, c_intro, c_subtitles, c_contents, infoaddr "
+					   	+ "c_category, c_intro, c_subtitles, c_contents, infoaddr, c_score "
 					   	+ "FROM thisclass "
 					   	+ "WHERE c_no=?";
 			   ps=conn.prepareStatement(sql);
@@ -165,6 +165,7 @@ public class OffClassDAO {
 			   vo.setCsubtitles(rs.getString(11));
 			   vo.setCcontents(rs.getString(12));
 			   vo.setInfoaddr(rs.getString(13));
+			   vo.setCscore(rs.getDouble(14));
 			   rs.close();
 			   
 		   }catch(Exception ex)
