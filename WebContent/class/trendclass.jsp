@@ -1,8 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Courses</title>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Unicat project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,6 +19,14 @@
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="styles/courses.css">
 <link rel="stylesheet" type="text/css" href="styles/courses_responsive.css">
+
+<!-- fade -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<style type="text/css">
+.container{
+	min-width: 1500px;
+}
+</style>
 </head>
 <body>
 
@@ -156,7 +169,7 @@
 			<div class="row">
 
 				<!-- Courses Main Content -->
-				<div class="col-lg-8">
+				<div class="col-lg-9">
 					<div class="courses_search_container">
 						<form action="#" id="courses_search_form" class="courses_search_form d-flex flex-row align-items-center justify-content-start">
 							<input type="search" class="courses_search_input" placeholder="Search Courses" required="required">
@@ -172,190 +185,58 @@
 					<div class="courses_container">
 						<div class="row courses_row">
 							
-							<!-- Course -->
-							<div class="col-lg-6 course_col">
-								<div class="course">
-									<div class="course_image"><img src="images/course_4.jpg" alt=""></div>
-									<div class="course_body">
-										<h3 class="course_title"><a href="course.html">Software Training</a></h3>
-										<div class="course_teacher">Mr. John Taylor</div>
-										<div class="course_text">
-											<p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
-										</div>
+				<!-- Course -->
+				
+				<c:forEach var="al" items="${allList}"> 
+					<div class="col-lg-3 course_col" data-aos="zoom-in-down">
+						<div class="course">
+							<div class="course_image"><img src="${al.cposter }" alt=""/></div>
+							<div class="course_body">
+								<div class="course_text">
+								<p>${al.ccategory }</p>
+								</div>
+								<h4 class="course_title"><a href="#">${al.ctitle }</a></h4>
+								<div class="course_teacher">${al.cartist}</div>
+							</div>
+							<div class="course_footer">
+								<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+									<div class="course_info">
+										<i class="fa fa-book" aria-hidden="true"></i>
+										<span>${al.chit}</span>
 									</div>
-									<div class="course_footer">
-										<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-											<div class="course_info">
-												<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-												<span>20 Student</span>
-											</div>
-											<div class="course_info">
-												<i class="fa fa-star" aria-hidden="true"></i>
-												<span>5 Ratings</span>
-											</div>
-											<div class="course_price ml-auto">$130</div>
-										</div>
+									<div class="course_info">
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<span>${al.cscore }</span> 
 									</div>
+									<div class="course_price ml-auto">${al.cprice}</div>
 								</div>
 							</div>
-
-							<!-- Course -->
-							<div class="col-lg-6 course_col">
-								<div class="course">
-									<div class="course_image"><img src="images/course_5.jpg" alt=""></div>
-									<div class="course_body">
-										<h3 class="course_title"><a href="course.html">Developing Mobile Apps</a></h3>
-										<div class="course_teacher">Ms. Lucius</div>
-										<div class="course_text">
-											<p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
-										</div>
-									</div>
-									<div class="course_footer">
-										<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-											<div class="course_info">
-												<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-												<span>20 Student</span>
-											</div>
-											<div class="course_info">
-												<i class="fa fa-star" aria-hidden="true"></i>
-												<span>5 Ratings</span>
-											</div>
-											<div class="course_price ml-auto">Free</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- Course -->
-							<div class="col-lg-6 course_col">
-								<div class="course">
-									<div class="course_image"><img src="images/course_6.jpg" alt=""></div>
-									<div class="course_body">
-										<h3 class="course_title"><a href="course.html">Starting a Startup</a></h3>
-										<div class="course_teacher">Mr. Charles</div>
-										<div class="course_text">
-											<p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
-										</div>
-									</div>
-									<div class="course_footer">
-										<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-											<div class="course_info">
-												<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-												<span>20 Student</span>
-											</div>
-											<div class="course_info">
-												<i class="fa fa-star" aria-hidden="true"></i>
-												<span>5 Ratings</span>
-											</div>
-											<div class="course_price ml-auto"><span>$320</span>$220</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- Course -->
-							<div class="col-lg-6 course_col">
-								<div class="course">
-									<div class="course_image"><img src="images/course_7.jpg" alt=""></div>
-									<div class="course_body">
-										<h3 class="course_title"><a href="course.html">Learn Basic German Fast</a></h3>
-										<div class="course_teacher">Mr. John Taylor</div>
-										<div class="course_text">
-											<p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
-										</div>
-									</div>
-									<div class="course_footer">
-										<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-											<div class="course_info">
-												<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-												<span>20 Student</span>
-											</div>
-											<div class="course_info">
-												<i class="fa fa-star" aria-hidden="true"></i>
-												<span>5 Ratings</span>
-											</div>
-											<div class="course_price ml-auto">$130</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- Course -->
-							<div class="col-lg-6 course_col">
-								<div class="course">
-									<div class="course_image"><img src="images/course_8.jpg" alt=""></div>
-									<div class="course_body">
-										<h3 class="course_title"><a href="course.html">Business Groud Up</a></h3>
-										<div class="course_teacher">Ms. Lucius</div>
-										<div class="course_text">
-											<p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
-										</div>
-									</div>
-									<div class="course_footer">
-										<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-											<div class="course_info">
-												<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-												<span>20 Student</span>
-											</div>
-											<div class="course_info">
-												<i class="fa fa-star" aria-hidden="true"></i>
-												<span>5 Ratings</span>
-											</div>
-											<div class="course_price ml-auto">Free</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- Course -->
-							<div class="col-lg-6 course_col">
-								<div class="course">
-									<div class="course_image"><img src="images/course_9.jpg" alt=""></div>
-									<div class="course_body">
-										<h3 class="course_title"><a href="course.html">Java Technology</a></h3>
-										<div class="course_teacher">Mr. Charles</div>
-										<div class="course_text">
-											<p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
-										</div>
-									</div>
-									<div class="course_footer">
-										<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-											<div class="course_info">
-												<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-												<span>20 Student</span>
-											</div>
-											<div class="course_info">
-												<i class="fa fa-star" aria-hidden="true"></i>
-												<span>5 Ratings</span>
-											</div>
-											<div class="course_price ml-auto"><span>$320</span>$220</div>
-										</div>
-									</div>
-								</div>
-							</div>
+						</div>
+					</div>
+					
+				</c:forEach>
 
 						</div>
 						<div class="row pagination_row">
 							<div class="col">
 								<div class="pagination_container d-flex flex-row align-items-center justify-content-start">
 									<ul class="pagination_list">
-										<li class="active"><a href="#">1</a></li>
-										<li><a href="#">2</a></li>
-										<li><a href="#">3</a></li>
-										<li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-									</ul>
-									<div class="courses_show_container ml-auto clearfix">
-										<div class="courses_show_text">Showing <span class="courses_showing">1-6</span> of <span class="courses_total">26</span> results:</div>
-										<div class="courses_show_content">
-											<span>Show: </span>
-											<select id="courses_show_select" class="courses_show_select">
-												<option>06</option>
-												<option>12</option>
-												<option>24</option>
-												<option>36</option>
-											</select>
-										</div>
-									</div>
+							          <c:if test="${startPage>1 }">
+							           <li><a href="../online/online.do?page=${startPage-1 }">이전</a></li>
+							          </c:if>
+							          <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
+							            <c:if test="${i==curpage }">
+							             <c:set var="type" value="class=current"/>
+							            </c:if>
+							            <c:if test="${i!=curpage }">
+							             <c:set var="type" value=""/>
+							            </c:if>
+							            <li ${type }><a href="../online/online.do?page=${i }">${i }</a></li>
+							          </c:forEach>
+							          <c:if test="${endPage<totalpage }">
+							            <li><a href="../online/online.do?page=${endPage+1 }"> 다음</a></li>
+							          </c:if>
+							        </ul>
 								</div>
 							</div>
 						</div>
@@ -363,7 +244,7 @@
 				</div>
 
 				<!-- Courses Sidebar -->
-				<div class="col-lg-4">
+				<div class="col-lg-3">
 					<div class="sidebar">
 
 						<!-- Categories -->
@@ -638,5 +519,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="plugins/parallax-js-master/parallax.min.js"></script>
 <script src="plugins/colorbox/jquery.colorbox-min.js"></script>
 <script src="js/courses.js"></script>
+<!-- fade -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
 </body>
 </html>
