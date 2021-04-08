@@ -8,6 +8,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import com.sist.vo.*;
+
 import java.util.*;
 
 public class BoardDAO {
@@ -178,6 +179,13 @@ public class BoardDAO {
 		   } finally {
 			   disConnection();
 		   }
+		   Comparator<BoardVO> sortByBno = new Comparator<BoardVO>() {
+				@Override
+				public int compare(BoardVO o1, BoardVO o2) {
+					return o2.getBno() - o1.getBno();
+				}
+		   };
+		   Collections.sort(list,sortByBno);
 		   return list;
 	   }
 	   public List<BoardVO> boardDelete(int no) {
@@ -206,6 +214,12 @@ public class BoardDAO {
 				   sql="INSERT INTO board(bno,id,btitle,bcontent,isfree,btype,regdate,hits,cno) "
 					   		+ "VALUES(board_SEQ.nextval,?,?,?,?,?,sysdate,0,?)";
 				   }
+				   else if(vo.getType().equals("a")) {
+					   System.out.println("e답변");
+					   sql="INSERT INTO board(bno,id,btitle,bcontent,isfree,btype,regdate,hits,root) "
+						   		+ "VALUES(board_SEQ.nextval,?,?,?,?,?,sysdate,0,?)";
+					   
+				   }
 			   }
 			   
 			   ps=conn.prepareStatement(sql);
@@ -216,10 +230,12 @@ public class BoardDAO {
 			   ps.setString(5, vo.getType());
 			   if(vo.getType()!=null) {
 				   if(vo.getType().equals("c")) ps.setInt(6, vo.getCno());
-				   else ps.setInt(6, vo.getWno());
+				   else if(vo.getType().equals("w")) ps.setInt(6, vo.getWno());
+				   else ps.setInt(6, vo.getRoot());
 			   }
 			   else ps.setInt(6, vo.getCno());
 			   ps.executeUpdate();
+			   System.out.println("성공");
 		   }catch(Exception ex) {
 			   ex.printStackTrace();
 		   } finally {
@@ -276,6 +292,33 @@ public class BoardDAO {
 			   
 		   }
 		   return title;
+	   }
+	   public List<BoardVO> answerBoard() {
+		   List<BoardVO> list = new ArrayList<BoardVO>();
+		   try {
+			   getConnection();
+			   String sql="SELECT id,btitle,bcontent,hits,regdate,bno,root FROM board WHERE btype='a'";
+			   ps=conn.prepareStatement(sql);
+			   ResultSet rs = ps.executeQuery();
+			   while(rs.next()) {
+				   BoardVO vo = new BoardVO();
+				   vo.setId(rs.getString(1));
+				   vo.setTitle(rs.getString(2));
+		 		   vo.setContent(rs.getString(3));
+				   vo.setHits(rs.getInt(4));
+				   vo.setRegdate(rs.getString(5));
+				   vo.setBno(rs.getInt(6));
+				   vo.setRoot(rs.getInt(7));
+				   list.add(vo);
+			   }
+			   rs.close();
+		   }catch(Exception ex) {
+			   ex.printStackTrace();
+		   } finally {
+			   disConnection();
+			   
+		   }
+		   return list;
 	   }
 	   
 

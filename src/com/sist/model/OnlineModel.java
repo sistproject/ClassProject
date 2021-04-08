@@ -65,17 +65,16 @@ public class OnlineModel {
 		  {
 			  for(int i=cookies.length-1;i>=0;i--)
 			  {
-				  if(cookies[i].getName().startsWith("m"))
+				  if(cookies[i].getName().startsWith("oc")) // oc: online cookie
 				  { 	
 					  cookies[i].setPath("/");
 					  System.out.println(cookies[i].getName()); // key
 					  String cno=cookies[i].getValue(); // value
 					  System.out.println(cookies[i].getValue());
 					  OnlineVO vo=dao.onlineCookiePrintData(Integer.parseInt(cno));
+					  
 					  System.out.println(vo.getCno());
 					  kList.add(vo);
-					  
-	
 				  }
 			  }
 		  }
@@ -108,7 +107,7 @@ public class OnlineModel {
 		  System.out.println("출력");
 		  System.out.println(cno);
 		  System.out.println("했나?");
-		  Cookie cookies=new Cookie("m"+cno, cno);// 문자열만 저장이 가능 
+		  Cookie cookies=new Cookie("oc"+cno, cno);// 문자열만 저장이 가능 
 		  cookies.setMaxAge(60*60);
 		  cookies.setPath("/");
 		  response.addCookie(cookies);

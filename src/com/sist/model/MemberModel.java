@@ -11,7 +11,9 @@ import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.CartDAO;
 import com.sist.dao.MemberDAO;
+import com.sist.vo.BoardVO;
 import com.sist.vo.CartVO;
+import com.sist.vo.CouponVO;
 import com.sist.vo.MemberVO;
 
 
@@ -155,13 +157,51 @@ public class MemberModel {
 		String type=request.getParameter("type");  //w(work), cn(classonline), cf(classoffline)
 	 	HttpSession session=request.getSession();
 	 	String id=(String)session.getAttribute("id");
-	 	System.out.println(no);
-	 	System.out.println(type);
 		MemberDAO dao = MemberDAO.newInstance();
 		dao.jjim(id, Integer.parseInt(no), type);
 		if(type.equals("w")) return "redirect:../work/work_detail.do?w_no="+no;
 		else if(type.equals("cn")) return "redirect:../online/online_detail.do?cno="+no;
 		return "redirect:../offclass/offclass_detail.do?cno="+no;
+	}
+	@RequestMapping("member/member_mypost.do")
+	public String mypost(HttpServletRequest request,HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		MemberDAO dao = MemberDAO.newInstance();
+		
+		List<BoardVO> list = dao.mypost(id);
+		request.setAttribute("list",list);
+		request.setAttribute("main_jsp","../member/mypost.jsp");
+		return "../main/main.jsp";
+	}
+	@RequestMapping("member/member_myjjim.do")
+	public String myjjim(HttpServletRequest request,HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		MemberDAO dao = MemberDAO.newInstance();
+		
+		List<CartVO> list = dao.myjjim(id);
+		for(CartVO vo:list) {
+			System.out.println(vo.getTitle());
+		}
+		
+		request.setAttribute("list",list);
+		request.setAttribute("main_jsp","../member/myjjim.jsp");
+		return "../main/main.jsp";
+	}
+	@RequestMapping("member/member_mycoupon.do")
+	public String mycoupon(HttpServletRequest request,HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		MemberDAO dao = MemberDAO.newInstance();
+		List<CouponVO> list = new ArrayList<CouponVO>();
+		for(CouponVO vo:list) {
+			System.out.println(vo.getName());
+		}
+		
+		request.setAttribute("list",list);
+		request.setAttribute("main_jsp","../member/mycoupon.jsp");
+		return "../main/main.jsp";
 	}
 	
 }

@@ -59,7 +59,7 @@
 		<div style="height:10px"></div>
 		<div class="text-right">
 		<button class="newpost" onclick="location.href='../board/insert.do?type=0'">새글</button>
-		<button class="mypost" onclick="location.href='../member/mypost.do'">내가 쓴 글</button>
+		<button class="mypost" onclick="location.href='../member/member_mypost.do'">내가 쓴 글</button>
 		</div>
 		<div style="height:10px"></div>
 		<div style="height:600px;">
@@ -82,6 +82,20 @@
 			        <td class="text-center" width=20%>${vo.regdate.substring(0,vo.regdate.indexOf(" "))}</td>
 			        <td class="text-center" width=10%>${vo.hits}</td>
 			      </tr>
+					<c:forEach var="avo" items="${alist }">
+				      <c:if test="${vo.bno==avo.root}">
+				      	<tr>
+				        <td class="text-center" width=10%>-</td>
+				        <td width=45%>
+				        <span>&nbsp; &nbsp;&nbsp; &nbsp;</span>
+				         <a href="../board/qadetail.do?no=${avo.bno}" class="detaila">↪ ${avo.title}</a>
+				        </td>
+				        <td class="text-center" width=15%>${avo.id}</td>
+				        <td class="text-center" width=20%>${avo.regdate.substring(0,vo.regdate.indexOf(" "))}</td>
+				        <td class="text-center" width=10%>${avo.hits}</td>
+				      </tr>
+				      </c:if>
+			      </c:forEach>
 	      </c:forEach>
 		</table>
 </div>

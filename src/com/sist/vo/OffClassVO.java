@@ -1,5 +1,4 @@
 package com.sist.vo;
-
 /*
  *  C_NO        NOT NULL NUMBER        
 	C_TITLE              VARCHAR2(300) 

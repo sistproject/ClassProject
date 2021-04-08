@@ -25,6 +25,9 @@
 	border-radius: 10px;
 	font-family: 'Source Sans Pro', sans-serif;
 }
+.warning{
+	font-family: 'Source Sans Pro', sans-serif;
+}
 .detaila:link {
 	color: gray; text-decoration: none;
 }
@@ -56,20 +59,24 @@
       </div>
 <div class="wrapper row3 join_row">
 	<div style="height:30px"></div>
-		<h2 class="sectiontitle" >주문내역</h2>
+		<h2 class="sectiontitle" >찜목록</h2>
 		<div style="height:30px"></div>
 		<div style="height:600px;">
 		<table class="table">
 		<tr>
-	        <th class="text-center">주문일자</th>
+	        <th class="text-center">상품번호</th>
 	        <th class="text-center">상품명</th>
-	        <th class="text-center">결제가격</th>
+	        <th class="text-center">가격</th>
 	     </tr>
-	     <c:forEach var="i" begin="0" end="${newest}" step="1">
+	     <c:if test="${list.size()==0}">
+	     <tr>
+	     <td colspan="4" class="text-center warning" style="margin-top:20px;"><h4>찜한 상품이 없습니다</h4></td>
+	     </tr>
+	     </c:if>
+	     <c:if test="${list.size()!=0}">
 		<c:forEach var="vo" items="${list}" >
-		<c:if test="${vo.ono==newest-i}">
 	              <tr>
-			        <td class="text-center">${vo.regdate}</td>
+			        <td class="text-center">${vo.no}</td>
 			        <td>
 			        <c:if test="${vo.type eq 'w'}">
 			        <a href="../work/work_detail.do?w_no=${vo.no}" class="detaila">
@@ -84,11 +91,10 @@
 			        </c:if>
 			        <img src="${vo.poster}" alt="" style="width:30px; height:30px" class="img-fluid rounded shadow-sm">
 			        ${vo.title }</a></td>
-			        <td class="text-center">${vo.quantity*vo.price}</td>
+			        <td class="text-center">${vo.price}</td>
 			      </tr>
-			</c:if>
 	      </c:forEach>
-	      </c:forEach>
+	      </c:if>
 		</table>
 		</div>
 </div>

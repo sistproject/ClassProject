@@ -242,14 +242,24 @@
 				</div>
 			</div>
 		</div>
-		<!-- /////// 쿠키 //////// -->
-	       <h2 class="sectiontitle">최근 본 작품</h2>
-	       <c:forEach var="fvo" items="${fList }" varStatus="s">
-	        <c:if test="${s.index<9 }">
-	         <a href="../work/work_detail.do?w_no=${fvo.w_no }">
-	         <img class="radius-10" src="${fvo.w_poster }" title="${fvo.w_title }" style="width:100px;height:100px"></a>
-	        </c:if>
-	      </c:forEach>
+	  <div style="height:100px"></div>
+<!-- /////// 쿠키 //////// -->
+ <div class="box" >
+  <div class="box_title" style="padding:20px"><h2>최근 본 작품</h2></div>
+	<div class="box_latest cookieImg">
+	 <c:forEach var="fvo" items="${fList }" varStatus="s">
+	  <c:if test="${s.index<8 }">
+		<a href="../work/work_detail.do?w_no=${fvo.w_no }">
+		<div class="cookie_border" style="float:left; padding-right:20px; margin-center:0px auto">
+		 <img class="radius-10 " data-aos="zoom-in-down" src="${fvo.w_poster }" title="${fvo.w_title }" 
+		 style="width:150px;height:150px; margin-bottom: 20px; border-radius: 10px;">
+		</div></a>
+	  </c:if>
+	</c:forEach>
+   </div>
+</div>
+
+							
  	
 	<!-- ------------------------------------------------------------------------------------------------------------------------------------- -->
 			</div>

@@ -85,15 +85,22 @@ public class CartDAO {
 				   CartVO vo = new CartVO();
 				   vo.setTitle(rs.getString(1));
 				   vo.setArtist(rs.getString(2));
-				   vo.setPoster(rs.getString(3));
+				   if(rs.getString(3).contains("^")) {
+					   
+					   vo.setPoster(rs.getString(3).substring(0, rs.getString(3).indexOf("^")));
+				   }else {
+					   vo.setPoster(rs.getString(3));
+				   }
 				   vo.setPrice(rs.getString(4));
 				   vo.setQuantity(rs.getInt(5));
 				   vo.setNo(rs.getInt(6));
 				   vo.setOnoff(rs.getInt(7));
 				   vo.setType("c");
 				   list.add(vo);
+				   
 			   }
 			   rs.close();
+			   
 		   }catch(Exception ex) {
 			   ex.printStackTrace();
 		   }
@@ -128,6 +135,28 @@ public class CartDAO {
 			   ps.setInt(1, no);
 			   ps.setString(2, id);
 			   ps.executeUpdate();
+		   }catch(Exception ex) {
+			   ex.printStackTrace();
+		   }
+		   finally {
+			   disConnection();
+		   }
+	   } 
+	   public void cartInsert(int no,String id, String type,int amount) {
+		   List<CartVO> list = new ArrayList<CartVO>();
+		   try {
+			   getConnection();
+			   System.out.println(type.equals("c"));
+			   String sql="INSERT INTO cart(crno,id,c_no,quantity) VALUES(cart_crno_SEQ.nextval,"
+			   		+ "?,?,?)";
+			   if(type.equals("w")) sql="INSERT INTO cart(crno,id,w_no,quantity) VALUES(cart_crno_SEQ.nextval,"
+				   		+ "?,?,?)";
+			   ps=conn.prepareStatement(sql);
+			   ps.setString(1, id);
+			   ps.setInt(2, no);
+			   ps.setInt(3, amount);
+			   ps.executeUpdate();
+			   System.out.println("success");
 		   }catch(Exception ex) {
 			   ex.printStackTrace();
 		   }

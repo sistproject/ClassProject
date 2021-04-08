@@ -41,6 +41,7 @@
 2. Body and some general stuff
 *********************************/
 
+/*
 .category_wrapper{
 	font-size: 0px;
 	position: absolute;
@@ -53,6 +54,7 @@
 .category{
 	display:inline-block;
 	background-color: #FFFFF3;
+	float:left;
 }
 
 .category_content{
@@ -92,6 +94,9 @@
 .mouse_check2{
 	display: none;
 }
+*/
+
+
 
 a:link {
 	color: white; text-decoration: none;

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <!--  -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -49,6 +50,59 @@ function view2(opt2){
 </script>
 <style type="text/css">
 
+.category_wrapper{
+	font-size: 0px;
+	position: absolute;
+	z-index: 9;
+	top: 40px;
+	left: 587.5px;
+	
+}
+
+.category{
+	display:inline-block;
+	background-color: #FFFFF3;
+	float:left;
+}
+
+.category_content{
+	width: 210px;
+	height: 350px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 17px;
+	padding-bottom: 17px;
+	border: 1px solid rgb(217,217,217);
+}
+
+.category_content li{
+	width:175px;
+	height:25px;
+	margin-top:6px;
+	margin-bottom:6px;
+	background-color: #FFFFF3;
+	padding-left: 13px;
+	padding-right: 10px;
+	padding-top:2px;
+	font-family: "고딕";
+	font-size: 13px;
+}
+
+.category_content li:hover{
+	background-color: #A593E0;
+	color:black;
+}
+
+.mouse_check{
+	width:100px;
+	height:90px;
+	opacity:0;
+}
+
+.mouse_check2{
+	display: none;
+}
+
 .container{
 	min-width:1500px;
 }
@@ -66,6 +120,9 @@ function view2(opt2){
 .work_class a{
 	color: gray;
 }
+
+
+
 </style>
 </head>
 <body>
@@ -106,35 +163,20 @@ function view2(opt2){
 	<div class="category_wrapper">
 	<div class="mouse_check" onmouseover="view(true)" onmouseout="view(false)"></div>
 	<div class="mouse_check2" id="category_display" onmouseover="view2(true)" onmouseout="view2(false)">
-	<div class="category">
-		<ul class="category_content">
-			<li>가다라마바사아</li>
-			<li>가나다라마바사아</li>
-			<li>가나다라마바사아</li>
-			<li>가나다라마바사아</li>
-			<li>가나다라마바사아</li>
-			<li>가나다라마바사아</li>
-			<li>가나다라마바사아</li>
-			<li>가나다라마바사아</li>
-			<li>가나다라마바사아</li>
-			<li>가나다라마바사아</li>
-		</ul>
-	</div>
 	
-	<div class="category">
-		<ul class="category_content">			
-			<li>가다라마바사아</li>
-			<li>가나다라마바사아</li>
-			<li>가나다라마바사아</li>
-			<li>가나다라마바사아</li>
-			<li>가나다라마바사아</li>
-			<li>가나다라마바사아</li>
-			<li>가나다라마바사아</li>
-			<li>가나다라마바사아</li>
-			<li>가나다라마바사아</li>
-			<li>가나다라마바사아</li>
-		</ul>
-	</div>
+	<c:forEach var="catList" items="${catList }" varStatus="status">
+	
+		<c:if test="${status.count%10 == 1 }">
+			<div class="category">
+				<ul class="category_content">
+		</c:if>		
+			<li>${catList }</li>
+		<c:if test="${status.count%10 == 0 || status.count == catCount}">
+				</ul>
+			</div>	
+		</c:if>	
+	
+	</c:forEach>
 	</div>
 	</div>
 		<!-- Header Content -->
@@ -177,12 +219,12 @@ function view2(opt2){
 									<div id="category_size">카테고리</div></a>
 								</li>
 								<li class="active"><a href="../main/main.do">홈</a></li>
-								<li><a href="#">작품 전체</a></li>
-								<li><a href="#">인기 작품</a></li>
+								<li><a href="../work/work_total.do">작품 전체</a></li>
+								<li><a href="../work/work_ingi.do">인기 작품</a></li>
 								<li><a href="../work/work_list.do">오늘의 발견</a></li>
-								<li><a href="#">실시간 구매</a></li>
-								<li><a href="#">작가님 추천</a></li>
-								<li><a href="#">실시간 추천</a></li>
+								<li><a href="../work/work_sil.do">실시간 구매</a></li>
+								<li><a href="../work/work_jak.do">작가님 추천</a></li>
+								<li><a href="../work/work_silgu.do">실시간 추천</a></li>
 							</ul>
 							</div>
 							<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>

@@ -17,10 +17,7 @@ import com.sist.vo.BoardVO;
 public class BoardModel {
 	@RequestMapping("board/freeboard.do")
 	public String freeboard(HttpServletRequest request,HttpServletResponse response) {
-	    String strPage=request.getParameter("page");
-	    if(strPage==null)
-	    	strPage="1";
-	    int curpage=Integer.parseInt(strPage);
+
 	    BoardDAO dao=new BoardDAO();
 	    List<BoardVO> list=dao.freeboardList();
 
@@ -30,10 +27,11 @@ public class BoardModel {
 	}
 	@RequestMapping("board/qaboard.do")
 	public String QAboard(HttpServletRequest request,HttpServletResponse response) {
-		    BoardDAO dao=new BoardDAO();
-		    List<BoardVO> list=dao.qaBoardList();  
-
+	    BoardDAO dao=new BoardDAO();
+	    List<BoardVO> list=dao.qaBoardList();  
+	    List<BoardVO> alist=dao.answerBoard();
 		request.setAttribute("list", list );
+		request.setAttribute("alist", alist );
 		request.setAttribute("main_jsp", "../board/qaboard.jsp");
 		return "../main/main.jsp";
 	}
@@ -59,8 +57,12 @@ public class BoardModel {
 		BoardDAO dao = BoardDAO.newInstance();
 		dao.hit(Integer.parseInt(no));
 		List<BoardVO> list = dao.qaBoardList();
+		List<BoardVO> alist=dao.answerBoard();
 		BoardVO vo = new BoardVO();
 		for(BoardVO bvo:list) {
+			if(bvo.getBno() == Integer.parseInt(no)) vo=bvo;
+		}
+		for(BoardVO bvo:alist) {
 			if(bvo.getBno() == Integer.parseInt(no)) vo=bvo;
 		}
 		
@@ -190,5 +192,50 @@ public class BoardModel {
 		if(type.equals("0")) return "redirect:../board/qadetail.do?no="+no;
 		return "redirect:../board/freedetail.do?no="+no;
 		
+	}
+	@RequestMapping("board/answer.do")
+	public String answer(HttpServletRequest request,HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		String bno = request.getParameter("bno");
+		
+		BoardDAO dao = BoardDAO.newInstance();
+		List<BoardVO> list = dao.qaBoardList();
+		BoardVO vo = new BoardVO();
+		for(BoardVO bvo:list) {
+			if(bvo.getBno() == Integer.parseInt(bno)) vo=bvo;
+		}
+
+		request.setAttribute("id", id);
+		request.setAttribute("vo", vo);
+		request.setAttribute("bno", bno);
+		request.setAttribute("main_jsp", "../board/answer.jsp");
+		return "../main/main.jsp";
+	}
+	@RequestMapping("board/answer_ok.do")
+	public String answer_ok(HttpServletRequest request,HttpServletResponse response) {
+		
+		try{
+			request.setCharacterEncoding("UTF-8");
+		} catch(Exception e){}
+		String bno = request.getParameter("root");
+		String id=request.getParameter("id");
+		String title=request.getParameter("title");
+		String content=request.getParameter("content");
+		System.out.println(bno);
+		System.out.println(id);
+		System.out.println(title);
+		BoardDAO dao = BoardDAO.newInstance();
+		BoardVO vo = new BoardVO();
+		vo.setId(id);
+		vo.setTitle(title);
+		vo.setContent(content);
+		vo.setIsFree(0);
+		vo.setType("a");
+		vo.setRoot(Integer.parseInt(bno));
+		
+		dao.boardInsert(vo);
+		
+		return "redirect:../board/qaboard.do";
 	}
 }

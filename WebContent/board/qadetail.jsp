@@ -96,7 +96,7 @@ $(function(){
 	     <td colspan="4" class="text-right">
 
 	     <c:if test="${admin eq '1'}">
-	     <a href="../board/answer.do" class="btn btn-sm btn-danger">답변</a>
+	     <a href="../board/answer.do?bno=${vo.bno}" class="btn btn-sm btn-danger">답변</a>
 	     </c:if>
 	     <c:if test="${vo.id eq id}">
 	      <a href="../board/update.do?no=${vo.bno}&type=0" class="btn btn-sm btn-success">수정</a>
