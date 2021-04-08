@@ -515,7 +515,8 @@ section
 
 .main_nav:not(div),
 .search_button,
-.shopping_cart
+.shopping_cart,
+.write_WC
 {
 	display: inline-block;
 }
@@ -566,8 +567,13 @@ section
 	margin-left: 23px;
 	cursor: pointer;
 }
+.write_WC{
+	margin-left: 23px;
+	cursor: pointer;
+}
 .search_button i,
-.shopping_cart i
+.shopping_cart i,
+.write_WC i
 {
 	font-size: 18px;
 	color: #181818;

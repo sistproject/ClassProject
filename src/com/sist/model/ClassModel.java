@@ -45,5 +45,24 @@ public class ClassModel {
 		request.setAttribute("menu", "class");
 		return "../class/trendclass.jsp";
 	}
+	@RequestMapping("class/write.do")
+	public String writeAction(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		}catch (Exception e) {}
+		
+		System.out.println(request.getParameter("artist"));
+		System.out.println(request.getParameter("address"));
+		System.out.println(request.getParameter("type_list"));
+		System.out.println(request.getParameter("category_list"));
+		System.out.println(request.getParameter("poster"));
+		System.out.println(request.getParameter("title"));
+		System.out.println(request.getParameter("content"));
+		System.out.println(request.getParameter("time"));
+		System.out.println(request.getParameter("price"));
+		request.setAttribute("main_jsp", "../main/home.jsp");
+		request.setAttribute("menu", "class");
+		return "../main/main.jsp";
+	}
 
 }

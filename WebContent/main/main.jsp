@@ -104,7 +104,7 @@ function view2(opt2){
 }
 
 .container{
-	min-width:1500px;
+	min-width:1550px;
 }
 .w_c_wrapper{
 	display: inline-block;
@@ -246,9 +246,11 @@ function view2(opt2){
 							<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
 							<%} %>
 							<div class="shopping_cart"><a href="../cart/cart.do"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></div>
+							<div class="write_WC"><a href="#"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></div>
 						</nav>
 					</div>
 				</div>
+				
 			</div>
 		</div>
 	</div>
