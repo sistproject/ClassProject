@@ -55,18 +55,18 @@ public class MainModel {
 					System.out.println("=================rr=========");
 					WorkDAO wdao=new WorkDAO();
 					Cookie[] wcookies=request.getCookies();			
-					  if(cookies != null)
+					  if(wcookies != null)
 					  {
-						  for(int i=cookies.length-1;i>=0;i--)
+						  for(int i=wcookies.length-1;i>=0;i--)
 						  {
 							  System.out.println("쿠키 포문");
-							  if(cookies[i].getName().startsWith("m"))
+							  if(wcookies[i].getName().startsWith("wc"))
 							  { 	
 								  System.out.println("쿠키 조건문");
-								  cookies[i].setPath("/");
-								  System.out.println(cookies[i].getName()); // key
-								  String w_no=cookies[i].getValue(); // value
-								  System.out.println(cookies[i].getValue());
+								  wcookies[i].setPath("/");
+								  System.out.println(wcookies[i].getName()); // key
+								  String w_no=wcookies[i].getValue(); // value
+								  System.out.println(wcookies[i].getValue());
 								  WorkDetailVO vo=wdao.WorkCookiePrintData(Integer.parseInt(w_no));
 								  System.out.println(vo.getW_no());
 								  fList.add(vo);
