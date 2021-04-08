@@ -5,11 +5,14 @@ import java.util.List;
 
 import javax.sql.*;
 
+import com.sist.freeboard.freeBoardDAO;
+import com.sist.freeboard.freeBoardVO;
 import com.sist.member.memberVO;
 import com.sist.vo.BoardVO;
 import com.sist.vo.CartVO;
 import com.sist.vo.CouponVO;
 import com.sist.vo.MemberVO;
+import com.sist.vo.OnlineVO;
 
 import javax.naming.*;
 import javax.servlet.http.HttpServletRequest;
@@ -224,24 +227,37 @@ public class MemberDAO {
 		   disConnection();
 	   }
    }
-   public List<BoardVO> mypost(String id) {
+   public List<BoardVO> mypost(String id, int page) {
 	   List<BoardVO> list = new ArrayList<BoardVO>();
 	   try {
 		   getConnection();
-		   String sql="SELECT bno,id,btitle,bcontent,hits,regdate FROM board where id=?";
-		   ps=conn.prepareStatement(sql);
-		   ps.setString(1, id);
+//		   String sql="SELECT bno,id,btitle,bcontent,hits,regdate FROM board where id=?";
 		   
-		   ResultSet rs=ps.executeQuery();
+		   
+		   String sql = "SELECT bno,id,btitle,bcontent,hits,regdate num "
+					+ "FROM (SELECT bno,id,btitle,bcontent,hits,regdate, rownum as num "
+					+ "FROM (SELECT bno,id,btitle,bcontent,hits,regdate "
+					+ "FROM board ORDER BY bno DESC)) "
+					+ "WHERE num BETWEEN ? AND ? AND id = ?";
+		   ps=conn.prepareStatement(sql);
+		   int rowSize = 12;
+		   int start = (rowSize * page) - (rowSize - 1);
+		   int end = rowSize * page;
+		   
+		   ps.setInt(1, start);
+		   ps.setInt(2, end);
+		   ps.setString(3, id);
+			
+		   ResultSet rs = ps.executeQuery();
 		   while(rs.next()) {
-			   BoardVO vo = new BoardVO();
-			   vo.setBno(rs.getInt(1));
-			   vo.setId(rs.getString(2));
-			   vo.setTitle(rs.getString(3));
-			   vo.setContent(rs.getString(4));
-			   vo.setHits(rs.getInt(5));
-			   vo.setRegdate(rs.getString(6));
-			   list.add(vo);
+		   BoardVO vo = new BoardVO();
+		   vo.setBno(rs.getInt(1));
+		   vo.setId(rs.getString(2));
+		   vo.setTitle(rs.getString(3));
+		   vo.setContent(rs.getString(4));
+		   vo.setHits(rs.getInt(5));
+		   vo.setRegdate(rs.getString(6));
+		   list.add(vo);
 		   }
 		   rs.close();
 	   }catch(Exception ex) {
@@ -251,6 +267,31 @@ public class MemberDAO {
 	   }
 	   return list;
    }
+   
+// 온라인 클래스 메인페이지 총 갯수
+		public int boardCount() {
+			int count = 0;
+			try {
+				getConnection();
+				String sql = "SELECT COUNT(*) FROM board";
+				ps = conn.prepareStatement(sql);
+				ResultSet rs = ps.executeQuery();
+				rs.next();
+				count = rs.getInt(1);
+				rs.close();
+				
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}finally {
+				disConnection(); 
+				
+			}
+			return count;
+			
+		}
+   
+   
+   
    public List<CouponVO> mycoupon(String id) {
 	   List<CouponVO> list = new ArrayList<CouponVO>();
 	   try {

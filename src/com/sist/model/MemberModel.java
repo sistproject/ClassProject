@@ -9,12 +9,16 @@ import javax.servlet.http.HttpSession;
 
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
+import com.sist.dao.BoardDAO;
 import com.sist.dao.CartDAO;
 import com.sist.dao.MemberDAO;
+import com.sist.dao.OnlineDAO;
+import com.sist.member.memberVO;
 import com.sist.vo.BoardVO;
 import com.sist.vo.CartVO;
 import com.sist.vo.CouponVO;
 import com.sist.vo.MemberVO;
+import com.sist.vo.OnlineVO;
 
 
 @Controller
@@ -169,7 +173,40 @@ public class MemberModel {
 		String id = (String)session.getAttribute("id");
 		MemberDAO dao = MemberDAO.newInstance();
 		
-		List<BoardVO> list = dao.mypost(id);
+		
+		
+		
+		// 페이지 나누기
+		System.out.println("페이지 나누기 시작");
+		String page = request.getParameter("page");
+		System.out.println("페이지 출력");
+		System.out.println(page);
+		System.out.println("페이지 출력 완료");
+		if (page == null) {
+			page = "1";
+		}
+		int curpage = Integer.parseInt(page);
+		
+		
+		List<BoardVO> list = dao.mypost(id, curpage);
+		int count = dao.boardCount();
+		int totalPage = (int) (Math.ceil(count / 12.0));
+
+		final int BLOCK = 10;
+		// 102 [1]-[10] [91]~[100] [101][102]
+		int startPage = ((curpage - 1) / BLOCK * BLOCK) + 1;
+		// 1~10 => 1 10-1/10 => 0 9/10
+		int endPage = ((curpage - 1) / BLOCK * BLOCK) + BLOCK;
+
+		if (endPage > totalPage)
+			endPage = totalPage;
+		
+		request.setAttribute("block", BLOCK);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("totalpage", totalPage);
+		request.setAttribute("curpage", curpage);
+		
 		request.setAttribute("list",list);
 		request.setAttribute("main_jsp","../member/mypost.jsp");
 		return "../main/main.jsp";

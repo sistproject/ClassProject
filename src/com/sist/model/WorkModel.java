@@ -345,7 +345,7 @@ public class WorkModel {
 			}
 			String w_no = request.getParameter("w_no");
 			String msg = request.getParameter("msg");
-			String page = request.getParameter("page");
+			System.out.println(w_no+" "+msg);
             //System.out.println("page:"+page); // 상세페이지에서 page값을 못 받아온다.
 			HttpSession session = request.getSession();
 			String id = (String) session.getAttribute("id");
@@ -361,7 +361,8 @@ public class WorkModel {
 			dao.WorkReplyInsert(vo);
             
 			List<WorkReplyVO> list=dao.WorkReplyReadData(Integer.parseInt(w_no));
-			return "../work/work_detail.jsp?&w_no=" + w_no; // ?cno= 클래스의 번호
+			request.setAttribute("rlist", list);
+			return "redirect:../work/work_detail.do?&w_no="+ w_no; // ?cno= 클래스의 번호
 		}
 
 		// 댓글 삭제

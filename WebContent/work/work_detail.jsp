@@ -9,93 +9,46 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Unicat project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
-<link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="styles/blog_single.css">
-<link rel="stylesheet" type="text/css" href="styles/blog_single_responsive.css">
 
-<link rel="stylesheet" type="text/css" href="../main/styles/bootstrap4/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="../main/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="../main/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-<link rel="stylesheet" type="text/css" href="../main/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-<link rel="stylesheet" type="text/css" href="../main/plugins/OwlCarousel2-2.2.1/animate.css">
-<link rel="stylesheet" type="text/css" href="../main/styles/main_styles.css">
-<link rel="stylesheet" type="text/css" href="../main/styles/responsive.css">
-<% //세션에 저장되어 있는 데이터 읽기
-    String id=(String)session.getAttribute("id"); // 없는 경우:null 
-    System.out.println(id);
-%>
-<%  
-	String menu = (String)request.getAttribute("menu"); 
-	if(menu==null){
-		menu = "work";
-	}
-%>
-<!-- 카테고리 -->
+<link rel="stylesheet" type="text/css"
+	href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css"
+	href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css"
+	href="plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="styles/course.css">
+<link rel="stylesheet" type="text/css"
+	href="styles/course_responsive.css">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
+
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-function view(opt){
-	if(opt){
-		category_display.style.display="block";
-		category_size.style.color= "#A593E0";
-	}else{
-		category_display.style.display="none";
-		category_size.style.color= "#384158";
-	}
-}
-function view2(opt2){
-	if(opt2){
-		category_display.style.display="block";
-		category_size.style.color= "#A593E0";
-	}else{
-		category_display.style.display="none";
-		category_size.style.color= "#384158";
-	}
-}
-
-	let i = 0;
-	$(function() {
-		$('.delBtn').click(
-				function() {
-					let no = $(this).attr("data-no");
-					let cno = $(this).attr("data-cno");
-					location.href = "../online/online_reply_delete.do?no=" + no+ "&cno=" + cno;
-				});
-
-		$('.updateBtn').click(function() {
-			$('.updateli').hide();
-			$('.updateBtn').text("수정");
-			let no = $(this).attr("data-no");
-			if (i == 0) {
-				$(this).text("취소");
-				$('#m' + no).show("slow");
-				i = 1;
-			} else {
-				$(this).text("수정");
-				$('#m' + no).hide("slow");
-				i = 0;
-			}
-
-		});
-		$('.replyBtn').click((event)=>{
-			event.preventDefault();
-			let msg = $('#msg').val();
-			console.log(msg);
-			$.ajax({
-			    type:'post',
-			    url: '../online/online_reply_insert.do',
-			   	data: {
-			   	'cno':${ondVO.cno},
-			    'msg':msg
-			    },
-			    success: function(result){
-					
-			    		
-			    }
+let i = 0;
+$(function() {
+	$('.delBtn').click(
+			function() {
+				let no = $(this).attr("data-no");
+				let w_no = $(this).attr("data-w_no");
+				location.href = "../work/work_reply_delete.do?no=" + no+ "&w_no=" + w_no;
 			});
-		})
+
+	$('.updateBtn').click(function() {
+		$('.updateli').hide();
+		$('.updateBtn').text("수정");
+		let no = $(this).attr("data-no");
+		if (i == 0) {
+			$(this).text("취소");
+			$('#m' + no).show("slow");
+			i = 1;
+		} else {
+			$(this).text("수정");
+			$('#m' + no).hide("slow");
+			i = 0;
+		}
+
 	});
+	
+});
 
 
 </script>
@@ -191,16 +144,14 @@ margin-top:30px;
 </style>
 </head>
 <body>
-	
-	<!-- Home -->
-     <div style="margin-top:150px"></div>
 
-	<!-- Blog -->
-
-	<div class="blog">
-		<div class="container" style="padding-bottom:300px">
+<div style="margin-top:150px"></div>
+<div class="super_container">
+  <!-- Course -->
+	<div class="course">
+		<div class="container">
 			<div class="row">
-
+			<!-- Course -->
 				<!-- Blog Content -->
 				<div class="col-lg-6" style="height:1600px;">
 					<div class="blog_content">
@@ -222,65 +173,8 @@ margin-top:30px;
 									</div>
 								</div>
 				            </div>
-<div class="reply" style="border:1px; color:black; padding-top:300px;">
-	<c:choose>
-	<c:when test="${sessionScpoe.id==null }">
-      <strong>로그인시 댓글 이용 가능합니다.</strong>
-    </c:when>
-	<c:otherwise>
-	  ${sessionScope.id!=null }
-		<form action="../work/"mathod="post">
-			<table class="table">
-				<tr>
-					<td><textarea rows="10" cols="100" name="msg"></textarea> <%--<c:set var="page" value="${param.page}"/> 
-								              									<input type="hidden" name=cno value="${page}">--%>
-						<input type="hidden" name=w_no value="${vo.w_no}"> 
-						<input type="submit" value="댓글쓰기" class="btn btn-sm btn-danger">
-						<c:forEach var="vo" items="${reList }">
-							<li>
-								<article>
-									<header>
-										<figure class="avatar">
-											<c:if test="${sessionScope.id==vo.id }">
-												<span class="btn btn-xs btn-success updateBtn"
-													data-no="${vo.no }">수정</span>
-												<span class="btn btn-xs btn-danger delBtn"
-													data-no="${vo.no }" data-cno="${vo.w_no }">삭제</span>
-											</c:if>
-										</figure>
-										<address>
-											By <a href="#">${vo.name }</a>
-										</address>
-										<time datetime="2045-04-06T08:15+00:00">${vo.dbday }</time>
-									</header>
-									<div class="comcont">
-										<pre style="white-space: pre-wrap; border: none; background-color: white;">${vo.msg }</pre>
-									</div>
-								</article>
-							</li>
-							<li style="display: none" id="m${vo.no }" class="updateli">
-								<button>
-									<table class="table">
-										<tr>
-										<td>
-											<textarea rows="7" cols="25" name="msg">${vo.msg }</textarea>
-											<input type="hidden" name=w_no value="${vo.w_no }">
-											<input type="hidden" name=no value="${vo.w_no }"> <input type="submit" value="댓글수정" class="btn btn-sm btn-danger">
-										</td>
-									</tr>
-								</table>
-							</button>
-						</li>
-					</c:forEach>
-				</td>
-			</tr>
-		</table>
-	  </form>>
-    </c:otherwise>	
-    </c:choose>				 
-  </div>
-  </div>
-					<!-- Blog Sidebar -->
+ </div>
+ 	<!-- Blog Sidebar -->
 <div class="col-lg-6">
   <div style="margin-top:45px"></div>
 	<div class="sidebar"  id="adsideWrapper">
@@ -301,37 +195,82 @@ margin-top:30px;
 			</div>
 		  </div>
 		  <div  style="text-align:right">
-		     <a href="../member/jjim.do?no=${vo.w_no}&type=w" class="myButton">찜</a>&nbsp;&nbsp;&nbsp;<a href="../cart/addcart.do?no=${vo.w_no }&type=w&amount=1" class="myrButton">예약하기</a>
+		     <a href="../member/jjim.do?no=${vo.w_no}&type=w" class="myButton">찜</a>&nbsp;&nbsp;&nbsp;<a href="../cart/addcart.do?no=${vo.w_no }&type=w&amount=1" class="myrButton">결제하기</a>
 		 <button onclick="location.href='../board/insert.do?type=0&wno=${vo.w_no}'">문의하기</button>
 		  </div>
 	    </div>
 		</div>
-      </div>	
-	</div>
- </div>
-</div>
+      </div>
+								<!-- Description -->
+									<div class="tab_panel active reply">
+									
+									<c:choose>
+									
+										<c:when test="${sessionScope.id eq null }">
+											<strong>로그인시 댓글 이용 가능합니다.</strong>
+										</c:when>
+										<c:otherwise>
+											<form action="../work/work_reply_insert.do" method="post">
+												<table class="table">
+													<tr>
+														<td><textarea rows="10" cols="100" name="msg"></textarea> 
+															<input type="hidden" name=cno value="${ondVO.cno}"> 
+															<input type="submit" value="댓글쓰기" class="btn btn-sm btn-danger">
+															<c:forEach var="rvo" items="${rList }">
+																<li>
+																	<article>
+																		<header>
+																			<figure class="avatar">
+																				<c:if test="${sessionScope.id==rvo.id }">
+																					<span class="btn btn-xs btn-success updateBtn"
+																						data-no="${rvo.no }">수정</span>
+																					<span class="btn btn-xs btn-danger delBtn"
+																						data-no="${rvo.no }" data-cno="${ondVO.cno }">삭제</span>
+																				</c:if>
+																			</figure>
+																			<div style="color:blue;">
+																				By ${rvo.name }
+																			</div>
+																			<time datetime="2045-04-06T08:15+00:00">${rvo.dbday }</time>
+																		</header>
+																		<div class="comcont">
+																			<pre style="white-space: pre-wrap; border: none; background-color: white;">${rvo.msg }</pre>
+																		</div>
+																	</article>
+																</li>
+																<li style="display: none" id="m${rvo.no }" class="updateli">
+																	<form action="../work/work_reply_update.do" method="post">
+																		<table class="table">
+																			<tr>
+																				<td>
+																					<textarea rows="7" cols="25" name="msg">${rvo.msg }</textarea>
+																					<input type="hidden" name=cno value="${ondVO.cno }">
+																					<input type="hidden" name=no value="${rvo.no }"> <input type="submit" value="댓글수정" class="btn btn-sm btn-danger">
+																				</td>
+																			</tr>
+																		</table>
+																	</form>
+																</li>
+															</c:forEach>
+															</td>
+													</tr>
+												</table>
+											</form>
+										</c:otherwise>
+										</c:choose>
+									</div>
+							</div>
+						</div>
+					</div>
+				</div>
 	
-
-
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="styles/bootstrap4/popper.js"></script>
-<script src="styles/bootstrap4/bootstrap.min.js"></script>
-<script src="plugins/easing/easing.js"></script>
-<script src="plugins/parallax-js-master/parallax.min.js"></script>
-<script src="plugins/colorbox/jquery.colorbox-min.js"></script>
-<script src="js/blog_single.js"></script>
-
-<script src="../main/js/jquery-3.2.1.min.js"></script>
-<script src="../main/styles/bootstrap4/popper.js"></script>
-<script src="../main/styles/bootstrap4/bootstrap.min.js"></script>
-<script src="../main/plugins/greensock/TweenMax.min.js"></script>
-<script src="../main/plugins/greensock/TimelineMax.min.js"></script>
-<script src="../main/plugins/scrollmagic/ScrollMagic.min.js"></script>
-<script src="../main/plugins/greensock/animation.gsap.min.js"></script>
-<script src="../main/plugins/greensock/ScrollToPlugin.min.js"></script>
-<script src="../main/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-<script src="../main/plugins/easing/easing.js"></script>
-<script src="../main/plugins/parallax-js-master/parallax.min.js"></script>
-<script src="../main/js/custom.js"></script>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="styles/bootstrap4/popper.js"></script>
+	<script src="styles/bootstrap4/bootstrap.min.js"></script>
+	<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+	<script src="plugins/easing/easing.js"></script>
+	<script src="plugins/parallax-js-master/parallax.min.js"></script>
+	<script src="plugins/colorbox/jquery.colorbox-min.js"></script>
+	<script src="js/course.js"></script>
 </body>
 </html>

@@ -10,7 +10,7 @@
 <body>
 <div class="super_container">
 	<!-- Home -->
-	<div style="height:100px"></div>
+	<div style="height:160px"></div>
 	<div class="home">
 		<div class="home_slider_container">
 			
@@ -19,7 +19,7 @@
 				
 				<!-- Home Slider Item -->
 				<div class="owl-item">
-					<div class="home_slider_background" style="background-image:url(img1.jpg)"></div>
+					<div class="home_slider_background" style="background-image:url(img1.jpg);"></div>
 				</div>
 				<!-- Home Slider Item -->
 				<div class="owl-item">

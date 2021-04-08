@@ -86,13 +86,13 @@ function view2(opt2){
 				<div class="row">
 					<div class="col">
 						<div class="section_title_container text-center">
-							<h2>실시간 구매</h2>
+							<h2>실시간 추천작품</h2>
 							<div style="border: 1.5px solid #818CF8"></div>
 						</div>
 					</div>
 				</div>
 				<div class="row team_row">
-					<!-- 실시간 구매 -->
+					<!-- 실시간 추천작품 -->
 					<c:forEach var="vo" items="${rList }" varStatus="s">
 						<div class="col-lg-3 col-md-6 team_col">
 							<div class="team_item" style="width: 250px; height: 295px">
