@@ -72,10 +72,9 @@ public class OnlineModel {
 					  String cno=cookies[i].getValue(); // value
 					  System.out.println(cookies[i].getValue());
 					  OnlineVO vo=dao.onlineCookiePrintData(Integer.parseInt(cno));
+					  
 					  System.out.println(vo.getCno());
 					  kList.add(vo);
-					  
-	
 				  }
 			  }
 		  }

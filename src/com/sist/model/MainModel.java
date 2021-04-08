@@ -30,7 +30,7 @@ public class MainModel {
 				  {
 					  for(int i=cookies.length-1;i>=0;i--)
 					  {
-						  if(cookies[i].getName().startsWith("oc") ||cookies[i].getName().startsWith("wc") ) // oc: online cookie, wc: work cookie
+						  if(cookies[i].getName().startsWith("oc")) // oc: online cookie
 						  { 	
 							  cookies[i].setPath("/");
 							  System.out.println(cookies[i].getName()); // key
