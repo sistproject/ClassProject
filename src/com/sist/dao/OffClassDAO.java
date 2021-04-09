@@ -525,55 +525,8 @@ public class OffClassDAO {
 	   	   return vo;
 	      }
 	     
-	     
-	     
-	     
-	     // 오프라인 카테고리 공예
-	     public List<OffClassVO> Off공예Data(int page)
-		   {
-			   List<OffClassVO> list=new ArrayList<OffClassVO>();
-			   try
-			   {
-				   // 연결
-				   getConnection();
-				   // SQL문장
-				   String sql="SELECT c_no, c_poster, c_title, c_artist, c_price, c_category, infoaddr, c_score, num "
-							+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_category, infoaddr, c_score, rownum as num "
-							+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_category, infoaddr, c_score " 
-							+ "FROM thisclass WHERE c_onoff=1 AND c_ccategory='공예' ORDER BY c_no ASC)) "
-							+ "WHERE num BETWEEN ? AND ?";
-				   // 전송 객체 생성
-				   ps=conn.prepareStatement(sql);
-				   int rowSize=12;
-				   int start=(rowSize*page)-(rowSize-1); 
-				   int end=rowSize*page;
-				   ps.setInt(1, start);
-				   ps.setInt(2, end);
-				   ResultSet rs=ps.executeQuery();
-				   while(rs.next())
-				   {
-					    OffClassVO vo=new OffClassVO();
-					    vo.setCno(rs.getInt(1));
-					   	vo.setCposter(rs.getString(2));
-					   	vo.setCtitle(rs.getString(3));
-					   	vo.setCartist(rs.getString(4));
-					   	vo.setCprice(rs.getString(5));
-					   	vo.setCcategory(rs.getString(6));
-					   	vo.setInfoaddr(rs.getString(7));
-					   	vo.setCscore(rs.getDouble(8));
-					   	list.add(vo);
-				   }
-				   rs.close();
-			   }catch(Exception ex)
-			   {
-				   ex.printStackTrace();
-			   }
-			   finally
-			   {
-				   disConnection();
-			   }
-			   return list;
-		   }
+
+	  
 	     public List<OffClassVO> OffSearchData(String word)
 		   {
 			   List<OffClassVO> list=new ArrayList<OffClassVO>();
@@ -613,6 +566,289 @@ public class OffClassDAO {
 			   return list;
 		   }
 	     
+	     
+	     
+	  // 오프라인 카테고리 공예
+	     public List<OffClassVO> Off공예Data(int page)
+		   {
+			   List<OffClassVO> list=new ArrayList<OffClassVO>();
+			   try
+			   {
+				   // 연결
+				   getConnection();
+				   // SQL문장
+				   String sql="SELECT c_no, c_poster, c_title, c_artist, c_price, c_category, infoaddr, c_score, num "
+							+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_category, infoaddr, c_score, rownum as num "
+							+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_category, infoaddr, c_score " 
+							+ "FROM thisclass WHERE c_onoff=1 AND c_category='공예' ORDER BY c_no ASC)) "
+							+ "WHERE num BETWEEN ? AND ?";
+				   // 전송 객체 생성
+				   ps=conn.prepareStatement(sql);
+				   int rowSize=12;
+				   int start=(rowSize*page)-(rowSize-1); 
+				   int end=rowSize*page;
+				   ps.setInt(1, start);
+				   ps.setInt(2, end);
+				   ResultSet rs=ps.executeQuery();
+				   while(rs.next())
+				   {
+					    OffClassVO vo=new OffClassVO();
+					    vo.setCno(rs.getInt(1));
+					   	vo.setCposter(rs.getString(2));
+					   	vo.setCtitle(rs.getString(3));
+					   	vo.setCartist(rs.getString(4));
+					   	vo.setCprice(rs.getString(5));
+					   	vo.setCcategory(rs.getString(6));
+					   	vo.setInfoaddr(rs.getString(7));
+					   	vo.setCscore(rs.getDouble(8));
+					   	list.add(vo);
+				   }
+				   rs.close();
+			   }catch(Exception ex)
+			   {
+				   ex.printStackTrace();
+			   }
+			   finally
+			   {
+				   disConnection();
+			   }
+			   return list;
+		   }
+	     
+	     // 오프라인 카테고리 요리
+	     public List<OffClassVO> Off요리Data(int page)
+		   {
+			   List<OffClassVO> list=new ArrayList<OffClassVO>();
+			   try
+			   {
+				   // 연결
+				   getConnection();
+				   // SQL문장
+				   String sql="SELECT c_no, c_poster, c_title, c_artist, c_price, c_category, infoaddr, c_score, num "
+							+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_category, infoaddr, c_score, rownum as num "
+							+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_category, infoaddr, c_score " 
+							+ "FROM thisclass WHERE c_onoff=1 AND c_category='요리' ORDER BY c_no ASC)) "
+							+ "WHERE num BETWEEN ? AND ?";
+				   // 전송 객체 생성
+				   ps=conn.prepareStatement(sql);
+				   int rowSize=12;
+				   int start=(rowSize*page)-(rowSize-1); 
+				   int end=rowSize*page;
+				   ps.setInt(1, start);
+				   ps.setInt(2, end);
+				   ResultSet rs=ps.executeQuery();
+				   while(rs.next())
+				   {
+					    OffClassVO vo=new OffClassVO();
+					    vo.setCno(rs.getInt(1));
+					   	vo.setCposter(rs.getString(2));
+					   	vo.setCtitle(rs.getString(3));
+					   	vo.setCartist(rs.getString(4));
+					   	vo.setCprice(rs.getString(5));
+					   	vo.setCcategory(rs.getString(6));
+					   	vo.setInfoaddr(rs.getString(7));
+					   	vo.setCscore(rs.getDouble(8));
+					   	list.add(vo);
+				   }
+				   rs.close();
+			   }catch(Exception ex)
+			   {
+				   ex.printStackTrace();
+			   }
+			   finally
+			   {
+				   disConnection();
+			   }
+			   return list;
+		   }
+	     
+	  // 오프라인 카테고리 플라워
+	     public List<OffClassVO> Off플라워Data(int page)
+		   {
+			   List<OffClassVO> list=new ArrayList<OffClassVO>();
+			   try
+			   {
+				   // 연결
+				   getConnection();
+				   // SQL문장
+				   String sql="SELECT c_no, c_poster, c_title, c_artist, c_price, c_category, infoaddr, c_score, num "
+							+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_category, infoaddr, c_score, rownum as num "
+							+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_category, infoaddr, c_score " 
+							+ "FROM thisclass WHERE c_onoff=1 AND c_category='플라워' ORDER BY c_no ASC)) "
+							+ "WHERE num BETWEEN ? AND ?";
+				   // 전송 객체 생성
+				   ps=conn.prepareStatement(sql);
+				   int rowSize=12;
+				   int start=(rowSize*page)-(rowSize-1); 
+				   int end=rowSize*page;
+				   ps.setInt(1, start);
+				   ps.setInt(2, end);
+				   ResultSet rs=ps.executeQuery();
+				   while(rs.next())
+				   {
+					    OffClassVO vo=new OffClassVO();
+					    vo.setCno(rs.getInt(1));
+					   	vo.setCposter(rs.getString(2));
+					   	vo.setCtitle(rs.getString(3));
+					   	vo.setCartist(rs.getString(4));
+					   	vo.setCprice(rs.getString(5));
+					   	vo.setCcategory(rs.getString(6));
+					   	vo.setInfoaddr(rs.getString(7));
+					   	vo.setCscore(rs.getDouble(8));
+					   	list.add(vo);
+				   }
+				   rs.close();
+			   }catch(Exception ex)
+			   {
+				   ex.printStackTrace();
+			   }
+			   finally
+			   {
+				   disConnection();
+			   }
+			   return list;
+		   }
+	     
+	  // 오프라인 카테고리 미술
+	     public List<OffClassVO> Off미술Data(int page)
+		   {
+			   List<OffClassVO> list=new ArrayList<OffClassVO>();
+			   try
+			   {
+				   // 연결
+				   getConnection();
+				   // SQL문장
+				   String sql="SELECT c_no, c_poster, c_title, c_artist, c_price, c_category, infoaddr, c_score, num "
+							+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_category, infoaddr, c_score, rownum as num "
+							+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_category, infoaddr, c_score " 
+							+ "FROM thisclass WHERE c_onoff=1 AND c_category='미술' ORDER BY c_no ASC)) "
+							+ "WHERE num BETWEEN ? AND ?";
+				   // 전송 객체 생성
+				   ps=conn.prepareStatement(sql);
+				   int rowSize=12;
+				   int start=(rowSize*page)-(rowSize-1); 
+				   int end=rowSize*page;
+				   ps.setInt(1, start);
+				   ps.setInt(2, end);
+				   ResultSet rs=ps.executeQuery();
+				   while(rs.next())
+				   {
+					    OffClassVO vo=new OffClassVO();
+					    vo.setCno(rs.getInt(1));
+					   	vo.setCposter(rs.getString(2));
+					   	vo.setCtitle(rs.getString(3));
+					   	vo.setCartist(rs.getString(4));
+					   	vo.setCprice(rs.getString(5));
+					   	vo.setCcategory(rs.getString(6));
+					   	vo.setInfoaddr(rs.getString(7));
+					   	vo.setCscore(rs.getDouble(8));
+					   	list.add(vo);
+				   }
+				   rs.close();
+			   }catch(Exception ex)
+			   {
+				   ex.printStackTrace();
+			   }
+			   finally
+			   {
+				   disConnection();
+			   }
+			   return list;
+		   }
+	     
+	  // 오프라인 카테고리 뷰티
+	     public List<OffClassVO> Off뷰티Data(int page)
+		   {
+			   List<OffClassVO> list=new ArrayList<OffClassVO>();
+			   try
+			   {
+				   // 연결
+				   getConnection();
+				   // SQL문장
+				   String sql="SELECT c_no, c_poster, c_title, c_artist, c_price, c_category, infoaddr, c_score, num "
+							+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_category, infoaddr, c_score, rownum as num "
+							+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_category, infoaddr, c_score " 
+							+ "FROM thisclass WHERE c_onoff=1 AND c_category='뷰티' ORDER BY c_no ASC)) "
+							+ "WHERE num BETWEEN ? AND ?";
+				   // 전송 객체 생성
+				   ps=conn.prepareStatement(sql);
+				   int rowSize=12;
+				   int start=(rowSize*page)-(rowSize-1); 
+				   int end=rowSize*page;
+				   ps.setInt(1, start);
+				   ps.setInt(2, end);
+				   ResultSet rs=ps.executeQuery();
+				   while(rs.next())
+				   {
+					    OffClassVO vo=new OffClassVO();
+					    vo.setCno(rs.getInt(1));
+					   	vo.setCposter(rs.getString(2));
+					   	vo.setCtitle(rs.getString(3));
+					   	vo.setCartist(rs.getString(4));
+					   	vo.setCprice(rs.getString(5));
+					   	vo.setCcategory(rs.getString(6));
+					   	vo.setInfoaddr(rs.getString(7));
+					   	vo.setCscore(rs.getDouble(8));
+					   	list.add(vo);
+				   }
+				   rs.close();
+			   }catch(Exception ex)
+			   {
+				   ex.printStackTrace();
+			   }
+			   finally
+			   {
+				   disConnection();
+			   }
+			   return list;
+		   }
+	     
+	  // 오프라인 카테고리 체험 및 기타
+	     public List<OffClassVO> Off체험Data(int page)
+		   {
+			   List<OffClassVO> list=new ArrayList<OffClassVO>();
+			   try
+			   {
+				   // 연결
+				   getConnection();
+				   // SQL문장
+				   String sql="SELECT c_no, c_poster, c_title, c_artist, c_price, c_category, infoaddr, c_score, num "
+							+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_category, infoaddr, c_score, rownum as num "
+							+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_category, infoaddr, c_score " 
+							+ "FROM thisclass WHERE c_onoff=1 AND c_category='체험 및 기타' ORDER BY c_no ASC)) "
+							+ "WHERE num BETWEEN ? AND ?";
+				   // 전송 객체 생성
+				   ps=conn.prepareStatement(sql);
+				   int rowSize=12;
+				   int start=(rowSize*page)-(rowSize-1); 
+				   int end=rowSize*page;
+				   ps.setInt(1, start);
+				   ps.setInt(2, end);
+				   ResultSet rs=ps.executeQuery();
+				   while(rs.next())
+				   {
+					    OffClassVO vo=new OffClassVO();
+					    vo.setCno(rs.getInt(1));
+					   	vo.setCposter(rs.getString(2));
+					   	vo.setCtitle(rs.getString(3));
+					   	vo.setCartist(rs.getString(4));
+					   	vo.setCprice(rs.getString(5));
+					   	vo.setCcategory(rs.getString(6));
+					   	vo.setInfoaddr(rs.getString(7));
+					   	vo.setCscore(rs.getDouble(8));
+					   	list.add(vo);
+				   }
+				   rs.close();
+			   }catch(Exception ex)
+			   {
+				   ex.printStackTrace();
+			   }
+			   finally
+			   {
+				   disConnection();
+			   }
+			   return list;
+		   }
 	     
 	     
 }
