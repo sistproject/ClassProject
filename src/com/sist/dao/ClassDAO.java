@@ -106,6 +106,82 @@ public class ClassDAO {
 		}
 		return list;
 	}
+	public List<OffClassVO> recommendListData(int page){
+		List<OffClassVO> list = new ArrayList<OffClassVO>();
+		try {
+			getConnection();
+			String sql = "SELECT c_no, c_title, c_poster, c_category, c_artist, c_price, infoaddr, c_score, c_hit, num "
+					+ "FROM (SELECT c_no, c_title, c_poster, c_category, c_artist, c_price, infoaddr, c_score, c_hit, rownum as num "
+					+ "FROM (SELECT c_no, c_title, c_poster, c_category, c_artist, c_price, infoaddr, c_score, c_hit "
+					+ "FROM thisclass ORDER BY c_score DESC)) "
+					+ "WHERE num BETWEEN ? AND ?";
+			ps = conn.prepareStatement(sql);
+			int rowSize = 12;
+			int start = (rowSize * page) - (rowSize - 1);
+			int end = rowSize * page;
+			ps.setInt(1, start);
+			ps.setInt(2, end);
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				OffClassVO vo = new OffClassVO();
+				vo.setCno(rs.getInt(1));
+				vo.setCtitle(rs.getString(2));
+				vo.setCposter(rs.getString(3));
+				vo.setCcategory(rs.getString(4));
+				vo.setCartist(rs.getString(5));
+				vo.setCprice(rs.getString(6));
+				vo.setInfoaddr(rs.getString(7));
+				vo.setCscore(rs.getDouble(8));
+				vo.setChit(rs.getInt(9));
+				list.add(vo);
+			}
+			rs.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		return list;
+	}
+	public List<OffClassVO> newListData(int page){
+		List<OffClassVO> list = new ArrayList<OffClassVO>();
+		try {
+			getConnection();
+			String sql = "SELECT c_no, c_title, c_poster, c_category, c_artist, c_price, infoaddr, c_score, c_hit, num "
+					+ "FROM (SELECT c_no, c_title, c_poster, c_category, c_artist, c_price, infoaddr, c_score, c_hit, rownum as num "
+					+ "FROM (SELECT c_no, c_title, c_poster, c_category, c_artist, c_price, infoaddr, c_score, c_hit "
+					+ "FROM thisclass ORDER BY c_no DESC)) "
+					+ "WHERE num BETWEEN ? AND ?";
+			ps = conn.prepareStatement(sql);
+			int rowSize = 12;
+			int start = (rowSize * page) - (rowSize - 1);
+			int end = rowSize * page;
+			ps.setInt(1, start);
+			ps.setInt(2, end);
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				OffClassVO vo = new OffClassVO();
+				vo.setCno(rs.getInt(1));
+				vo.setCtitle(rs.getString(2));
+				vo.setCposter(rs.getString(3));
+				vo.setCcategory(rs.getString(4));
+				vo.setCartist(rs.getString(5));
+				vo.setCprice(rs.getString(6));
+				vo.setInfoaddr(rs.getString(7));
+				vo.setCscore(rs.getDouble(8));
+				vo.setChit(rs.getInt(9));
+				list.add(vo);
+			}
+			rs.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		return list;
+	}
 	
 	public int allCount() {
 		int count = 0;
@@ -251,8 +327,8 @@ public class ClassDAO {
 			getConnection();
 
 			String sql = "INSERT INTO thisclass(c_no, c_title, c_content, c_poster, c_price, "
-					+ "c_artist, c_onoff, c_category, c_hit) "
-					+ "VALUES(?, ?, ?, ?, ?, ?, 0, ?, 1)";
+					+ "c_artist, c_onoff, c_category, c_hit, c_score) "
+					+ "VALUES(?, ?, ?, ?, ?, ?, 0, ?, 1, ?)";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, no);
 			ps.setString(2, vo.getCtitle());
@@ -261,6 +337,9 @@ public class ClassDAO {
 			ps.setString(5, vo.getCprice());
 			ps.setString(6, vo.getCartist());
 			ps.setString(7, vo.getCcategory());
+			double c_score = Math.random()*1.5+3.5;
+			ps.setDouble(8, (Math.floor(c_score*10))/10);
+			
 			ps.executeUpdate();
 			System.out.println("insert 완료");
 		}catch (Exception e) {
@@ -277,8 +356,8 @@ public class ClassDAO {
 			getConnection();
 
 			String sql = "INSERT INTO thisclass(c_no, c_title, c_content, c_poster, c_price, "
-					+ "c_artist, c_address, c_onoff, c_time, c_category, c_hit) "
-					+ "VALUES(?, ?, ?, ?, ?, ?, ?, 0, ?, ?, 1)";
+					+ "c_artist, c_address, c_onoff, c_time, c_category, c_hit, c_score) "
+					+ "VALUES(?, ?, ?, ?, ?, ?, ?, 0, ?, ?, 1, ?)";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, no);
 			ps.setString(2, vo.getCtitle());
@@ -289,6 +368,8 @@ public class ClassDAO {
 			ps.setString(7, vo.getCaddress());
 			ps.setString(8, vo.getCtime());
 			ps.setString(9, vo.getCcategory());
+			double c_score = Math.random()*1.5+3.5;
+			ps.setDouble(10, (Math.floor(c_score*10))/10);
 			ps.executeUpdate();
 		}catch (Exception e) {
 			e.printStackTrace();
