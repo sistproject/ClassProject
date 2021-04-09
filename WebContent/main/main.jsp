@@ -248,8 +248,9 @@ function view2(opt2){
 								<li><a href="../offclass/offclass.do">오프라인</a></li>
 								<li><a href="../class/trendclass.do">인기 클래스</a></li>
 								<li><a href="../class/newclass.do">추천 클래스</a></li>
-								<li><a href="../class/recommendclass.do">신규 클래스</a></li>
-								<li><a href="../offclass/reserve.do">클래스 예약</a></li>
+								<li><a href="../offclass/reserve.do">신규 클래스</a></li>
+								<li><a href="../class/recommendclass.do">클래스 예약</a></li>
+								
 							</ul>
 							</div>
 							<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
