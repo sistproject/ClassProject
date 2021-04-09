@@ -227,8 +227,8 @@ public class ClassDAO {
 			getConnection();
 
 			String sql = "INSERT INTO thisclass(c_no, c_title, c_content, c_poster, c_price, "
-					+ "c_artist, c_onoff, c_category) "
-					+ "VALUES(?, ?, ?, ?, ?, ?, 0, ?)";
+					+ "c_artist, c_onoff, c_category, c_hit) "
+					+ "VALUES(?, ?, ?, ?, ?, ?, 0, ?, 1)";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, no);
 			ps.setString(2, vo.getCtitle());
@@ -253,8 +253,8 @@ public class ClassDAO {
 			getConnection();
 
 			String sql = "INSERT INTO thisclass(c_no, c_title, c_content, c_poster, c_price, "
-					+ "c_artist, c_address, c_onoff, c_time, c_category) "
-					+ "VALUES(?, ?, ?, ?, ?, ?, ?, 0, ?, ?)";
+					+ "c_artist, c_address, c_onoff, c_time, c_category, c_hit) "
+					+ "VALUES(?, ?, ?, ?, ?, ?, ?, 0, ?, ?, 1)";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, no);
 			ps.setString(2, vo.getCtitle());
