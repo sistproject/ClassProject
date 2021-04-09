@@ -49,7 +49,7 @@ body
 	font-family: 'Source Sans Pro', sans-sans-serif;
 	font-size: 14px;
 	font-weight: 400;
-	background: #FFFFFF;
+	background: #FFFFF3;
 	color: #a5a5a5;
 }
 div
@@ -106,7 +106,7 @@ p a:active
 }
 p a:hover
 {
-	color: #FFFFFF;
+	color: #FFFFF3;
 	background: #ffa07f;
 }
 p a:hover::after
@@ -293,7 +293,7 @@ section
 {
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 14px;
-	color: #FFFFFF;
+	color: #FFFFF3;
 	margin-left: 0px;
 }
 .top_bar_contact_list li i,
@@ -301,7 +301,7 @@ section
 {
 	display: inline-block;
 	font-size: 14px;
-	color: #FFFFFF;
+	color: #FFFFF3;
 }
 .top_bar_contact_list li > div
 {
@@ -338,7 +338,7 @@ section
 .header_container
 {
 	width: 100%;
-	background: #FFFFFF;
+	background: #FFFFF3;
 }
 .header_content
 {
@@ -572,7 +572,7 @@ section
 	right: -400px;
 	width: 400px;
 	height: 100vh;
-	background: #FFFFFF;
+	background: #FFFFF3;
 	z-index: 101;
 	padding-right: 60px;
 	padding-top: 87px;
@@ -832,7 +832,7 @@ section
 	height: 46px;
 	border: solid 1px #d9d9d9;
 	border-radius: 3px;
-	background: #FFFFFF;
+	background: #FFFFF3;
 	padding-left: 20px;
 }
 .courses_search_input:focus
@@ -863,7 +863,7 @@ section
 	width: 161px;
 	height: 46px;
 	background: #A593E0;
-	color: #FFFFFF;
+	color: #FFFFF3;
 	font-size: 14px;
 	font-weight: 500;
 	text-transform: uppercase;
@@ -884,7 +884,7 @@ section
 {
 	width: 100%;
 	border-radius: 6px;
-	background: #FFFFFF;
+	background: #FFFFF3;
 	box-shadow: 0px 1px 10px rgba(29,34,47,0.1);
 }
 .course_col:nth-child(odd)
@@ -1008,7 +1008,7 @@ section
 	font-weight: 500;
 	text-transform: uppercase;
 	line-height: 46px;
-	color: #FFFFFF;
+	color: #FFFFF3;
 }
 .pagination_row
 {
@@ -1023,7 +1023,7 @@ section
 	display: inline-block;
 	width: 40px;
 	height: 40px;
-	background: #FFFFFF;
+	background: #FFFFF3;
 	border: solid 1px #ebebeb;
 	text-align: center;
 	-webkit-transition: all 200ms ease;
@@ -1058,7 +1058,7 @@ section
 .pagination_list li:hover a,
 .pagination_list li.active a
 {
-	color: #FFFFFF;
+	color: #FFFFF3;
 }
 .courses_show_text
 {
@@ -1256,7 +1256,7 @@ section
 	pointer-events: none;
 	font-size: 33px;
 	font-weight: 300;
-	color: #FFFFFF;
+	color: #FFFFF3;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
 	-ms-transition: all 200ms ease;
@@ -1299,7 +1299,7 @@ section
 }
 .tags_list li:hover a
 {
-	color: #FFFFFF;
+	color: #FFFFF3;
 }
 .tags_list li a
 {
@@ -1345,14 +1345,14 @@ section
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 20px;
 	font-weight: 700;
-	color: #FFFFFF;
+	color: #FFFFF3;
 	line-height: 0.75;
 }
 .banner_button
 {
 	width: 200px;
 	height: 46px;
-	background: #FFFFFF;
+	background: #FFFFF3;
 	border-radius: 3px;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
@@ -1383,7 +1383,7 @@ section
 }
 .banner_button:hover a
 {
-	color: #FFFFFF;
+	color: #FFFFF3;
 }
 
 /*********************************
@@ -1413,13 +1413,13 @@ section
 	font-size: 20px;
 	font-weight: 700;
 	text-transform: uppercase;
-	color: #FFFFFF;
+	color: #FFFFF3;
 }
 .newsletter_subtitle
 {
 	font-size: 14px;
 	font-weight: 400;
-	color: #FFFFFF;
+	color: #FFFFF3;
 	margin-top: 6px;
 }
 .newsletter_form_container
@@ -1441,7 +1441,7 @@ section
 	border: none;
 	outline: none;
 	padding-left: 20px;
-	color: #FFFFFF;
+	color: #FFFFF3;
 	border-top-left-radius: 3px;
 	border-bottom-left-radius: 3px;
 }
@@ -1449,37 +1449,37 @@ section
 {
 	font-size: 14px !important;
 	font-weight: 400 !important;
-	color: #FFFFFF !important;
+	color: #FFFFF3 !important;
 }
 .newsletter_input:-moz-placeholder
 {
 	font-size: 14px !important;
 	font-weight: 400 !important;
-	color: #FFFFFF !important;
+	color: #FFFFF3 !important;
 }
 .newsletter_input::-moz-placeholder
 {
 	font-size: 14px !important;
 	font-weight: 400 !important;
-	color: #FFFFFF !important;
+	color: #FFFFF3 !important;
 } 
 .newsletter_input:-ms-input-placeholder
 { 
 	font-size: 14px !important;
 	font-weight: 400 !important;
-	color: #FFFFFF !important;
+	color: #FFFFF3 !important;
 }
 .newsletter_input::input-placeholder
 {
 	font-size: 14px !important;
 	font-weight: 400 !important;
-	color: #FFFFFF !important;
+	color: #FFFFF3 !important;
 }
 .newsletter_button
 {
 	width: 136px;
 	height: 40px;
-	background: #FFFFFF;
+	background: #FFFFF3;
 	border-radius: 3px;
 	border: none;
 	outline: none;
@@ -1524,7 +1524,7 @@ section
 	font-size: 36px;
 	font-weight: 700;
 	line-height: 0.75;
-	color: #FFFFFF;
+	color: #FFFFF3;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
 	-ms-transition: all 200ms ease;
@@ -1540,7 +1540,7 @@ section
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 18px;
 	font-weight: 700;
-	color: #FFFFFF;
+	color: #FFFFF3;
 	line-height: 0.75;
 }
 .footer_logo_container
@@ -1553,7 +1553,7 @@ section
 }
 .footer_about_text p
 {
-	color: #FFFFFF;
+	color: #FFFFF3;
 }
 .footer_social
 {
@@ -1584,7 +1584,7 @@ section
 }
 .footer_social ul li a i
 {
-	color: #FFFFFF;
+	color: #FFFFF3;
 	line-height: 45px;
 }
 .footer_social ul li:hover
@@ -1670,7 +1670,7 @@ section
 }
 .cr_text a
 {
-	color: #FFFFFF;
+	color: #FFFFF3;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
 	-ms-transition: all 200ms ease;
