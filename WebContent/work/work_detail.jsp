@@ -226,7 +226,7 @@ margin-top:30px;
 																					<span class="btn btn-xs btn-success updateBtn"
 																						data-no="${rvo.no }">수정</span>
 																					<span class="btn btn-xs btn-danger delBtn"
-																						data-no="${rvo.no }" data-cno="${rvo.w_no }">삭제</span>
+																						data-no="${rvo.no }" data-w_no="${rvo.w_no }">삭제</span>
 																				</c:if>
 																			</figure>
 																			<div style="color:blue;">
