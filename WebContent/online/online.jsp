@@ -79,7 +79,7 @@ transition: .5s ease;
 								<h3 class="course_title"><a href="../online/online_before.do?cno=${om.cno }">${om.ctitle }</a></h3>
 								<div class="course_teacher">${om.cartist}</div>
 								<div class="course_text">
-									<p>클래스 확인하기</p>
+								<p class="course_title"><a href="../online/online_before.do?cno=${om.cno }">클래스 확인하기</a></p>
 								</div>
 							</div>
 				
