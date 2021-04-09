@@ -29,6 +29,7 @@
 %>
 <!-- 카테고리 -->
 <script type="text/javascript">
+/*
 function view(opt){
 	if(opt){
 		category_display.style.display="block";
@@ -47,6 +48,7 @@ function view2(opt2){
 		category_size.style.color= "#384158";
 	}
 }
+*/
 </script>
 <style type="text/css">
 
@@ -163,7 +165,7 @@ function view2(opt2){
 	</div>
 
 	<div class="category_wrapper">
-	<div class="mouse_check" onmouseover="view(true)" onmouseout="view(false)"></div>
+	<!--  <div class="mouse_check" onmouseover="view(true)" onmouseout="view(false)"></div> -->
 	<div class="mouse_check2" id="category_display" onmouseover="view2(true)" onmouseout="view2(false)">
 	
 	<c:forEach var="catList" items="${catList }" varStatus="status">
@@ -216,10 +218,12 @@ function view2(opt2){
 							<div class="w_c_wrapper"> <!--  -->
 							<%if(menu.equals("work")) {%>
 							<ul class="main_nav">
+							<!-- 
 								<li>
 									<a href="#" onmouseover="view(true)" onmouseout="view(false)">
 									<div id="category_size">카테고리</div></a>
 								</li>
+							 -->
 								<li class="active"><a href="../main/main.do">홈</a></li>
 								<li><a href="../work/work_total.do">작품 전체</a></li>
 								<li><a href="../work/work_ingi.do">인기 작품</a></li>
@@ -232,16 +236,18 @@ function view2(opt2){
 							<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
 							<%}else if(menu.equals("class")) {%>
 							<ul class="main_nav">
+							<!--  
 								<li>
 									<a href="#" onmouseover="view(true)" onmouseout="view(false)">
 									<div id="category_size">카테고리</div></a>
 								</li>
+							-->
 								<li class="active"><a href="../main/cmain.do">홈</a></li>
 								<li><a href="../online/online.do">온라인</a></li>
 								<li><a href="../offclass/offclass.do">오프라인</a></li>
 								<li><a href="../class/trendclass.do">인기 클래스</a></li>
-								<li><a href="#">추천 클래스</a></li>
-								<li><a href="#">신규 클래스</a></li>
+								<li><a href="../class/newclass.do">추천 클래스</a></li>
+								<li><a href="../class/recommendclass.do">신규 클래스</a></li>
 								<li><a href="../offclass/reserve.do">클래스 예약</a></li>
 							</ul>
 							</div>

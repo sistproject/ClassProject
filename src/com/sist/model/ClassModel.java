@@ -161,5 +161,118 @@ public class ClassModel {
 		request.setAttribute("menu", "class");
 		return "../main/main.jsp";
 	}
+	@RequestMapping("class/newclass.do")
+	public String newclass(HttpServletRequest request, HttpServletResponse response) {
+		String page = request.getParameter("page");
+		if (page == null) {
+			page = "1";
+		}
+		int curpage = Integer.parseInt(page);
+		// DAO
+		ClassDAO dao = ClassDAO.newInstance();
+		List<OffClassVO> allList = dao.newListData(curpage);
+		int count = dao.allCount();
+		int totalPage = (int)(Math.ceil(count / 12.0));
+		
+		final int BLOCK = 10;
+		int startPage = ((curpage - 1) / BLOCK * BLOCK) + 1;
+		int endPage = ((curpage - 1) / BLOCK * BLOCK) + BLOCK;
+
+		if (endPage > totalPage) {
+			endPage = totalPage;
+		}
+			
+		List<OffClassVO> kList=new ArrayList<OffClassVO>();
+		  
+		  Cookie[] cookies=request.getCookies();			
+		  if(cookies != null)
+		  {
+			  for(int i=cookies.length-1;i>=0;i--)
+			  {
+				  if(cookies[i].getName().startsWith("oc")) // oc: online cookie
+				  { 	
+					  cookies[i].setPath("/");
+					  System.out.println(cookies[i].getName()); // key
+					  String cno=cookies[i].getValue(); // value
+					  System.out.println(cookies[i].getValue());
+					  OffClassVO vo=dao.onlineCookiePrintData(Integer.parseInt(cno));
+					  
+					  System.out.println(vo.getCno());
+					  kList.add(vo);
+				  }
+			  }
+		  }
+
+		request.setAttribute("kList", kList); // 쿠키 데이터
+		request.setAttribute("count", count);
+		request.setAttribute("allList", allList); // online main List
+
+		request.setAttribute("block", BLOCK);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("totalpage", totalPage);
+		request.setAttribute("curpage", curpage);
+		
+		request.setAttribute("main_jsp", "../class/newclass.jsp");
+		request.setAttribute("menu", "class");
+		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("class/recommendclass.do")
+	public String recommendclass(HttpServletRequest request, HttpServletResponse response) {
+		String page = request.getParameter("page");
+		if (page == null) {
+			page = "1";
+		}
+		int curpage = Integer.parseInt(page);
+		// DAO
+		ClassDAO dao = ClassDAO.newInstance();
+		List<OffClassVO> allList = dao.recommendListData(curpage);
+		int count = dao.allCount();
+		int totalPage = (int)(Math.ceil(count / 12.0));
+		
+		final int BLOCK = 10;
+		int startPage = ((curpage - 1) / BLOCK * BLOCK) + 1;
+		int endPage = ((curpage - 1) / BLOCK * BLOCK) + BLOCK;
+
+		if (endPage > totalPage) {
+			endPage = totalPage;
+		}
+			
+		List<OffClassVO> kList=new ArrayList<OffClassVO>();
+		  
+		  Cookie[] cookies=request.getCookies();			
+		  if(cookies != null)
+		  {
+			  for(int i=cookies.length-1;i>=0;i--)
+			  {
+				  if(cookies[i].getName().startsWith("oc")) // oc: online cookie
+				  { 	
+					  cookies[i].setPath("/");
+					  System.out.println(cookies[i].getName()); // key
+					  String cno=cookies[i].getValue(); // value
+					  System.out.println(cookies[i].getValue());
+					  OffClassVO vo=dao.onlineCookiePrintData(Integer.parseInt(cno));
+					  
+					  System.out.println(vo.getCno());
+					  kList.add(vo);
+				  }
+			  }
+		  }
+
+		request.setAttribute("kList", kList); // 쿠키 데이터
+		request.setAttribute("count", count);
+		request.setAttribute("allList", allList); // online main List
+
+		request.setAttribute("block", BLOCK);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("totalpage", totalPage);
+		request.setAttribute("curpage", curpage);
+		
+		request.setAttribute("main_jsp", "../class/recommendclass.jsp");
+		request.setAttribute("menu", "class");
+		return "../main/main.jsp";
+	}
 
 }
