@@ -12,6 +12,8 @@
 <link rel="stylesheet" href="../main/vendor/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="../main/css/shop-homepage.css">
 <link rel="stylesheet" href="../main/styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="../online/styles/courses.css">
+<link rel="stylesheet" type="text/css" href="../online/styles/courses_responsive.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <style>
 .join_row{
@@ -92,12 +94,12 @@ body > div > div > div > div.pagination_row > div > div > ul > li > a { color: b
 	      </c:if>
 		</table>
 		</div>
-		<div class="pagination_row" style="height:30px;">
-		<div class="col text-center" style=";height:20px;text-align:center">
+		<div class="pagination_row" style="height:30px; padding-bottom:100px;">
+		<div class="col text-center" style="height:20px;">
 			<div class="page" class="text-center" style="width:100%">
-				<ul class="pagination_list" >
+				<ul class="pagination_list">
 			         <c:if test="${startPage>1 }">
-			          <li><a href="../member/member_mypost.do?page=${startPage-1 }">이전</a></li>
+			          <li ><a href="../member/member_mypost.do?page=${startPage-1 }">이전</a></li>
 			         </c:if>
 			         <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
 			           <c:if test="${i==curpage }">
@@ -106,7 +108,7 @@ body > div > div > div > div.pagination_row > div > div > ul > li > a { color: b
 			           <c:if test="${i!=curpage }">
 			            <c:set var="type" value=""/>
 			           </c:if>
-			           <li ${type} style="background-color:#A593E0;float:left;"><a href="../member/member_mypost.do?page=${i }">${i }</a></li>
+			           <li ${type} style="float:inherit;"><a href="../member/member_mypost.do?page=${i }">${i }</a></li>
 			         </c:forEach>
 			         <c:if test="${endPage<totalpage }">
 			           <li><a href="../member/member_mypost.do?page=${endPage+1 }"> 다음</a></li>
