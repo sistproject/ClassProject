@@ -510,8 +510,7 @@ public class OffClassDAO {
 	   		   ResultSet rs=ps.executeQuery();
 	   		   rs.next();
 	   		   vo.setCno(rs.getInt(1));
-	   		   String s=rs.getString(2);
-	   		   vo.setCposter(s.substring(0,s.indexOf("^")));
+	   		   vo.setCposter(rs.getString(2));
 	   		   vo.setCtitle(rs.getString(3));
 	   		   rs.close();
 	   	   }catch(Exception ex)
