@@ -444,6 +444,39 @@ public class OffClassModel {
 				endPage=totalPage; 
 			
 			
+			List<OffClassVO> kList=new ArrayList<OffClassVO>();
+			  Cookie[] cookies=request.getCookies();	
+			  System.out.println(cookies.length);
+			  if(cookies != null)
+			  {
+				  System.out.println("not null");
+				  for(int i=cookies.length-1;i>=0;i--)
+				  {
+					  System.out.println("length");
+					  if(cookies[i].getName().startsWith("m"))
+					  { 	
+						  if(!cookies[i].getName().replace("m","").equals("null")) {
+						  cookies[i].setPath("/");
+						   // key
+						  String cno=cookies[i].getValue(); // value
+						  System.out.println("value"+cookies[i].getValue());
+						  OffClassVO vo=dao.offclassCookiePrintData(Integer.parseInt(cno));
+						  System.out.println(vo.getCno());
+						  kList.add(vo);
+						  
+						  }
+						  System.out.println("success");
+					  }
+				  }
+			  }
+			System.out.println(kList.size());
+			
+			request.setAttribute("kList", kList); // 쿠키 데이터
+			
+			
+			
+			
+			
 			request.setAttribute("count", count);
 			request.setAttribute("ofaList", ofaList);
 			
@@ -482,6 +515,39 @@ public class OffClassModel {
 				endPage=totalPage; 
 			
 			
+			List<OffClassVO> kList=new ArrayList<OffClassVO>();
+			  Cookie[] cookies=request.getCookies();	
+			  System.out.println(cookies.length);
+			  if(cookies != null)
+			  {
+				  System.out.println("not null");
+				  for(int i=cookies.length-1;i>=0;i--)
+				  {
+					  System.out.println("length");
+					  if(cookies[i].getName().startsWith("m"))
+					  { 	
+						  if(!cookies[i].getName().replace("m","").equals("null")) {
+						  cookies[i].setPath("/");
+						   // key
+						  String cno=cookies[i].getValue(); // value
+						  System.out.println("value"+cookies[i].getValue());
+						  OffClassVO vo=dao.offclassCookiePrintData(Integer.parseInt(cno));
+						  System.out.println(vo.getCno());
+						  kList.add(vo);
+						  
+						  }
+						  System.out.println("success");
+					  }
+				  }
+			  }
+			System.out.println(kList.size());
+			
+			request.setAttribute("kList", kList); // 쿠키 데이터
+			
+			
+			
+			
+			
 			request.setAttribute("count", count);
 			request.setAttribute("ofbList", ofbList);
 			
@@ -517,6 +583,36 @@ public class OffClassModel {
 			
 			if(endPage>totalPage)
 				endPage=totalPage; 
+			
+			List<OffClassVO> kList=new ArrayList<OffClassVO>();
+			  Cookie[] cookies=request.getCookies();	
+			  System.out.println(cookies.length);
+			  if(cookies != null)
+			  {
+				  System.out.println("not null");
+				  for(int i=cookies.length-1;i>=0;i--)
+				  {
+					  System.out.println("length");
+					  if(cookies[i].getName().startsWith("m"))
+					  { 	
+						  if(!cookies[i].getName().replace("m","").equals("null")) {
+						  cookies[i].setPath("/");
+						   // key
+						  String cno=cookies[i].getValue(); // value
+						  System.out.println("value"+cookies[i].getValue());
+						  OffClassVO vo=dao.offclassCookiePrintData(Integer.parseInt(cno));
+						  System.out.println(vo.getCno());
+						  kList.add(vo);
+						  
+						  }
+						  System.out.println("success");
+					  }
+				  }
+			  }
+			System.out.println(kList.size());
+			
+			request.setAttribute("kList", kList); // 쿠키 데이터
+			
 			
 			
 			request.setAttribute("count", count);
@@ -557,6 +653,38 @@ public class OffClassModel {
 				endPage=totalPage; 
 			
 			
+			List<OffClassVO> kList=new ArrayList<OffClassVO>();
+			  Cookie[] cookies=request.getCookies();	
+			  System.out.println(cookies.length);
+			  if(cookies != null)
+			  {
+				  System.out.println("not null");
+				  for(int i=cookies.length-1;i>=0;i--)
+				  {
+					  System.out.println("length");
+					  if(cookies[i].getName().startsWith("m"))
+					  { 	
+						  if(!cookies[i].getName().replace("m","").equals("null")) {
+						  cookies[i].setPath("/");
+						   // key
+						  String cno=cookies[i].getValue(); // value
+						  System.out.println("value"+cookies[i].getValue());
+						  OffClassVO vo=dao.offclassCookiePrintData(Integer.parseInt(cno));
+						  System.out.println(vo.getCno());
+						  kList.add(vo);
+						  
+						  }
+						  System.out.println("success");
+					  }
+				  }
+			  }
+			System.out.println(kList.size());
+			
+			request.setAttribute("kList", kList); // 쿠키 데이터
+			
+			
+			
+			
 			request.setAttribute("count", count);
 			request.setAttribute("ofeList", ofeList);
 			
@@ -594,6 +722,37 @@ public class OffClassModel {
 				endPage=totalPage; 
 			
 			
+			List<OffClassVO> kList=new ArrayList<OffClassVO>();
+			  Cookie[] cookies=request.getCookies();	
+			  System.out.println(cookies.length);
+			  if(cookies != null)
+			  {
+				  System.out.println("not null");
+				  for(int i=cookies.length-1;i>=0;i--)
+				  {
+					  System.out.println("length");
+					  if(cookies[i].getName().startsWith("m"))
+					  { 	
+						  if(!cookies[i].getName().replace("m","").equals("null")) {
+						  cookies[i].setPath("/");
+						   // key
+						  String cno=cookies[i].getValue(); // value
+						  System.out.println("value"+cookies[i].getValue());
+						  OffClassVO vo=dao.offclassCookiePrintData(Integer.parseInt(cno));
+						  System.out.println(vo.getCno());
+						  kList.add(vo);
+						  
+						  }
+						  System.out.println("success");
+					  }
+				  }
+			  }
+			System.out.println(kList.size());
+			
+			request.setAttribute("kList", kList); // 쿠키 데이터
+			
+			
+			
 			request.setAttribute("count", count);
 			request.setAttribute("offList", offList);
 			
@@ -629,6 +788,37 @@ public class OffClassModel {
 			
 			if(endPage>totalPage)
 				endPage=totalPage; 
+			
+			
+			List<OffClassVO> kList=new ArrayList<OffClassVO>();
+			  Cookie[] cookies=request.getCookies();	
+			  System.out.println(cookies.length);
+			  if(cookies != null)
+			  {
+				  System.out.println("not null");
+				  for(int i=cookies.length-1;i>=0;i--)
+				  {
+					  System.out.println("length");
+					  if(cookies[i].getName().startsWith("m"))
+					  { 	
+						  if(!cookies[i].getName().replace("m","").equals("null")) {
+						  cookies[i].setPath("/");
+						   // key
+						  String cno=cookies[i].getValue(); // value
+						  System.out.println("value"+cookies[i].getValue());
+						  OffClassVO vo=dao.offclassCookiePrintData(Integer.parseInt(cno));
+						  System.out.println(vo.getCno());
+						  kList.add(vo);
+						  
+						  }
+						  System.out.println("success");
+					  }
+				  }
+			  }
+			System.out.println(kList.size());
+			
+			request.setAttribute("kList", kList); // 쿠키 데이터
+			
 			
 			
 			request.setAttribute("count", count);

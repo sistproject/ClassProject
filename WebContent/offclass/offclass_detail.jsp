@@ -17,7 +17,7 @@
 	font-family:Times New Roman;
 	font-size:17px;
 	font-weight:bold;
-	padding:13px 40px;
+	padding:12px 90px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #f0ecc5;
 }
@@ -38,7 +38,7 @@
 	font-family:Arial;
 	font-size:17px;
 	font-weight:bold;
-	padding:13px 110px;
+	padding:13px 185px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #ffffff;
 }
@@ -49,6 +49,31 @@
 	position:relative;
 	top:1px;
 }
+.mymButton {
+	box-shadow:inset 0px 0px 0px 0px #ffffff;
+	background:linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
+	background-color:#ededed;
+	border-radius:28px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#777777;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:12px 90px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+.mymButton:hover {
+	background:linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
+	background-color:#dfdfdf;
+}
+.mymButton:active {
+	position:relative;
+	top:1px;
+}
+
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
@@ -368,8 +393,10 @@ $(function(){
 									
 								
           							
-										<a href="../member/jjim.do?no=${vo.cno}&type=cf" class="myButton">찜</a>&nbsp;&nbsp;&nbsp;<a href="../offclass/reserve.do?no=${vo.cno }" class="myrButton">예약하기</a>
-								<button onclick="location.href='../board/insert.do?type=0&cno=${vo.cno}'">문의하기</button>
+										<a href="../member/jjim.do?no=${vo.cno}&type=cf" class="myButton">찜</a>&nbsp;<button class="mymButton" onclick="location.href='../board/insert.do?type=0&cno=${vo.cno}'">문의하기</button>
+										
+										<a href="../offclass/reserve.do?no=${vo.cno }" class="myrButton">예약하기</a>
+								
 
 								</div>
 							</div>
@@ -377,7 +404,7 @@ $(function(){
 
 						<!-- Feature -->
 						
-
+					
 					</div>
 				</div>
 			</div>
