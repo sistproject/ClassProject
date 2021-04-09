@@ -251,5 +251,69 @@ public class OnlineModel {
 		  return "redirect:../online/online_detail.do?cno="+cno;
 	  }
 	
+	@RequestMapping("online/onlinesearch.do")
+	public String onlinesearch(HttpServletRequest request, HttpServletResponse response) {
+		String word = request.getParameter("search");
+		System.out.println(word);
+		// 페이지 나누기
+		String page = request.getParameter("page");
+		System.out.println(page);
+		if (page == null) {
+			page = "1";
+		}
+		int curpage = Integer.parseInt(page);
+		
+		OnlineDAO dao = OnlineDAO.newInstance();
+		List<OnlineVO> omList = dao.onlineSearchData(curpage,word);
+		
+		int count = dao.onlineMainCount();
+		int totalPage = (int) (Math.ceil(count / 12.0));
+		final int BLOCK = 10;
+		int startPage = ((curpage - 1) / BLOCK * BLOCK) + 1;
+		int endPage = ((curpage - 1) / BLOCK * BLOCK) + BLOCK;
+
+		if (endPage > totalPage)
+			endPage = totalPage;
+
+
+		  List<OnlineVO> kList=new ArrayList<OnlineVO>();
+		  
+		  Cookie[] cookies=request.getCookies();			
+		  if(cookies != null)
+		  {
+			  for(int i=cookies.length-1;i>=0;i--)
+			  {
+				  if(cookies[i].getName().startsWith("oc")) // oc: online cookie
+				  { 	
+					  cookies[i].setPath("/");
+					  System.out.println(cookies[i].getName()); // key
+					  String cno=cookies[i].getValue(); // value
+					  System.out.println(cookies[i].getValue());
+					  OnlineVO vo=dao.onlineCookiePrintData(Integer.parseInt(cno));
+					  
+					  System.out.println(vo.getCno());
+					  kList.add(vo);
+				  }
+			  }
+		  }
+		
+		System.out.println("크기 "+omList.size());
+		
+		request.setAttribute("kList", kList); // 쿠키 데이터
+		request.setAttribute("count", count);
+		request.setAttribute("omList", omList); // online main List
+
+		request.setAttribute("block", BLOCK);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("totalpage", totalPage);
+		request.setAttribute("curpage", curpage);
+//	    request.setAttribute("main_jsp", "../online/online.jsp");
+		request.setAttribute(page, omList);
+		request.setAttribute("main_jsp", "../online/searchonline.jsp");
+
+		return "../main/main.jsp";
+	}
+	
 
 }

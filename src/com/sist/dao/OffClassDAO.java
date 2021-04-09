@@ -11,6 +11,7 @@ import javax.sql.*;
 
 import com.sist.vo.OffClassVO;
 import com.sist.vo.OffclassReplyVO;
+import com.sist.vo.OnlineVO;
 import com.sist.vo.ReserveVO;
 
 
@@ -574,7 +575,7 @@ public class OffClassDAO {
 			   }
 			   return list;
 		   }
-	     public List<OffClassVO> OffSearchData(String word)
+	     public List<OffClassVO> OffMainSearchData(String word)
 		   {
 			   List<OffClassVO> list=new ArrayList<OffClassVO>();
 			   try
@@ -612,6 +613,54 @@ public class OffClassDAO {
 			   }
 			   return list;
 		   }
+	     public List<OffClassVO> offlineSearchData(int page,String word) {
+	 		List<OffClassVO> list = new ArrayList<OffClassVO>();
+	 		try {
+	 			getConnection();
+//	 			String sql="SELECT c_no, c_poster, c_title, c_artist, c_price, c_category, infoaddr, c_score, num "
+//					+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_category, infoaddr, c_score, rownum as num "
+//					+ "FROM (SELECT c_no, c_title, c_poster, c_artist, c_price, c_category, infoaddr, c_score " 
+//					+ "FROM thisclass WHERE c_onoff=1 ORDER BY c_no ASC)) "
+//					+ "WHERE num BETWEEN ? AND ?";
+//	 			
+//	 			
+//	 			
+	 			String sql = "SELECT c_no, c_poster, c_title, c_artist, c_price, c_category, infoaddr, c_score,c_onoff, num "
+	 					+ "FROM (SELECT c_no, c_poster, c_title, c_artist, c_price, c_category, infoaddr, c_score,c_onoff, rownum as num "
+	 					+ "FROM (SELECT c_no, c_poster, c_title, c_artist, c_price, c_category, infoaddr, c_score,c_onoff "
+	 					+ "FROM thisclass ORDER BY c_no ASC) WHERE c_onoff=1 AND REGEXP_LIKE(c_title,?)) "
+	 					+ "WHERE num BETWEEN ? AND ?";
+	 			ps = conn.prepareStatement(sql);
+	 			int rowSize = 12;
+	 			int start = (rowSize * page) - (rowSize - 1);
+	 			int end = rowSize * page;
+	 			ps.setString(1, word);
+	 			ps.setInt(2, start);
+	 			ps.setInt(3, end);
+	 		
+	 			ResultSet rs = ps.executeQuery();
+			   while(rs.next())
+			   {
+				    OffClassVO vo=new OffClassVO();
+				    vo.setCno(rs.getInt(1));
+				   	vo.setCposter(rs.getString(2));
+				   	vo.setCtitle(rs.getString(3));
+				   	vo.setCartist(rs.getString(4));
+				   	vo.setCprice(rs.getString(5));
+				   	vo.setCcategory(rs.getString(6));
+				   	vo.setInfoaddr(rs.getString(7));
+				   	vo.setCscore(rs.getDouble(8));
+				   	list.add(vo);
+			   }
+			   rs.close();
+
+	 		} catch (Exception ex) {
+	 			ex.printStackTrace();
+	 		} finally {
+	 			disConnection();
+	 		}
+	 		return list;
+	 	}
 	     
 	     
 	     

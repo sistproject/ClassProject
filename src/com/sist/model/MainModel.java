@@ -180,10 +180,10 @@ public class MainModel {
 		
 		  
 	    OffClassDAO ofdao = OffClassDAO.newInstance();
-		List<OffClassVO> offList = ofdao.OffSearchData(word);
+		List<OffClassVO> offList = ofdao.OffMainSearchData(word);
 		
 		OnlineDAO cdao= OnlineDAO.newInstance();
-		List<OnlineVO> onList = cdao.onlineSearchData(word);
+		List<OnlineVO> onList = cdao.onlineMainSearchData(word);
 		
 		
 		request.setAttribute("offList", offList);
@@ -195,7 +195,6 @@ public class MainModel {
 		request.setAttribute("menu", "work");
 		return "../main/main.jsp";
 	}
-
 
 
 

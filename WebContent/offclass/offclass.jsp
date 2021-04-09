@@ -50,8 +50,8 @@ ul.pagination_list{
 				<!-- Courses Main Content -->
 				<div class="col-lg-8">
 					<div class="courses_search_container">
-						<form action="#" id="courses_search_form" class="courses_search_form d-flex flex-row align-items-center justify-content-start">
-							<input type="search" class="courses_search_input" placeholder="Search Courses" required="required">
+						<form action="../offclass/offclasssearch.do" id="courses_search_form" class="courses_search_form d-flex flex-row align-items-center justify-content-start">
+							<input type="search" class="courses_search_input" placeholder="Search Courses" required="required" name="search">
 							<select id="courses_search_select" class="courses_search_select courses_search_input">
 								<option>All Categories</option>
 								<option>Category</option>

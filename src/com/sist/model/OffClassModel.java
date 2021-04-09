@@ -456,6 +456,64 @@ public class OffClassModel {
 			
 			return "../main/main.jsp";
 		}
+	  @RequestMapping("offclass/offclasssearch.do")
+		public String classSearchlist(HttpServletRequest request,HttpServletResponse response)
+		{
+		  	String word=request.getParameter("search");
+			String page=request.getParameter("page");
+			if(page==null) {
+				page="1";
+			}
+			int curpage=Integer.parseInt(page);
+			
+			OffClassDAO dao= OffClassDAO.newInstance();
+			List<OffClassVO> ofList=dao.offlineSearchData(curpage,word);
+			int count=dao.OffClassCount();
+			int totalPage=(int)(Math.ceil(count/12.0));
+			
+			final int BLOCK=10;
+			int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+			int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+
+			
+			if(endPage>totalPage)
+				endPage=totalPage; 
+			
+			List<OffClassVO> kList=new ArrayList<OffClassVO>();
+			Cookie[] cookies=request.getCookies();	
+			  if(cookies != null)
+			  {
+				  for(int i=cookies.length-1;i>=0;i--)
+				  {
+					  if(cookies[i].getName().startsWith("m"))
+					  { 	
+						  if(!cookies[i].getName().replace("m","").equals("null")) {
+						  cookies[i].setPath("/");
+						   // key
+						  String cno=cookies[i].getValue(); // value
+						  OffClassVO vo=dao.offclassCookiePrintData(Integer.parseInt(cno));
+						  System.out.println(vo.getCno());
+						  kList.add(vo);
+						  
+						  }
+					  }
+				  }
+			  }
+			
+			request.setAttribute("kList", kList); // 쿠키 데이터
+			request.setAttribute("count", count);
+			request.setAttribute("ofList", ofList);
+			
+			request.setAttribute("block", BLOCK);
+		    request.setAttribute("startPage", startPage);
+		    request.setAttribute("endPage", endPage);
+		    request.setAttribute("totalPage", totalPage);
+		    request.setAttribute("curpage", curpage);
+		    request.setAttribute("main_jsp", "../offclass/searchoffclass.jsp");
+		    request.setAttribute("menu", "class");
+			
+			return "../main/main.jsp";
+		}
 }
 
 
