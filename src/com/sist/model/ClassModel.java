@@ -47,9 +47,9 @@ public class ClassModel {
 		request.setAttribute("totalpage", totalPage);
 		request.setAttribute("curpage", curpage);
 		
-		//request.setAttribute("main_jsp", "../class/trendclass.jsp");
+		request.setAttribute("main_jsp", "../class/trendclass.jsp");
 		request.setAttribute("menu", "class");
-		return "../class/trendclass.jsp";
+		return "../main/main.jsp";
 	}
 	@RequestMapping("class/writeWC_ok.do")
 	public String write_ok(HttpServletRequest request, HttpServletResponse response) {
