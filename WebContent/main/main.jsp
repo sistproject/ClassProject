@@ -49,6 +49,7 @@ function view2(opt2){
 	}
 }
 */
+
 </script>
 <style type="text/css">
 
@@ -247,8 +248,9 @@ function view2(opt2){
 								<li><a href="../offclass/offclass.do">오프라인</a></li>
 								<li><a href="../class/trendclass.do">인기 클래스</a></li>
 								<li><a href="../class/newclass.do">추천 클래스</a></li>
-								<li><a href="../class/recommendclass.do">신규 클래스</a></li>
-								<li><a href="../offclass/reserve.do">클래스 예약</a></li>
+								<li><a href="../offclass/reserve.do">신규 클래스</a></li>
+								<li><a href="../class/recommendclass.do">클래스 예약</a></li>
+								
 							</ul>
 							</div>
 							<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
@@ -270,8 +272,8 @@ function view2(opt2){
 			<div class="row">
 				<div class="col">
 					<div class="header_search_content d-flex flex-row align-items-center justify-content-end">
-						<form action="#" class="header_search_form">
-							<input type="search" class="search_input" placeholder="Search" required="required">
+						<form action="../main/search.do" class="header_search_form">
+							<input type="search" class="search_input" placeholder="Search" required="required" name="search">
 							<button class="header_search_button d-flex flex-column align-items-center justify-content-center">
 								<i class="fa fa-search" aria-hidden="true"></i>
 							</button>
