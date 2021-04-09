@@ -92,31 +92,32 @@ body > div > div > div > div.pagination_row > div > div > ul > li > a { color: b
 	      </c:if>
 		</table>
 		</div>
-</div>
-
-<div class="pagination_row">
-	<div class="col">
-		<div class="page"  style="text-align: center" >
-			<ul class="pagination_list">
-		         <c:if test="${startPage>1 }">
-		          <li><a href="../member/member_mypost.do?page=${startPage-1 }">이전</a></li>
-		         </c:if>
-		         <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
-		           <c:if test="${i==curpage }">
-		            <c:set var="type" value="class=current"/>
-		           </c:if>
-		           <c:if test="${i!=curpage }">
-		            <c:set var="type" value=""/>
-		           </c:if>
-		           <li ${type }><a href="../member/member_mypost.do?page=${i }">${i }</a></li>
-		         </c:forEach>
-		         <c:if test="${endPage<totalpage }">
-		           <li><a href="../member/member_mypost.do?page=${endPage+1 }"> 다음</a></li>
-		         </c:if>
-	        </ul>
+		<div class="pagination_row" style="height:30px;">
+		<div class="col text-center" style=";height:20px;text-align:center">
+			<div class="page" class="text-center" style="width:100%">
+				<ul class="pagination_list" >
+			         <c:if test="${startPage>1 }">
+			          <li><a href="../member/member_mypost.do?page=${startPage-1 }">이전</a></li>
+			         </c:if>
+			         <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
+			           <c:if test="${i==curpage }">
+			            <c:set var="type" value="class=current"/>
+			           </c:if>
+			           <c:if test="${i!=curpage }">
+			            <c:set var="type" value=""/>
+			           </c:if>
+			           <li ${type} style="background-color:#A593E0;float:left;"><a href="../member/member_mypost.do?page=${i }">${i }</a></li>
+			         </c:forEach>
+			         <c:if test="${endPage<totalpage }">
+			           <li><a href="../member/member_mypost.do?page=${endPage+1 }"> 다음</a></li>
+			         </c:if>
+		        </ul>
+			</div>
 		</div>
 	</div>
 </div>
+
+
 
 
 <script src="../main/vendor/jquery/jquery.min.js"></script>

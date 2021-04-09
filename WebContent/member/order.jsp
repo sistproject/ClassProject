@@ -65,6 +65,11 @@
 	        <th class="text-center">상품명</th>
 	        <th class="text-center">결제가격</th>
 	     </tr>
+	     <c:if test="${list.size()==0 }">
+	     <tr>
+	     <td colspan="4" class="text-center warning" style="margin-top:20px;"><h4>작성한 글이 없습니다</h4></td>
+	     </tr>
+	     </c:if>
 	     <c:forEach var="i" begin="0" end="${newest}" step="1">
 		<c:forEach var="vo" items="${list}" >
 		<c:if test="${vo.ono==newest-i}">
