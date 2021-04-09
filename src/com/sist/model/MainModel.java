@@ -180,7 +180,7 @@ public class MainModel {
 		
 		  
 	    OffClassDAO ofdao = OffClassDAO.newInstance();
-		List<OffClassVO> offList = ofdao.OffClassData(1);
+		List<OffClassVO> offList = ofdao.OffSearchData(word);
 		
 		OnlineDAO cdao= OnlineDAO.newInstance();
 		List<OnlineVO> onList = cdao.onlineSearchData(word);

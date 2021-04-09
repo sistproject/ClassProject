@@ -574,6 +574,44 @@ public class OffClassDAO {
 			   }
 			   return list;
 		   }
+	     public List<OffClassVO> OffSearchData(String word)
+		   {
+			   List<OffClassVO> list=new ArrayList<OffClassVO>();
+			   try
+			   {
+				   // 연결
+				   getConnection();
+				   // SQL문장
+				   String sql="SELECT c_no, c_poster, c_title, c_artist, c_price, c_category, infoaddr, c_score " 
+							+ "FROM thisclass WHERE c_onoff=1 AND REGEXP_LIKE(c_title,?) ORDER BY c_no asc";
+				   // 전송 객체 생성
+				   ps = conn.prepareStatement(sql);
+		 			ps.setString(1, word);
+					ResultSet rs = ps.executeQuery();
+				   while(rs.next())
+				   {
+					    OffClassVO vo=new OffClassVO();
+					    vo.setCno(rs.getInt(1));
+					   	vo.setCposter(rs.getString(2));
+					   	vo.setCtitle(rs.getString(3));
+					   	vo.setCartist(rs.getString(4));
+					   	vo.setCprice(rs.getString(5));
+					   	vo.setCcategory(rs.getString(6));
+					   	vo.setInfoaddr(rs.getString(7));
+					   	vo.setCscore(rs.getDouble(8));
+					   	list.add(vo);
+				   }
+				   rs.close();
+			   }catch(Exception ex)
+			   {
+				   ex.printStackTrace();
+			   }
+			   finally
+			   {
+				   disConnection();
+			   }
+			   return list;
+		   }
 	     
 	     
 	     
