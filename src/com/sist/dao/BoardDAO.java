@@ -56,21 +56,24 @@ public class BoardDAO {
 		  }
 	   public List<BoardVO> boardPage(int page) {
 		   List<BoardVO> list=new ArrayList<BoardVO>();
-		   int count=0;
 		   try {
-			   getConnection();
-			   String sql="SELECT id,btitle,bcontent,hits,regdate,bno,num "
-				  		+"FROM (SELECT id,btitle,bcontent,hits,regdate,bno,rownum as num "
-					    +"FROM (SELECT id,btitle,bcontent,hits,regdate,bno "
-					    +"FROM board WHERE isfree=1 ORDER BY bno DESC)) "
-					    +"WHERE num BETWEEN ? AND ?";
+			   
+			  getConnection();
+//			  String sql="SELECT id,btitle,bcontent,hits,regdate,bno "
+//			  		+ "FROM board WHERE isfree=1 ORDER BY bno DESC";
+//			  
+			  String sql="SELECT id,btitle,bcontent,hits,regdate,bno,num "
+				+ "FROM (SELECT id,btitle,bcontent,hits,regdate,bno, rownum as num "
+				+ "FROM (SELECT id,btitle,bcontent,hits,regdate,bno "
+				+ "FROM board where isfree=1 ORDER BY bno DESC)) "
+				+ "WHERE num BETWEEN ? AND ?";
+			  int rowSize = 12;
+			   int start = (rowSize * page) - (rowSize - 1);
+			   int end = rowSize * page;
 			   ps=conn.prepareStatement(sql);
-			  int rowSize=10;
-			  int start=(rowSize*page)-(rowSize-1); 
-			  int end=rowSize*page;
-			
-			  ps.setInt(1, start);
-			  ps.setInt(2, end);
+			   ps.setInt(1, start);
+			   ps.setInt(2, end);
+			 
 			  ResultSet rs=ps.executeQuery();
 			  while(rs.next()) {
 				  BoardVO vo=new BoardVO();
@@ -82,7 +85,7 @@ public class BoardDAO {
 				  vo.setBno(rs.getInt(6));
 				  list.add(vo);
 			  }
-				  rs.close();
+			  rs.close();
 		  }catch(Exception ex) {
 			  ex.printStackTrace();
 		  } finally {

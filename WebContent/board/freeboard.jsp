@@ -12,6 +12,8 @@
 <link rel="stylesheet" href="../main/vendor/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="../main/css/shop-homepage.css">
 <link rel="stylesheet" href="../main/styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="../online/styles/courses.css">
+<link rel="stylesheet" type="text/css" href="../online/styles/courses_responsive.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <style>
 .join_row{
@@ -94,18 +96,31 @@
 		</table>
 </div>
 
-<div class="wrapper row3 join_row">
-  <table class="table">
-    <tr>
-     <td class="text-right">
-      <a href="list.jsp?page=" class="btn btn-sm btn-success">이전</a>
-      1 page / 1 pages
-      <a href="list.jsp?page=" class="btn btn-sm btn-info">다음</a>
-     </td>
-    </tr>
-  </table>
+ <div class="pagination_row" style="margin-bottom:30px">
+	<div class="col">
+		<div class="page" style="text-align: center;" >
+			<ul class="pagination_list">
+		         <c:if test="${startPage>1 }">
+		          <li><a href="../member/member_mypost.do?page=${startPage-1 }">이전</a></li>
+		         </c:if>
+		         <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
+		           <c:if test="${i==curpage }">
+		            <c:set var="type" value="class=current"/>
+		           </c:if>
+		           <c:if test="${i!=curpage }">
+		            <c:set var="type" value=""/>
+		           </c:if>
+		           <li ${type }><a href="../freeboard/freeboard.do?page=${i }">${i }</a></li>
+		         </c:forEach>
+		         <c:if test="${endPage<totalpage }">
+		           <li><a href="../freeboard/freeboard.do?page=${endPage+1 }"> 다음</a></li>
+		         </c:if>
+	        </ul>
+		</div>
+	</div>
+</div>
  </div>
- </div>
+ 
 
  <script src="../main/js/jquery-3.2.1.min.js"></script>
 <script src="../main/styles/bootstrap4/popper.js"></script>
