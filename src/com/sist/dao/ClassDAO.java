@@ -28,6 +28,8 @@ public class ClassDAO {
 		}
 	}
 
+	
+	
 	public void disConnection() {
 		try {
 			if (ps != null)
@@ -44,6 +46,28 @@ public class ClassDAO {
 		return dao;
 	}
 	
+	public OffClassVO onlineCookiePrintData(int cno) {
+		OffClassVO vo = new OffClassVO();
+		try {
+			getConnection();
+			String sql = "SELECT c_no,c_poster,c_title " + "FROM thisclass " + "WHERE c_no=?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, cno);
+			// 실행
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			vo.setCno(rs.getInt(1));
+			String s = rs.getString(2);
+			vo.setCposter(s.substring(0, s.indexOf("^")));
+			vo.setCtitle(rs.getString(3));
+			rs.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			disConnection();
+		}
+		return vo;
+	}
 	public List<OffClassVO> trendListData(int page){
 		List<OffClassVO> list = new ArrayList<OffClassVO>();
 		try {

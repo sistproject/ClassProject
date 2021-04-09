@@ -1,6 +1,8 @@
 package com.sist.model;
 
 import java.util.*;
+
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -38,6 +40,28 @@ public class ClassModel {
 			endPage = totalPage;
 		}
 			
+		List<OffClassVO> kList=new ArrayList<OffClassVO>();
+		  
+		  Cookie[] cookies=request.getCookies();			
+		  if(cookies != null)
+		  {
+			  for(int i=cookies.length-1;i>=0;i--)
+			  {
+				  if(cookies[i].getName().startsWith("oc")) // oc: online cookie
+				  { 	
+					  cookies[i].setPath("/");
+					  System.out.println(cookies[i].getName()); // key
+					  String cno=cookies[i].getValue(); // value
+					  System.out.println(cookies[i].getValue());
+					  OffClassVO vo=dao.onlineCookiePrintData(Integer.parseInt(cno));
+					  
+					  System.out.println(vo.getCno());
+					  kList.add(vo);
+				  }
+			  }
+		  }
+
+		request.setAttribute("kList", kList); // 쿠키 데이터
 		request.setAttribute("count", count);
 		request.setAttribute("allList", allList); // online main List
 
