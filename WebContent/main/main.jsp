@@ -49,6 +49,7 @@ function view2(opt2){
 	}
 }
 */
+
 </script>
 <style type="text/css">
 
@@ -270,8 +271,8 @@ function view2(opt2){
 			<div class="row">
 				<div class="col">
 					<div class="header_search_content d-flex flex-row align-items-center justify-content-end">
-						<form action="#" class="header_search_form">
-							<input type="search" class="search_input" placeholder="Search" required="required">
+						<form action="../main/search.do" class="header_search_form">
+							<input type="search" class="search_input" placeholder="Search" required="required" name="search">
 							<button class="header_search_button d-flex flex-column align-items-center justify-content-center">
 								<i class="fa fa-search" aria-hidden="true"></i>
 							</button>

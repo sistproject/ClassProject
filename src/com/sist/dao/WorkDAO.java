@@ -401,6 +401,36 @@ public class WorkDAO {
 	    		 disConnection();
 	    	 }
 	     }
+	     public List<WorkVO> workSearchData(String word)
+	     {
+	    	 List<WorkVO> list = new ArrayList<WorkVO>();
+	 		try {
+	 			getConnection();
+	 			String sql="SELECT w_no,w_poster,w_artist,w_title "
+	    				   +"FROM thiswork "
+	    				   +"WHERE REGEXP_LIKE(w_title,?) ORDER BY w_no ASC";
+	 			ps = conn.prepareStatement(sql);
+	 			ps.setString(1, word);
+	 			ResultSet rs = ps.executeQuery();
+	 			while (rs.next()) {
+	 				WorkVO vo=new WorkVO();
+	 				vo.setW_no(rs.getInt(1));
+	 				vo.setW_poster(rs.getString(2));
+	 				vo.setW_artist(rs.getString(3));
+	 				vo.setW_title(rs.getString(4));
+
+	 				list.add(vo);
+	 			}
+	 			rs.close();
+
+	 		} catch (Exception ex) {
+	 			ex.printStackTrace();
+	 		} finally {
+	 			disConnection();
+	 		}
+	 		return list;
+	    	 
+	     }
 }
 
 
