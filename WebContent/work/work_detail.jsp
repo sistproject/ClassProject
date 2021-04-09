@@ -129,6 +129,7 @@ $('#adside').removeClass('fixed');
 	position:relative;
 	top:1px;
 }
+
 #adsideWrapper {
  position: absolute;
 }
@@ -196,7 +197,7 @@ margin-top:30px;
 		  </div>
 		  <div  style="text-align:right">
 		     <a href="../member/jjim.do?no=${vo.w_no}&type=w" class="myButton">찜</a>&nbsp;&nbsp;&nbsp;<a href="../cart/addcart.do?no=${vo.w_no }&type=w&amount=1" class="myrButton">결제하기</a>
-		 <button onclick="location.href='../board/insert.do?type=0&wno=${vo.w_no}'">문의하기</button>
+		 <button id="but" onclick="location.href='../board/insert.do?type=0&wno=${vo.w_no}'">문의하기</button>
 		  </div>
 	    </div>
 		</div>
@@ -214,18 +215,18 @@ margin-top:30px;
 												<table class="table">
 													<tr>
 														<td><textarea rows="10" cols="100" name="msg"></textarea> 
-															<input type="hidden" name=cno value="${ondVO.cno}"> 
+															<input type="hidden" name=w_no value="${vo.w_no}"> 
 															<input type="submit" value="댓글쓰기" class="btn btn-sm btn-danger">
 															<c:forEach var="rvo" items="${rList }">
 																<li>
 																	<article>
 																		<header>
 																			<figure class="avatar">
-																				<c:if test="${sessionScope.id==rvo.id }">
+																				<c:if test="${sessionScope.id==vo.id }">
 																					<span class="btn btn-xs btn-success updateBtn"
 																						data-no="${rvo.no }">수정</span>
 																					<span class="btn btn-xs btn-danger delBtn"
-																						data-no="${rvo.no }" data-cno="${ondVO.cno }">삭제</span>
+																						data-no="${rvo.no }" data-cno="${rvo.w_no }">삭제</span>
 																				</c:if>
 																			</figure>
 																			<div style="color:blue;">
@@ -244,7 +245,7 @@ margin-top:30px;
 																			<tr>
 																				<td>
 																					<textarea rows="7" cols="25" name="msg">${rvo.msg }</textarea>
-																					<input type="hidden" name=cno value="${ondVO.cno }">
+																					<input type="hidden" name=w_no value="${vo.w_no }">
 																					<input type="hidden" name=no value="${rvo.no }"> <input type="submit" value="댓글수정" class="btn btn-sm btn-danger">
 																				</td>
 																			</tr>
