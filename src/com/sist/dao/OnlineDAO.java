@@ -315,7 +315,37 @@ public class OnlineDAO {
  	   }
  	   return vo;
     }
-    
+    public List<OnlineVO> onlineSearchData(String word) {
+		List<OnlineVO> list = new ArrayList<OnlineVO>();
+		try {// c_no, c_title, c_artist, c_price, c_poster, c_content
+			getConnection();
+			String sql = "SELECT c_no, c_title, c_poster, c_artist, c_price, c_content "
+						+ "FROM thisclass "
+						+ "WHERE c_no>13365 AND REGEXP_LIKE(c_title,?)  ORDER BY c_no asc";
+
+			ps = conn.prepareStatement(sql);
+ 			ps.setString(1, word);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				OnlineVO vo = new OnlineVO();
+				vo.setCno(rs.getInt(1));
+				vo.setCtitle(rs.getString(2));
+				vo.setCposter(rs.getString(3));
+				vo.setCartist(rs.getString(4));
+				vo.setCprice(rs.getString(5));
+				vo.setCcontent(rs.getString(6));
+//				vo.setCscore(rs.getDouble(7));
+				list.add(vo);
+			}
+			rs.close();
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			disConnection();
+		}
+		return list;
+	}
 	
 	
 
