@@ -93,7 +93,7 @@ ul.pagination_list{
 							 
 
 						</div>
-						<div class="row pagination_row">
+					 	<div class="row pagination_row">
 							<div class="col">
 								<div class="pagination_container d-flex flex-row align-items-center justify-content-start">
 									<ul class="pagination_list">
