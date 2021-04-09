@@ -109,17 +109,7 @@
 		</table>
 </div>
 
-<div class="wrapper row3 join_row">
-  <table class="table">
-    <tr>
-     <td class="text-right">
-      <a href="list.jsp?page=" class="btn btn-sm btn-success">이전</a>
-      1 page / 1 pages
-      <a href="list.jsp?page=" class="btn btn-sm btn-info">다음</a>
-     </td>
-    </tr>
-  </table>
- </div>
+
  </div>
 
  <script src="../main/js/jquery-3.2.1.min.js"></script>
