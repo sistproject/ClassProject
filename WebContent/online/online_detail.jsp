@@ -625,10 +625,11 @@ margin-top:30px;
 						<!-- Categories -->
 						<div class="team_body" id="adside"style="width:650px; height: 515px;padding-top:30px">
 						 <div class="sidebar_section" >
-							<div class="clearfix" style="padding-bottom:15px;font-size: 17px; text-align:left; color: black;">By &nbsp;${ondVO.cartist }</div>
+							<div class="clearfix" style="padding-bottom:15px;font-size: 17px; text-align:left; color: black; display:inline-block;">By &nbsp;${ondVO.cartist }</div>
 								
 								
-								<button onclick="location.href='../board/insert.do?type=0&cno=${ondVO.cno}'">문의하기</button>
+<%-- 								<button onclick="location.href='../board/insert.do?type=0&cno=${ondVO.cno}'">문의하기</button> --%>
+								<button onclick="location.href='../board/insert.do?type=0&cno=${ondVO.cno}'" class="myButton">문의하기</button>
 								
 								<div class="sidebar_section_title" style="padding-bottom:50px;  text-align:left; color: black;"><h2>${ondVO.ctitle }</h2></div>
 								 <div class="sidebar_categories">

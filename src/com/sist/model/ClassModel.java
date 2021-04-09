@@ -60,7 +60,6 @@ public class ClassModel {
 				  }
 			  }
 		  }
-
 		request.setAttribute("kList", kList); // 쿠키 데이터
 		request.setAttribute("count", count);
 		request.setAttribute("allList", allList); // online main List
