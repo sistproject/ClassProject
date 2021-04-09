@@ -493,7 +493,7 @@ public class OffClassDAO {
 	    		 disConnection();
 	    	 }
 	     }
-	     
+	       
 	     // 쿠키
 	     public OffClassVO offclassCookiePrintData(int cno)
 	     {
