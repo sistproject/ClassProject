@@ -222,7 +222,7 @@ margin-top:30px;
 																	<article>
 																		<header>
 																			<figure class="avatar">
-																				<c:if test="${sessionScope.id==vo.id }">
+																				<c:if test="${sessionScope.id==rvo.id }">
 																					<span class="btn btn-xs btn-success updateBtn"
 																						data-no="${rvo.no }">수정</span>
 																					<span class="btn btn-xs btn-danger delBtn"
