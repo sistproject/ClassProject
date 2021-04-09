@@ -17,6 +17,8 @@
 <link rel="stylesheet" type="text/css" href="../main/plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="../main/styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="../main/styles/responsive.css">
+<link rel="stylesheet" type="text/css" href="../online/styles/courses.css">
+<link rel="stylesheet" type="text/css" href="../online/styles/courses_responsive.css">
 <% //세션에 저장되어 있는 데이터 읽기
     String id=(String)session.getAttribute("id"); // 없는 경우:null 
     System.out.println(id);
@@ -67,9 +69,7 @@ function view2(opt2){
 .work_class a{
 	color: gray;
 }
-.list_number ul li a{
-   color:black;
-}
+
 </style>
 </head>
 <body>
@@ -125,8 +125,8 @@ function view2(opt2){
 		
 				<div class="list_num" style="text-align: center; font-size: 39px;">
 							<div class="col">
-								<div class="list_number">
-									<ul>
+								<div class="list_number" style="text-align: center">
+									<ul class="pagination_list">
 							          <c:if test="${startpage>1 }">
 							           <li style="display:inline-block;"><a href="../work/work_silgu.do?page=${startpage-1 }">이전</a></li>
 							          </c:if>

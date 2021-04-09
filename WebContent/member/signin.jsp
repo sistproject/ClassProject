@@ -48,6 +48,7 @@ function allFilled(){
 		btn.style.cursor = "pointer";
 	}
 }
+
 </script>
 </head>
 <body>
