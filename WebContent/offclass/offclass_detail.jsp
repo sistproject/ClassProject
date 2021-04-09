@@ -378,7 +378,7 @@ $(function(){
 						<div class="sidebar_section">
 							<div class="sidebar_section_title">Course Feature</div>
 							<div class="sidebar_feature">
-								<div class="course_price">${vo.cprice }</div>
+								<div class="course_price">${vo.cprice }원</div>
 
 								<!-- Features -->
 								<div class="feature_list">

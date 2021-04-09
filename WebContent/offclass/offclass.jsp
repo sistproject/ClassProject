@@ -84,7 +84,7 @@ ul.pagination_list{
 												<i class="fa fa-star" aria-hidden="true"></i>
 												<span>${of.cscore }</span>
 											</div>
-											<div class="course_price ml-auto">${of.cprice }</div>
+											<div class="course_price ml-auto">${of.cprice }원</div>
 										</div>
 									</div>
 								</div>
