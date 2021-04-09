@@ -70,7 +70,7 @@ $('#adside').removeClass('fixed');
 <style type="text/css">
 
 .container{
-	min-width:1500px;
+	min-width:1550px;
 }
 .w_c_wrapper{
 	display: inline-block;
