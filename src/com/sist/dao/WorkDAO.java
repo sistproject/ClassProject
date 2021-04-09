@@ -335,7 +335,7 @@ public class WorkDAO {
 	    	 try
 	    	 {
 	    		 getConnection();
-	    		 String sql="INSERT INTO online_reply(no,cno,id,name,msg,regdate) VALUES("
+	    		 String sql="INSERT INTO online_reply(no,w_no,id,name,msg,regdate) VALUES("
 	    				   +"on_no_seq.nextval,?,?,?,?,SYSDATE)";
 	    		 ps=conn.prepareStatement(sql);
 	    		 ps.setInt(1, vo.getW_no());

@@ -309,11 +309,13 @@ public class WorkModel {
 		WorkDAO dao=new WorkDAO();
 		System.out.println("==============================6888==============detail");
 		WorkDetailVO vo=dao.WorkDetailData(Integer.parseInt(w_no));
-		List<WorkReplyVO> reList = dao.WorkReplyReadData(Integer.parseInt(w_no));
+		List<WorkReplyVO> rList = dao.WorkReplyReadData(Integer.parseInt(w_no));
 		System.out.println("==============================6666==============detail");
 		request.setAttribute("vo", vo);
 		System.out.println("============================777==============detail");
 		request.setAttribute("main_jsp", "../work/work_detail.jsp");
+		System.out.println(rList.size()+"작품");
+		request.setAttribute("rList",rList);
 		}catch(Exception ex)
 		{
 			ex.printStackTrace();
@@ -355,12 +357,13 @@ public class WorkModel {
 			vo.setName(name);
 			vo.setMsg(msg);
 			vo.setId(id);
-			vo.setCno(Integer.parseInt(w_no));
+			vo.setW_no(Integer.parseInt(w_no));
 			// DAO연결
 			WorkDAO dao = new WorkDAO();
 			dao.WorkReplyInsert(vo);
             
 			List<WorkReplyVO> list=dao.WorkReplyReadData(Integer.parseInt(w_no));
+			System.out.println(list.size());
 			request.setAttribute("rlist", list);
 			return "redirect:../work/work_detail.do?&w_no="+ w_no; // ?cno= 클래스의 번호
 		}

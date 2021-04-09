@@ -215,18 +215,18 @@ margin-top:30px;
 												<table class="table">
 													<tr>
 														<td><textarea rows="10" cols="100" name="msg"></textarea> 
-															<input type="hidden" name=cno value="${ondVO.cno}"> 
+															<input type="hidden" name=w_no value="${vo.w_no}"> 
 															<input type="submit" value="댓글쓰기" class="btn btn-sm btn-danger">
 															<c:forEach var="rvo" items="${rList }">
 																<li>
 																	<article>
 																		<header>
 																			<figure class="avatar">
-																				<c:if test="${sessionScope.id==rvo.id }">
+																				<c:if test="${sessionScope.id==vo.id }">
 																					<span class="btn btn-xs btn-success updateBtn"
 																						data-no="${rvo.no }">수정</span>
 																					<span class="btn btn-xs btn-danger delBtn"
-																						data-no="${rvo.no }" data-cno="${ondVO.cno }">삭제</span>
+																						data-no="${rvo.no }" data-cno="${rvo.w_no }">삭제</span>
 																				</c:if>
 																			</figure>
 																			<div style="color:blue;">
@@ -245,7 +245,7 @@ margin-top:30px;
 																			<tr>
 																				<td>
 																					<textarea rows="7" cols="25" name="msg">${rvo.msg }</textarea>
-																					<input type="hidden" name=cno value="${ondVO.cno }">
+																					<input type="hidden" name=w_no value="${vo.w_no }">
 																					<input type="hidden" name=no value="${rvo.no }"> <input type="submit" value="댓글수정" class="btn btn-sm btn-danger">
 																				</td>
 																			</tr>
