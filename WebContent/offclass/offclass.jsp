@@ -90,7 +90,7 @@ ul.pagination_list{
 								</div>
 							</div>
 							</c:forEach>
-							
+							 
 
 						</div>
 						<div class="row pagination_row">
