@@ -20,9 +20,7 @@ public class OnlineModel {
 		System.out.println("-===============================================================online");
 		// 페이지 나누기
 		String page = request.getParameter("page");
-		System.out.println("페이지 출력");
 		System.out.println(page);
-		System.out.println("페이지 출력 완료");
 		if (page == null) {
 			page = "1";
 		}
@@ -33,7 +31,7 @@ public class OnlineModel {
 		
 		int count = dao.onlineMainCount();
 		int totalPage = (int) (Math.ceil(count / 12.0));
-
+		System.out.println("페이치 총 갯수:"+totalPage+"===========================");
 		final int BLOCK = 10;
 		// 102 [1]-[10] [91]~[100] [101][102]
 		int startPage = ((curpage - 1) / BLOCK * BLOCK) + 1;

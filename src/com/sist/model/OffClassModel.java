@@ -417,6 +417,44 @@ public class OffClassModel {
 		  return "redirect:../offclass/offclass.do?no="+c_no;  
 	  }
 		
+	  
+	  
+	  @RequestMapping("offclass/offclass_공.do")
+		public String 공예_list(HttpServletRequest request,HttpServletResponse response)
+		{
+			String page=request.getParameter("page");
+			if(page==null) {
+				page="1";
+			}
+			int curpage=Integer.parseInt(page);
+			
+			OffClassDAO dao= OffClassDAO.newInstance();
+			List<OffClassVO> of공List=dao.Off공예Data(curpage);
+			int count=dao.OffClassCount();
+			int totalPage=(int)(Math.ceil(count/12.0));
+			
+			final int BLOCK=10;
+			int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+			int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+
+			
+			if(endPage>totalPage)
+				endPage=totalPage; 
+			
+			
+			request.setAttribute("count", count);
+			request.setAttribute("of공List", of공List);
+			
+			request.setAttribute("block", BLOCK);
+		    request.setAttribute("startPage", startPage);
+		    request.setAttribute("endPage", endPage);
+		    request.setAttribute("totalPage", totalPage);
+		    request.setAttribute("curpage", curpage);
+		    request.setAttribute("main_jsp", "../offclass/offclass_공.jsp");
+		    request.setAttribute("menu", "class");
+			
+			return "../main/main.jsp";
+		}
 }
 
 

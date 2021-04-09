@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.ClassDAO;
+import com.sist.dao.OffClassDAO;
 import com.sist.dao.OnlineDAO;
 import com.sist.dao.WorkDAO;
+import com.sist.vo.OffClassVO;
 import com.sist.vo.OnlineVO;
 import com.sist.vo.WorkDetailVO;
 import com.sist.vo.WorkVO;
@@ -97,16 +99,19 @@ public class MainModel {
 	}
 	
 	@RequestMapping("main/cmain.do")
-	public String classPage(HttpServletRequest request,HttpServletResponse response) {
-		String name = "";
+	public String classmainPage(HttpServletRequest request,HttpServletResponse response) {
+		OffClassDAO dao = OffClassDAO.newInstance();
+		List<OffClassVO> offList = dao.OffClassData(1);
+		System.out.println(offList);
 		
-		ClassDAO dao = ClassDAO.newInstance();
-		List<String> catList = dao.getCategory();
-		int catCount = dao.getCategoryCount();
-		request.setAttribute("catList", catList);
-		request.setAttribute("catCount", catCount);
-		request.setAttribute("name", name);
-		request.setAttribute("main_jsp", "../main/home.jsp");
+		OnlineDAO cdao= OnlineDAO.newInstance();
+		List<OnlineVO> onList = cdao.onlineData(1);
+		System.out.println(onList);
+		
+		request.setAttribute("offList", offList);
+		request.setAttribute("onList", onList);
+		System.out.println("!!!!!!! dhffk !!!!");
+		request.setAttribute("main_jsp", "../main/mainclass.jsp");
 		request.setAttribute("menu", "class");
 		return "../main/main.jsp";
 	}
