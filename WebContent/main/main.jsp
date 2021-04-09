@@ -149,9 +149,11 @@ function view2(opt2){
 								<li>
 									<a href="../member/signin.do"><div>회원가입</div></a>
 								</li>
+								<c:if test="${sessionScope.id!=null }">
 								<li>
 									<a href="../member/member_detail.do"><div>마이페이지</div></a>
 								</li>
+								</c:if>
 							</ul>
 						</div>
 					</div>
