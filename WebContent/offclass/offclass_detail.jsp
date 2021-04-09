@@ -393,7 +393,7 @@ $(function(){
 									
 								
           							
-										<a href="../member/jjim.do?no=${vo.cno}&type=cf" class="myButton">찜</a>&nbsp;<button class="mymButton" onclick="location.href='../board/insert.do?type=0&cno=${vo.cno}'">문의하기</button>
+										<a href="../member/jjim.do?no=${vo.cno}&type=cf" class="myButton">찜</a><button class="mymButton" onclick="location.href='../board/insert.do?type=0&cno=${vo.cno}'">문의하기</button>
 										
 										<a href="../offclass/reserve.do?no=${vo.cno }" class="myrButton">예약하기</a>
 								
