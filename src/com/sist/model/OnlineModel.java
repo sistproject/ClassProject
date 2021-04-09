@@ -162,8 +162,8 @@ public class OnlineModel {
 		request.setAttribute("rList", rList);
 		request.setAttribute("pList", pList);
 		request.setAttribute("cList", cList);
-		request.setAttribute("menu", "class");
 		request.setAttribute("main_jsp", "../online/online_detail.jsp");
+		request.setAttribute("menu", "class");
 
 		return "../main/main.jsp";
 

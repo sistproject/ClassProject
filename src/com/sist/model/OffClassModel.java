@@ -187,6 +187,7 @@ public class OffClassModel {
 		  String cno = request.getParameter("no");
 		  request.setAttribute("cno", cno);
 		  request.setAttribute("main_jsp", "../offclass/reserve.jsp");
+		  request.setAttribute("menu", "class");
 		  return "../main/main.jsp";
 	  }
 	  
