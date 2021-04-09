@@ -21,15 +21,15 @@
 				
 				<!-- Home Slider Item -->
 				<div class="owl-item">
-					<div class="home_slider_background" style="background-image:url(img1.jpg);"></div>
+					<div class="home_slider_background" style="background-image:url(img5.jpg);"></div>
 				</div>
 				<!-- Home Slider Item -->
 				<div class="owl-item">
-					<div class="home_slider_background" style="background-image:url(img2.jpg)"></div>
+					<div class="home_slider_background" style="background-image:url(img7.jpg)"></div>
 				</div>
 				<!-- Home Slider Item -->
 				<div class="owl-item">
-					<div class="home_slider_background" style="background-image:url(img3.jpg)"></div>
+					<div class="home_slider_background" style="background-image:url(img9.jpg)"></div>
 				</div>
 			</div>
 		</div>
@@ -96,9 +96,9 @@
 				<c:forEach var="offvo" items="${offList }">
 				<div class="col-lg-3 col-md-6 team_col">
 					<div class="team_item">
-						<div class="team_image"><a href="../offclass/offclass_detail_before.do?w_no=${offvo.cno }"><img src="${offvo.cposter }" style="width: 180px;height: 190px;" alt=""></a></div>
+						<div class="team_image"><a href="offclass/offclass_before.do?cno=${offvo.cno }"><img src="${offvo.cposter }" style="width: 180px;height: 190px;" alt=""></a></div>
 						<div class="team_body"  style="width: 340px;height: 275px;">
-							<div class="team_title"><a href="../work/work_detail_before.do?w_no=${offvo.cno }">${offvo.ctitle }</a></div>
+							<div class="team_title"><a href="offclass/offclass_before.do?cno=${offvo.cno }">${offvo.ctitle }</a></div>
 							<div class="team_subtitle">${offvo.cartist }</div>
 							<div class="social_list">
 								<ul>
@@ -134,9 +134,9 @@
 				<c:forEach var="offvo" items="${offList }" varStatus="s">
 				<div class="col-lg-3 col-md-6 team_col">
 					<div class="team_item">
-						<div class="team_image"><a href="../offclass/offclass_detail_before.do?w_no=${vo.w_no }"><img src="${offvo.cposter }" style="width: 180px;height: 190px;" alt=""></a></div>
+						<div class="team_image"><a href="offclass/offclass_before.do?cno=${offvo.cno }"><img src="${offvo.cposter }" style="width: 180px;height: 190px;" alt=""></a></div>
 						<div class="team_body"  style="width: 340px;height: 275px;">
-							<div class="team_title"><a href="../work/work_detail_before.do?w_no=${offvo.cno }">${offvo.ctitle }</a></div>
+							<div class="team_title"><a href="offclass/offclass_before.do?cno=${offvo.cno }">${offvo.ctitle }</a></div>
 							<div class="team_subtitle">${offvo.cartist }</div>
 							<div class="social_list">
 								<ul>
@@ -173,9 +173,9 @@
 				<c:forEach var="offvo" items="${offList }">
 				<div class="col-lg-3 col-md-6 team_col">
 					<div class="team_item">
-						<div class="team_image"><a href="../work/work_detail_before.do?w_no=${offvo.cno }"><img src="${offvo.cposter }" style="width: 180px;height: 190px;" alt=""></a></div>
+						<div class="team_image"><a href="offclass/offclass_before.do?cno=${offvo.cno }"><img src="${offvo.cposter }" style="width: 180px;height: 190px;" alt=""></a></div>
 						<div class="team_body"  style="width: 340px;height: 275px;">
-							<div class="team_title"><a href="../work/work_detail_before.do?w_no=${offvo.cno }">${offvo.ctitle }</a></div>
+							<div class="team_title"><a href="offclass/offclass_before.do?cno=${offvo.cno }">${offvo.ctitle }</a></div>
 							<div class="team_subtitle">${offvo.cartist }</div>
 							<div class="social_list">
 								<ul>
@@ -195,25 +195,6 @@
 				</div>
 			</div>
 		</div>
-	  <div style="height:100px"></div>
-<!-- /////// 쿠키 //////// -->
- <div class="box" >
-  <div class="box_title" style="padding:20px"><h2>최근 본 작품</h2></div>
-	<div class="box_latest cookieImg">
-	 <c:forEach var="fvo" items="${fList }" varStatus="s">
-	  <c:if test="${s.index<8 }">
-		<a href="../work/work_detail.do?w_no=${fvo.w_no }">
-		<div class="cookie_border" style="float:left; padding-right:20px; margin-center:0px auto">
-		 <img class="radius-10 " data-aos="zoom-in-down" src="${fvo.w_poster }" title="${fvo.w_title }" 
-		 style="width:150px;height:150px; margin-bottom: 20px; border-radius: 10px;">
-		</div></a>
-	  </c:if>
-	</c:forEach>
-   </div>
-</div>
-
-							
- 	
 	<!-- ------------------------------------------------------------------------------------------------------------------------------------- -->
 			</div>
 		</div>
