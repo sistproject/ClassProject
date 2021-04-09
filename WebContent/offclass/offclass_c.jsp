@@ -50,8 +50,8 @@ ul.pagination_list{
 				<!-- Courses Main Content -->
 				<div class="col-lg-8">
 					<div class="courses_search_container">
-						<form action="../offclass/offclasssearch.do" id="courses_search_form" class="courses_search_form d-flex flex-row align-items-center justify-content-start">
-							<input type="search" class="courses_search_input" placeholder="Search Courses" required="required" name="search">
+						<form action="#" id="courses_search_form" class="courses_search_form d-flex flex-row align-items-center justify-content-start">
+							<input type="search" class="courses_search_input" placeholder="Search Courses" required="required">
 							<select id="courses_search_select" class="courses_search_select courses_search_input">
 								<option>All Categories</option>
 								<option>Category</option>
@@ -65,26 +65,25 @@ ul.pagination_list{
 						<div class="row courses_row">
 							
 							<!-- Course -->
-							<c:forEach var="of" items="${ofList}"> 
+							<c:forEach var="ofc" items="${ofcList}"> 
 							<div class="col-lg-6 course_col">
 								<div class="course">
-									<div class="course_image"><img src="${of.cposter }" alt=""></div>
+									<div class="course_image"><img src="${ofc.cposter }" alt=""></div>
 									<div class="course_body">
-										<div class="course_category">${of.ccategory }</div>
-<%-- 										<h3 class="course_title"><a href="../offclass/offclass_detail.do?cno=${of.cno }">${of.ctitle }</a></h3> --%>
-										<h3 class="course_title"><a href="../offclass/offclass_before.do?cno=${of.cno }">${of.ctitle }</a></h3>
-										<div class="course_teacher">${of.cartist }</div>
+										<div class="course_category">${ofa.ccategory }</div>
+										<h3 class="course_title"><a href="../offclass/offclass_detail.do?cno=${ofc.cno }">${ofc.ctitle }</a></h3>
+										<div class="course_teacher">${ofc.cartist }</div>
 									</div>
 									<div class="course_footer">
 										<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
 											<div class="course_info">
-												<span>${of.infoaddr }</span>
+												<span>${ofc.infoaddr }</span>
 											</div>
 											<div class="course_info">
 												<i class="fa fa-star" aria-hidden="true"></i>
-												<span>${of.cscore }</span>
+												<span>${ofc.cscore }</span>
 											</div>
-											<div class="course_price ml-auto">${of.cprice }</div>
+											<div class="course_price ml-auto">${ofc.cprice }</div>
 										</div>
 									</div>
 								</div>
@@ -98,7 +97,7 @@ ul.pagination_list{
 								<div class="pagination_container d-flex flex-row align-items-center justify-content-start">
 									<ul class="pagination_list">
 							          <c:if test="${startPage>1 }">
-							           <li><a href="../offclass/offclass.do?page=${startPage-1 }">이전</a></li>
+							           <li><a href="../offclass/offclass_c.do?page=${startPage-1 }">이전</a></li>
 							          </c:if>
 							          <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
 							            <c:if test="${i==curpage }">
@@ -107,10 +106,10 @@ ul.pagination_list{
 							            <c:if test="${i!=curpage }">
 							             <c:set var="type" value=""/>
 							            </c:if>
-							            <li ${type }><a href="../offclass/offclass.do?page=${i }">${i }</a></li>
+							            <li ${type }><a href="../offclass/offclass_c.do?page=${i }">${i }</a></li>
 							          </c:forEach>
 							          <c:if test="${endPage<totalPage }">
-							            <li><a href="../offclass/offclass.do?page=${endPage+1 }"> 다음</a></li>
+							            <li><a href="../offclass/offclass_c.do?page=${endPage+1 }"> 다음</a></li>
 							          </c:if>
 							        </ul>
 								</div>
@@ -133,7 +132,7 @@ ul.pagination_list{
 									<li><a href="../offclass/offclass_c.do">미술</a></li>
 									<li><a href="../offclass/offclass_e.do">플라워</a></li>
 									<li><a href="../offclass/offclass_f.do">뷰티</a></li>
-									<li><a href="../offclass/offclass_g.do">체험및기타</a></li> 
+									<li><a href="../offclass/offclass_g.do">체험및기타</a></li>
 								</ul>
 							</div>
 						</div>
@@ -144,7 +143,7 @@ ul.pagination_list{
 							<div class="sidebar_section_title">최근 방문한 오프라인 클래스</div>
 								<c:forEach var="kvo" items="${kList }" varStatus="s">
 							        <c:if test="${s.index<9 }">
-							         <a href="../offclass/offclass_before.do?cno=${kvo.cno }">
+							         <a href="../offclass/offclass_detail.do?cno=${kvo.cno }">
 							         <img class="radius-10 " src="${kvo.cposter }" title="${kvo.ctitle }" style="width:100px;height:100px"></a>
 							        </c:if>
 							      </c:forEach>
@@ -255,7 +254,6 @@ ul.pagination_list{
 	
 
 	<!-- Footer -->
-
 
 </div>
 

@@ -187,6 +187,7 @@ public class OffClassModel {
 		  String cno = request.getParameter("no");
 		  request.setAttribute("cno", cno);
 		  request.setAttribute("main_jsp", "../offclass/reserve.jsp");
+		  request.setAttribute("menu", "class");
 		  return "../main/main.jsp";
 	  }
 	  
@@ -420,7 +421,7 @@ public class OffClassModel {
 		
 	  
 	  
-	  @RequestMapping("offclass/offclass_공.do")
+	  @RequestMapping("offclass/offclass_a.do")
 		public String 공예_list(HttpServletRequest request,HttpServletResponse response)
 		{
 			String page=request.getParameter("page");
@@ -430,7 +431,7 @@ public class OffClassModel {
 			int curpage=Integer.parseInt(page);
 			
 			OffClassDAO dao= OffClassDAO.newInstance();
-			List<OffClassVO> of공List=dao.Off공예Data(curpage);
+			List<OffClassVO> ofaList=dao.Off공예Data(curpage);
 			int count=dao.OffClassCount();
 			int totalPage=(int)(Math.ceil(count/12.0));
 			
@@ -444,14 +445,201 @@ public class OffClassModel {
 			
 			
 			request.setAttribute("count", count);
-			request.setAttribute("of공List", of공List);
+			request.setAttribute("ofaList", ofaList);
 			
 			request.setAttribute("block", BLOCK);
 		    request.setAttribute("startPage", startPage);
 		    request.setAttribute("endPage", endPage);
 		    request.setAttribute("totalPage", totalPage);
 		    request.setAttribute("curpage", curpage);
-		    request.setAttribute("main_jsp", "../offclass/offclass_공.jsp");
+		    request.setAttribute("main_jsp", "../offclass/offclass_a.jsp");
+		    request.setAttribute("menu", "class");
+			
+			return "../main/main.jsp";
+		}
+	  
+	  
+	  	@RequestMapping("offclass/offclass_b.do")
+		public String 요리_list(HttpServletRequest request,HttpServletResponse response)
+		{
+			String page=request.getParameter("page");
+			if(page==null) {
+				page="1";
+			}
+			int curpage=Integer.parseInt(page);
+			
+			OffClassDAO dao= OffClassDAO.newInstance();
+			List<OffClassVO> ofbList=dao.Off요리Data(curpage);
+			int count=dao.OffClassCount();
+			int totalPage=(int)(Math.ceil(count/12.0));
+			
+			final int BLOCK=10;
+			int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+			int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+
+			
+			if(endPage>totalPage)
+				endPage=totalPage; 
+			
+			
+			request.setAttribute("count", count);
+			request.setAttribute("ofbList", ofbList);
+			
+			request.setAttribute("block", BLOCK);
+		    request.setAttribute("startPage", startPage);
+		    request.setAttribute("endPage", endPage);
+		    request.setAttribute("totalPage", totalPage);
+		    request.setAttribute("curpage", curpage);
+		    request.setAttribute("main_jsp", "../offclass/offclass_b.jsp");
+		    request.setAttribute("menu", "class");
+			
+			return "../main/main.jsp";
+		}
+	  	
+	  	@RequestMapping("offclass/offclass_c.do")
+		public String 미술_list(HttpServletRequest request,HttpServletResponse response)
+		{
+			String page=request.getParameter("page");
+			if(page==null) {
+				page="1";
+			}
+			int curpage=Integer.parseInt(page);
+			
+			OffClassDAO dao= OffClassDAO.newInstance();
+			List<OffClassVO> ofcList=dao.Off미술Data(curpage);
+			int count=dao.OffClassCount();
+			int totalPage=(int)(Math.ceil(count/12.0));
+			
+			final int BLOCK=10;
+			int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+			int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+
+			
+			if(endPage>totalPage)
+				endPage=totalPage; 
+			
+			
+			request.setAttribute("count", count);
+			request.setAttribute("ofcList", ofcList);
+			
+			request.setAttribute("block", BLOCK);
+		    request.setAttribute("startPage", startPage);
+		    request.setAttribute("endPage", endPage);
+		    request.setAttribute("totalPage", totalPage);
+		    request.setAttribute("curpage", curpage);
+		    request.setAttribute("main_jsp", "../offclass/offclass_c.jsp");
+		    request.setAttribute("menu", "class");
+			
+			return "../main/main.jsp";
+		}
+	  	
+	  	
+	  	@RequestMapping("offclass/offclass_e.do")
+		public String 플라워_list(HttpServletRequest request,HttpServletResponse response)
+		{
+			String page=request.getParameter("page");
+			if(page==null) {
+				page="1";
+			}
+			int curpage=Integer.parseInt(page);
+			
+			OffClassDAO dao= OffClassDAO.newInstance();
+			List<OffClassVO> ofeList=dao.Off플라워Data(curpage);
+			int count=dao.OffClassCount();
+			int totalPage=(int)(Math.ceil(count/12.0));
+			
+			final int BLOCK=10;
+			int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+			int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+
+			
+			if(endPage>totalPage)
+				endPage=totalPage; 
+			
+			
+			request.setAttribute("count", count);
+			request.setAttribute("ofeList", ofeList);
+			
+			request.setAttribute("block", BLOCK);
+		    request.setAttribute("startPage", startPage);
+		    request.setAttribute("endPage", endPage);
+		    request.setAttribute("totalPage", totalPage);
+		    request.setAttribute("curpage", curpage);
+		    request.setAttribute("main_jsp", "../offclass/offclass_e.jsp");
+		    request.setAttribute("menu", "class");
+			
+			return "../main/main.jsp";
+		}
+	  	
+	  	@RequestMapping("offclass/offclass_f.do")
+		public String 뷰티_list(HttpServletRequest request,HttpServletResponse response)
+		{
+			String page=request.getParameter("page");
+			if(page==null) {
+				page="1";
+			}
+			int curpage=Integer.parseInt(page);
+			
+			OffClassDAO dao= OffClassDAO.newInstance();
+			List<OffClassVO> offList=dao.Off뷰티Data(curpage);
+			int count=dao.OffClassCount();
+			int totalPage=(int)(Math.ceil(count/12.0));
+			
+			final int BLOCK=10;
+			int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+			int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+
+			
+			if(endPage>totalPage)
+				endPage=totalPage; 
+			
+			
+			request.setAttribute("count", count);
+			request.setAttribute("offList", offList);
+			
+			request.setAttribute("block", BLOCK);
+		    request.setAttribute("startPage", startPage);
+		    request.setAttribute("endPage", endPage);
+		    request.setAttribute("totalPage", totalPage);
+		    request.setAttribute("curpage", curpage);
+		    request.setAttribute("main_jsp", "../offclass/offclass_f.jsp");
+		    request.setAttribute("menu", "class");
+			
+			return "../main/main.jsp";
+		}
+	  	
+	  	@RequestMapping("offclass/offclass_g.do")
+		public String 체험_list(HttpServletRequest request,HttpServletResponse response)
+		{
+			String page=request.getParameter("page");
+			if(page==null) {
+				page="1";
+			}
+			int curpage=Integer.parseInt(page);
+			
+			OffClassDAO dao= OffClassDAO.newInstance();
+			List<OffClassVO> ofgList=dao.Off체험Data(curpage);
+			int count=dao.OffClassCount();
+			int totalPage=(int)(Math.ceil(count/12.0));
+			
+			final int BLOCK=10;
+			int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+			int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+
+			
+			if(endPage>totalPage)
+				endPage=totalPage; 
+			
+			
+			request.setAttribute("count", count);
+			request.setAttribute("ofgList", ofgList);
+			
+			request.setAttribute("block", BLOCK);
+		    request.setAttribute("startPage", startPage);
+		    request.setAttribute("endPage", endPage);
+		    request.setAttribute("totalPage", totalPage);
+		    request.setAttribute("curpage", curpage);
+		    request.setAttribute("main_jsp", "../offclass/offclass_g.jsp");
 		    request.setAttribute("menu", "class");
 			
 			return "../main/main.jsp";
