@@ -40,7 +40,6 @@ public class OffClassModel {
 			endPage=totalPage; 
 		
 		List<OffClassVO> kList=new ArrayList<OffClassVO>();
-		  
 		  Cookie[] cookies=request.getCookies();	
 		  System.out.println(cookies.length);
 		  if(cookies != null)
@@ -81,6 +80,17 @@ public class OffClassModel {
 		
 		return "../main/main.jsp";
 	}
+	
+  @RequestMapping("offclass/offclass_before.do")
+  public String offclass(HttpServletRequest request,HttpServletResponse response)
+  {
+	  String c_no=request.getParameter("cno");
+	  Cookie cookie=new Cookie("m"+c_no, c_no);
+	  cookie.setMaxAge(60*60);		
+	  cookie.setPath("/");
+	  response.addCookie(cookie);
+	  return "redirect:../offclass/offclass_detail.do?cno="+c_no;  
+  }
 	
 	@RequestMapping("offclass/offclass_detail.do")
 	public String class_detail(HttpServletRequest request,HttpServletResponse response)
@@ -406,16 +416,7 @@ public class OffClassModel {
 	  // 쿠키
 	  
 	  
-	  @RequestMapping("offclass/offclass.do")
-	  public String offclass(HttpServletRequest request,HttpServletResponse response)
-	  {
-		  String c_no=request.getParameter("cno");
-		  Cookie cookie=new Cookie("m"+c_no, c_no);
-		  cookie.setMaxAge(60*60);		
-		  cookie.setPath("/");
-		  response.addCookie(cookie);
-		  return "redirect:../offclass/offclass.do?no="+c_no;  
-	  }
+	
 		
 	  
 	  

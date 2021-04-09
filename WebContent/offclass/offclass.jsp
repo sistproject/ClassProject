@@ -71,7 +71,8 @@ ul.pagination_list{
 									<div class="course_image"><img src="${of.cposter }" alt=""></div>
 									<div class="course_body">
 										<div class="course_category">${of.ccategory }</div>
-										<h3 class="course_title"><a href="../offclass/offclass_detail.do?cno=${of.cno }">${of.ctitle }</a></h3>
+<%-- 										<h3 class="course_title"><a href="../offclass/offclass_detail.do?cno=${of.cno }">${of.ctitle }</a></h3> --%>
+										<h3 class="course_title"><a href="../offclass/offclass_before.do?cno=${of.cno }">${of.ctitle }</a></h3>
 										<div class="course_teacher">${of.cartist }</div>
 									</div>
 									<div class="course_footer">
@@ -143,7 +144,7 @@ ul.pagination_list{
 							<div class="sidebar_section_title">최근 방문한 오프라인 클래스</div>
 								<c:forEach var="kvo" items="${kList }" varStatus="s">
 							        <c:if test="${s.index<9 }">
-							         <a href="../offclass/offclass_detail.do?cno=${kvo.cno }">
+							         <a href="../offclass/offclass_before.do?cno=${kvo.cno }">
 							         <img class="radius-10 " src="${kvo.cposter }" title="${kvo.ctitle }" style="width:100px;height:100px"></a>
 							        </c:if>
 							      </c:forEach>
