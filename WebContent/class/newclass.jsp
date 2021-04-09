@@ -19,6 +19,8 @@
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="styles/courses.css">
 <link rel="stylesheet" type="text/css" href="styles/courses_responsive.css">
+<link rel="stylesheet" type="text/css" href="../online/styles/courses.css">
+<link rel="stylesheet" type="text/css" href="../online/styles/courses_responsive.css">
 
 <!-- fade -->
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -86,10 +88,10 @@
 						</div>
 						<div class="row pagination_row">
 							<div class="col">
-								<div class="pagination_container d-flex flex-row align-items-center justify-content-start">
+								<div class="list_number" style="text-align: center">
 									<ul class="pagination_list">
 							          <c:if test="${startPage>1 }">
-							           <li><a href="../class/trendclass.do?page=${startPage-1 }">이전</a></li>
+							           <li style="display:inline-block;"><a href="../class/newclass.do?age=${startPage-1 }">이전</a></li>
 							          </c:if>
 							          <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
 							            <c:if test="${i==curpage }">
@@ -98,10 +100,10 @@
 							            <c:if test="${i!=curpage }">
 							             <c:set var="type" value=""/>
 							            </c:if>
-							            <li ${type }><a href="../class/trendclass.do?page=${i }">${i }</a></li>
+							            <li ${type }  style="display:inline-block;"><a href="../class/newclass.do?page=${i }">${i }</a></li>
 							          </c:forEach>
-							          <c:if test="${endPage<totalpage }">
-							            <li><a href="../class/trendclass?page=${endPage+1 }"> 다음</a></li>
+							          <c:if test="${endPage<totalPage }">
+							            <li  style="display:inline-block;"><a href="../class/newclass.do?page=${endPage+1 }"> 다음</a></li>
 							          </c:if>
 							        </ul>
 								</div>
