@@ -11,8 +11,7 @@
  <img src="https://img.shields.io/badge/stack-openAPI-blue.svg?style=flat-square"/>
 </p>
 
-## run on local
-
+## RUN ON LOCAL
 ```
 // clone project
 $ git clone https://github.com/sistproject/ClassProject.git
